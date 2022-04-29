@@ -20,7 +20,7 @@ import com.project2.movieproject.admin.AdminService;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.PageVO;
-import com.project2.movieproject.command.adminUploadVO;
+
 import com.project2.movieproject.command.adminVO;
 
 @Controller
@@ -50,20 +50,27 @@ public class AdminController {
 	}
 
 	@PostMapping("/noticeRegist")//등록(나중에 첨부파일도)
-	public String noticeRegist(adminVO vo, RedirectAttributes RA, 
-			@RequestParam("file")List<MultipartFile>list) {
-
-		list=list.stream().filter((f) -> f.isEmpty() ==false).collect(Collectors.toList());
+	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model )
+		 {
+				/*
+				 * for(MultipartFile f:list) { System.out.println(f.isEmpty());
+				 * System.out.println(f.getContentType()); } System.out.println(vo.toString());
+				 */
+		
+		
+		 
+		 
+		
 		int result = adminService.noticeRegist(vo,list);
-
 		if(result == 1) {
 			RA.addFlashAttribute("msg", vo.getAdmin_id()+"등록이 성공했습니다.");
 		}else {
 			RA.addFlashAttribute("msg", "등록에 실패했습니다.");
 		}
+	
 
-		return"redirect:/admin/notices";
-	}
+	return"redirect:/admin/notices";
+}
 
 	@GetMapping("/notices")//목록
 	public String notices(Model model,Criteria cri) {
@@ -71,10 +78,6 @@ public class AdminController {
 		ArrayList<adminVO> list=adminService.List(cri);
 		int total=adminService.total(cri);
 
-		//파일관련
-		adminUploadVO file = adminService.fileDetail(total);
-		model.addAttribute("file",file);
-		//삼항연산식 /다운은 비동기방식으로 
 
 		PageVO pageVO = new PageVO(cri, total);
 
@@ -94,8 +97,6 @@ public class AdminController {
 		int hit =adminService.hit(adminvo);
 		model.addAttribute("hit",hit);
 
-		adminUploadVO list = adminService.fileDetail(admin_key);
-		model.addAttribute("adminImg",list);
 
 		return "admin/notice_regist";
 	}

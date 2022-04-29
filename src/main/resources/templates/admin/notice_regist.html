@@ -84,10 +84,11 @@
 							</tr>
 								  <tr>
                     <th>첨부파일</th>
-                    <td>
-                    [[${adminImg}]]
-                    <th:block th:each="imgs : ${adminImg}">
-                   <img th:src = "@{../display(filepath = ${imgs.filepath}, uuid=${imgs.uuid},filename=${imgs.filename})}">
+                     <td>
+                  	[[${adminvo.filename}]]
+                     <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}">
+                    <th:block th:each="imgs : ${filename}">
+                   <img th:src = "@{../img(filepath = ${imgs.filepath}, uuid=${imgs.uuid},filename=${imgs.filename})}">
                    </td>
                    </tr>
                    </th:block>

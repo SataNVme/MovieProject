@@ -10,10 +10,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="noticeRegist">
 
-		insert into
-		ADMIN_NOTICES(notices_title,notices_content,admin_id,notices_count)
-		values(#{notices_title},#{notices_content},#{admin_id},#{notices_count})
-
+		insert into ADMIN_NOTICES(
+	notices_title,
+	notices_content,
+	admin_id,
+	notices_count,
+	filename,
+	FILEPATH,
+	uuid
+				)
+	values(#{notices_title},#{notices_content},#{admin_id},#{notices_count},#{filename},#{FILEPATH},#{uuid})
 	</insert>
 
 	<select id="List" resultType="adminVO">
@@ -44,10 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 
-	<select id="fileDetail" resultType="adminUploadVO">
-		SELECT * FROM PRODUCT_UPLOAD
-		WHERE user_id = #{user_id}
-	</select>
+	
 
 
 	<select id="getcontent" resultType="adminVO">
@@ -86,8 +89,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		notices_content = #{notices_content},
 		notices_title = #{notices_title},
-		admin_id = #{admin_id}
-		
+		admin_id = #{admin_id},
+		filename=#{filename}
 		where admin_key = #{admin_key}
 
 	</update>
@@ -97,27 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where admin_key = #{admin_key}
 	</delete>
 	
-	<insert id="registFile">
-		
-		<selectKey resultType="int" order="BEFORE" keyProperty="user_id" >
-			select max(user_admin) as user_admin from admin_notices where user_admin = #{user_admin}
-		</selectKey>
-		
-		INSERT INTO PRODUCT_UPLOAD(
-				filename,
-				filepath,
-				uuid,
-				user_id,
-				user_admin 
-				)
-		VALUES(#{filename},
-			   #{filepath},
-			   #{uuid},
-			   #{user_id},
-			   #{user_admin}
-			   )
-		
-	</insert>
+	
 	
 
 	<insert id="movieRegist">

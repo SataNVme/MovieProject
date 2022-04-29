@@ -102,7 +102,7 @@
 					<col style="width: 5%">
 					<col style="width: 10%">
 					<col style="width: 35%">
-					<col style="width: 25%">
+					<col style="width: 15%">
 					<col style="width: 10%">
 					<col style="width: 15%">
 
@@ -124,16 +124,21 @@
 					<tr th:each="vo,state: ${list}" >
 					
 						<td>[[${vo.admin_key}]]</td>
-						<td>관리자</td>
 						<td><a
-							th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">[[${vo.notices_title}]]
-						</a></td>
+							th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">관리자</a></td>
+						<td>[[${vo.notices_title}]]</td>
 	
 						<td>[[${#temporals.format(vo.notices_date,'yyyy-MM-dd')}]]</td>
 
 						<td>[[${vo.notices_count}]]</td>
 						
-						<td><td>
+						<td th:if="${vo.filename} == null">
+							#
+						</td>
+					 <td th:unless="${vo.filename} == null">
+					 
+							<a th:href="@{/download( FILEPATH=${vo.FILEPATH},uuid=${vo.uuid},filename=${vo.filename} )}"><img th:src="@{/img/down.png}" style="height: 25px"></img></a>
+						</td> 
 					
 						
 		
