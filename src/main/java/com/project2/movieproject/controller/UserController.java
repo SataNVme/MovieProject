@@ -175,6 +175,34 @@ public class UserController {
 		return "user/userBirth";
 	}
 	
+	@PostMapping("/user_update_birth")
+	public String user_update_birth(@ModelAttribute("vo") UserVO vo, UserVO newvo, Model model, RedirectAttributes RA) {
+		String db_id = vo.getUser_id();
+		ArrayList<UserVO> userdata = userService.userdata(db_id);
+		
+		newvo.setUser_id(db_id);
+		System.out.println(newvo.getUser_id());
+		System.out.println(newvo.getUser_birth());
+		System.out.println(newvo.getUser_newbirth());
+		System.out.println(userdata.get(0).getUser_birth());
+		
+		if(newvo.getUser_birth().equals(userdata.get(0).getUser_birth())) {
+			System.out.println("생년월일 확인 완료");
+			int result = userService.user_update(newvo);
+			model.addAttribute("result", result);
+			if(result == 1 ) {
+				RA.addFlashAttribute("msg", vo.getUser_id() + "의 생년월일이 변경되었습니다");
+			} else {
+				RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
+			}
+		} else {
+			RA.addFlashAttribute("msg", "입력한 현재 생년월일이 일치하지않습니다. 다시 시도해주세요.");
+			System.out.println("날짜가 일치하지 않음");
+		}
+
+		return "redirect:/user/userBirth";
+	}
+	
 	//회원가입 폼
 	@PostMapping("/RegistForm")
 	public String RegistForm(UserVO vo,
@@ -242,5 +270,24 @@ public class UserController {
 //        }
         
         return "redirect:/user/userRegist";
+    }
+    
+    // 계정 삭제
+    @PostMapping("/user_drop")
+    public String user_drop(@ModelAttribute("vo") UserVO vo, Model model, RedirectAttributes RA) {
+    	int drop = userService.user_delete(vo);
+    	
+    	if(drop > 0) { //성공
+				RA.addFlashAttribute("msg", vo.getUser_id() + "삭제되었습니다.");
+				return "redirect:/user/userLogin";
+		} else { //실패
+			RA.addFlashAttribute("msg", "삭제 실패, 관리자에게 문의하세요.");
+			return "redirect:/user/userLogin";
+		}
+    }
+    
+    @GetMapping("/userFind")
+    public String userFind() {
+    	return "user/userLogin";
     }
 }
