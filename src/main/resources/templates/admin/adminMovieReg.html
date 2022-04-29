@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script th:src="@{/js/jquery-3.6.0.js}"></script>
+</head>
+
+<body>
+    <h1>API를 활용한 영화등록페이지</h1>
+    <form name="movieRegForm" action="#" method="post">
+        <div>
+            <span class="search_th">영화이름검색</span>
+            <input type="text" id="movieName" placeholder="영화이름검색">
+            <button th:href="@{조회JS}" type="button" th:onclick="|movieSearch()|">조회</button>
+            <button th:href="@{등록JS}" type="button" th:onclick="|movieUpdate()|">등록</button>
+            <button th:href="@{저장JS}" type="button" th:onclick="|movieReg()|">저장</button>
+        </div>
+        <br><hr><br>
+        <div style="width: 1130px; overflow: hidden">
+            <div style="width: 100%; float: right">
+                <table cellpadding="0" cellspacing="0" border="1" width="100%">
+                    <thead>
+                        <tr>
+                        	<td>선택</td>
+                            <td>이미지</td>
+                            <td>tmdb코드</td>
+                            <td>영화이름(국문)</td>
+                            <td>영화이름(원문)</td>
+                            <td>개봉일</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tmdbList">
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <br><br><hr><br><br>
+        <div style="width: 1130px; overflow-x: scroll">
+            <table cellpadding="0" cellspacing="0" border="1" width="100%">
+                <thead>
+                    <tr>
+                        <td>이미지</td>
+                        <td>tmdb코드</td>
+                        <td>영화이름(국문)</td>
+                        <td>영화이름(원문)</td>
+                        <td>나이등급</td>
+                        <td>감독이름(국문)</td>
+                        <td>감독이름(영문)</td>
+                        <td>배우이름(국문)</td>
+                        <td>배우이름(영문)</td>
+                        <td>영화유형</td>
+                        <td>영화장르</td>
+                        <td>제작국가</td>
+                        <td>개봉일</td>
+                        <td>api평점</td>
+                        <td>상영시간</td>
+                        <td>영화소개</td>
+                    </tr>
+                </thead>
+
+                <tbody id="movieList">
+                </tbody>
+
+            </table>
+        </div>
+    </form>
+
+</body>
+<script th:inline="javascript">    
+    let tmdbApi = "?api_key=382d04e6fc8cbc07290b0d512ae29171";
+    let movieSearchUrl = "https://api.themoviedb.org/3/search/movie" + tmdbApi + "&query=";
+    let movieResultUrl = "https://api.themoviedb.org/3/movie/";
+    let imgUrl = "https://image.tmdb.org/t/p/w300";
+    let numUrl2 = "&page=";
+    let lan = "&language=ko";
+    
+    let tmdbMovie;
+    let num = 0;
+
+    function movieSearch() {
+        this.event.preventDefault();
+        $("#tmdbList").empty();
+        let movieName = $("#movieName").val();
+        if (movieName != '' && movieName != null) {
+            getTmdbList(movieName);
+        } else {
+            alert("영화이름을 올바르게 입력해주세요");
+        }
+    }
+
+    function movieUpdate() {
+        this.event.preventDefault();
+        let tmdbCd = document.getElementsByName("tmdbList");
+        
+        for(let y in tmdbCd) {
+        	if(tmdbCd[y].checked == true) {
+        		tmdbMovie = tmdbCd[y].value;
+        	}
+        }       
+        getMovieList(tmdbMovie);
+    }
+    
+    function movieReg() {
+    	this.event.preventDefault();
+    	let cells = document.getElementById("movieList").getElementsByTagName("tr");
+    	
+    	for(let i = 0; i < cells.length; i++) {
+    		console.log(cells[i]);
+    	}    	
+    }
+
+    let getTmdbList = async function(movieName) {
+        let tmdbUrl = movieSearchUrl + movieName;
+
+        data = await fetch(tmdbUrl).then((result) => result.json());
+        let tmdbTotPage = data.total_pages;
+
+        for(let x = 1; x <= tmdbTotPage; x++) {
+            data = await fetch(tmdbUrl + numUrl2 + x).then((result) => result.json());
+
+            let movieSearch = data.results;
+
+            for(let y in movieSearch) {
+                data = await fetch(movieResultUrl + movieSearch[y].id + tmdbApi + lan).then((result) => result.json());
+                let movieResult = data;
+                
+                $("#tmdbList").append(
+                    "<tr>" +
+                        "<td><input type='radio' name='tmdbList' value='" + movieResult.id + "'></td>" +
+                        "<td><img src = '" + imgUrl + movieResult.poster_path + "' height='100px'></td>" +
+                        "<td>" + movieResult.id + "</td>" +
+                        "<td>" + movieResult.title + "</td>" +
+                        "<td>" + movieResult.original_title + "</td>" +
+                        "<td>" + movieResult.release_date + "</td>" +
+                    "</tr>"
+                );
+            }
+        }
+    }
+
+    let getMovieList = async function(tmdbMovie) {
+        data = await fetch(movieResultUrl + tmdbMovie + tmdbApi + lan).then((result) => result.json());
+        let tmdbMovieData = data;
+        console.log(data);
+        
+        let genre = '';
+        
+       	for(let i = 0; i < tmdbMovieData.genres.length; i++) {
+       		if(i == 0) {
+       			genre = tmdbMovieData.genres[i];
+       		} else {
+       			genre = ", " + tmdbMovieData.genres[i]
+       		}
+       	}
+		
+        $("#movieList").append(
+            "<tr name='" + num + "'>" +
+                "<td><input type='text' name='movie_iUrl' value='" + imgUrl + tmdbMovieData.poster_path + "'></td>" +
+                "<td><input type='text' name='movie_tmdbCd' value='" + tmdbMovieData.id + "'></td>" +
+                "<td><input type='text' name='movie_nm' value='" + tmdbMovieData.title + "'></td>" +
+                "<td><input type='text' name='movie_nmOr' value='" + tmdbMovieData.original_title + "'></td>" +
+                "<td><input type='text' name='movie_age' value='" +  + "'></td>" +
+                "<td><input type='text' name='movie_dirNm' value='" +  + "'></td>" +
+                "<td><input type='text' name='movie_dirNmEn' value='" +  + "'></td>" +
+                "<td><input type='text' name='movie_actNm' value='" +  + "'></td>" +
+                "<td><input type='text' name='movie_actNmEn' value='" +  + "'></td>" +
+                "<td><input type='text' name='movie_gr' value='" + genre + "'></td>" +
+                "<td><input type='text' name='movie_nt' value='" + tmdbMovieData.production_countries[0].iso_3166_1 + "'></td>" +
+                "<td><input type='text' name='movie_openDt' value='" + tmdbMovieData.release_date + "'></td>" +
+                "<td><input type='text' name='movie_apiRt' value='" + tmdbMovieData.vote_average + "'></td>" +
+                "<td><input type='text' name='movie_time' value='" + tmdbMovieData.runtime + "'></td>" +
+                "<td><input type='text' name='movie_ov' value='" + tmdbMovieData.overview + "'></td>" +
+             "<tr>"
+        )
+        num++;
+    }
+</script>
+
+</html>

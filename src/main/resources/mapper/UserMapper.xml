@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project2.movieproject.user.UserMapper" > 
+
+	<insert id="regist">
+		insert into USER(
+						user_id,
+						user_gender,
+						user_birth,
+						user_email,
+						user_auth,
+						user_admin,
+						user_name,
+						user_phone,
+						user_password)
+		values(
+				#{user_id},
+				#{user_gender},
+				#{user_birth},
+				#{user_email},
+				#{user_auth},
+				#{user_admin},
+				#{user_name},
+				#{user_phone},
+				#{user_password}
+				)
+	</insert>
+	
+	<select id="idCheck" resultType="int">
+        SELECT COUNT(*) AS CNT FROM USER WHERE user_id = #{id}
+    </select>
+    
+    <select id="userdata" resultType="UserVO">
+    	SELECT * from USER where user_id = #{db_id}
+    </select>
+    
+    <update id="user_update">
+    	update USER
+    	<if test="user_newemail != '' and user_newemail != null">
+    	set user_email = #{user_newemail}
+    	</if>
+    	<if test="user_newpassword != '' and user_newpassword != null">
+    	set user_password = #{user_newpassword}
+    	</if>
+    	<if test="user_newphone != '' and user_newphone != null">
+    	set user_phone = #{user_newphone}
+    	</if>
+		where user_id = #{user_id}
+    </update>
+    
+<!--     <update id="update">
+		update PRODUCT
+		set prod_enddate = #{prod_enddate},
+			prod_name = #{prod_name},
+			prod_price = #{prod_price},
+			prod_count = #{prod_count},
+			prod_discount = #{prod_discount},
+			prod_purchase_yn = #{prod_purchase_yn},
+			prod_content = #{prod_content},
+			prod_comment = #{prod_comment}
+		where prod_id = #{prod_id}
+	</update> -->
+	
+	
+</mapper>

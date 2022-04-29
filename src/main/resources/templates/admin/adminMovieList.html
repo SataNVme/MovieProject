@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
+</head>
+<body>
+	<h1>MYSQL DB 영화 조회</h1>
+	<table cellpadding="0" cellspacing="0" border="1" width="1130px">
+		<thead>
+			<tr>
+				<td>이미지</td>
+				<td>영진위코드</td>
+				<td>tmdb코드</td>
+				<td>영화이름(국문)</td>
+				<td>영화이름(영문)</td>
+				<td>영화이름(원문)</td>
+				<td>나이등급</td>
+				<td>감독이름(국문)</td>
+				<td>감독이름(영문)</td>
+				<td>배우이름(국문)</td>
+				<td>배우이름(영문)</td>
+				<td>영화유형</td>
+				<td>영화장르</td>
+				<td>제작국가</td>
+				<td>개봉일</td>
+				<td>api평점</td>
+				<td>상영시간</td>
+				<td>영화소개</td>
+			</tr>
+		</thead>
+		<tbody id="movieList">
+			<tr th:each="vo, state : ${list}">
+				<td>
+					<img th:src="${vo.movie_iUrl}" height="100px">
+				</td>
+				<td>[[${vo.movie_koficCd}]]</td>
+				<td>[[${vo.movie_tmdbCd}]]</td>
+				<td>
+					<a th:href="@{/admin/adminMovieDetail(movie_koficCd=${vo.movie_koficCd})}">[[${vo.movie_nm}]]</a>
+				</td>
+				<td>[[${vo.movie_nmEn}]]</td>
+				<td>[[${vo.movie_nmOr}]]</td>
+				<td>[[${vo.movie_age}]]</td>
+				<td>[[${vo.movie_dirNm}]]</td>
+				<td>[[${vo.movie_dirNmEn}]]</td>
+				<td>[[${vo.movie_actNm}]]</td>
+				<td>[[${vo.movie_actNmEn}]]</td>
+				<td>안함</td>
+				<td>[[${vo.movie_gr}]]</td>
+				<td>[[${vo.movie_nt}]]</td>
+				<td>[[${vo.movie_openDt}]]</td>
+				<td>[[${vo.movie_apiRt}]]</td>
+				<td>[[(${vo.movie_time} - ${vo.movie_time} % 60) / 60]]시간 [[${vo.movie_time} % 60]]분</td>
+				<td>[[${vo.movie_ov}]]</td>
+			</tr>
+		</tbody>
+
+	</table>
+	</form>
+</body>
+<script th:inline="javascript">
+	
+	
+</script>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+ 	<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Cinzel&display=swap}" rel="stylesheet">
+  <th:block th:replace="~{/include/Layout :: setContent(~{:: .qna_outbox})}">
+
+<body2>
+    <div class="qna_outbox">
+        <form action="qnaForm" method="post">
+        <div class="title"> 
+          <span class="noselect">문의 사항</span>
+       </div>
+           
+        <div class="leftbox">
+            <nav>
+                <ul class="mcd-menu">
+                    <li>
+                        <a href="http://www.naver.com">
+                            <i class="fa fa-home"></i>
+                            <strong>메인페이지</strong>
+                            <small>Mainpage</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="adminMain1"  >
+                            <i class="fa fa-edit" ></i>
+                            <strong>게시판</strong>
+                            <small>sweet home</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="qna">
+                            <i class="fa fa-gift"id="bpage" ></i>
+                            <strong>문의사항</strong>
+                            <small>sweet home</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notices">
+                            <i class="fa fa-globe" id="bpage1"></i>
+                            <strong>공지사항</strong>
+                            <small>sweet home</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="user_info">
+                            <i class="fa fa-comments-o"></i>
+                            <strong>회원관리</strong>
+                            <small>what they say</small>
+                        </a>
+                        
+                    </li>
+                    <li>
+                        <a href="movieRegist">
+                            <i class="fa fa-comments-o"></i>
+                            <strong>영화등록</strong>
+                            <small>what they say</small>
+                        </a>
+                        
+                    </li>
+                  
+                    
+                   
+                </ul>
+            </nav>
+        </div>
+        <div class="rightbox">
+            <div id="board-search">
+                <div class="search-window">
+                    <form action="">
+                        <div class="search-wrap">
+                            <select class="sele"> 
+                                <option value="">전체</option>
+                                <option value="">제목</option>
+                                <option value="">제목+내용</option>
+                                <option value="">제목+닉네임</option>
+                            </select>
+                            <select class="sele2">
+                                <option value="10">10개 보기</option>
+                                <option value="20">20개 보기</option>
+                                <option value="40">40개 보기</option>
+                                <option value="80">80개 보기</option>
+                            </select>
+                            <label for="search" class="bline"></label>
+                            <input  type="search"name="" placeholder="검색어를 입력해주세요">
+                      <button type="button" class="btn btn-default">
+                          <span class="glyphicon glyphicon-search">검색</span>
+                      </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          
+                   
+                        <table class="board-table">
+                            <colgroup>
+                            <col style="width:10%">
+                            <col style="width:20%">
+                            <col style="width:30%">
+                            
+                         
+                            <col style="width:15%">
+                            
+                            </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">등록일</th>
+                                        <th scope="col">제목</th>
+                                        
+                                        
+                                        <th scope="col">회원 이름</th>
+                                    </tr>
+    
+                                </thead>
+                               <tbody>
+                                   <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                    <td> power5295</td>
+                                   
+                                   </tr>
+                                   <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                  <td> power5295</td>
+                                   
+                                   
+                                    </tr>
+                                <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                   <td> power5295</td>
+                                   
+                                   
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                     <td> power5295</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                    <td> power5295</td>
+                                   
+                                   
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                   <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                     <td> power5295</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                   <td> power5295</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    
+                                    <td>20220404</td>
+                                   <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
+                                   <td> power5295</td>
+                                   
+                                </tr>
+
+                               </tbody>
+                                
+                              
+                          
+                        </table>
+            
+            
+      
+    
+                
+                <section>
+                    <div class="noticeQna_page3">
+                   
+                        <ul>
+                            <li><a href="#"><i class="fa fa-angle-double-left"
+                                        aria-hidden="true"><<</i></a></li>
+                            <li style="margin-right:5px;"><a href="#"><<i class="fa fa-angle-left"
+                                        aria-hidden="true"></i></a></li>
+                            <li class="on"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li style="margin-left:5px;"><a href="#"><i class="fa fa-angle-right"
+                                        aria-hidden="true">></i></a></li>
+                            <li><a href="#"><i class="fa fa-angle-double-right"
+                                        aria-hidden="true">>></i></a></li>
+                        </ul>
+                    </div>
+                            
+                    </section>    
+            </div>
+  
+        
+    </div>
+    
+    
+</form>
+
+</body>
+<script th:inline="javascript">
+	(function() {
+		var msg = JSON.parse('[[${msg}]]');	
+		if(msg != null) {
+			alert(msg);
+		}
+	})();
+	
+	
+	</script>	
+</html>

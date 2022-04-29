@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project2.movieproject.comment.CommentMapper">
+	<insert id="regist">
+		insert into comment (user_id, 
+							 comment_com, 
+							 comment_rank,
+							 comment_date,
+							 comment_class, 
+							 comment_group, 
+							 comment_sort, 
+							 comment_like, 
+							 comment_unlike) 
+		values (##{user_id}, 
+				##{comment_com}, 
+				##{comment_rank}, 
+				##{comment_date},
+				##{comment_class}, 
+				##{comment_group}, 
+				##{comment_sort}, 
+				##{comment_like}, 
+				##{comment_unlike})
+	</insert>
+	
+	<select id="getList" resultType="CommentVO">
+		select * from comment
+		order by comment_date desc
+	</select>
+	
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	
+</mapper>
