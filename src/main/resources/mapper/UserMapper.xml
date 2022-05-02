@@ -37,6 +37,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT * from USER where user_id = #{db_id}
     </select>
     
+    <select id="userlist" resultType="UserVO">
+    	SELECT * from USER
+    </select>
+    
     <update id="user_update">
     	update USER
     	<if test="user_newemail != '' and user_newemail != null">

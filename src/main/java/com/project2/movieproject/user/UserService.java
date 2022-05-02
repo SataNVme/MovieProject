@@ -11,4 +11,5 @@ public interface UserService {
 	public ArrayList<UserVO> userdata(String db_id);
 	public int user_update(UserVO vo);
 	public int user_delete(UserVO vo);
+	public ArrayList<UserVO> userlist();
 }

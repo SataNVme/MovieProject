@@ -232,44 +232,24 @@ public class UserController {
 			if(vo.getUser_password().equals(userdata.get(0).getUser_password())) {
 				RA.addFlashAttribute("msg", db_id + "이 정상 로그인");
 				model.addAttribute("vo", userdata);
-				return "redirect:userMypage";
+				return "redirect:/main";
 			} else {
 
-				RA.addFlashAttribute("msg", "로그인 실패, 관리자에게 문의하세요.");
+				RA.addFlashAttribute("msg", "로그인 실패,아이디와 비밀번호를 확인해주세요.");
 				return "redirect:/user/userLogin";
 			}
 		} else { //실패
-			RA.addFlashAttribute("msg", "등록 실패, 관리자에게 문의하세요.");
+			RA.addFlashAttribute("msg", "로그인 실패, 아이디와 비밀번호를 확인하세요.");
 			return "redirect:/user/userLogin";
 		}
 	}
 	
     // 아이디 체크
     @PostMapping("/idCheck")
-    public String idCheck(UserVO vo, Model model, RedirectAttributes RA){
-    	String id = vo.getUser_id();
+    @ResponseBody
+    public int idCheck(UserVO vo, Model model, RedirectAttributes RA, @RequestParam("id") String id){
         int cnt = userService.idCheck(id);
-		model.addAttribute("cnt", cnt);
-		model.addAttribute("check_id", id);
-        
-        if(cnt > 0) {
-			RA.addFlashAttribute("msg", id + "은 중복");
-			model.addAttribute("check_status", 0);
-		} else {
-			RA.addFlashAttribute("msg", id + "은 사용가능");
-			model.addAttribute("check_status", 1);
-		}
-        
-        
-//        if(cnt != 1){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-//            $('.id_ok').css("display","inline-block"); 
-//            $('.id_already').css("display", "none");
-//        } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-//            $('.id_already').css("display","inline-block");
-//            $('.id_ok').css("display", "none");
-//        }
-        
-        return "redirect:/user/userRegist";
+        return cnt;
     }
     
     // 계정 삭제
@@ -289,5 +269,15 @@ public class UserController {
     @GetMapping("/userFind")
     public String userFind() {
     	return "user/userLogin";
+    }
+    
+    @GetMapping("/userInfo")
+    public String userInfo(Model model) {
+    	
+		ArrayList<UserVO> userlist = userService.userlist();
+		System.out.println(userlist);
+		model.addAttribute("userlist", userlist);
+		
+    	return "user/userInfo";
     }
 }

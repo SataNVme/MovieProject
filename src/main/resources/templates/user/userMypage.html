@@ -456,7 +456,7 @@
                                     계정 &amp; 내 정보>
                                  </h2>
                                     
-                              		<form name = "user_drop" action ="user_drop">
+                              		<form method="POST" name = "user_drop" action ="user_drop">
                                     <button class="memberbtn" type="submit" tabindex="0" onclick="drop_click();">
                                        <span>계정 탈퇴 </span>
                                     </button>
@@ -598,15 +598,16 @@
 
       console.log(pass_count.length);
 
-      function drop_click() {
-         if(confirm("정말 계정탈퇴를 하시겠습니까?") == true) {
 
-            console.log("삭제");
-         } else {
-            console.log("삭제 취소")
-         }
-      }
-
+	function drop_click() {
+		this.event.preventDefault();
+		if (confirm("정말 계정탈퇴를 하시겠습니까?") == true) {
+			document.user_drop.submit();
+			console.log("삭제");
+		} else {
+			console.log("삭제 취소");
+		}
+	}
 </script>
 
 </html>
