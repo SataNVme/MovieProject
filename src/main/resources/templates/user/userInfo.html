@@ -5,7 +5,7 @@
 
 
     <div class="userInfo_outbox">
-        <form action="userMypage" post="get">
+        <form action="">
         <div class="title"> 
           <span class="noselect">회원 관리 페이지</span>
        </div>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/user/userLogin">
+                        <a href="user_info">
                             <i class="fa fa-comments-o"></i>
                             <strong>회원관리</strong>
                             <small>what they say</small>
@@ -66,7 +66,7 @@
         <div class="userInfo_rightbox">
             <div id="board-search">
                 <div class="search-window">
-                    <form action="" >
+                    <form action="">
                         <div class="search-wrap">
                             <select class="sele1"> 
                                 <option value="">전체</option>
@@ -90,7 +90,7 @@
                 </div>
             </div>
          
-            
+            <div th:each="vo, state : ${userlist}">
                     <table class="board-table">
                         <colgroup>
                             <col style="width:10%">
@@ -109,24 +109,21 @@
                                     <th scope="col">성별</th>
                                     <th scope="col">가입일</th>
                             </tr>
-
                         </thead>
                            <tbody>
-                               <tr th:each ="vo, state: ${userdata}">
-                                   <td>[[${vo.state}]]</td>
-                                   <td >
-                                       <a th:href="@{/user/userMypage}">[[${vo.user_id}]]</a>
+                               <tr>
+                                   <td>[[${state.index + 1}]]</td>
+                                   <td>
+                                       <a href="userMypage">[[${vo.user_id}]]</a>
                                     </td>
                                     <td>[[${vo.user_phone}]]</td>
-                                    <td>[[${vo.user_emial}]]</td>
+                                    <td>[[${vo.user_email}]]</td>
                                     <td>[[${vo.user_gender}]]</td>
                                     <td>[[${vo.user_date}]]</td>
                                </tr>
                            </tbody>
-                            
-                          
-                      
                     </table>
+            </div>
    
          
          

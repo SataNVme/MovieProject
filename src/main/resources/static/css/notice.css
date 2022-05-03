@@ -10,9 +10,10 @@ body{
 
    
 }
-.title {
-  width: 110%;
+.notices_title {
+  width: 80%;
   height: 120px;
+
   box-sizing: border-box;
   padding-top: 10px;
   font-weight: 700;
@@ -38,7 +39,7 @@ body{
   height: 1130px;
  
 }
-.rightbox {
+.notices_rightbox {
   /* overflow: hidden; */
   box-sizing: border-box;
   float: right;

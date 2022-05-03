@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +21,9 @@ import com.project2.movieproject.admin.AdminService;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.PageVO;
-
+import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.adminVO;
+import com.project2.movieproject.user.UserService;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,6 +32,8 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private UserService userService;
 	//게시판
 	@GetMapping("/adminMain1")
 	public void adminMain1() {
@@ -197,8 +201,17 @@ public class AdminController {
 		return "admin/adminMovieDetail";
 	}
 	
-	@GetMapping("/user_Info")
-	public void user_Info() {
 
+	@GetMapping("/user_Info")
+	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
+		String db_id = vo.getUser_id();
+		System.out.println(vo.getUser_id());
+		
+
+		ArrayList<UserVO> userdata = userService.userdata(db_id);
+		System.out.println(userdata);
+		
+		model.addAttribute("userdata", userdata);
+		return "admin/user_info";
 	}
 }

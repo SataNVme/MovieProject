@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
-<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-<script th:src="@{/js/jquery-3.6.0.js}"></script>
-<link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
-	crossorigin>
-<link
-	th:href="@{https://fonts.googleapis.com/css2?family=Cinzel&display=swap}"
-	rel="stylesheet">
+
+
+
 <th:block
 	th:replace="~{/include/Layout :: setContent(~{:: .notice_outbox})}">
 
@@ -40,7 +36,7 @@
 					<li><a href="notices"> <i class="fa fa-globe" id="bpage1"></i>
 							<strong>공지사항</strong> <small>sweet home</small>
 					</a></li>
-					<li><a href="user_info"> <i class="fa fa-comments-o"></i>
+					<li><a href="/user/userinfo"> <i class="fa fa-comments-o"></i>
 							<strong>회원관리</strong> <small>what they say</small>
 					</a></li>
 					<li><a href="movieRegist"> <i class="fa fa-comments-o"></i>
@@ -88,7 +84,7 @@
 						</select> <label for="search" class="bline"></label>
 
 
-
+						</div>
 
 						
 					</div>

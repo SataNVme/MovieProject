@@ -155,15 +155,7 @@ hgroup {
     margin-top : 10px;
     border : 1px solid black;
 }
-aside {
-    width : 230px;
-    margin : 0 auto;
-    height : 600px;
-    float : left;
-    margin-top : 10px;
-    margin-bottom : 10px;
-    border : 1px solid black;   
-}
+
 footer {
     clear : both;
     background-color : white;
