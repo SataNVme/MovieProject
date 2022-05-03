@@ -10,8 +10,8 @@ import com.project2.movieproject.util.SearchCriteria;
 @Mapper
 public interface SearchMapper {
 	// 단일값, vo, map, annotation param
-	public List<MovieVO> getSearchList(SearchCriteria searchCriteria);
-	public MovieVO get(String movie_koficCd);
-	public int getTotal();
+	public MovieVO getSearchListDetail(String movie_koficCd);
+	public List<MovieVO> getSearchList();
+	public int getTotalCount();
 
 }
