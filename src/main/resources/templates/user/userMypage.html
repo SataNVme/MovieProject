@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/userPopup.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}" />
+
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .userMypage} ) }">
    <div class="userMypage">
       <div class="wrap">
@@ -440,9 +444,8 @@
                      <p>나의 정보</p>
                      <div>
                         <h1 class="">계정</h1>
-                        <div class="">
-                           <div class=""></div>
-                           계정 가입일: 3월 2020
+                        <div th:each="vo, state : ${userdata}">
+                           계정 가입일: [[${vo.user_date}]]
                         </div>
                         <div class=""></div>
                         <div class=""></div>
@@ -450,11 +453,14 @@
                            <div class="" data-uia="">
                               <header class="mypage_myhead">
                                  <h2 class="mypage_h2">
-                                    계정 &amp; 내 정보
-                                    <button class="memberbtn" type="button" tabindex="0" onclick="drop_click();">
+                                    계정 &amp; 내 정보>
+                                 </h2>
+                                    
+                              		<form method="POST" name = "user_drop" action ="user_drop">
+                                    <button class="memberbtn" type="submit" tabindex="0" onclick="drop_click();">
                                        <span>계정 탈퇴 </span>
                                     </button>
-                                 </h2>
+                                    </form>
                               </header>
                               <section class="">
                                  <div class="simplenotice">
@@ -462,10 +468,10 @@
                                        <div class="simplenotice-left" th:each="vo, state : ${userdata}">
                                           <div class="">[[${vo.user_email}]]</div>
                                           <div class="d" id="user_password_count">
-                                             비밀번호: <a>[[${vo.user_password}]]</a>
+                                             비밀번호: ******
                                           </div>
                                           <div class="">전화번호: [[${vo.user_phone}]]</div>
-                                          <div>성별: [[${vo.user_gender}]]</div>
+                                          <div id = "user_gender_inner">성별:[[${vo.user_gender}]]</div>
                                           <div>생년월일: [[${vo.user_birth}]]</div>
                                        </div>
                                        <div class="simplenotice-right">
@@ -529,8 +535,18 @@
    var delbtn = document.getElementById("delbtn");
    var checkboxes = document.getElementsByClassName("ckbox");
    var allcheck = document.getElementById("allcheck");
-   var pass_count = document.getElementById("user_password_count")
+   var pass_count = document.getElementById("user_password_count");
+   var gender = document.getElementById("user_gender_inner");
 
+   
+   console.log(gender.innerHTML);
+   
+   if(gender.innerHTML == "성별:1") {
+	   gender.innerHTML = "성별: 남성";
+   } else {
+	   gender.innerHTML = "성별: 여성";
+   };
+   
    allcheck.onclick = function () {
       if (allcheck.checked) {
          for (var i = 0; i < checkboxes.length; i++) {
@@ -582,14 +598,16 @@
 
       console.log(pass_count.length);
 
-      function drop_click() {
-         if(confirm("정말 계정탈퇴를 하시겠습니까?") == true) {
-            console.log("삭제");
-         } else {
-            console.log("삭제 취소")
-         }
-      }
 
+	function drop_click() {
+		this.event.preventDefault();
+		if (confirm("정말 계정탈퇴를 하시겠습니까?") == true) {
+			document.user_drop.submit();
+			console.log("삭제");
+		} else {
+			console.log("삭제 취소");
+		}
+	}
 </script>
 
 </html>

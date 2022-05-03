@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="/css/userRegist.css">
     <script src="/js/jquery-3.6.0.js"></script>
     <style>
-    .id_ok{color:#fff; display: none;}
-	.id_already{color:#6A82FB; display: none;}
+    .id_ok{color: green; display: none;}
+	.id_already{color: red; display: none;}
 	.password_err{color: red;}
     
     </style>
@@ -15,10 +15,9 @@
 <body>
 	<form method="POST" class="joinForm" action="#" name="user_Regist">
 
-		<h2>회원가입 ${check_id}</h2>
+		<h2>회원가입</h2>
 		<div class="emailForm">
-				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디" style="display:inline; text-align:left" required>
-				<input type="button" class = "button" value="중복 확인" th:onclick = "|checkId()|">
+				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디" style="display:inline; text-align:left" required oninput = "checkId()">
 		</div>
 				<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span>
@@ -99,8 +98,7 @@
 	function user_reg() {
 		this.event.preventDefault();
 		document.user_Regist.action = "RegistForm";
-		console.log(check_status);
-		if (check_status == 1) {
+		if ($(".id_ok").css("display") == "inline-block") {
 			if (password.value == passwordConfirm.value) {
 				document.user_Regist.submit();
 			} else {
@@ -117,17 +115,10 @@
 			}
 			
 		} else {
-			alert("중복확인 후 다시 시도 해주십시오.")
+			alert("아이디가 중복되었습니다.")
 			console.log("중복확인 안했음")
 		}
 	}
-
-	function checkId() {
-		this.event.preventDefault();
-
-		document.user_Regist.action = "idCheck";
-		document.user_Regist.submit();
-	};
 
 	(function() {
 		var msg = JSON.parse('[[${msg}]]');
@@ -153,42 +144,29 @@
 			confirmMsg.style.display = "none";
 		}
 	};
-
-	/*  	if ('[[${cnt}]]' > 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-	 $('.id_ok').css("display", "inline-block");
-	 $('.id_already').css("display", "none");
-	 } else if ('[[${cnt}]]' = null){
-	 $('.id_already').css("display", "none");
-	 $('.id_ok').css("display", "none");
 	
-	 } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-	 $('.id_already').css("display", "inline-block");
-	 $('.id_ok').css("display", "none");
-	 } */
 
-	// function emailSend() {
-	// 	let clientEmail = document.getElementById('email');
-	// 	let emailYN = isEmail(clientEmail);
-	// 	console.log(clientEmail);
-	// 	console.log('cmsjy040317@naver.com' + clientEmail);
-	// 	if(emailYN == true) {
-	// 		alert('이메일 형식입니다.');
-	// 		$.ajax({
-	// 			type:"POST",
-	// 			url:"/user/userRegist",
-	// 			data:{userEmail:clientEmail},
-	// 			success : function(data) {
-	// 			},error : function(e) {
-	// 				alert('오류입니다. 잠시 후 다시 시도해주세요.');
-	// 			}
-	// 		});
-	// 	}else{
-	// 		alert('이메일 형식에 알맞게 입력해주세요 xxx@xxx.com');
-	// 	}
-	// }
-	// function isEmail(asValue) {
-	// 	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	// 	return regExp.test(asValue);
-	// }
+	function checkId() {
+		var id = $('#myid').val();
+		$.ajax({
+			url : '/user/idCheck',
+			type : 'post',
+			data : {
+				id : id
+			},
+			success : function(cnt) {//컨트롤러에서 넘어온 cnt값을 받는다 
+				if (cnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+					$('.id_ok').css("display", "inline-block");
+					$('.id_already').css("display", "none");
+				} else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+					$('.id_already').css("display", "inline-block");
+					$('.id_ok').css("display", "none");
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
+	};
 </script>
 </html>

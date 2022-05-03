@@ -37,6 +37,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT * from USER where user_id = #{db_id}
     </select>
     
+    <select id="userlist" resultType="UserVO">
+    	SELECT * from USER
+    </select>
+    
     <update id="user_update">
     	update USER
     	<if test="user_newemail != '' and user_newemail != null">
@@ -48,21 +52,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	<if test="user_newphone != '' and user_newphone != null">
     	set user_phone = #{user_newphone}
     	</if>
+    	<if test="user_newbirth != '' and user_newbirth != null">
+    	set user_birth = #{user_newbirth}
+    	</if>
 		where user_id = #{user_id}
     </update>
     
-<!--     <update id="update">
-		update PRODUCT
-		set prod_enddate = #{prod_enddate},
-			prod_name = #{prod_name},
-			prod_price = #{prod_price},
-			prod_count = #{prod_count},
-			prod_discount = #{prod_discount},
-			prod_purchase_yn = #{prod_purchase_yn},
-			prod_content = #{prod_content},
-			prod_comment = #{prod_comment}
-		where prod_id = #{prod_id}
-	</update> -->
+ 	<delete id="user_delete">
+		delete from USER 
+		where user_id = #{user_id}
+	</delete> 
+	
 	
 	
 </mapper>
