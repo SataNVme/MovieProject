@@ -37,7 +37,6 @@ ul, ol {
 
 ul {
 	display: block;
-    list-style-type: disc;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;

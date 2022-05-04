@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project2.movieproject.command.UserVO;
+import com.project2.movieproject.command.qaVO;
 import com.project2.movieproject.user.UserService;
 
 @SessionAttributes("vo")
@@ -56,14 +57,31 @@ public class UserController {
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		System.out.println(userdata);
 		
+		ArrayList<qaVO> myqalist = userService.myqa_read(db_id);
+		System.out.println(myqalist);
+		
 		model.addAttribute("userdata", userdata);
+		model.addAttribute("myqalist", myqalist);
 		return "user/userMypage";
 	}
 	
 	@GetMapping("/userQnaRegist")
-	public String userQnaRegist() {
-		
+	public String userQnaRegist(@ModelAttribute("vo") UserVO vo, Model model) {
+		model.addAttribute("vo", vo);
 		return "user/userQnaRegist";
+	}
+	
+	@PostMapping("/qa_regist")
+	public String qa_regist(qaVO vo, RedirectAttributes RA) {
+
+		int result = userService.qa_regist(vo);
+		System.out.println("sdkff");
+		if(result == 1) { //성공
+			RA.addFlashAttribute("msg", vo.getQa_title() + "이 정상 등록");
+		} else { //실패
+			RA.addFlashAttribute("msg", "등록 실패, 관리자에게 문의하세요.");
+		}
+		return "redirect:/user/userQnaRegist";
 	}
 	
 	@GetMapping("/userPhone")
@@ -166,7 +184,11 @@ public class UserController {
 	}
 	
 	@GetMapping("/userQnaRead")
-	public String userQnaRead() {
+	public String userQnaRead(@RequestParam("qa_title") String qa_title, Model model) {
+		ArrayList<qaVO> myqa = userService.qa_read(qa_title);
+		model.addAttribute("myqa", myqa);
+		
+		
 		return "user/userQnaRead";
 	}
 	
@@ -266,6 +288,15 @@ public class UserController {
 		}
     }
     
+    @GetMapping("/userDetail")
+    public String userDetail(@RequestParam("user_id") String dbid) {
+    	
+		ArrayList<UserVO> userdata = userService.userdata(dbid);
+		System.out.println(userdata);
+    	
+    	return "user/userDetail";
+    }
+    
     @GetMapping("/userFind")
     public String userFind() {
     	return "user/userLogin";
@@ -275,7 +306,6 @@ public class UserController {
     public String userInfo(Model model) {
     	
 		ArrayList<UserVO> userlist = userService.userlist();
-		System.out.println(userlist);
 		model.addAttribute("userlist", userlist);
 		
     	return "user/userInfo";

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project2.movieproject.command.UserVO;
+import com.project2.movieproject.command.qaVO;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -44,5 +45,19 @@ public class UserServiceImpl implements UserService{
 		return userMapper.userlist();
 	}
 
+	@Override
+	public int qa_regist(qaVO vo) {
+		return userMapper.qa_regist(vo);
+	}
+
+	@Override
+	public ArrayList<qaVO> myqa_read(String user_id) {
+		return userMapper.myqa_read(user_id);
+	}
+
+	@Override
+	public ArrayList<qaVO> qa_read(String qa_title) {
+		return userMapper.qa_read(qa_title);
+	}
 	
 }
