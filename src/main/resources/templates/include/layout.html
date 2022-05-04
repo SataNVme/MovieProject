@@ -33,6 +33,10 @@
         <link rel="stylesheet" th:href="@{/css/replyPage.css}">
         <link rel="stylesheet" th:href="@{/css/test.css}">
         <link rel="stylesheet" th:href="@{/css/commentList.css}">
+        <link rel="stylesheet" th:href="@{/css/MovieList.css}">
+        <link rel="stylesheet" th:href="@{/css/MovieDetail.css}">
+        
+        
 
 	<body>
 		<div class="container">
@@ -76,10 +80,9 @@
                 </div>
             </div>
                 <div class="center">
-                    <!--<div class="section"></div>
-                    <div class="aside"></div>
-                    -->    
+                    <th:block th:replace="${content}"></th:block>
                 </div>
+                
                 <div class="footer">
                     <div class="footer_wrap">
                         <div class="footer_top">
