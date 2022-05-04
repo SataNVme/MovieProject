@@ -214,4 +214,9 @@ public class AdminController {
 		model.addAttribute("userdata", userdata);
 		return "admin/user_info";
 	}
+	@GetMapping("/replyPage")
+	public String replyPage() {
+		
+		return "/admin/replypage";
+	}
 }

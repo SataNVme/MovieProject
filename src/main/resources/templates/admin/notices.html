@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
 
 
-
+       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
 <th:block
 	th:replace="~{/include/Layout :: setContent(~{:: .notice_outbox})}">
 
@@ -24,7 +23,7 @@
 		<div class="leftbox">
 			<nav>
 				<ul class="mcd-menu">
-					<li><a href="http://www.naver.com"> <i class="fa fa-home"></i>
+					<li><a href="../main"> <i class="fa fa-home"></i>
 							<strong>메인페이지</strong> <small>Mainpage</small>
 					</a></li>
 					<li><a href="adminMain1"> <i class="fa fa-edit"></i> <strong>게시판</strong>
@@ -36,7 +35,7 @@
 					<li><a href="notices"> <i class="fa fa-globe" id="bpage1"></i>
 							<strong>공지사항</strong> <small>sweet home</small>
 					</a></li>
-					<li><a href="/user/userinfo"> <i class="fa fa-comments-o"></i>
+					<li><a href="/user/userInfo"> <i class="fa fa-comments-o"></i>
 							<strong>회원관리</strong> <small>what they say</small>
 					</a></li>
 					<li><a href="movieRegist"> <i class="fa fa-comments-o"></i>
@@ -54,7 +53,7 @@
 				<div class="search-window">
 
 					<div class="search-wrap">
-					<input type="submit" class="btn btn-default" id="searchBtn">
+					<input type="submit"  value ="검색" class="btn btn-default" id="searchBtn">
 					<input type = "text"  class="glyphicon glyphicon-search"  name ="searchName" placeholder="검색어를 입력해주세요" th:value="${pageVO.cri.searchName}">
 						
 						<select class="sele" name="searchType">
@@ -81,7 +80,7 @@
 								th:selected="${pageVO.amount}==100 ? 'selected'">100개
 								보기</option>
 
-						</select> <label for="search" class="bline"></label>
+						</select> <label for="search" class="bline" value=""></label>
 
 
 						</div>

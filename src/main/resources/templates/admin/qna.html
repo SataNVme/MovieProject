@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
   <th:block th:replace="~{/include/Layout :: setContent(~{:: .qna_outbox})}">
 
 <body2>
@@ -14,7 +14,7 @@
             <nav>
                 <ul class="mcd-menu">
                     <li>
-                        <a href="http://www.naver.com">
+                        <a href="../main">
                             <i class="fa fa-home"></i>
                             <strong>메인페이지</strong>
                             <small>Mainpage</small>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/user/userinfo">
+                        <a href="/user/userInfo">
                             <i class="fa fa-comments-o"></i>
                             <strong>회원관리</strong>
                             <small>what they say</small>
@@ -64,10 +64,10 @@
             </nav>
         </div>
         <div class="rightbox">
-            <div id="board-search">
-                <div class="search-window">
+            <div id="board1-search">
+                <div class="search1-window">
                    
-                        <div class="search-wrap">
+                        <div class="search1-wrap">
                             <select class="sele" name="searchType"> 
                                 <option value="all" >전체</option>
                                 <option value="title">제목</option>
@@ -88,7 +88,7 @@
 								</select>
                             <label for="search" class="bline"></label>
                             <input  type="search"name="" placeholder="검색어를 입력해주세요">
-                      <button type="button" class="btn btn-default">
+                      <button type="button" class="btn1 btn-default">
                           <span class="glyphicon glyphicon-search">검색</span>
                       </button>
                         </div>

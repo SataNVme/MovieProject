@@ -1,167 +1,208 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-  <th:block th:replace="~{/include/Layout :: setContent(~{:: .userInfo_outbox})}">
+
+<th:block
+	th:replace="~{/include/Layout :: setContent(~{:: .userInfo_outbox})}">
 
 
-    <div class="userInfo_outbox">
-        <form action="">
-        <div class="title"> 
-          <span class="noselect">회원 관리 페이지</span>
-       </div>
-           
-        <div class="userInfo_leftbox">
-            <nav>
-                <ul class="mcd-menu">
-                    <li>
-                        <a href="http://www.naver.com">
-                            <i class="fa fa-home"></i>
-                            <strong>메인페이지</strong>
-                            <small>Mainpage</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="adminMain1"  >
-                            <i class="fa fa-edit" ></i>
-                            <strong>게시판</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="qna">
-                            <i class="fa fa-gift"id="bpage" ></i>
-                            <strong>문의사항</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notices">
-                            <i class="fa fa-globe" id="bpage1"></i>
-                            <strong>공지사항</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="user_info">
-                            <i class="fa fa-comments-o"></i>
-                            <strong>회원관리</strong>
-                            <small>what they say</small>
-                        </a>
-                     
-                    </li>
-                    <li>
-                        <a href="movieRegist">
-                            <i class="fa fa-comments-o"></i>
-                            <strong>영화등록</strong>
-                            <small>what they say</small>
-                        </a>
-                        
-                    </li>
-                  
-                    
-                   
-                </ul>
-            </nav>
-        </div>
-        <div class="userInfo_rightbox">
-            <div id="board-search">
-                <div class="search-window">
-                    <form action="">
-                        <div class="search-wrap">
-                            <select class="sele1"> 
-                                <option value="">전체</option>
-                                <option value="">성별</option>
-                                <option value="">이메일</option>
-                                <option value="">닉네임</option>
-                            </select>
-                            <select class="sele2">
-                                <option value="10">10개 보기</option>
-                                <option value="20">20개 보기</option>
-                                <option value="40">40개 보기</option>
-                                <option value="80">80개 보기</option>
-                            </select>
-                            <label for="search" class="bline"></label>
-                            <input   type="search"name="" placeholder="검색어를 입력해주세요">
-                      <button type="button" class="btn btn-default">
-                          <span class="glyphicon glyphicon-search">검색</span>
-                      </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-         
-            <div th:each="vo, state : ${userlist}">
-                    <table class="board-table">
-                        <colgroup>
-                            <col style="width:10%">
-                            <col style="width:20%">
-                            <col style="width:35%">
-                            <col style="width:20%">
-                            <col style="width:10%">
-                            <col style="width:4%">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">전화번호</th>
-                                    <th scope="col">이메일</th>
-                                    <th scope="col">성별</th>
-                                    <th scope="col">가입일</th>
-                            </tr>
-                        </thead>
-                           <tbody>
-                               <tr>
-                                   <td>[[${state.index + 1}]]</td>
-                                   <td>
-                                       <a href="userMypage">[[${vo.user_id}]]</a>
-                                    </td>
-                                    <td>[[${vo.user_phone}]]</td>
-                                    <td>[[${vo.user_email}]]</td>
-                                    <td>[[${vo.user_gender}]]</td>
-                                    <td>[[${vo.user_date}]]</td>
-                               </tr>
-                           </tbody>
-                    </table>
-            </div>
-   
-         
-         
-                
-                
-                
-                
-                
-                <div class="userInfo_page3">
-                    
-                   
-                    
-                    <ul>
-                        <li><a href="#"><i class="fa fa-angle-double-left"
-                                    aria-hidden="true"><<</i></a></li>
-                        <li style="margin-right:5px;"><a href="#"><<i class="fa fa-angle-left"
-                                    aria-hidden="true"></i></a></li>
-                        <li class="on"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li style="margin-left:5px;"><a href="#"><i class="fa fa-angle-right"
-                                    aria-hidden="true">></i></a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"
-                                    aria-hidden="true">>></i></a></li>
-                    </ul>
-                </div>
-        
-                 
-    
-    </div>     
-        
-        
-        
-        
-</form>
-    </div>
-    
+	<div class="userInfo_outbox">
+		<form action="">
+			<div class="title">
+				<span class="noselect">회원 관리 페이지</span>
+			</div>
 
+			<div class="userInfo_leftbox">
+				<nav>
+					<ul class="mcd-menu">
+						<li><a href="http://www.naver.com"> <i class="fa fa-home"></i>
+								<strong>메인페이지</strong> <small>Mainpage</small>
+						</a></li>
+						<li><a href="/admin/adminMain1"> <i class="fa fa-edit"></i>
+								<strong>게시판</strong> <small>sweet home</small>
+						</a></li>
+						<li><a href="/admin/qna"> <i class="fa fa-gift"
+								id="bpage"></i> <strong>문의사항</strong> <small>sweet home</small>
+						</a></li>
+						<li><a href="/admin/notices"> <i class="fa fa-globe"
+								id="bpage1"></i> <strong>공지사항</strong> <small>sweet home</small>
+						</a></li>
+						<li><a href="/user/userInfo"> <i class="fa fa-comments-o"></i>
+								<strong>회원관리</strong> <small>what they say</small>
+						</a></li>
+						<li><a href="movieRegist"> <i class="fa fa-comments-o"></i>
+								<strong>영화등록</strong> <small>what they say</small>
+						</a></li>
+
+
+
+					</ul>
+				</nav>
+			</div>
+			<div class="userInfo_rightbox">
+				<div id="board-search">
+					<div class="search-window">
+						<form action="">
+							<div class="search-wrap">
+								<select class="sele1" name="searchType">
+									<option value="all"
+										th:selected="${pageVO.cri.searchType} == 'all'? 'selected'">전체</option>
+									
+									<option value="email"
+										th:selected="${pageVO.cri.searchType} == 'email'? 'selected'">이메일</option>
+									<option value="id"
+										th:selected="${pageVO.cri.searchType} == 'id'? 'selected'">아이디</option>
+								</select> <select class="sele2">
+								
+								
+								
+									<option value="10"
+										th:selected="${pageVO.amount}==10 ? 'selected'">10개
+										보기</option>
+									<option value="20"
+										th:selected="${pageVO.amount}==20 ? 'selected'">20개
+										보기</option>
+									<option value="40"
+										th:selected="${pageVO.amount}==40 ? 'selected'">40개
+										보기</option>
+									<option value="80"
+										th:selected="${pageVO.amount}==80 ? 'selected'">80개
+										보기</option>
+								</select> <label for="search" class="bline"></label> <input type="search"
+									name="searchName" placeholder="검색어를 입력해주세요" th:value = "${pageVO.cri.searchName}">
+								<button type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-search" >검색</span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div th:each="vo, state : ${userlist}">
+					<table class="board-table">
+						<colgroup>
+							<col style="width: 10%">
+							<col style="width: 20%">
+							<col style="width: 15%">
+							<col style="width: 20%">
+							<col style="width: 10%">
+							<col style="width: 20%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">No.</th>
+								<th scope="col">ID</th>
+								<th scope="col">전화번호</th>
+								<th scope="col">이메일</th>
+								<th scope="col">성별</th>
+								<th scope="col">가입일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>[[${state.index + 1}]]</td>
+								<td><a href="userMypage">[[${vo.user_id}]]</a></td>
+								<td>[[${vo.user_phone}]]</td>
+								<td>[[${vo.user_email}]]</td>
+								<td>[[${vo.user_gender}]]</td>
+								<td>[[${#temporals.format(vo.user_date,'yyyy-MM-dd')}]]</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+
+
+
+
+
+
+				<div class="userInfo_page3">
+
+
+
+					<ul class="pagenation">
+
+						<th:block th:if="${pageVO.realEnd != 0}">
+							<li><a
+								th:href="@{/admin/notices(page=1, 
+													amount=${pageVO.amount},
+													
+													searchType=${pageVO.cri.searchType},
+													searchName=${pageVO.cri.searchName})}">
+
+									<i class="fa fa-angle-double-left" aria-hidden="true"> << </i>
+							</a></li>
+						</th:block>
+
+
+
+						<th:block th:if="${pageVO.prev}">
+							<li style="margin-right: 5px;"><a
+								th:href="@{/admin/notices(page=${pageVO.start - 1 },
+													amount=${pageVO.amount},
+													searchType=${pageVO.cri.searchType},
+													searchName=${pageVO.cri.searchName} )}">
+									<i class="fa fa-angle-left" aria-hidden="true"> < </i>
+							</a></li>
+						</th:block>
+
+						<th:block th:each="page: ${pageVO.pageList}">
+							<li th:class="${pageVO.page == page? 'on' :''}"><a
+								th:href="@{/admin/notices(page=${page}, 
+													amount=${pageVO.amount}, 
+													searchType=${pageVO.cri.searchType},
+												     searchName=${pageVO.cri.searchName})}">[[${page}]]
+							</a></li>
+						</th:block>
+
+						<th:block th:if="${pageVO.next}">
+							<li style="margin-left: 5px;"><a
+								th:href="@{/admin/notices(page=${pageVO.end + 1},
+															amount=${pageVO.amount},
+															searchType=${pageVO.cri.searchType},
+															searchName=${pageVO.cri.searchName} )}">
+									<i class="fa fa-angle-right" aria-hidden="true">></i>
+							</a></li>
+
+						</th:block>
+						<th:block th:if="${pageVO.realEnd != 0}">
+							<li><a
+								th:href="@{/admin/notices(page=${pageVO.realEnd},
+															amount=${pageVO.amount},
+															searchType=${pageVO.cri.searchType},
+															searchName=${pageVO.cri.searchName}
+															 )}">
+									<i class="fa fa-angle-double-right" aria-hidden="true">>></i>
+							</a></li>
+						</th:block>
+
+					</ul>
+				</div>
+
+
+
+			</div>
+
+
+
+
+		</form>
+	</div>
+	<script type="text/javascript">
+		function user_dataHandler(a) {
+
+			location.href = '/user/userInfo?page=1&amount=' + a.value;
+		}
+
+		var searchBtn = document.getElementById("searchBtn");
+		searchBtn.onclick = function() {
+
+			event.preventDefault();
+
+			document.noticed.submit();
+
+		}
+	</script>
 </html>

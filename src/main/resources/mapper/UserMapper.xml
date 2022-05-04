@@ -36,7 +36,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="userdata" resultType="UserVO">
     	SELECT * from USER where user_id = #{db_id}
     </select>
+   
+   
+    <select id="userlist" resultType="UserVO">
+   <![CDATA[
+		SELECT *
+		FROM (SELECT A.*,
+					 @ROWNUM := @ROWNUM + 1 AS RN
+				FROM (SELECT *
+						FROM USER
+						WHERE user_auth = 0
+						]]>
+						<if test="searchType =='all'">
+						and (user_gender like CONCAT('%', #{searchName},'%')
+						or user_id like CONCAT('%', #{searchName},'%') 
+						or user_email like CONCAT('%', #{searchName},'%'))
+						</if>
+					
+						<if test="searchType == 'email'">
+						and user_email like CONCAT('%', #{searchName},'%')
+						</if>
+						<if test="searchType == 'id'">
+						and user_id like CONCAT('%', #{searchName},'%')
+						</if>
+
+					ORDER BY USER_KEY DESC)A, (SELECT @ROWNUM := 0) D
+		<![CDATA[
+		)B
+		WHERE rn > (#{page}-1) * #{amount} AND rn <= #{page} * #{amount}
+		]]>
     
+     </select>
+   <select id="total" resultType="int">
+
+		select count(*) from
+		admin_notices where admin_id= 'admin'
+
+		<if test="searchType =='title'">
+			and notices_title like CONCAT('%', #{searchName},'%')
+		</if>
+		<if test="searchType =='all'">
+			and (notices_title like CONCAT('%', #{searchName},'%')
+			or
+			notices_content like CONCAT('%', #{searchName},'%'))
+		</if>
+		<if test="searchType =='content'">
+			and notices_content like CONCAT('%' #{searchName}'%')
+		</if>
+
+	</select>
+   
+   
+   
+   
     <update id="user_update">
     	update USER
     	<if test="user_newemail != '' and user_newemail != null">

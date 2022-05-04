@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project2.movieproject.command.Criteria;
+import com.project2.movieproject.command.PageVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.user.UserService;
 
@@ -244,7 +246,22 @@ public class UserController {
         return "redirect:/user/userRegist";
     }
     
+    @GetMapping("/userInfo")
+    public String userInfo(Model model,Criteria cri) {
+       
     
+    	
+      ArrayList<UserVO> userlist = userService.userlist(cri);
+      int total =userService.total(cri);
+      
+      PageVO pageVO = new PageVO(cri,total);
+      
+      
+      System.out.println(userlist);
+      model.addAttribute("userlist", userlist);
+      model.addAttribute("pageVO",pageVO);
+       return "user/userInfo";
+    }
     
     
     
