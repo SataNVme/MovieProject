@@ -2,6 +2,7 @@ package com.project2.movieproject.user;
 
 import java.util.ArrayList;
 
+import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.qaVO;
 

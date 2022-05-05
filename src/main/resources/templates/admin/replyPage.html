@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
   <th:block th:replace="~{/include/Layout :: setContent(~{:: .replyPage_outbox})}">
 
 <body>
     <div class="replyPage_outbox">
-        <form action="">
+        <form action="replyPage" method="get">
         <div class="title"> 
           <span class="noselect"></span>
        </div>
@@ -13,7 +14,7 @@
             <nav>
                 <ul class="mcd-menu">
                     <li>
-                        <a href="http://www.naver.com">
+                       <a href="../main">
                             <i class="fa fa-home"></i>
                             <strong>메인페이지</strong>
                             <small>Mainpage</small>
@@ -42,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="user_info">
+                        <a href="/user/userInfo">
                             <i class="fa fa-comments-o"></i>
                             <strong>회원관리</strong>
                             <small>what they say</small>
@@ -69,7 +70,7 @@
                 <tbody class="ttt">
                     <tr>
                         <th>등록일</th>
-                        <td colspan="5"> <p><input type="date" class="inputw99p"></p></td>
+                        <td colspan="5"></td>
                     </tr>
                     <tr>
                         <th>아이디</th>

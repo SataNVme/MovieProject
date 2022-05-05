@@ -26,7 +26,7 @@ body{
 
   width: 1130px;
   height: 800px;
-  
+    margin:0 auto;
 
  
 }
@@ -34,7 +34,7 @@ body{
   overflow: hidden;
   
   box-sizing: border-box;
-	
+  margin:0 auto;
   width: 1130px;
   height: auto;
   
@@ -122,7 +122,7 @@ border-bottom: 1px solid #ededed;
  
 }
 .sele{
-  margin-left: 90px;
+  margin-left: 135px;
   height:29px;
 }
 
@@ -192,24 +192,24 @@ a.button {
   position: relative;
   float: right;
   width: 50px;
-  height: 45px;
-  margin: -6px 1px 20px 7px;
+  height: 38px;
+  margin: 0px 1px 10px 7px;
   padding: 0;
   font-weight: 500;
   text-align: center;
-  line-height: 50px;
+  line-height: 35px;
   color: #ffffff;
   border-radius: 5px;
   transition: all 0.2s ;
 }
 
 .btnLightBlue {
-  background: #e67e22;
+  background: rgb(0, 0, 0);
 }
 
   
   .leftbox {
-    /* overflow: hidden; */
+   overflow: hidden; 
     box-sizing: border-box;
     float: left;
     width: 240px;
@@ -375,11 +375,11 @@ a.button {
 }
 
 .mcd-menu li:hover > a {
-  color: #e67e22;
+  color: rgb(255, 0, 0);
 }
 .mcd-menu li a.active {
   position: relative;
-  color: #e67e22;
+  color: rgb(255, 0, 0);
   border:0;
   /*border-top: 4px solid #e67e22;
   border-bottom: 4px solid #e67e22;
@@ -942,6 +942,7 @@ float: right;
    
    
   }
+  
   #board-search .search-window .search-wrap input:focus {
     border-color: #333;
     outline: 0;
@@ -955,7 +956,49 @@ float: right;
     width: 70px;
     padding: 0;
     font-size: 18px;
-    background-color: #e67e22;
+    background-color: rgb(192, 192, 192);
+    text-align: center;
+    height: auto;
+    
+  }
+    #board1-search .search1-window {
+    padding: -20px 0px;
+    margin-top: -45px;
+    background-color: #ffffff;
+  }
+  #board1-search .search1-window .search1-wrap {
+    position: relative;
+
+    margin: 0 0 0 auto;
+    width: 100%;
+    max-width: 564px;
+  }
+  #board1-search .search1-window .search1-wrap input {
+    height: 30px;
+    width: 43%;
+    float: right;
+    margin-right: 0px;
+    font-size: 12px;
+    padding: 7px 5px;
+    border: 0.5px solid #ccc;
+   
+   
+  }
+  
+  #board1-search .search1-window .search1-wrap input:focus {
+    border-color: #333;
+    outline: 0;
+    border-width: 1px;
+  }
+  #board1-search .search1-window .search1-wrap .btn1 {
+    position: absolute;
+    right:0;
+    top: 0px;
+    bottom: 0;
+    width: 70px;
+    padding: 0;
+    font-size: 18px;
+    background-color: rgb(192, 192, 192);
     text-align: center;
     height: auto;
     

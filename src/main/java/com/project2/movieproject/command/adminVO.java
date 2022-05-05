@@ -38,6 +38,8 @@ NOTICES_CONTENT VARCHAR(200) NOT NULL
 	private int notices_count;//조횟수 증가
 	private String notices_content;//내용
 	
-	
+	private String filename;
+	private String FILEPATH;
+	private String uuid;
 	//공지사항
 }

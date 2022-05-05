@@ -1,18 +1,21 @@
  * {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
-body{
+
+ body{
     padding: 0px;
     font-size: 18px;
     margin: 0px;
-    margin-top: -20px;
+    height:1400px;
+   
     font-family: 'noto Sans KR',sans-serif;
     color:rgb(5, 5, 5) ;
-    padding-top: 20px;
-
-   
+    padding-top: 25px;
+	boder-box:1px solid #eee;
+  
 }
 .title {
-  width: 110%;
-  height: 120px;
+  width: 100%;
+  height: 100px;
+
   box-sizing: border-box;
   padding-top: 10px;
   font-weight: 700;
@@ -22,6 +25,14 @@ body{
 
 
 }
+.notice_outbox{
+	overflow:hidden;
+	box-sizing: border-box;
+	width: 1130px;
+	height:1130px;
+}
+
+
 .noticeUpdate_outbox {
   overflow: hidden;
   box-sizing: border-box;
@@ -43,7 +54,27 @@ body{
   box-sizing: border-box;
   float: right;
   width: 880px;
+  border: 1px solid #777;
 
+}
+.qna_outbox {
+  overflow: hidden;
+  box-sizing: border-box;
+
+  width: 1130px;
+  height: 800px;
+  
+
+ 
+}
+.board-table{
+	box-sizing: border-box;
+	 border: 1px solid #777;
+	 border-right:1px solid #eee;
+	 border-top: 1px solid #eee;
+	 text-align:center;
+	 float:right;
+	 margin-left:1000px;
 }
 .board_basic_view{
     border-top: 1px solid #ededed;
@@ -208,14 +239,14 @@ a.button {
 }
 
   
-  .leftbox {
-    /* overflow: hidden; */
+ .leftbox {
+   
     box-sizing: border-box;
-    float: left;
-    width: 240px;
-    height: 110%;
-    /* border: 1px solid black; */
-    padding-top:0px;
+ 
+    width: 0px;
+    height: 10%;
+  
+    padding-top:10px;
   
 }
 .leftbox ul, li {list-style: none;}
@@ -286,6 +317,7 @@ a.button {
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
+ 
   
   /* == */
   width: 250px;
@@ -300,34 +332,29 @@ a.button {
   text-decoration: none;
   padding: 12px 20px;
   color: #777;
-  /*text-align: center;
-  border-right: 1px solid #E7E7E7;*/
+ 
   
-  /* == */
+ 
   text-align: left;
   height: 36px;
   position: relative;
   border-bottom: 1px solid #EEE;
-  /* == */
+ 
 }
 .mcd-menu li a i {
-  /*display: block;
-  font-size: 30px;
-  margin-bottom: 10px;*/
-  
-  /* == */
+
   float: left;
   font-size: 20px;
   margin: 0 10px 0 0;
-  /* == */
+
   
 }
-/* == */
+
 .mcd-menu li a p {
   float: left;
   margin: 0 ;
 }
-/* == */
+
 
 .mcd-menu li a strong {
   display: block;

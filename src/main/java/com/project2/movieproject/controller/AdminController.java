@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +21,9 @@ import com.project2.movieproject.admin.AdminService;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.PageVO;
-import com.project2.movieproject.command.adminUploadVO;
+import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.adminVO;
+import com.project2.movieproject.user.UserService;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,6 +32,8 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private UserService userService;
 	//게시판
 	@GetMapping("/adminMain1")
 	public void adminMain1() {
@@ -50,20 +54,27 @@ public class AdminController {
 	}
 
 	@PostMapping("/noticeRegist")//등록(나중에 첨부파일도)
-	public String noticeRegist(adminVO vo, RedirectAttributes RA, 
-			@RequestParam("file")List<MultipartFile>list) {
-
-		list=list.stream().filter((f) -> f.isEmpty() ==false).collect(Collectors.toList());
+	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model )
+		 {
+				/*
+				 * for(MultipartFile f:list) { System.out.println(f.isEmpty());
+				 * System.out.println(f.getContentType()); } System.out.println(vo.toString());
+				 */
+		
+		
+		 
+		 
+		
 		int result = adminService.noticeRegist(vo,list);
-
 		if(result == 1) {
 			RA.addFlashAttribute("msg", vo.getAdmin_id()+"등록이 성공했습니다.");
 		}else {
 			RA.addFlashAttribute("msg", "등록에 실패했습니다.");
 		}
+	
 
-		return"redirect:/admin/notices";
-	}
+	return"redirect:/admin/notices";
+}
 
 	@GetMapping("/notices")//목록
 	public String notices(Model model,Criteria cri) {
@@ -71,10 +82,6 @@ public class AdminController {
 		ArrayList<adminVO> list=adminService.List(cri);
 		int total=adminService.total(cri);
 
-		//파일관련
-		adminUploadVO file = adminService.fileDetail(total);
-		model.addAttribute("file",file);
-		//삼항연산식 /다운은 비동기방식으로 
 
 		PageVO pageVO = new PageVO(cri, total);
 
@@ -94,8 +101,6 @@ public class AdminController {
 		int hit =adminService.hit(adminvo);
 		model.addAttribute("hit",hit);
 
-		adminUploadVO list = adminService.fileDetail(admin_key);
-		model.addAttribute("adminImg",list);
 
 		return "admin/notice_regist";
 	}
@@ -196,8 +201,22 @@ public class AdminController {
 		return "admin/adminMovieDetail";
 	}
 	
-	@GetMapping("/user_Info")
-	public void user_Info() {
 
+	@GetMapping("/user_Info")
+	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
+		String db_id = vo.getUser_id();
+		System.out.println(vo.getUser_id());
+		
+
+		ArrayList<UserVO> userdata = userService.userdata(db_id);
+		System.out.println(userdata);
+		
+		model.addAttribute("userdata", userdata);
+		return "admin/user_info";
+	}
+	@GetMapping("/replyPage")
+	public String replyPage() {
+		
+		return "/admin/replypage";
 	}
 }
