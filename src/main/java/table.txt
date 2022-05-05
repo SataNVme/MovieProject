@@ -27,30 +27,31 @@ CREATE TABLE MOVIE (
 );
 
 CREATE TABLE USER (
-   user_key    INT   PRIMARY KEY AUTO_INCREMENT,
-   user_id      VARCHAR(20)   NOT NULL,
-   user_gender   INT   NOT NULL,
-   user_birth   VARCHAR(20) NOT NULL,
-   user_email   VARCHAR(50)   NOT NULL,
-   user_auth   BOOLEAN   DEFAULT FALSE,
-   user_date   TIMESTAMP DEFAULT NOW(),
-   user_admin   BOOLEAN   DEFAULT FALSE,
-   user_name   VARCHAR(10) NOT NULL,
-   user_phone  VARCHAR(15) NOT NULL,
-   user_password VARCHAR(20) NOT NULL
+	user_id		VARCHAR(20)	NOT NULL,
+	user_gender	INT	NOT NULL,
+	user_birth	VARCHAR(20) NOT NULL,
+	user_email	VARCHAR(50)	NOT NULL,
+	user_auth	BOOLEAN	DEFAULT FALSE,
+	user_date	TIMESTAMP DEFAULT NOW(),
+	user_admin	BOOLEAN	DEFAULT FALSE,
+    user_name	VARCHAR(10) NOT NULL,
+    user_phone  VARCHAR(15) NOT NULL,
+    user_password VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE QA (
 	qa_key		INT	PRIMARY KEY AUTO_INCREMENT,
-	user_key	INT	NOT NULL, ##FK
+	user_id		VARCHAR(20)	NOT NULL, ##FK
 	qa_title	VARCHAR(20)	NOT NULL,
 	qa_content	VARCHAR(5000)	NOT NULL,
 	qa_date		TIMESTAMP DEFAULT NOW()
+	FOREIGN KEY(user_id)
+	REFERENCES USER(user_id)
 );
 
 CREATE TABLE QA_COMMENT (
 	qa_key	INT	PRIMARY KEY AUTO_INCREMENT,
-	user_key	INT NOT NULL, ##FK
+	user_id		VARCHAR(20)	NOT NULL, ##FK
 	qa_comment	VARCHAR(5000)	NOT NULL
 );
 

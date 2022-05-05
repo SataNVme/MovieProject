@@ -14,24 +14,24 @@
             <ul class="qnar_ul">
                 <li>
                     <table class="qnar_board_basic_view">
-                        <tbody class="qnar_ttt">
+                        <tbody class="qnar_ttt" th:each="vo, state : ${myqa}">
                             <tr class="qnar_tr">
-                                <th class="qnar_th">아이디</th>
-                                <td><input type="text" class="inputw99p" name="id" value="작성자 아이디" readonly></td>
+                                <th class="qnar_th"></th>
+                                <td><input type="text" class="inputw99p" name="id" th:value="${myqa.get(0).user_id}" readonly></td>
                             </tr>
                             <tr class="qnar_tr">
                                 <th class="qnar_th">제목</th>
                                 <td colspan="5">
-                                    <a><input type="text" class="inputw99p2" name="title" readonly></a>
+                                    <a><input type="text" class="inputw99p2" name="title" readonly th:value="${myqa.get(0).qa_title}"></a>
 
                                 </td>
 
                             </tr>
                             <tr class="qnar_tr">
-                                <th class="qnar_th">내용</th>
+                                <th class="qnar_th"></th>
                                 <td colspan="5">
                                     <div>
-                                        <textarea class="inputw99p1" style="height: 400px" readonly>안녕하세요 여기에는 내용이 들어가요</textarea>
+                                        <textarea class="inputw99p1" style="height: 400px" readonly>[[${myqa.get(0).qa_content}]]</textarea>
                                     </div>
                                 </td>
                             </tr>
@@ -45,5 +45,3 @@
     </div>
 </div>
 </th:block>
-
-</html>
