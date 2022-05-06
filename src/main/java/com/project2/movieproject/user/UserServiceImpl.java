@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.qaVO;
 
@@ -41,8 +42,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public ArrayList<UserVO> userlist() {
-		return userMapper.userlist();
+	public ArrayList<UserVO> userlist(Criteria cri) {
+		return userMapper.userlist(cri);
 	}
 
 	@Override
@@ -58,6 +59,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public ArrayList<qaVO> qa_read(String qa_title) {
 		return userMapper.qa_read(qa_title);
+	}
+
+	@Override
+	public int total(Criteria cri) {
+		// TODO Auto-generated method stub
+		return userMapper.total(cri);
 	}
 	
 }

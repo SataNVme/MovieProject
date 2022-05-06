@@ -13,7 +13,7 @@
   
 }
 .admin_title {
-  width: 110%;
+  width: 140%;
   height: 120px;
   box-sizing: border-box;
   padding-top: 10px;
@@ -29,7 +29,7 @@
  	
   width: 1130px;
   height: 1300px;
-  
+  margin:0 auto;
 
  
 }
@@ -55,8 +55,9 @@
     /* overflow: hidden; */
     box-sizing: border-box;
     float: left;
-    width: 240px;
+    width: 200px;
     height: 110%;
+    padding-left:0px;
     /* border: 1px solid black; */
     padding-top:0px;
     

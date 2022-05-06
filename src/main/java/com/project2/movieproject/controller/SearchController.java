@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.search.SearchService;
 import com.project2.movieproject.util.SPVO;
 import com.project2.movieproject.util.SearchCriteria;
@@ -24,11 +25,10 @@ public class SearchController {
 	@Qualifier("searchService")
 	private SearchService searchService;
 	
-	@GetMapping("getSearchList")
-	public String list(SearchCriteria searchCriteria, Model model) {
-		model.addAttribute("list", searchService.getSearchList(searchCriteria));
-		model.addAttribute("pageMaker", new SPVO(searchService.getTotal(), 10, searchCriteria));
-		return "search/getSearchList";
-		
+	@GetMapping(value="/getSearchList")
+	public String getSearchList(Model model) {
+		List<MovieVO> getSearchList = searchService.getSearchList();
+		model.addAttribute("getSearchList", getSearchList);		
+		return "/search/getSearchList";
 	}
 }

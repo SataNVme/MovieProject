@@ -16,19 +16,21 @@ public class SearchServiceImpl implements SearchService {
 	private SearchMapper searchMapper;
 
 	@Override
-	public List<MovieVO> getSearchList(SearchCriteria searchCriteria) {
-		return searchMapper.getSearchList(searchCriteria);
+	public MovieVO getSearchListDetail(String movie_koficCd) {
+		return searchMapper.getSearchListDetail(movie_koficCd);
 	}
 
 	@Override
-	public MovieVO get(String movie_koficCd) {
-		return searchMapper.get(movie_koficCd);
+	public List<MovieVO> getSearchList() {
+		return searchMapper.getSearchList();
 	}
 
 	@Override
-	public int getTotal() {
-		return searchMapper.getTotal();
+	public int getTotalCount() {
+		return searchMapper.getTotalCount();
 	}
+
+	
 
 	
 	

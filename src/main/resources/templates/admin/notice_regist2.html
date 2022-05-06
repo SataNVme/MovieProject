@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/notice.css}">
+       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
   <th:block th:replace="~{/include/Layout :: setContent(~{:: .noticeRegist_outbox})}">
 
 
@@ -14,7 +14,7 @@
             <nav>
                 <ul class="mcd-menu">
                     <li>
-                        <a href="http://www.naver.com">
+                        <a href="../main">
                             <i class="fa fa-home"></i>
                             <strong>메인페이지</strong>
                             <small>Mainpage</small>
@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="user_info">
+                        <a href="/user/userInfo">
                             <i class="fa fa-comments-o"></i>
                             <strong>회원관리</strong>
                             <small>what they say</small>

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
-import com.project2.movieproject.command.adminUploadVO;
+
 import com.project2.movieproject.command.adminVO;
 
 @Service("adminService")
@@ -24,7 +24,8 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;
 
-	@Value("${project.upload.path}") private String uploadPath;
+	@Value("${project.upload.path}")
+	private String uploadPath;
 
 	@Override
 	public int movieRegist(MovieVO vo) {
@@ -65,33 +66,32 @@ public class AdminServiceImpl implements AdminService{
 
 	@Transactional(rollbackFor = Exception.class) 
 	@Override
-	public int noticeRegist(adminVO vo , List<MultipartFile> list) {
-		int result = adminMapper.noticeRegist(vo);
+	public int noticeRegist(adminVO vo , MultipartFile f) {
+		
 
-		for(MultipartFile f : list) {
+		
 			String originName = f.getOriginalFilename();
 			String filename = originName.substring(originName.lastIndexOf("\\")+1);
-			String filepath = MakeFolder();
+			String FILEPATH = MakeFolder();
 			String uuid = UUID.randomUUID().toString();
-			String savename = uploadPath + "\\"+ filepath + "\\" +uuid + "_" +filename;
+			String savename = uploadPath + "\\"+ FILEPATH + "\\" +uuid + "_" +filename;
 
 			try { 
-				File saveFile = new File(savename);
+				
 				f.transferTo(new File(savename)); 
 
 			} catch (Exception e) {
 				e.printStackTrace(); 
 				return 0; 
 			}
-
-			adminUploadVO adminUpVO = adminUploadVO.builder() 
-					.filename(filename)
-					.filepath(filepath) 
-					.uuid(uuid) 
-					.user_admin(vo.getAdmin_id()) 
-					.build();
-			adminMapper.registFile(adminUpVO);
-		}
+			
+			vo.setFilename(filename);
+			vo.setFILEPATH(FILEPATH);
+			vo.setUuid(uuid);
+			
+			
+			int result = adminMapper.noticeRegist(vo);
+		
 		return result;
 	}
 
@@ -131,14 +131,5 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.total(cri);
 	}
 
-	@Override 
-	public int registFile(adminUploadVO vo) { 
-		return adminMapper.registFile(vo); 
-	}
 
-	@Override
-	public adminUploadVO fileDetail(int user_id) {
-		// TODO Auto-generated method stub
-		return adminMapper.fileDetail(user_id);
-	}
 }

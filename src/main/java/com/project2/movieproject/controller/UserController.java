@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project2.movieproject.command.Criteria;
+import com.project2.movieproject.command.PageVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.qaVO;
 import com.project2.movieproject.user.UserService;
@@ -302,12 +304,26 @@ public class UserController {
     	return "user/userLogin";
     }
     
+    
     @GetMapping("/userInfo")
-    public String userInfo(Model model) {
+    public String userInfo(Model model,Criteria cri) {
+       
+    
     	
-		ArrayList<UserVO> userlist = userService.userlist();
-		model.addAttribute("userlist", userlist);
-		
-    	return "user/userInfo";
+      ArrayList<UserVO> userlist = userService.userlist(cri);
+      int total =userService.total(cri);
+      
+      PageVO pageVO = new PageVO(cri,total);
+      
+      System.out.println(cri.getSearchType());
+      System.out.println(cri.getSearchName());
+      
+      System.out.println(userlist);
+      model.addAttribute("userlist", userlist);
+      model.addAttribute("pageVO",pageVO);
+       return "user/userInfo";
     }
+    
+    
+    
 }

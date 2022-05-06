@@ -58,9 +58,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT * from QA where qa_title = #{qa_title}
     </select>
     
-    <select id="userlist" resultType="UserVO">
-    	SELECT * from USER
-    </select>
+<select id="userlist" resultType="UserVO">
+   <![CDATA[
+      SELECT *
+      FROM (SELECT A.*,
+                @ROWNUM := @ROWNUM + 1 AS RN
+            FROM (SELECT *
+                  FROM USER
+                  WHERE user_auth = 0
+                  ]]>
+                  <if test="searchType == 'all'">
+                  and (user_id like CONCAT('%', #{searchName},'%') 
+                  or user_email like CONCAT('%', #{searchName},'%'))
+                  </if>
+               
+                  <if test="searchType == 'email'">
+                  and user_email like CONCAT('%', #{searchName},'%')
+                  </if>
+                  <if test="searchType == 'id'">
+                  and user_id like CONCAT('%', #{searchName},'%')
+                  </if>
+
+               ORDER BY USER_date DESC)A, (SELECT @ROWNUM := 0) D
+      <![CDATA[
+      )B
+      WHERE rn > (#{page}-1) * #{amount} AND rn <= #{page} * #{amount}
+      ]]>
+    
+     </select>
+     
+     <select id="total" resultType="int">
+
+      select count(*) from
+      user
+
+      <if test="searchType =='email'">
+                  where user_email like CONCAT('%', #{searchName},'%')
+      </if>
+      <if test="searchType =='all'">
+                  where (user_id like CONCAT('%', #{searchName},'%') 
+                  or user_email like CONCAT('%', #{searchName},'%'))
+      </if>
+      <if test="searchType =='id'">
+                  where user_id like CONCAT('%', #{searchName},'%')
+      </if>
+
+   </select>
     
     <update id="user_update">
     	update USER

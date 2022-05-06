@@ -15,15 +15,13 @@ CREATE TABLE MOVIE (
     MOVIE_NT VARCHAR(10) NOT NULL, ##제작국가
     MOVIE_OPENDT VARCHAR(10) NOT NULL, ##개봉일
     MOVIE_TYPENM VARCHAR(10) NOT NULL, ##영화유형
-    MOVIE_APIRT VARCHAR(5) NOT NULL, ##api평점
     MOVIE_TIME VARCHAR(10) NOT NULL,  ##상영시간
     MOVIE_OV VARCHAR(1000) NOT NULL, ##영화소개
     MOVIE_SITERT INT, ##사이트평점
     MOVIE_SELLPRICE INT, ##판매가격
     MOVIE_RENTPRICE INT, ##대여가격
     MOVIE_VIEWS INT, ## 조회수
-    MOVIE_LIKE INT, ## 좋아요수
-    MOVIE_DISLIKE INT, ## 싫어요수
+    MOVIE_LIKE INT, ## 관심수
     MOVIE_RECOMMEND INT, ## 추천수 
     PRIMARY KEY(MOVIE_KOFICCD, MOVIE_TMDBCD)
 );
@@ -90,4 +88,4 @@ CREATE TABLE `comment` (
   PRIMARY KEY (`comment_key`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
- )
+ );
