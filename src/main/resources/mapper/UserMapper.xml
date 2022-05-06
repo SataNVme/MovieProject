@@ -38,7 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(
 				#{user_id},
 				#{qa_title},
-				#{qa_content})
+				#{qa_content}
+				)
 	</insert>
 	
 	<select id="idCheck" resultType="int">
