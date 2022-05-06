@@ -55,7 +55,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="qa_read" resultType="qaVO">
-    	SELECT * from QA where qa_title = #{qa_title}
+    	SELECT * from QA where qa_key = #{qa_key}
+    </select>
+    
+    <select id="qa_list" resultType="qaVO">
+    	SELECT * from QA
     </select>
     
 <select id="userlist" resultType="UserVO">
@@ -120,6 +124,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	set user_birth = #{user_newbirth}
     	</if>
 		where user_id = #{user_id}
+    </update>
+    
+    <update id="qa_update">
+    	update QA
+    	set qa_comment = #{qa_comment}
+    	where qa_key = #{qa_key}
     </update>
     
  	<delete id="user_delete">

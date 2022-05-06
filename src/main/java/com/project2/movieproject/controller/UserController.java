@@ -186,8 +186,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/userQnaRead")
-	public String userQnaRead(@RequestParam("qa_title") String qa_title, Model model) {
-		ArrayList<qaVO> myqa = userService.qa_read(qa_title);
+	public String userQnaRead(@RequestParam("qa_key") Integer qa_key, Model model) {
+		ArrayList<qaVO> myqa = userService.qa_read(qa_key);
 		model.addAttribute("myqa", myqa);
 		
 		

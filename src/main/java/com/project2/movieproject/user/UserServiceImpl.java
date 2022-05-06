@@ -57,14 +57,24 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public ArrayList<qaVO> qa_read(String qa_title) {
-		return userMapper.qa_read(qa_title);
+	public ArrayList<qaVO> qa_read(Integer qa_key) {
+		return userMapper.qa_read(qa_key);
 	}
 
 	@Override
 	public int total(Criteria cri) {
 		// TODO Auto-generated method stub
 		return userMapper.total(cri);
+	}
+
+	@Override
+	public ArrayList<qaVO> qa_list() {
+		return userMapper.qa_list();
+	}
+
+	@Override
+	public int qa_update(qaVO vo) {
+		return userMapper.qa_update(vo);
 	}
 	
 }

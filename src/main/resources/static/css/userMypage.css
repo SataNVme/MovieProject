@@ -58,7 +58,7 @@ ul {
     line-height: 0;
 }
 
-.mytab li {
+.mytab > li {
 	display: inline-block;
 	min-width: 113px;
 	position: relative;

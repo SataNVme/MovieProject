@@ -23,6 +23,7 @@ import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.PageVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.adminVO;
+import com.project2.movieproject.command.qaVO;
 import com.project2.movieproject.user.UserService;
 
 @Controller
@@ -42,8 +43,10 @@ public class AdminController {
 
 	//문의사항
 	@GetMapping("/qna")
-	public void qna() {
-
+	public void qna(Model model) {
+		ArrayList<qaVO> qalist = userService.qa_list();
+		
+		model.addAttribute("qalist", qalist);
 	}
 
 	//화면폼
@@ -215,8 +218,23 @@ public class AdminController {
 		return "admin/user_info";
 	}
 	@GetMapping("/replyPage")
-	public String replyPage() {
+	public String replyPage(@RequestParam("qa_key") Integer qa_key, Model model) {
+		ArrayList<qaVO> qa_data = userService.qa_read(qa_key);
+		model.addAttribute("qa_data", qa_data);
 		
 		return "/admin/replypage";
+	}
+	
+	@PostMapping("/qa_update")
+	public String qa_update(qaVO vo, Model model, RedirectAttributes RA) {
+		int qa_update = userService.qa_update(vo);
+		System.out.println(vo.getQa_key());
+		System.out.println(vo.getQa_comment());
+		if(qa_update == 1 ) {
+			RA.addFlashAttribute("msg", "답변이 등록되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "실패했습니다. 관리자에게 문의하세요");
+		}
+		return "redirect:/admin/qna";
 	}
 }
