@@ -176,11 +176,15 @@ public class AdminController {
 
 	// DB에 있는 영화 목록페이지
 	@GetMapping("/adminMovieList")
-	public String adminMovieList(Model model) {
+	public String adminMovieList(Model model, Criteria cri) {
 
-		ArrayList<MovieVO> list = adminService.getMovieList();
+		ArrayList<MovieVO> list = adminService.getMovieList(cri);
+		int total = adminService.getTotal(cri);
+		
+		PageVO pageVO = new PageVO(cri, total);
 
 		model.addAttribute("list", list);
+		model.addAttribute("pageVO", pageVO);
 
 		return "admin/adminMovieList";
 	}

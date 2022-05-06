@@ -167,8 +167,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getMovieList" resultType="MovieVO">
+		<![CDATA[
 		SELECT *
+		FROM (
+			SELECT A.*,
+				   @ROWNUM := @ROWNUM + 1 AS RN
+			FROM (
+				SELECT *
+				FROM MOVIE
+		]]>
+				<if test="searchType == 'all'">
+				WHERE (
+					 MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+					 OR MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+					 OR MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+				)
+				</if>
+				<if test="searchType == 'title'">
+				WHERE MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				<if test="searchType == 'director'">
+				WHERE MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				<if test="searchType == 'actor'">
+				WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				ORDER BY MOVIE_NM DESC
+			) A, (SELECT @ROWNUM := 0) D
+		<![CDATA[
+		)B
+		WHERE RN > (#{page}-1) * #{amount} AND RN <= #{page} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*) AS TOTAL
 		FROM MOVIE
+		<if test="searchType == 'all'">
+		WHERE (
+			 MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+			 OR MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+			 OR MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+		)
+		</if>
+		<if test="searchType == 'title'">
+		WHERE MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+		</if>
+		<if test="searchType == 'director'">
+		WHERE MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+		</if>
+		<if test="searchType == 'actor'">
+		WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+		</if>
 	</select>
 
 	<select id="getMovieDetail" resultType="MovieVO">

@@ -34,15 +34,13 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int movieSearch(MovieVO vo) {
-		int cnt = adminMapper.movieSearch(vo);
-
-		return cnt;
+	public ArrayList<MovieVO> getMovieList(Criteria cri) {
+		return adminMapper.getMovieList(cri);
 	}
-
+	
 	@Override
-	public ArrayList<MovieVO> getMovieList() {
-		return adminMapper.getMovieList();
+	public int getTotal(Criteria cri) {
+		return adminMapper.getTotal(cri);
 	}
 
 	@Override
