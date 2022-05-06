@@ -304,14 +304,6 @@ public class UserController {
     	return "user/userLogin";
     }
     
-    @GetMapping("/userInfo")
-    public String userInfo(Model model) {
-    	
-		ArrayList<UserVO> userlist = userService.userlist();
-		model.addAttribute("userlist", userlist);
-		
-    	return "user/userInfo";
-    }
     
     @GetMapping("/userInfo")
     public String userInfo(Model model,Criteria cri) {
@@ -323,6 +315,8 @@ public class UserController {
       
       PageVO pageVO = new PageVO(cri,total);
       
+      System.out.println(cri.getSearchType());
+      System.out.println(cri.getSearchName());
       
       System.out.println(userlist);
       model.addAttribute("userlist", userlist);
