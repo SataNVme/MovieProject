@@ -222,13 +222,24 @@
 			}
 		}
 		
-		for(let i = 0; i < 5; i++) {
-			if(i == 0) {
-				actors = movieResult.actors[i].peopleNm;
-			} else {
-				actors = actors + ", " + movieResult.actors[i].peopleNm;
+		if(movieResult.actors.length >= 5) {
+			for(let i = 0; i < 5; i++) {
+				if(i == 0) {
+					actors = movieResult.actors[i].peopleNm;
+				} else {
+					actors = actors + ", " + movieResult.actors[i].peopleNm;
+				}
 			}
+		} else {
+			for(let i = 0; i < movieResult.actors.length; i++) {
+				if(i == 0) {
+					actors = movieResult.actors[i].peopleNm;
+				} else {
+					actors = actors + ", " + movieResult.actors[i].peopleNm;
+				}
+			}			
 		}
+		
 		
 		$('#movieList').append(
 			"<tr>" + 
