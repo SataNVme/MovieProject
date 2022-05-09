@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 @ROWNUM := @ROWNUM + 1 AS RN
             FROM (SELECT *
                   FROM USER
-                  WHERE user_auth = 0
+                  WHERE user_admin = 0
                   ]]>
                   <if test="searchType == 'all'">
                   and (user_id like CONCAT('%', #{searchName},'%') 
@@ -130,6 +130,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	update QA
     	set qa_comment = #{qa_comment}
     	where qa_key = #{qa_key}
+    </update>
+    
+    <update id="auth_update">
+    	update USER
+    	set user_auth = true
+    	where user_id = #{user_id}
     </update>
     
  	<delete id="user_delete">

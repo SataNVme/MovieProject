@@ -53,6 +53,16 @@
 
 	</form>
 	<script th:inline="javascript">
+	
+  	(function() {
+		var msg = JSON.parse('[[${msg}]]');
+		if (msg != null) {
+			alert(msg);
+			/* console.log(check_id); */
+			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+		}
+		;
+	})();
 
 		//처음 실행하는 함수
 		function init() {
@@ -91,15 +101,9 @@
 		}
 
       
-  	(function() {
-		var msg = JSON.parse('[[${msg}]]');
-		if (msg != null) {
-			alert(msg);
-			/* console.log(check_id); */
-			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
-		}
-		;
-	})();
+
+  	
+  	
 		</script>
 		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>

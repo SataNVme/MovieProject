@@ -23,4 +23,5 @@ public interface UserMapper {
 	public int total(Criteria cri);//전체회원글수
 	public ArrayList<qaVO> qa_list();
 	public int qa_update(qaVO vo);
+	public int auth_update(String id);
 }

@@ -76,5 +76,10 @@ public class UserServiceImpl implements UserService{
 	public int qa_update(qaVO vo) {
 		return userMapper.qa_update(vo);
 	}
+
+	@Override
+	public int auth_update(String id) {
+		return userMapper.auth_update(id);
+	}
 	
 }

@@ -32,10 +32,6 @@
 		<div class="textForm">
 			<input name="user_name" id="name" type="text" class="name" placeholder="이름"  required >
 		</div>
-		<div class="emailForm">
-				<input name="user_email" id="email" type="email" class="email" placeholder="이메일"  style="display:inline; text-align:left"  required>
-				<button class = "button" onclick="emailSend();">인증번호 보내기</button>
-		</div>
 <!-- 		<div class="emailForm">
 				<input name="email_check" id="email_check" type="text" class="email" placeholder="이메일 인증" style="display: inline; text-align: left">
 				<button class="button" onclick="emailCheck();">인증번호 확인</button>
@@ -49,6 +45,11 @@
 		<div class="textForm">
 			<small style="float:left; padding-bottom:5px;">생년월일</small>
 			<input name="user_birth" type="date" class="birth"  required>
+		</div>
+		
+		<div class="emailForm">
+				<input name="user_email" id="email" type="email" class="email" placeholder="이메일"  style="display:inline; text-align:left" required >
+				<button class = "button" th:onclick="|email_send()|">인증번호 보내기</button>
 		</div>
 		
 		<div class="logingender">
@@ -118,6 +119,14 @@
 			alert("아이디가 중복되었습니다.")
 			console.log("중복확인 안했음")
 		}
+	}
+	
+	function email_send() {
+		this.event.preventDefault();
+		document.user_Regist.action = "usermailCheck";
+		window.open('', 'newWindow', 'width=500, height=500');
+		document.user_Regist.target = 'newWindow';
+		document.user_Regist.submit();
 	}
 
 	(function() {
