@@ -12,8 +12,8 @@ import com.project2.movieproject.command.adminVO;
 @Mapper
 public interface AdminMapper {
 	public int movieRegist(MovieVO vo);
-	public int movieSearch(MovieVO vo);
-	public ArrayList<MovieVO> getMovieList();
+	public ArrayList<MovieVO> getMovieList(Criteria cri);
+	public int getTotal(Criteria cri);
 	public MovieVO getMovieDetail(int movie_koficCd);
 	
 	public int noticeRegist(adminVO vo);//등록

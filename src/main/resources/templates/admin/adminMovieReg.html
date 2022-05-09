@@ -86,8 +86,8 @@
 </body>
 
 <script th:inline="javascript">
-    let movieListUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=3cece8689267b7b921db30ef33ba71ae&itemPerPage=100&movieNm=movieName";
-    let movieDetailUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=3cece8689267b7b921db30ef33ba71ae&movieCd=";
+    let movieListUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=0052fe42c9b2767de41b65fb2f6b26d8&itemPerPage=100";
+    let movieDetailUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=0052fe42c9b2767de41b65fb2f6b26d8&movieCd=";
     let numUrl = "&curPage=";
     let nameUrl = "&movieNm=";
     
@@ -222,13 +222,24 @@
 			}
 		}
 		
-		for(let i = 0; i < 5; i++) {
-			if(i == 0) {
-				actors = movieResult.actors[i].peopleNm;
-			} else {
-				actors = actors + ", " + movieResult.actors[i].peopleNm;
+		if(movieResult.actors.length >= 5) {
+			for(let i = 0; i < 5; i++) {
+				if(i == 0) {
+					actors = movieResult.actors[i].peopleNm;
+				} else {
+					actors = actors + ", " + movieResult.actors[i].peopleNm;
+				}
 			}
+		} else {
+			for(let i = 0; i < movieResult.actors.length; i++) {
+				if(i == 0) {
+					actors = movieResult.actors[i].peopleNm;
+				} else {
+					actors = actors + ", " + movieResult.actors[i].peopleNm;
+				}
+			}			
 		}
+		
 		
 		$('#movieList').append(
 			"<tr>" + 
