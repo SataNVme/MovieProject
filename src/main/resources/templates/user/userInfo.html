@@ -20,7 +20,8 @@
 						<li><a href="adminMain1"> <i class="fa fa-edit"></i> <strong>게시판</strong>
 								<small>sweet home</small>
 						</a></li>
-						<li><a href="qna"> <i class="fa fa-gift" id="bpage"></i>
+						
+						<li><a href="/admin/qna"> <i class="fa fa-gift" id="bpage"></i>
 								<strong>문의사항</strong> <small>sweet home</small>
 						</a></li>
 						<li><a href="notices"> <i class="fa fa-globe" id="bpage1"></i>
@@ -51,7 +52,7 @@
 									th:selected="${pageVO.cri.searchType} == 'id'? 'selected'">아이디</option>
 							</select> <input type="hidden" name="page" th:value="1"> <input
 								type="hidden" name="amount" th:value="${pageVO.amount}">
-							<select class="sele2" th:onchacnge="|admin_dataHandler(this)|">
+							<select class="sele2" th:onchange="|admin_dataHandler(this)|">
 								<option value="10"
 									th:selected="${pageVO.amount}==10 ? 'selected'">10개 보기</option>
 								<option value="20"

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<link rel="stylesheet" type="text/css" th:href="@{/css/userPopup.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}" />
 
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .userMypage} ) }">
@@ -309,7 +307,7 @@
 
                                        <tr  th:each="vo, state : ${myqalist}">
                                           <td>[[${state.index + 1}]]</td>
-                                          <th><a th:href="@{/user/userQnaRead(qa_title=${myqalist.get(state.index).qa_title} ) }">[[${myqalist.get(state.index).qa_title}]]</a>
+                                          <th><a th:href="@{/user/userQnaRead(qa_key=${myqalist.get(state.index).qa_key} ) }">[[${myqalist.get(state.index).qa_title}]]</a>
                                           </th>
                                           <td>[[${myqalist.get(state.index).user_id}]]</td>
                                           <td>[[${#temporals.format(myqalist.get(state.index).qa_date, 'yyyy-MM-dd')}]]</td>

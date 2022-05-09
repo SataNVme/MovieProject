@@ -119,12 +119,12 @@
     
                                 </thead>
                                <tbody>
-                                   <tr th:each = "vo,state: ${list}">
-                                    <td>[[${vo.admin_key}]]</td>
+                                   <tr th:each = "vo, state: ${qalist}">
+                                    <td>[[${qalist.get(state.index).qa_key}]]</td>
                                     
-                                    <td>[[${#temporals.format(vo.notices_date, 'yyyy-MM-dd')}]]</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                    <td> power5295</td>
+                                    <td>[[${#temporals.format(qalist.get(state.index).qa_date, 'yyyy-MM-dd')}]]</td>
+                                    <td><a th:href="@{/admin/replyPage(qa_key=${qalist.get(state.index).qa_key} ) }">[[${qalist.get(state.index).qa_title}]]</a></td>
+                                    <td>[[${qalist.get(state.index).user_id}]]</td>
                                    
                                    </tr>
                                   

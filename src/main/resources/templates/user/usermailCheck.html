@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method = "POST" action = "verifyCode">
+		<input>${regist.get(0).getUser_email()}
+		<input type="text" name="code">
+		<input type="submit">
+	</form>
+</body>
+
+<script th:inline="javascript">
+	(function() {
+		var msg = JSON.parse('[[${msg}]]');
+		if (msg != null) {
+			alert(msg);
+			/* console.log(check_id); */
+			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+		}
+		;
+	})();
+</script>
+</html>
+
