@@ -31,12 +31,11 @@
 					</div>
 				</div>
 				<div class="credit">
-					<div class="buy">
-						<button onclick="">구매</button>
+					<div class="movieBuy">
+						<button type="button" th:onclick="|location.href='@{/movie/movieBuy}'|">구매</button>
 					</div>
-					<div class="rent">
-						<button onclick="">대여</button>
-
+					<div class="movieRent">
+						<button type="button" th:onclick="|location.href='@{/movie/movieRent}'|">대여</button>
 					</div>
 				</div>
 
@@ -66,5 +65,4 @@
 		</div>
 	</body>
 </th:block>
-
 </html>

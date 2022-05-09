@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- 베이직 레이아웃 -->
 <th:block th:fragment="setContent(content)">
-
 	<head>
 		<meta charset="UTF-8">
 		<title>Document</title>
+		<!-- 공통 -->
+		<!-- 경로는 절대 경로 -->
 		<link rel="stylesheet" type="text/css" th:href="@{/css/practice.css}" />
 		<link rel="preconnect" th:href="@{https://fonts.googleapis.com}" />
 		<link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin />
@@ -17,15 +19,15 @@
 			rel="stylesheet">
 	
 		<!-- admindMain part -->
-     	<link rel="stylesheet" th:href="@{/css/admin.css}">
+     	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
      	
 	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
-	 	<script  th:src="@{https://code.highcharts.com/highcharts.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
 	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
 	 	
 		<!-- qna/notice --> 
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
-        <link rel="stylesheet" th:href="@{/css/notice.css}">
+        <link rel="stylesheet" tyhe="text/css" th:href="@{/css/notice.css}">
    		<!--regist/update  -->
 		<!-- userInfo -->
         <link rel="stylesheet" th:href="@{/css/user_Info.css}">
@@ -34,21 +36,22 @@
         <link rel="stylesheet" th:href="@{/css/commentList.css}">
         <link rel="stylesheet" th:href="@{/css/MovieList.css}">
         <link rel="stylesheet" th:href="@{/css/MovieDetail.css}">
-      
 	</head>
 	<body>
-		<div class="container">
+		
+	<!-- 헤더 -->
+	<header class="wrap">	
         <div class="header">
             <div class="logo">
                 <ul>
-                <a th:href="@{/main.html}"><img src="img/logo.png" alt="logo"></a>
+                <a th:href="@{/main}"><img src="img/logo.png" alt="logo"></a>
                 </ul>    
             </div>
             <ul class="pull-right">
-                <li><a th:href="@{user/userlogin}"><img src="img/userlogin.jpg">로그인</a></li>
-                <li><a th:href="@{user/userjoin}"><img src="img/join.jpg">회원가입</a></li>
+                <li><a th:href="@{user/userLogin}"><img src="img/userlogin.jpg">로그인</a></li>
+                <li><a th:href="@{user/userRegist}"><img src="img/join.jpg">회원가입</a></li>
             </ul>
-        </div>
+        </div>  
             <div class="nav">
                 <div class="pull-left">
                     <ul class="outer-menu">
@@ -58,8 +61,8 @@
                 </div>	
                 <div class="pull-right">
                     <div class="search-bar">
-                        <form class="search">	
-                            <select class="SelectSearch" name="WhichSearch">
+                        <form id="searchForm" action="/search/searchList" method="get">	
+                            <select name="type">
                                 <option selected value="select">검색 내용 선택</option>
                                 <option value="director">감독</option>
                                 <option value="actor">영화배우</option>
@@ -69,26 +72,33 @@
                                 <option value="actmovie">배우 or 영화</option>
                                 <option value="all">감독 or 배우 or 영화</option>
                             </select>
-                            <input type="text" name="search" maxlength = 255 value = "" autocomplete="off" placeholder="내용을 입력하세요"/>
-                            <button class="img-button" type="submit" name="click" value="검색"> <!--btn btn-default-->
-                                <i class="fas fa-search">검색</i>
-                            </button> 	
+                            <input type="text" name="keyword"/>
+                            <input type="hidden" name="pageNum" value="${spVO.searchCriteria.pageNum}">
+                            <input type="hidden" name="amount" value="${spVO.searchCriteria.amount}">
+                            <button class="btn btn-default">검색</button>
                         </form>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
                 <div class="center">
                     <th:block th:replace="${content}"></th:block>
                 </div>
                 
                 <div class="footer">
+=======
+          </header>         
+                <th:block th:replace="${content}"></th:block>
+                
+                <footer id="footer">
+>>>>>>> origin/nam
                     <div class="footer_wrap">
                         <div class="footer_top">
                             <!-- 상위 -->
                             <ul class="pull_left">
                                 <span>
                                     <a th:href="@{/admin/notices}">공지사항</a>
-                                    <a th:href="@{/admin/qna}">문의사항</a>
+                                    <a th:href="@{/user/userQnaRegist}">문의사항</a>
                                 </span>		
                             </ul>
                         </div>
@@ -106,8 +116,6 @@
                             </p>
                         </div>
                     </div>
-                </div> 
-   </div>
 	</body>
 </th:block>
 </html>

@@ -260,7 +260,7 @@ public class UserController {
         int count_id = userService.idCheck(db_id);
 		
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
-		
+
 		if(userdata.get(0).isUser_auth()) {
 			if(count_id > 0) { //성공
 				if(vo.getUser_password().equals(userdata.get(0).getUser_password())) {

@@ -1,23 +1,23 @@
 <!DOCTYPE HTML> 
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="~{/include/layout :: setContent( ~{:: .wrap} ) }">
+<th:block th:replace="~{/include/layout :: setContent( ~{:: .table-wrapper} ) }">
 
 	<div class="table-wrapper">
-		<table cellpadding="0" cellspacing="0" border="1" width="100%">
-		<thead>
-			<tr class="tHead">
-				<th class="movie_iurl">이미지</th>
-				<th class="movie_nm">영화이름(국문)</th>
-				<th class="movie_dirnm">감독이름(국문)</th>
-				<th class="movie_actnm">배우이름(국문)</th>
-				<th class="movie_ov">영화소개</th>
-			</tr>
-		</thead>
+		<table class="tbl" cellpadding="0" cellspacing="0" border="1" width="100%">
+			<thead>
+				<tr>
+					<th class="movie_koficCd">영진위 코드</th>
+					<th class="movie_nm">영화이름(국문)</th>
+					<th class="movie_dirnm">감독이름(국문)</th>
+					<th class="movie_actnm">배우이름(국문)</th>
+					<th class="movie_ov">영화소개</th>
+				</tr>
+			</thead>
 		<tbody id="movieList">
 		<th:block th:each="movie : ${list}">
 			<tr class="tBody" th:object="${movie}">
-				<td class="movie_iurl" th:object="${movie_iurl}"></td>
-				<td class="movie_nm" th:object="${movie_nm}"></td>
+				<td class="movie_koficCd" th:object="${movie_koficCd}"></td>
+				<td class="movie_nm" th:object="${movie_nm}"><a th:href="@{/search/getSearchPage}" class="revise"></a></td>
 				<td class="movie_dirnm" th:object="${movie_dirnm}"></td>
 				<td class="movie_actnm" th:object="${movie_actnm}"></td>
 				<td class="movie_ov" th:object="${movie_ov}"></td>
@@ -26,12 +26,13 @@
 		</tbody>
 
 	</table>
-	<div th:object="${pageMaker}">
+	
+	<div th:object="${spVO}">
 		<div class="big-width" style="text-align : center">
 			<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&Movie;</code></a>
-			<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
-				<code th:if="${pageMaker.searchCriteria.getPageNum() == num}" th:text="${num}"></code>
-				<a class="changePage" th:unless="${pageMaker.searchCriteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+			<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), spVO.getEndPage())}">
+				<code th:if="${spVO.searchCriteria.getPageNum() == num}" th:text="${num}"></code>
+				<a class="changePage" th:unless="${spVO.searchCriteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
 			</th:block>
 			<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>	
 		</div>
@@ -40,9 +41,9 @@
 		<code th:text="*{searchCriteria.pageNum}"></code>
 		<a class="changePage" th:if="*{searchCriteria.pageNum < realEnd}" th:href="*{searchCriteria.pageNum + 1}"><code>&gt;</code></a>
 	</div>
-	<form action="/search/getSearchList" th:object="${searchCriteria}" name="pageForm">
-		<input type="hidden" name="pageNum" th:field="*{pageNum}">
-		<input type="hidden" name="amount" th:field="*{amount}">
+	<form id="moveForm" method="get">
+		<input type="hidden" name="pageNum" value="{spVO.searchCriteria.pageNum}">
+		<input type="hidden" name="amount" value="{spVO.searchCriteria.amount}">
 	</form>
 	</div>
 	</div>		
@@ -51,31 +52,13 @@
 </th:block>
 <!-- 페이지에서 사용할 JS코드를 block 아래에 삽입 -->
 <!-- modal.js는 list화면에서만 사용됨 -->
-<script th:src="@{/js/modal.js}"></script>
-<script th:inline="javascript">
-	//메시지 출력문
-	(function() {
-		var msg = JSON.parse('[[${msg}]]');
-		if(msg != null) {			
-			alert(msg);
-		}
-	})();
-	// 데이터 개수변경 JS
-	function movie_dataHandler(a) {
-		// a는 select태그, a.value는 태그의 값
-		// console.log(a.value); // window
-		// 1st
-		// location.href = '/product/productList?page=1&amount=' + a.value;
-		// 2nd(검색 폼을 submit)
-		document.getSearchList.page.value = 1;
-		document.getSearchList.amount.value = a.value;
-		document.getSearchList.submit();
-	}
-	// 검색 버튼
-	var searchBtn = document.getElementById("searchBtn");
-	searchBtn.onclick = function() {
-		event.preventDefault(); // a의 기본 이벤트 중지
-		document.getSearchList.submit(); // 폼 전송
-	}
+<script>
+	let moveForm = #("moveForm");
+	$(".move").on("click", function(e) {
+		e.preventDefault();
+		moveForm.append("<input type='hidden' name='movie_koficCd' value-'" + $(this).attr("href" + "'>"));
+		moveForm.attr("action", "/search/getSearchPage");
+		moveForm.submit();
+	})
 </script>
 </html>

@@ -30,5 +30,14 @@ public class MovieController {
 		
 	}
 	
+	@GetMapping("/movieBuy")
+	public void movieBuy() {
+		
+	}
+	@GetMapping("/movieRent")
+	public void movieRent() {
+		
+	}
+	
 	
 }

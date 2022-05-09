@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </if>
 
    </select>
-    
+
     <update id="user_update">
     	update USER
     	<if test="user_newemail != '' and user_newemail != null">
@@ -126,6 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where user_id = #{user_id}
     </update>
     
+<<<<<<< HEAD
     <update id="qa_update">
     	update QA
     	set qa_comment = #{qa_comment}
@@ -138,6 +139,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	where user_id = #{user_id}
     </update>
     
+=======
+>>>>>>> origin/nam
  	<delete id="user_delete">
 		delete from USER 
 		where user_id = #{user_id}
