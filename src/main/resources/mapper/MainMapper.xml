@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project2.movieproject.main.MainMapper">
+	
+	<select id="getMainBanner" resultType="MovieVO">
+		SELECT *
+		FROM MOVIE 
+		ORDER BY MOVIE_RECOMMEND DESC, MOVIE_OPENDT DESC
+		LIMIT 10
+	</select>
+	
+	<select id="getMainRank" resultType="MovieVO">
+		SELECT * 
+		FROM MOVIE
+	</select>
+	
+	<select id="getMainRankList" resultType="MovieVO">
+		SELECT * 
+		FROM MOVIE
+		ORDER BY MOVIE_OPENDT DESC
+		LIMIT 10
+	</select>
+	
+</mapper>
