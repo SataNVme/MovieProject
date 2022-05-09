@@ -34,5 +34,15 @@ public class UserServiceImpl implements UserService{
 		return userMapper.user_update(vo);
 	}
 
+	@Override
+	public int user_delete(UserVO vo) {
+		return userMapper.user_delete(vo);
+	}
+
+	@Override
+	public ArrayList<UserVO> userlist() {
+		return userMapper.userlist();
+	}
+
 	
 }

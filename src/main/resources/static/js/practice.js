@@ -1,31 +1,14 @@
-function getSearchList() {
-	$.ajax({
-			type : 'GET',
-			url : "/search/getSearchList",
-			data : $("form[name=search-form]").serialize(),
-			success : function(result) {
-				// 테이블 초기화
-				console.log(result);
-				$('#movietable > tbody').empty();
-				if(result.length >= 1) {
-					result.forEach(function(item) {
-						str = "<tr>"
-						str += "<td>" + item.movie_iUrl + "</td>";
-						str += "<td><a href='/search/getSearchList?movie_iUrl=" + item.movie_iUrl + "'>" + item.movie_nm + "</a></td>";
-						str += "<td>" + item.movie_dirNm + "</td>";
-						str += "<td>" + item.movie_actNm + "</td>";
-						str += "<td>" + item.movie_apiRt + "</td>";
-						str += "<td>" + item.movie_ov + "</td>";
-						str += "</tr>"
-						$('#movietable').append(str);
-					});
-				}
-			}
-		});
+var searchForm = $("#searchForm");
+$("#searchForm button").on("click", function(e) {
+	if(!searchForm.find("option:selected").val()) {
+		alert("검색 종류를 선택하세요");
+		return false;
 	}
-// 검색 버튼
-	var searchBtn = document.getElementById("searchBtn");
-	searchBtn.onclick = function() {
-		event.preventDefault(); // a의 기본 이벤트 중지
-		document.getSearchList.submit(); // 폼 전송
-	}	
+	if(!searchForm.find("input[name='keyword']").val()) {
+		alert("검색어를 입력하세요");
+		return false;
+	}
+	searchForm.find("input[name='pageNum']").val("1");
+	e.preventDefault();
+	searchForm.submit();
+});
