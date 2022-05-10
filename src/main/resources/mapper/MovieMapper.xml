@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
 			   #{movie_koficCd},
 			   #{sr_rate})		
 	</insert>
-	<select id="getStarRate" resultType="float">
+	<select id="getStarRate" resultType="Float">
 	
 		select round(avg(sr_rate),1) 
 		from star_rate 

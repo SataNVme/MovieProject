@@ -35,7 +35,7 @@ public class MovieServiceImpl implements MovieService{
 	}
 	
 	@Override
-	public float getStarRate(String movie_koficCd) {
+	public Float getStarRate(String movie_koficCd) {
 		return movieMapper.getStarRate(movie_koficCd);
 	}
 

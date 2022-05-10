@@ -9,5 +9,5 @@ public interface MovieService {
 	public MovieVO getList_ko(String genre);
 	public MovieVO getList_out(String genre);
 	public void addStarRate(StarRateVO starRateVo);
-	public float getStarRate(String movie_koficCd);
+	public Float getStarRate(String movie_koficCd);
 }

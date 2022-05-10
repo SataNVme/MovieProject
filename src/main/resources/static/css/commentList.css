@@ -1,10 +1,19 @@
+* {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
 .commnetListBox {
     margin: 0 auto;
     width: 1130px;
     height: auto;
     /* border: 1px solid black; */
 }
-
+.commenttitle {
+	width : 100%;
+    float: left;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 15%;
+}
  .commentboard {
 	margin-top: 10px;
     width: 100%;
@@ -42,9 +51,10 @@
 .commentPage {
 	width: 1130px;
 	height: auto;
+	text-align: center;
 }
 .commentPage ul{
-	margin: 0 auto;
+	display: inline-block;
 	width: 446px;
 	padding-left: 0px;
 	padding-top: 10px;
@@ -68,3 +78,11 @@
 	color: inherit;
 }
 
+.noComment{
+	width: 1130px;
+	height: 300px;
+	text-align: center;
+	line-height: 300px;
+	font-size: 13px;
+	color: #A1A1A1;
+}

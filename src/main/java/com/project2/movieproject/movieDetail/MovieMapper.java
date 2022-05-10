@@ -16,6 +16,6 @@ public interface MovieMapper {
 	
 	public void addStarRate(StarRateVO starRateVo);
 	
-	public float getStarRate(String movie_koficCd);
+	public Float getStarRate(String movie_koficCd);
 
 }

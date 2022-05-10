@@ -22,7 +22,7 @@
 }
 .summary {
     padding-top: 0px;
-    width: 50%;
+    width: 820px;
     height: 100%;
     box-sizing: border-box;
     /* border: 1px solid black; */
@@ -70,7 +70,7 @@
 }
 .credit {
     padding-top: 5px;
-    width: 50%;
+    width: 310px;
     height: 100%;
     box-sizing: border-box;
     /* border: 1px solid black; */

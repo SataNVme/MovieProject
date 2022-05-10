@@ -22,7 +22,7 @@
 	float: left;
 }
 
-.rightbox {
+.ml_rightbox {
 	/* overflow: hidden; */
 	box-sizing: border-box;
 	float: right;

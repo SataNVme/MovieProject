@@ -43,7 +43,7 @@ public class CommentPageVO {
 		
 		this.commentPrev = this.commentStart > 1;
 		
-		this.commentPrev = this.commentStart > this.commentEnd;
+		this.commentNext = this.commentStart > this.commentEnd;
 		
 		this.pageList = IntStream.rangeClosed(this.commentStart, this.commentEnd)
 								 .boxed()

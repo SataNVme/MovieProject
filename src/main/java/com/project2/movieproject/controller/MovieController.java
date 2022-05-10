@@ -48,9 +48,13 @@ public class MovieController {
 		model.addAttribute("commentUrl", commentUrl);
 		
 		//별점
-		float starRate = movieService.getStarRate(movie_koficCd);
+		float starRate = 0;
+		if( movieService.getStarRate(movie_koficCd) == null) {
+			starRate = 0;
+		} else {
+			starRate = movieService.getStarRate(movie_koficCd);
+		}		
 		model.addAttribute("starRate", starRate);
-		
 		//리뷰 등록
 		model.addAttribute("url", url);
 		model.addAttribute("movieVo", movieVo);

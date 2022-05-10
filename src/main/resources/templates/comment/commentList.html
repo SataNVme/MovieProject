@@ -11,53 +11,71 @@
 			<div class="commenttitle">
 				<p>리뷰</p>
 			</div>
-			<table class="commentboard" th:each="vo, state : ${list}">
-				<tr class="commentboardtop">
-					<td class="commentid">[[${vo.user_id}]]</td>
-					<td class="commentdate" rowspan="2">[[${#temporals.format(vo.comment_date, 'yyyy-MM-dd')}]]</td>
-				</tr>
-				<tr class="commentboardbottom">
-					<td class="commentcontent">[[${vo.comment_com}]]</td>
-				</tr>
-			</table>
-			<div class="commentPage">
-				<ul>
- 					<th:block th:if="${commentPageVO.realEnd != 0}">
-						<li>
-							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=1)}" >
-								<i class="fa fa-angle-double-left" aria-hidden="true"></i>
-							</a>
-						</li>
-					</th:block>
-					
-					<th:block th:if="${commentPageVO.commentPrev}">
-						<li>
-							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.commentStart - 1})}">
-								<i class="fa fa-angle-double-left" aria-hidden="true"></i>
-							</a>
-						</li>
-					</th:block>
-					<th:block th:each="page: ${commentPageVO.pageList}">
-						<li th:class="${commentPageVO.page == page ? 'on' : ''}">
-							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${page})}">[[${page}]]</a>
-						</li>
-					</th:block>
-					<th:block th:if="${commentPageVO.commentNext}">
-						<li>
-							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=$commentPageVO.end + 1)})}">
-								<i class="fa fa-angle-right" aria-hidden="true"></i>
-							</a>
-						</li>
-					</th:block>
-					<th:block th:if="${commentPageVO.realEnd != 0}">
-						<li>
-							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.realEnd})}">
-								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-							</a>
-						</li>
-					</th:block>					
-				</ul>
-			</div>
+			<!-- 코멘트가 있을 경우 -->
+			<th:block th:if="${commentTotal != 0}">
+			
+				<!-- 코멘트 테이블 -->
+				<table class="commentboard" th:each="vo, state : ${list}">
+					<tr class="commentboardtop">
+						<td class="commentid">[[${vo.user_id}]]</td>
+						<td class="commentdate" rowspan="2">[[${#temporals.format(vo.comment_date, 'yyyy-MM-dd')}]]</td>
+					</tr>
+					<tr class="commentboardbottom">
+						<td class="commentcontent">[[${vo.comment_com}]]</td>
+					</tr>
+				</table>
+				
+				<!-- 페이지네이션 -->
+				<div class="commentPage">
+					<ul>
+	 					<th:block th:if="${commentPageVO.realEnd != 0}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=1)}" >
+									prev
+								</a>
+							</li>
+						</th:block>
+						
+						<th:block th:if="${commentPageVO.commentPrev}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.commentStart - 1})}">
+									?
+								</a>
+							</li>
+						</th:block>
+						
+						<th:block th:each="page: ${commentPageVO.pageList}">
+							<li th:class="${commentPageVO.page == page ? 'on' : ''}">
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${page})}">[[${page}]]</a>
+							</li>
+						</th:block>
+						
+						<th:block th:if="${commentPageVO.commentNext}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.commentEnd + 1})}">
+									!
+								</a>
+							</li>
+						</th:block>
+						
+						<th:block th:if="${commentPageVO.realEnd != 0}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.realEnd})}">
+									next
+								</a>
+							</li>
+						</th:block>
+											
+					</ul>
+				</div>
+			</th:block>
+			
+			<!-- 코멘트가 없을 경우 -->
+			<th:block th:unless="${commentTotal != 0}">
+				<div class="noComment">
+					등록된 리뷰가 없습니다.
+				</div>
+			</th:block>
 			
 		</div>
 

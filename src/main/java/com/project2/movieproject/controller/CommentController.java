@@ -33,18 +33,28 @@ public class CommentController {
 		
 		//select 
 		commentCri.setMovie_koficCd(movie_koficCd);
-		System.out.println(commentCri);
+//		System.out.println(commentCri);
 		ArrayList<CommentVO> list = commentService.getList(commentCri);
 		
 		int total = commentService.getTotal(movie_koficCd);
+		System.out.println("total:" + total);
+		
 		CommentPageVO commentPageVO = new CommentPageVO(commentCri, total);
-		System.out.println(commentPageVO);
+//		System.out.println(commentPageVO);
+		System.out.println("page:" + commentPageVO.getPage());
+		System.out.println("commentEnd:" + commentPageVO.getCommentEnd());
+		System.out.println("commentStart:" + commentPageVO.getCommentStart());
+		System.out.println("commentPrev:" + commentPageVO.isCommentPrev());
+		System.out.println("commentNext:" + commentPageVO.isCommentNext());
+		
+		//comment 존재 여부
+		model.addAttribute("commentTotal", total);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("commentPageVO", commentPageVO);
 		model.addAttribute("movie_koficCd", movie_koficCd);
 		
-		System.out.println(list.toString());
+//		System.out.println(list.toString());
 		
 //		RA.addAttribute("movie_koficCd", movie_koficCd);
 //		return "redirect:/comment/commentList";
