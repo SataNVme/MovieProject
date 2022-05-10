@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/commentList.css}">
+<link rel="stylesheet" href="/css/commentList.css">
+	
+	<body>
+	
+	<div class="commentListBox">
+		
+		<div class="commentbox">
+			<div class="commenttitle">
+				<p>리뷰</p>
+			</div>
+			<table class="commentboard" th:each="vo, state : ${list}">
+				<tr class="commentboardtop">
+					<td class="commentid">[[${vo.user_id}]]</td>
+					<td class="commentdate" rowspan="2">[[${#temporals.format(vo.comment_date, 'yyyy-MM-dd')}]]</td>
+				</tr>
+				<tr class="commentboardbottom">
+					<td class="commentcontent">[[${vo.comment_com}]]</td>
+				</tr>
+			</table>
+			
+		</div>
+
+		<script th:inline="javascript">
+			(function() {
+				var msg = JSON.parse('[[${msg}]]');
+				if (msg != null) {
+					alert(msg);
+				}
+			})();
+			
+		</script>
+		</div>
+	</body>
+</html>

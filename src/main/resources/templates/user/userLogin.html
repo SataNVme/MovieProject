@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/userLogin.css">
+<script src="/js/jquery-3.6.0.js"></script>
+<style>
+	
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+</style>
+
+<meta name ="google-signin-client_id" content="679622973371-35j8fd5uhu3h9iq1o0t2okscsvttamtu.apps.googleusercontent.com">
+
+</head>
+<body>
+	
+	<form method="POST" class="joinForm" action="LoginForm" name="user_Login">
+
+		<h2>홈페이지 이름</h2>
+		<div class="textForm">
+			<input name="user_id" type="text" class="id" placeholder="아이디">
+		</div>
+		<div class="textForm">
+			<input name="user_password" type="password" class="pw" placeholder="비밀번호">
+		</div>
+		<div>
+			<a href="##" class="idfind">아이디 찾기</a><a href="##">비밀번호 찾기</a>
+		</div>
+
+
+		<input type="submit" class="btn" value="로 그 인" />
+		<a href="/user/userRegist"><input type="button"  class="btn" value="회 원 가 입" /></a>
+		
+		<div class="footer-social-links">
+			<a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+			<a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+			<a href="#" title="Google+" target="_blank"><i class="fa fa-google-plus"></i></a>
+			<a href="#" title="LinkedIn+" target="_blank"><i class="fa fa-linkedin"></i></a>
+			<a href="#" title="Dribbble" target="_blank"><i class="fa fa-dribbble"></i></a>
+		  </div>
+		
+		  <ul>
+			<li id="GgCustomLogin">
+			 <a href="javascript:void(0)">
+			  <span>Login with Google</span>
+			 </a>
+			</li>
+		   </ul>
+
+	</form>
+	<script th:inline="javascript">
+
+		//처음 실행하는 함수
+		function init() {
+			gapi.load('auth2', function() {
+				gapi.auth2.init();
+				options = new gapi.auth2.SigninOptionsBuilder();
+				options.setPrompt('select_account');
+				// 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+				options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+				// 인스턴스의 함수 호출 - element에 로그인 기능 추가
+				// GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+				gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+			})
+		}
+		
+		function onSignIn(googleUser) {
+			var access_token = googleUser.getAuthResponse().access_token
+			$.ajax({
+				// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+				url: 'https://people.googleapis.com/v1/people/me'
+				// key에 자신의 API 키를 넣습니다.
+				, data: {personFields:'birthdays', key:'AIzaSyBtvgNVGTmkNom0LS_Kr3wLMBNj5ED9KAI', 'access_token': access_token}
+				, method:'GET'
+			})
+			.done(function(e){
+				//프로필을 가져온다.
+				var profile = googleUser.getBasicProfile();
+				console.log(profile)
+			})
+			.fail(function(e){
+				console.log(e);
+			})
+		}
+		function onSignInFailure(t){		
+			console.log(t);
+		}
+
+      
+  	(function() {
+		var msg = JSON.parse('[[${msg}]]');
+		if (msg != null) {
+			alert(msg);
+			/* console.log(check_id); */
+			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+		}
+		;
+	})();
+		</script>
+		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+</body>
+
+</html>

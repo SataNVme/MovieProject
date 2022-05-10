@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/notice.css}">
+  <th:block th:replace="~{/include/Layout :: setContent(~{:: .noticeRegist_outbox})}">
+
+
+    <div class="noticeRegist_outbox">
+        <form action="noticeRegist" name="noticeRegist" method="post" enctype="multipart/form-data">
+        <div class="title"> 
+          <span class="noselect">공지사항</span>
+       </div>
+           
+        <div class="leftbox">
+            <nav>
+                <ul class="mcd-menu">
+                    <li>
+                        <a href="http://www.naver.com">
+                            <i class="fa fa-home"></i>
+                            <strong>메인페이지</strong>
+                            <small>Mainpage</small>
+                        </a>
+                    </li>
+                    <li>
+                      
+                            <a href="adminMain1"  >
+                            <i class="fa fa-edit" ></i>
+                            <strong>게시판</strong>
+                            <small>sweet home</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="qna">
+                            <i class="fa fa-gift"id="bpage" ></i>
+                            <strong>문의사항</strong>
+                            <small>sweet home</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notices">
+                            <i class="fa fa-globe" id="bpage1"></i>
+                            <strong>공지사항</strong>
+                            <small>sweet home</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="user_info">
+                            <i class="fa fa-comments-o"></i>
+                            <strong>회원관리</strong>
+                            <small>what they say</small>
+                        </a>
+                       
+                    </li>
+                    <li>
+                        <a href="movieRegist">
+                            <i class="fa fa-comments-o"></i>
+                            <strong>영화등록</strong>
+                            <small>what they say</small>
+                        </a>
+                        
+                    </li>
+                  
+                    
+                   
+                </ul>
+            </nav>
+        </div>
+        <div class="rightbox"> <li>
+            <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
+                <tbody class="ttt">
+                    
+                    <tr>
+                        <th>작성자</th>
+                        <td><input type="text" class=" inputw99p" name="admin_id" value="admin"readonly></td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td colspan="5">
+                            <input type="text" class="inputw99p2" name="notices_title" >
+
+                        </td>
+							
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td colspan="5">
+                            <div>
+                                <textarea name="notices_content" class="inputw99p1" style="height: 400px"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    <th>첨부파일</th>
+                 	
+                    <td>
+	                   <input name="file" type="file" class="file_class" >
+                   </td>
+                   </tr>
+                 
+                </tbody>
+
+               </table>
+               
+            </li>
+            <div class="notice_regist_btn1">
+               <input type="submit" class="submit"  value="등록">
+    
+            
+            </div>
+           
+            
+        </div>
+               
+         
+               
+               
+               
+       
+</form>
+    </div>
+</th:block>
+<script type="text/javascript">
+$(".file_class").on("change",function(){
+	var filename =$(this).val().split("\\").pop();
+	
+})
+
+
+</script>
+
+
+</html>

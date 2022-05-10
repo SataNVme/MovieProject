@@ -1,0 +1,41 @@
+.commnetListBox {
+    margin: 0 auto;
+    width: 1130px;
+    height: auto;
+    /* border: 1px solid black; */
+}
+
+ .commentboard {
+	margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+.commentboardbottom {
+	border-bottom: 1px solid #A1A1A1;
+}
+.commentid {
+	font-size: 13px; 
+	font-weight: 300;  
+	color: #A1A1A1;
+}
+.commentdate {
+	width: 225px;
+	text-align: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #A1A1A1;
+	font-size: 12px;
+}
+.commentcontent {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 15px;
+}
+
+.commentbox{
+    float: left;
+    width: 1130px;
+    height: auto;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+}
