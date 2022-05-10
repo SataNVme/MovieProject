@@ -3,13 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style>
+.img_logo { padding : 50px 0 50px 0;
+
+}
+.mailcheck_box {
+	text-align : center;
+}
+
+.this_mail {
+	font-size: 30px;
+}
+
+.code_check {
+   height:30px; 
+   width : 200px;
+   border:1px solid #d5d5d5; 
+   margin-right:4px;
+}
+</style>
 </head>
 <body>
 	<form method = "POST" action = "verifyCode">
-		<img src="/img/logo.png">
-		<p>[[${userdata.get(0).user_email}]]</p>
-		<input type="text" name="code">
-		<input type="submit">
+		<div class = "mailcheck_box">
+			<img src="/img/logo.png" class = "img_logo">
+			<p class = "this_mail">[[${userdata.get(0).user_email}]]</p>
+			<p class = "this_mail">확인 후 인증 코드를 작성해주세요.</p>
+			<input class = "code_check" type="text" name="code">
+			<input type="submit">
+		</div>
 	</form>
 </body>
 
