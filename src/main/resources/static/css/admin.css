@@ -3,8 +3,8 @@
  body1{
     padding: 0px;
     font-size: 18px;
-    margin: 0px;
-    height:1400px;
+    margin: 0 auto;
+    height: 0 auto;
     margin-top: -20px;
     font-family: 'noto Sans KR',sans-serif;
     color:rgb(5, 5, 5) ;
@@ -13,7 +13,7 @@
   
 }
 .admin_title {
-  width: 140%;
+  width: 100%;
   height: 120px;
   box-sizing: border-box;
   padding-top: 10px;
@@ -23,12 +23,15 @@
 
 
 }
+.all_rightbox{
+	height:auto;
+}
 .admin_outbox {
-  overflow: hidden;
+  
   box-sizing: border-box;
  	
   width: 1130px;
-  height: 1300px;
+  height: auto;
   margin:0 auto;
 
  
@@ -38,7 +41,7 @@
   box-sizing: border-box;
   float: right;
   width: 880px;
-  
+  height:990px;
 
 }
 .admin_box1 {
@@ -73,7 +76,7 @@
 
 
 .container {
-    position: relative;
+   
     margin: 0px auto;
     padding: 50px 0;
     clear: both;
@@ -117,13 +120,13 @@
   padding: 0;
   margin: 0;
   background: #FFF;
-
+ float :left;
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   
   /* == */
-  width: 250px;
+  width: 200px;
   /* == */
 }
 .mcd-menu li {
@@ -641,6 +644,7 @@ margin: -10 auto;
 margin-top: 0px;
 margin-right: 0px;
 float: right;
+
 }
 
   .admin_sale_board{
@@ -799,10 +803,11 @@ float: right;
 }
 .person_rate{
 
-position: relative;
+float:right;
 list-style: none;
+margin-top: 50px;
 top: 450px;
-height: 70%;
+height: auto;
 width: 99%;
 border-radius: 14px;
 box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
@@ -816,7 +821,7 @@ background-color: #fff;
 
   height: 200px;
   float: right;
-  top: -3px;
+  top: 25px;
   width: 48%;
  
   position: relative;
@@ -831,7 +836,7 @@ background-color: #fff;
   height: 200px;
   width: 48%;
   float: left;
-  top: -3px;
+  top: 25px;
 
 text-align: center;
 background-color: #fff;
@@ -1231,14 +1236,14 @@ text {
 /*사람모형 */
 .gg-smile {
   box-sizing: border-box;
-  position: relative;
+	
   display: block;
   transform: scale(var(--ggs,1));
   width: 20px;
   height: 20px;
   border: 2px solid;
   border-radius: 100px;
-  margin-top: 180px;
+  
  }
  
  .gg-smile::after,
@@ -1279,4 +1284,3 @@ text {
    /* background-color: #fff;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%); */
  }
- 

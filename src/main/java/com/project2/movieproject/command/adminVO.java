@@ -41,5 +41,10 @@ NOTICES_CONTENT VARCHAR(200) NOT NULL
 	private String filename;
 	private String FILEPATH;
 	private String uuid;
+	private String fileDelete;
+	private String fileUpdate;
 	//공지사항
+	
+	
+	
 }

@@ -82,4 +82,10 @@ public class UserServiceImpl implements UserService{
 		return userMapper.auth_update(id);
 	}
 	
+	@Override
+	public ArrayList<UserVO> userlist1() {
+		// TODO Auto-generated method stub
+		return userMapper.userlist1();
+	}
+	
 }

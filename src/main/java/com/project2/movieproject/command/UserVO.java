@@ -27,4 +27,8 @@ public class UserVO {
 	private String user_newphone;
 	private String user_newpassword;
 	private String user_newbirth;
+	
+	private Integer year;
+	private Integer month;
+	private Integer count;
 }

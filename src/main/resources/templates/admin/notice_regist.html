@@ -84,14 +84,13 @@
 							</tr>
 								  <tr>
                     <th>첨부파일</th>
-                     <td>
-                  	[[${adminvo.filename}]]
-                     <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}">
-                    <th:block th:each="imgs : ${filename}">
-                   <img th:src = "@{../img(filepath = ${imgs.filepath}, uuid=${imgs.uuid},filename=${imgs.filename})}">
-                   </td>
-                   </tr>
-                   </th:block>
+                     <td th:each ="list : @{adminvo.filename}">
+                	파일 이름: [[${adminvo.filename}]]
+                      <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}">
+                    <th:block th:each="file : ${filename}">
+                   <a th:href = "@{../downloadfile(filepath = ${file.FILEPATH}, uuid=${file.uuid},filename=${file.filename})}"></a>
+                	
+                    
 						</tbody>
 
 					</table>
