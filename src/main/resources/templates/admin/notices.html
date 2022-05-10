@@ -25,6 +25,7 @@
 			<span class="noselect">공지 사항</span>
 		</div>
 
+<<<<<<< HEAD
 		<div class="leftbox">
 			<nav>
 				<ul class="mcd-menu">
@@ -53,6 +54,15 @@
 				</ul>
 			</nav>
 		</div>
+=======
+		<th:block th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}">
+         
+            
+				<div class="leftbox">
+				
+				</div>
+				</th:block>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		<div class="rightbox">
 			<div id="board-search">
 				<div class="search-window">
@@ -124,18 +134,39 @@
 					<tr th:each="vo,state: ${list}" >
 					
 						<td>[[${vo.admin_key}]]</td>
+<<<<<<< HEAD
 						<td>관리자</td>
 						<td><a
 							th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">[[${vo.notices_title}]]
 						</a></td>
+=======
+						<td><a
+							th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">관리자</a></td>
+						<td>[[${vo.notices_title}]]
+						</td>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	
 						<td>[[${#temporals.format(vo.notices_date,'yyyy-MM-dd')}]]</td>
 
 						<td>[[${vo.notices_count}]]</td>
+<<<<<<< HEAD
 						
 						<td><td>
 					
 						
+=======
+				
+						
+					<td th:if="${vo.filename} !=null ">
+					 		
+							<a th:href="@{/download( FILEPATH=${vo.FILEPATH},uuid=${vo.uuid},filename=${vo.filename} )}"><img th:src="@{/img/down.png}" style="height: 25px"></img></a>
+							
+					<td th:unless = "${vo.filename} !=null">
+									#
+					</td>
+						</td> 
+					
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		
 	
 						

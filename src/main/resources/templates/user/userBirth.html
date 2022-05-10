@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<html xmlns:th="http://www.thymeleaf.org">
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +16,11 @@
 <body>
     <div class="bd">
         <div class="responsive-account-container">
+<<<<<<< HEAD
             <form class="change-password-form" data-uia="change-password-form" method="post" novalidate="">
+=======
+            <form class="change-password-form" data-uia="change-password-form" method="post" novalidate="" action="user_update_birth" name="user_update_birth">
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                 <h1>생년월일 변경</h1>
                 <small>기존 생년월일</small>
                 <ul class="simpleForm structural ui-grid">
@@ -38,7 +46,11 @@
                             	<label class="input_id">
                             		<input
                                         type="date" data-uia="field-newPassword" name="user_newbirth"
+<<<<<<< HEAD
                                         class="nfTextField" id="id_newPassword" value="" tabindex="0" autocomplete="off">
+=======
+                                        class="nfTextField" id="new_birth" value="" tabindex="0" autocomplete="off">
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                 </label>
                             </div>
                         </div>
@@ -51,7 +63,11 @@
                             	<label class="input_id">
                             		<input type="date"
                                         data-uia="field-confirmNewPassword" name="confirmNewPassword"
+<<<<<<< HEAD
                                         class="nfTextField" id="id_confirmNewPassword" value="" tabindex="0"
+=======
+                                        class="nfTextField" id="new_birthchk" value="" tabindex="0"
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                         autocomplete="off">
                                 </label>
                             </div>
@@ -67,15 +83,53 @@
                         </div>
                     </li>
                 </ul>
+<<<<<<< HEAD
                 <div class="nf-btn-bar change-password-buttons"><button id="btn-save" type="submit"
                         tabindex="0" class="nf-btn nf-btn-primary nf-btn-retro nf-btn-small"
                         data-uia="action_save-password">저장</button><button id="btn-cancel" type="button"
                          tabindex="0" class="nf-btn nf-btn-secondary nf-btn-retro nf-btn-small"
                         data-uia="action_cancel-change-password" onclick="window.close();">취소</button></div>
+=======
+                <div class="nf-btn-bar change-password-buttons">
+                <button id="btn-save" type="submit"
+                        tabindex="0" class="nf-btn nf-btn-primary nf-btn-retro nf-btn-small"
+                        data-uia="action_save-password" onclick="birth_save_btn();">저장</button>
+                        <button id="btn-cancel" type="button"
+                         tabindex="0" class="nf-btn nf-btn-secondary nf-btn-retro nf-btn-small"
+                        data-uia="action_cancel-change-password" onclick="window.close();">취소</button>
+                        </div>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
             </form>
         </div>
     </div>
 </body>
 
+<<<<<<< HEAD
+=======
+<script th:inline="javascript">
+(function() {
+	var msg = JSON.parse('[[${msg}]]');
+	if (msg != null) {
+		alert(msg);
+		window.close();
+	}
+	;
+})(); 
+
+
+	var new_birth = document.getElementById("new_birth");
+	var new_birthchk = document.getElementById("new_birthchk");
+	console.log(new_birthchk.value);
+	
+	function birth_save_btn() {
+		this.event.preventDefault();
+		if(new_birth.value != new_birthchk.value || new_birth.value == "" || new_birthchk.value == ""){
+			alert("새로운 생년월일을 일치하게 작성해주세요.")
+		} else {
+			document.user_update_birth.submit();
+		}
+	};
+</script>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 
 </html>

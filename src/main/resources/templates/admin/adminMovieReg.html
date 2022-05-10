@@ -44,7 +44,11 @@
                             <td>이미지</td>
                             <td>tmdb코드</td>
                             <td>영화이름(국문)</td>
+<<<<<<< HEAD
                             <td>영화이름(원문)</td>
+=======
+                            <td>영화이름(영문)</td>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                             <td>개봉일</td>
                         </tr>
                     </thead>
@@ -86,7 +90,11 @@
 </body>
 
 <script th:inline="javascript">
+<<<<<<< HEAD
     let movieListUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=0052fe42c9b2767de41b65fb2f6b26d8&itemPerPage=100&movieNm=movieName";
+=======
+    let movieListUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=0052fe42c9b2767de41b65fb2f6b26d8&itemPerPage=100";
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     let movieDetailUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=0052fe42c9b2767de41b65fb2f6b26d8&movieCd=";
     let numUrl = "&curPage=";
     let nameUrl = "&movieNm=";
@@ -222,6 +230,7 @@
 			}
 		}
 		
+<<<<<<< HEAD
 		for(let i = 0; i < 5; i++) {
 			if(i == 0) {
 				actors = movieResult.actors[i].peopleNm;
@@ -230,6 +239,27 @@
 			}
 		}
 		
+=======
+		if(movieResult.actors.length >= 5) {
+			for(let i = 0; i < 5; i++) {
+				if(i == 0) {
+					actors = movieResult.actors[i].peopleNm;
+				} else {
+					actors = actors + ", " + movieResult.actors[i].peopleNm;
+				}
+			}
+		} else {
+			for(let i = 0; i < movieResult.actors.length; i++) {
+				if(i == 0) {
+					actors = movieResult.actors[i].peopleNm;
+				} else {
+					actors = actors + ", " + movieResult.actors[i].peopleNm;
+				}
+			}			
+		}
+		
+		
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		$('#movieList').append(
 			"<tr>" + 
 				"<td><input type='text' name='movie_iUrl' value='" + imgUrl + movieDetail.poster_path + "'></td>" + 

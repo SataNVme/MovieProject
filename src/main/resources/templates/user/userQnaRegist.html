@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
+=======
+<link rel="stylesheet" type="text/css" th:href="@{/css/userQnaRegist.css}" />
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .userQnaRegist} ) }">
 
 <div class="userQnaRegist">
     <div class="qnar_outbox">
+<<<<<<< HEAD
         <form action="">
+=======
+        <form action="qa_regist" method="POST" name = "qa_regist">
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
             <div class="qnar_title">
                 <span class="noselect">문의사항 등록</span>
             </div>
@@ -17,12 +25,20 @@
                         <tbody class="qnar_ttt">
                             <tr class="qnar_tr">
                                 <th class="qnar_th">아이디</th>
+<<<<<<< HEAD
                                 <td><input type="text" class="inputw99p" name="id" value="작성자 아이디" readonly></td>
+=======
+                                <td><input type="text" class="inputw99p" name="user_id" readonly th:value="${vo.user_id}"></td>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                             </tr>
                             <tr class="qnar_tr">
                                 <th class="qnar_th">제목</th>
                                 <td colspan="5">
+<<<<<<< HEAD
                                     <input type="text" class="inputw99p2" name="title">
+=======
+                                    <input type="text" class="inputw99p2" name="qa_title">
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 
                                 </td>
 
@@ -31,7 +47,11 @@
                                 <th class="qnar_th">내용</th>
                                 <td colspan="5">
                                     <div>
+<<<<<<< HEAD
                                         <textarea class="inputw99p1" style="height: 400px"></textarea>
+=======
+                                        <textarea class="inputw99p1" style="height: 400px" name="qa_content"></textarea>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                     </div>
                                 </td>
                             </tr>
@@ -41,7 +61,11 @@
                 </li>
                 </ul>
                 <div class="qnar_btn">
+<<<<<<< HEAD
                     <a href="" title="Button fade lightblue" class="qnar_button btnFade qnar_btnLightBlue">등록</a>
+=======
+                    <a id="qa_regist_btn" href="" title="Button fade lightblue" class="qnar_button btnFade qnar_btnLightBlue">등록</a>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                 </div>
             </div>
     </form>
@@ -49,4 +73,28 @@
 </div>
 </th:block>
 
+<<<<<<< HEAD
 </html>
+=======
+<script th:inline="javascript">
+	var qa_regist_btn = document.getElementById("qa_regist_btn");
+	
+	(function() {
+		var msg = JSON.parse('[[${msg}]]');
+		if (msg != null) {
+			alert(msg);
+			/* console.log(check_id); */
+			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+		}
+		;
+	})();
+	
+	qa_regist_btn.onclick = function() {
+		event.preventDefault();
+		document.qa_regist.submit();
+	}
+
+	
+
+</script>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66

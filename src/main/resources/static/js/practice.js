@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function getSearchList() {
 	$.ajax({
 			type : 'GET',
@@ -29,3 +30,19 @@ function getSearchList() {
 		event.preventDefault(); // a의 기본 이벤트 중지
 		document.getSearchList.submit(); // 폼 전송
 	}	
+=======
+var searchForm = $("#searchForm");
+$("#searchForm button").on("click", function(e) {
+	if(!searchForm.find("option:selected").val()) {
+		alert("검색 종류를 선택하세요");
+		return false;
+	}
+	if(!searchForm.find("input[name='keyword']").val()) {
+		alert("검색어를 입력하세요");
+		return false;
+	}
+	searchForm.find("input[name='pageNum']").val("1");
+	e.preventDefault();
+	searchForm.submit();
+});
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66

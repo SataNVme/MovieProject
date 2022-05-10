@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.SearchVO;
+<<<<<<< HEAD
 import com.project2.movieproject.util.SearchCriteria;
 
 @Service
@@ -16,4 +17,11 @@ public interface SearchService {
 	public MovieVO get(String movie_koficCd);
 	public int getTotal();
 
+=======
+//import com.project2.movieproject.util.SearchCriteria;
+
+@Service
+public interface SearchService {
+	
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 }

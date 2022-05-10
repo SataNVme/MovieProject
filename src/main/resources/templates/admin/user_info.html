@@ -90,7 +90,11 @@
                 </div>
             </div>
          
+<<<<<<< HEAD
             
+=======
+            <div th:each="vo, state : ${userlist}">
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                     <table class="board-table">
                         <colgroup>
                             <col style="width:10%">
@@ -104,11 +108,16 @@
                             <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">ID</th>
+<<<<<<< HEAD
                                     <th scope="col">주소</th>
+=======
+                                    <th scope="col">전화번호</th>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                     <th scope="col">이메일</th>
                                     <th scope="col">성별</th>
                                     <th scope="col">가입일</th>
                             </tr>
+<<<<<<< HEAD
 
                         </thead>
                            <tbody>
@@ -127,6 +136,23 @@
                           
                       
                     </table>
+=======
+                        </thead>
+                           <tbody>
+                               <tr>
+                                   <td>[[${state.index + 1}]]</td>
+                                   <td>
+                                       <a href="userMypage">[[${vo.user_id}]]</a>
+                                    </td>
+                                    <td>[[${vo.user_phone}]]</td>
+                                    <td>[[${vo.user_email}]]</td>
+                                    <td>[[${vo.user_gender}]]</td>
+                                    <td>[[${vo.user_date}]]</td>
+                               </tr>
+                           </tbody>
+                    </table>
+            </div>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
    
          
          

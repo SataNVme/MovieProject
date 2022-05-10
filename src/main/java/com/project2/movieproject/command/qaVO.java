@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class qaVO {
+<<<<<<< HEAD
 /*  qa_key      INT   PRIMARY KEY AUTO_INCREMENT,
    user_key   INT   NOT NULL, ##FK
    qa_title   VARCHAR(20)   NOT NULL,
@@ -23,5 +24,13 @@ public class qaVO {
 	private String qa_title;
 	private String qa_content;
 	private LocalDateTime qa_data;
+=======
+	
+	private Integer qa_key;
+	private String user_id;
+	private String qa_title;
+	private String qa_content;
+	private LocalDateTime qa_date;
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	private String qa_comment;
 }
