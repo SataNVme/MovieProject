@@ -248,7 +248,7 @@ public class UserController {
 		} else { //실패
 			RA.addFlashAttribute("msg", "등록 실패, 관리자에게 문의하세요.");
 		}
-		return "user/usermailCheck";	//등록이후 로그인화면
+		return "redirect:/user/usermailCheck";	//등록이후 로그인화면
 	}
 	
 	//로그인 폼
