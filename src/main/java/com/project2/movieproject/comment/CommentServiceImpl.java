@@ -27,6 +27,10 @@ public class CommentServiceImpl implements CommentService{
 		return commentMapper.getList(commentCri);
 
 	}
+	@Override
+	public int getTotal(String movie_koficCd) {
+		return commentMapper.getTotal(movie_koficCd);
+	}
 	
 	
 

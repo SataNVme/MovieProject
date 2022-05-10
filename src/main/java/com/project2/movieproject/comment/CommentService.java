@@ -10,5 +10,6 @@ public interface CommentService {
 	
 	public int regist(CommentVO vo);
 	public ArrayList<CommentVO> getList(CommentCriteria commentCri);
+	public int getTotal(String movie_koficCd);
 
 }

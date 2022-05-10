@@ -20,6 +20,44 @@
 					<td class="commentcontent">[[${vo.comment_com}]]</td>
 				</tr>
 			</table>
+			<div class="commentPage">
+				<ul>
+ 					<th:block th:if="${commentPageVO.realEnd != 0}">
+						<li>
+							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=1)}" >
+								<i class="fa fa-angle-double-left" aria-hidden="true"></i>
+							</a>
+						</li>
+					</th:block>
+					
+					<th:block th:if="${commentPageVO.commentPrev}">
+						<li>
+							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.commentStart - 1})}">
+								<i class="fa fa-angle-double-left" aria-hidden="true"></i>
+							</a>
+						</li>
+					</th:block>
+					<th:block th:each="page: ${commentPageVO.pageList}">
+						<li th:class="${commentPageVO.page == page ? 'on' : ''}">
+							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${page})}">[[${page}]]</a>
+						</li>
+					</th:block>
+					<th:block th:if="${commentPageVO.commentNext}">
+						<li>
+							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=$commentPageVO.end + 1)})}">
+								<i class="fa fa-angle-right" aria-hidden="true"></i>
+							</a>
+						</li>
+					</th:block>
+					<th:block th:if="${commentPageVO.realEnd != 0}">
+						<li>
+							<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.realEnd})}">
+								<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+							</a>
+						</li>
+					</th:block>					
+				</ul>
+			</div>
 			
 		</div>
 

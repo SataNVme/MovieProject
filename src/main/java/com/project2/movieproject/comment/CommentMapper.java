@@ -15,5 +15,7 @@ public interface CommentMapper {
 	
 	public ArrayList<CommentVO> getList(CommentCriteria commentCri);	
 	
+	public int getTotal(String movie_koficCd);
+	
 
 }

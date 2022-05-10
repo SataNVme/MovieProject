@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project2.movieproject.command.CommentPageVO;
 import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.comment.CommentService;
 import com.project2.movieproject.util.CommentCriteria;
@@ -34,11 +35,18 @@ public class CommentController {
 		commentCri.setMovie_koficCd(movie_koficCd);
 		System.out.println(commentCri);
 		ArrayList<CommentVO> list = commentService.getList(commentCri);
+		
+		int total = commentService.getTotal(movie_koficCd);
+		CommentPageVO commentPageVO = new CommentPageVO(commentCri, total);
+		System.out.println(commentPageVO);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("commentPageVO", commentPageVO);
+		model.addAttribute("movie_koficCd", movie_koficCd);
 		
 		System.out.println(list.toString());
 		
-//		RA.addAttribute(movie_koficCd);
+//		RA.addAttribute("movie_koficCd", movie_koficCd);
 //		return "redirect:/comment/commentList";
 		return "comment/commentList";
 		
