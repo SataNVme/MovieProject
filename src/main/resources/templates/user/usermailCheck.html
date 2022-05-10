@@ -6,7 +6,8 @@
 </head>
 <body>
 	<form method = "POST" action = "verifyCode">
-		<input>${regist.get(0).getUser_email()}
+		<img src="/img/logo.png">
+		<p>[[${userdata.get(0).user_email}]]</p>
 		<input type="text" name="code">
 		<input type="submit">
 	</form>
