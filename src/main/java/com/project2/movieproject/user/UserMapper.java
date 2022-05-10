@@ -24,4 +24,6 @@ public interface UserMapper {
 	public ArrayList<qaVO> qa_list();
 	public int qa_update(qaVO vo);
 	public int auth_update(String id);
+	
+	public ArrayList<UserVO> userlist1();
 }

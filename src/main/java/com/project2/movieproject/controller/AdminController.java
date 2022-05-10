@@ -37,16 +37,18 @@ public class AdminController {
 	private UserService userService;
 	//게시판
 	@GetMapping("/adminMain1")
-	public void adminMain1() {
-
+	public String adminMain1(Model model) {
+		
+		ArrayList<UserVO> uservo = userService.userlist1();
+		model.addAttribute("UserVO", uservo);
+		
+		return "admin/adminMain1";
 	}
 
 	//문의사항
 	@GetMapping("/qna")
-	public void qna(Model model) {
-		ArrayList<qaVO> qalist = userService.qa_list();
-		
-		model.addAttribute("qalist", qalist);
+	public void qna() {
+
 	}
 
 	//화면폼
@@ -103,12 +105,14 @@ public class AdminController {
 
 		int hit =adminService.hit(adminvo);
 		model.addAttribute("hit",hit);
-
+		
+		
+		
 
 		return "admin/notice_regist";
 	}
 
-	@PostMapping("/noticeUpdate")
+	@PostMapping("/noticeUpdate")//게시글 수정하기
 	public String noticeUpdate(@Valid adminVO adminvo, 
 			Model model,RedirectAttributes RA,
 			Errors erros) {
@@ -125,12 +129,19 @@ public class AdminController {
 					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage()); //유효성 검사 실패 메시지
 				}
 
+			
 			}
-
+	
+			
+		
+			
+		
+			
+		
 			//화면에서는 prodVO이름으로 상세페이지에서 사용되고 있기 때문에, 같은 이름으로 보내서 처리합니다.
 			model.addAttribute("admin", adminvo); 
-
-			return "product/productDetail"; //유효성 검사에 실패하면 다시 화면으로
+			
+			return "product/productDetail"; //유효성; 검사에 실패하면 다시 화면으로
 		}
 
 		int result = adminService.update(adminvo);
@@ -222,23 +233,8 @@ public class AdminController {
 		return "admin/user_info";
 	}
 	@GetMapping("/replyPage")
-	public String replyPage(@RequestParam("qa_key") Integer qa_key, Model model) {
-		ArrayList<qaVO> qa_data = userService.qa_read(qa_key);
-		model.addAttribute("qa_data", qa_data);
+	public String replyPage() {
 		
 		return "/admin/replypage";
-	}
-	
-	@PostMapping("/qa_update")
-	public String qa_update(qaVO vo, Model model, RedirectAttributes RA) {
-		int qa_update = userService.qa_update(vo);
-		System.out.println(vo.getQa_key());
-		System.out.println(vo.getQa_comment());
-		if(qa_update == 1 ) {
-			RA.addFlashAttribute("msg", "답변이 등록되었습니다.");
-		} else {
-			RA.addFlashAttribute("msg", "실패했습니다. 관리자에게 문의하세요");
-		}
-		return "redirect:/admin/qna";
 	}
 }

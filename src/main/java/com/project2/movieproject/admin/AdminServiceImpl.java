@@ -50,84 +50,100 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	//폴더생성 함수
-	public String MakeFolder() { //날짜별 폴더생성 
-		DateTimeFormatter datetime= DateTimeFormatter.ofPattern("yyMMdd"); 
-		String date = LocalDateTime.now().format(datetime);
+		public String MakeFolder() { //날짜별 폴더생성 
+			DateTimeFormatter datetime= DateTimeFormatter.ofPattern("yyMMdd"); 
+			String date = LocalDateTime.now().format(datetime);
 
-		//java.io인 것을import(업로드 경로 \\폴더명)
-		File file = new File(uploadPath +"\\"+date); 
-		if(file.exists() ==false) { //폴더가 존재하면 true 존재하지 않으면 false
-			file.mkdir(); //폴더가 생성 
-		} 
-		return date; 
-	}
+			//java.io인 것을import(업로드 경로 \\폴더명)
+			File file = new File(uploadPath +"\\"+date); 
+			if(file.exists() ==false) { //폴더가 존재하면 true 존재하지 않으면 false
+				file.mkdir(); //폴더가 생성 
+			} 
+			return date; 
+		}
 
-	@Transactional(rollbackFor = Exception.class) 
-	@Override
-	public int noticeRegist(adminVO vo , MultipartFile f) {
-		
+		@Transactional(rollbackFor = Exception.class) 
+		@Override
+		public int noticeRegist(adminVO vo , MultipartFile f) {
+			
 
-		
-			String originName = f.getOriginalFilename();
-			String filename = originName.substring(originName.lastIndexOf("\\")+1);
-			String FILEPATH = MakeFolder();
-			String uuid = UUID.randomUUID().toString();
-			String savename = uploadPath + "\\"+ FILEPATH + "\\" +uuid + "_" +filename;
+			
+				String originName = f.getOriginalFilename();
+				String filename = originName.substring(originName.lastIndexOf("\\")+1);
+				String FILEPATH = MakeFolder();
+				String uuid = UUID.randomUUID().toString();
+				String savename = uploadPath + "\\"+ FILEPATH + "\\" +uuid + "_" +filename;
 
-			try { 
+				try { 
+					
+					f.transferTo(new File(savename)); 
+
+				} catch (Exception e) {
+					e.printStackTrace(); 
+					return 0; 
+				}
 				
-				f.transferTo(new File(savename)); 
-
-			} catch (Exception e) {
-				e.printStackTrace(); 
-				return 0; 
-			}
+				vo.setFilename(filename);
+				vo.setFILEPATH(FILEPATH);
+				vo.setUuid(uuid);
+				
+				
+				int result = adminMapper.noticeRegist(vo);
 			
-			vo.setFilename(filename);
-			vo.setFILEPATH(FILEPATH);
-			vo.setUuid(uuid);
+			return result;
+		}
+
+		@Override
+		public adminVO getcontent(int admin_key) {
+
+			return adminMapper.getcontent(admin_key);
+		}
+
+		@Override
+		public int update(adminVO adminvo) {
 			
+			/*
+			 * String originName = file.getOriginalFilename(); String filename =
+			 * originName.substring(originName.lastIndexOf("\\")+1); String FILEPATH =
+			 * MakeFolder(); String uuid = UUID.randomUUID().toString(); String savename =
+			 * uploadPath + "\\"+ FILEPATH + "\\" +uuid + "_" +filename;
+			 * 
+			 * try {
+			 * 
+			 * file.transferTo(new File(savename));
+			 * 
+			 * } catch (Exception e) { e.printStackTrace(); return 0; }
+			 * 
+			 * adminvo.setFilename(filename); adminvo.setFILEPATH(FILEPATH);
+			 * adminvo.setUuid(uuid);
+			 */
 			
-			int result = adminMapper.noticeRegist(vo);
-		
-		return result;
-	}
+			return adminMapper.update(adminvo);
+		}
 
-	@Override
-	public adminVO getcontent(int admin_key) {
+		@Override
+		public int delete(int admin_user) {
 
-		return adminMapper.getcontent(admin_key);
-	}
+			return adminMapper.delete(admin_user);
+		}
 
-	@Override
-	public int update(adminVO adminvo) {
+		@Override
+		public ArrayList<adminVO> List(Criteria cri) {
 
-		return adminMapper.update(adminvo);
-	}
+			return adminMapper.List(cri);
+		}
 
-	@Override
-	public int delete(int admin_user) {
+		@Override //조회수 증가
+		public int hit(adminVO adminvo) {
 
-		return adminMapper.delete(admin_user);
-	}
+			return adminMapper.hit(adminvo);
+		}
 
-	@Override
-	public ArrayList<adminVO> List(Criteria cri) {
+		@Override
+		public int total(Criteria cri) {
 
-		return adminMapper.List(cri);
-	}
-
-	@Override //조회수 증가
-	public int hit(adminVO adminvo) {
-
-		return adminMapper.hit(adminvo);
-	}
-
-	@Override
-	public int total(Criteria cri) {
-
-		return adminMapper.total(cri);
-	}
+			return adminMapper.total(cri);
+		}
 
 
 }

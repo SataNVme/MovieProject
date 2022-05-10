@@ -21,7 +21,8 @@ public interface AdminService {
 	public int total(Criteria cri);//전체게시글수
 	public adminVO getcontent(int admin_key);//상세
 	public int hit(adminVO adminvo);//조회수
-	public int update(adminVO adminvo);//수정
+	
 	public int delete(int admin_id);//삭제
+	public int update(adminVO adminvo);
 	
 }

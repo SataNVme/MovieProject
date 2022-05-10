@@ -142,6 +142,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where user_id = #{user_id}
 	</delete> 
 	
+	<select id="userlist1" resultType="UserVO">
+		select year(user_date) as 'year',
+		month(user_date) as 'month',
+		count(month(user_date)) as 'count'
+		from user
+		group by month(user_date)
+		order by month asc;
 	
+	</select>
 	
 </mapper>
