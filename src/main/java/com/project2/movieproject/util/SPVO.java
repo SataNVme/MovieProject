@@ -1,31 +1,45 @@
 package com.project2.movieproject.util;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import lombok.Data;
 
-@Component
 @Data
 public class SPVO {
-	private int pageCount;
-	private int startPage;
-	private int endPage;
-	private int realEnd;
-	private boolean prev, next;
+
+	private int start;
+	private int end;
+	private boolean prev;
+	private boolean next;
+	
+	private int amount;
+	private int pageNum;
 	private int total;
+	private int realEnd;
+	
 	private SearchCriteria searchCriteria;
-	public SPVO() {}
-	public SPVO(int total, int pageCount, SearchCriteria searchCriteria) {
+	
+	private List<Integer> pageList;
+	
+	public SPVO(SearchCriteria searchCriteria, int total) {
+		this.pageNum = searchCriteria.getPageNum();
+		this.amount = searchCriteria.getAmount();
 		this.total = total;
 		this.searchCriteria = searchCriteria;
-		this.pageCount = pageCount;
-		this.endPage = (int) (Math.ceil(searchCriteria.getPageNum() * 1.0 / pageCount)) * pageCount;
-		this.startPage = endPage - (pageCount - 1);
-		realEnd = (int)(Math.ceil(total * 1.0 / searchCriteria.getAmount()));
-		if(endPage > realEnd) {
-			endPage = realEnd == 0 ? 1 : realEnd;
+		
+		this.end = (int) Math.ceil(this.pageNum / 5.0) * 5;
+		this.start = this.end - 5 + 1;
+		this.realEnd = (int) Math.ceil(this.total / (double) this.amount);
+		if(this.end > this.realEnd) {
+			this.end = this.realEnd;
 		}
-		prev = startPage > 1;
-		next = endPage < realEnd;
+		this.prev = this.start > 1;
+		this.next = this.realEnd > this.end;
+		this.pageList = IntStream.rangeClosed(this.start, this.end)
+				.boxed()
+				.collect(Collectors.toList());
 	}
-}
 
+}

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
+	  xmlns="http://www.w3.org/1999/xhtml">
+<!-- 베이직 레이아웃 -->
 <th:block th:fragment="setContent(content)">
 	<head>
 		<meta charset="UTF-8">
@@ -14,106 +17,104 @@
 		<script th:src="@{/js/practice.js}"></script>
 		
 		<!-- admindMain part -->
-     	<link rel="stylesheet" th:href="@{/css/admin.css}">
+     	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+     	
 	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
-	 	<script  th:src="@{https://code.highcharts.com/highcharts.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
 	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
-		<!-- adminMain part -->
-	
+		
 		<!-- qna/notice --> 
- 		<link th:href="@{https://fonts.googleapis.com/css2?family=Cinzel&display=swap}" rel="stylesheet">
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
         <link rel="stylesheet" tyhe="text/css" th:href="@{/css/notice.css}">
    		<!--regist/update  -->
 		<!-- userInfo -->
-        <link rel="stylesheet" th:href="@{/css/user_Info.css}">
-        <link rel="stylesheet" th:href="@{/css/replyPage.css}">
-        <link rel="stylesheet" th:href="@{/css/test.css}">
-        <link rel="stylesheet" th:href="@{/css/commentList.css}">
-        <link rel="stylesheet" th:href="@{/css/MovieList.css}">
-        <link rel="stylesheet" th:href="@{/css/MovieDetail.css}">
-
-		<!-- qna/notice  -->
-   		<!--regist/update  -->
-        <!-- <link rel="stylesheet" th:href="@{/css/notice.css}"> -->
-   		<!--regist/update  -->
-		<!-- userInfo -->
-        <!-- <link rel="stylesheet" th:href="@{/css/user_Info.css}">
-        <link rel="stylesheet" th:href="@{/css/replyPage.css}">
-        <link rel="stylesheet" th:href="@{/css/test.css}">-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/user_Info.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/userLogin.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/userPopup.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/userQnaRegist.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/userRegist.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/replyPage.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/test.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/commentList.css}">
 	</head>
 
 	<body>
-		<header class="wrap">	
+		
+	<!-- 헤더 -->
+	<header class="wrap">	
         <div class="header">
             <div class="logo">
                 <ul>
-                <a th:href="@{/main}"><img src="img/logo.png" alt="logo"></a>
+                <a th:href="@{/main}"><img src="/img/logo.png" alt="logo"></a>
                 </ul>    
             </div>
+           
             <ul class="pull-right">
-                <li><a th:href="@{user/userLogin}"><img src="img/userlogin.jpg">로그인</a></li>
-                <li><a th:href="@{user/userRegist}"><img src="img/join.jpg">회원가입</a></li>
+                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userLogin}"><img src="/img/userlogin.jpg">로그인</a></p></li>
+                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userRegist}"><img src="/img/join.jpg">회원가입</a></p></li>
+                <li><p sec:authorize="isAuthenticated()"><a th:href="@{user/userLogOut}">로그아웃</a></p></li>
             </ul>
         </div>  
             <div class="nav">
                 <div class="pull-left">
                     <ul class="outer-menu">
-                        <li><a href="movie/movieList?nation=ko">국내 영화</a></li>	
-                        <li><a href="movie/movieList?nation=out">해외 영화</a></li>
+                        <li><a href="#">국내 영화</a></li>	
+                        <li><a href="#">해외 영화</a></li>
                     </ul>
                 </div>	
                 <div class="pull-right">
                     <div class="search-bar">
-                        <form id="searchForm" action="/search/searchList" method="get">	
-                            <select name="type">
-                                <option selected value="select">검색 내용 선택</option>
-                                <option value="director">감독</option>
-                                <option value="actor">영화배우</option>
-                                <option value="moviename">영화이름</option>
-                                <option value="diractor">감독 or 배우</option>
-                                <option value="dirmovie">감독 or 영화</option>
-                                <option value="actmovie">배우 or 영화</option>
-                                <option value="all">감독 or 배우 or 영화</option>
+                        <!-- <form id="searchForm" action="/search/searchList" method="get">	
+                            <select class="sele1" name="searchType">
+                                <option value="select" th:selected="${spVO.searchCriteria.searchType} == 'select' ? 'selected'">검색 내용 선택</option>
+                                <option value="director" th:selected="${spVO.searchCriteria.searchType} == 'director' ? 'selected'">감독</option>
+                                <option value="actor" th:selected="${spVO.searchCriteria.searchType} == 'actor' ? 'selected'">영화배우</option>
+                                <option value="moviename" th:selected="${spVO.searchCriteria.searchType} == 'moviename' ? 'selected'">영화이름</option>
+                                <option value="diractor" th:selected="${spVO.searchCriteria.searchType} == 'diractor' ? 'selected'">감독 or 배우</option>
+                                <option value="dirmovie" th:selected="${spVO.searchCriteria.searchType} == 'dirmovie' ? 'selected'">감독 or 영화</option>
+                                <option value="actmovie" th:selected="${spVO.searchCriteria.searchType} == 'actmovie' ? 'selected'">배우 or 영화</option>
+                                <option value="all" th:selected="${spVO.searchCriteria.searchType} == 'all' ? 'selected'">감독 or 배우 or 영화</option>
                             </select>
-                            <input type="text" name="keyword" value="" autocomplete="off" placeholder="내용을 입력하세요"/>
-                            <input type="hidden" name="pageNum" value="${spVO.searchCriteria.pageNum}">
-                            <input type="hidden" name="amount" value="${spVO.searchCriteria.amount}">
-                            <input type="button" href="/search/getSearchList" onclick="getSearchList()" class="btn btn-outline-primary mr-2" value="검색" >
-                        </form>
+                            <input type="text" name="keyword"/>
+                            <input type="hidden" name="pageNum" th:value="1">
+                            <input type="hidden" name="amount" value="${spVO.amount}">
+                            <input type="search" name="searchName" placeholder="검색어를 입력해주세요">
+                            <button type="button" class="btn btn-default">
+                            	<span class="glyphicon glyphicon-search">검색</span>
+                            </button>
+                        </form> -->
                     </div>
                 </div>
             </div>
           </header>         
-		
-		<th:block th:replace="${content}"></th:block>
-
-		<footer id="footer">
-			<div class="footer_wrap">
-				<div class="footer_top">
-					<!-- 상위 -->
-					<ul class="pull_left">
-						<span>
-							<a href="@{/admin/notices}">공지사항</a>
-							<a href="@{/user/userQnaRegist}">문의사항</a>
-						</span>
-					</ul>
-				</div>
-			</div>
-			<div class="footer_wrap2">
-				<div class="footer_bot">
-					<!-- 하위 -->
-					<p>
-						<span><strong>팀명 : 영화 VOD 판매 프로그램</strong></span><br>
-						<span>조장 : 김영찬</span><br>
-						<span>조원 : 엄인국</span>
-						<span>조원 : 김상아</span>
-						<span>조원 : 남태희</span>
-						<span>조원 : 최민석</span>
-					</p>
-				</div>
-			</div>
-		</footer>
+                <th:block th:replace="${content}"></th:block>
+                
+                <footer id="footer">
+                    <div class="footer_wrap">
+                        <div class="footer_top">
+                            <!-- 상위 -->
+                            <ul class="pull_left">
+                                <span>
+                                    <a th:href="@{/admin/notices}">공지사항</a>
+                                    <a th:href="@{/user/userQnaRegist}">문의사항</a>
+                                </span>		
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer_wrap2">
+                        <div class="footer_bot">
+                            <!-- 하위 -->
+                            <p>
+                                <span><strong>팀명 : 영화 VOD 판매 프로그램</strong></span><br>
+                                <span>조장 : 김영찬</span><br>
+                                <span>조원 : 엄인국</span>
+                                <span>조원 : 김상아</span>
+                                <span>조원 : 남태희</span>
+                                <span>조원 : 최민석</span>
+                            </p>
+                        </div>
+                    </div>
 	</body>
 </th:block>
 </html>
