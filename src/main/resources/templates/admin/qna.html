@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
        <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+       <link rel="stylesheet" th:href="@{/css/user_info.css}">
+
   <th:block th:replace="~{/include/Layout :: setContent(~{:: .qna_outbox})}">
 
     <div class="qna_outbox">
@@ -12,8 +15,9 @@
         <div class="leftbox">
             <nav>
                 <ul class="mcd-menu">
-                    <li>
+
                         <a href="../main">
+
                             <i class="fa fa-home"></i>
                             <strong>메인페이지</strong>
                             <small>Mainpage</small>
@@ -41,7 +45,9 @@
                         </a>
                     </li>
                     <li>
+
                         <a href="/user/userInfo">
+
                             <i class="fa fa-comments-o"></i>
                             <strong>회원관리</strong>
                             <small>what they say</small>
@@ -63,6 +69,7 @@
             </nav>
         </div>
         <div class="rightbox">
+
             <div id="board1-search">
                 <div class="search1-window">
                    
@@ -118,6 +125,7 @@
     
                                 </thead>
                                <tbody>
+
                                    <tr th:each = "vo, state: ${qalist}">
                                     <td>[[${qalist.get(state.index).qa_key}]]</td>
                                     
@@ -177,6 +185,7 @@
 		}
 	})();
 	
+
 	function admin_dataHandler(a) {
 		/* 		document.notices.page.value = 1;
 				document.notices.amount.value = a.value;

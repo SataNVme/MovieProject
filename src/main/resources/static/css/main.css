@@ -135,6 +135,15 @@ body{
     line-height: 19px;
     text-decoration: none;
 }
+.rank_theme_menu_list_sub2 {
+    display: block;
+    padding: 13px 0 15px 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #6a6a6a;
+    line-height: 19px;
+    text-decoration: none;
+}
 .rank_theme_movie_list{
     border-bottom: 1px solid #dae1e6;
     padding-bottom:15px;

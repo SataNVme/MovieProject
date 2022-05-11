@@ -9,12 +9,12 @@
     .id_ok{color: green; display: none;}
 	.id_already{color: red; display: none;}
 	.password_err{color: red;}
+	
     
     </style>
 </head>
 <body>
 	<form method="POST" class="joinForm" action="#" name="user_Regist">
-
 		<h2>회원가입</h2>
 		<div class="emailForm">
 				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디" style="display:inline; text-align:left" required onblur = "checkId()">
@@ -46,12 +46,9 @@
 			<small style="float:left; padding-bottom:5px;">생년월일</small>
 			<input name="user_birth" type="date" class="birth"  required>
 		</div>
-		
 		<div class="emailForm">
 				<input name="user_email" id="email" type="email" class="email" placeholder="이메일"  style="display:inline; text-align:left" required >
-				<button class = "button" th:onclick="|email_send()|">인증번호 보내기</button>
 		</div>
-		
 		<div class="logingender">
 			<a>성별&nbsp;&nbsp;&nbsp;</a>
 			<input type="checkbox" name="user_gender" id="chk1"  value="1"
@@ -69,113 +66,113 @@
 	</form>
 </body>
 <script th:inline="javascript">
-	const example1 = document.querySelector('#chk1');
-	const example2 = document.querySelector('#chk2');
-	var password = document.getElementById('password');					//비밀번호 
-	var passwordConfirm = document.getElementById('passwordConfirm');	//비밀번호 확인 값
-	var confirmMsg = document.getElementById('confirmMsg');	
-	var name = document.getElementById('name');
-	var user_id = document.getElementById('myid');
-	var check_status;
-	
-	if(password.value != passwordConfirm.value) {
-		confirmMsg.style.display = "inline-block";
-	} else {
-		confirmMsg.style.display = "none";
-	}
-	
-	function example_1() {
-		if (example1.checked == true) {
-			example2.checked = false;
-		}
-	}
-	function example_2() {
-		if (example2.checked == true) {
-			example1.checked = false;
-		}
-	}
-	
+   const example1 = document.querySelector('#chk1');
+   const example2 = document.querySelector('#chk2');
+   var password = document.getElementById('password');               //비밀번호 
+   var passwordConfirm = document.getElementById('passwordConfirm');   //비밀번호 확인 값
+   var confirmMsg = document.getElementById('confirmMsg');   
+   var name = document.getElementById('name');
+   var user_id = document.getElementById('myid');
+   var check_status;
+   
+   if(password.value != passwordConfirm.value) {
+      confirmMsg.style.display = "inline-block";
+   } else {
+      confirmMsg.style.display = "none";
+   }
+   
+   function example_1() {
+      if (example1.checked == true) {
+         example2.checked = false;
+      }
+   }
+   function example_2() {
+      if (example2.checked == true) {
+         example1.checked = false;
+      }
+   }
+   
 
-	function user_reg() {
-		this.event.preventDefault();
-		document.user_Regist.action = "RegistForm";
-		if ($(".id_ok").css("display") == "inline-block") {
-			if (password.value == passwordConfirm.value) {
-				document.user_Regist.submit();
-			} else {
-				confirmMsg.style.color = "white"
-				setTimeout(function() {
-					confirmMsg.style.color = "red";
-				}, 400);
-				setTimeout(function() {
-					confirmMsg.style.color = "white";
-				}, 800);
-				setTimeout(function() {
-					confirmMsg.style.color = "red";
-				}, 1200);
-			}
-			
-		} else {
-			alert("아이디가 중복되었습니다.")
-			console.log("중복확인 안했음")
-		}
-	}
-	
-	function email_send() {
-		this.event.preventDefault();
-		document.user_Regist.action = "usermailCheck";
-		window.open('', 'newWindow', 'width=500, height=500');
-		document.user_Regist.target = 'newWindow';
-		document.user_Regist.submit();
-	}
+   function user_reg() {
+      this.event.preventDefault();
+      document.user_Regist.action = "RegistForm";
+      if ($(".id_ok").css("display") == "inline-block") {
+         if (password.value == passwordConfirm.value) {
+            document.user_Regist.submit();
+         } else {
+            confirmMsg.style.color = "white"
+            setTimeout(function() {
+               confirmMsg.style.color = "red";
+            }, 400);
+            setTimeout(function() {
+               confirmMsg.style.color = "white";
+            }, 800);
+            setTimeout(function() {
+               confirmMsg.style.color = "red";
+            }, 1200);
+         }
+         
+      } else {
+         alert("아이디가 중복되었습니다.")
+         console.log("중복확인 안했음")
+      }
+   }
+   
+   function email_send() {
+      this.event.preventDefault();
+      document.user_Regist.action = "usermailCheck";
+      window.open('', 'newWindow', 'width=500, height=500');
+      document.user_Regist.target = 'newWindow';
+      document.user_Regist.submit();
+   }
 
-	(function() {
-		var msg = JSON.parse('[[${msg}]]');
-		check_status = JSON.parse('[[${check_status}]]');
-		if (msg != null) {
-			alert(msg);
-			/* console.log(check_id); */
-			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
-		}
-		;
-	})();
+   (function() {
+      var msg = JSON.parse('[[${msg}]]');
+      check_status = JSON.parse('[[${check_status}]]');
+      if (msg != null) {
+         alert(msg);
+         /* console.log(check_id); */
+         /* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+      }
+      ;
+   })();
 
-	function passwordchk() {
-		console.log($('#passwordConfirm').val());
-		if (password.value != passwordConfirm.value) {
-			if ($('#passwordConfirm').val() != ''
-					&& $('#passwordConfirm').val() != null) {
-				confirmMsg.style.display = "inline-block";
-			} else {
-				confirmMsg.style.display = "none";
-			}
-		} else {
-			confirmMsg.style.display = "none";
-		}
-	};
-	
+   function passwordchk() {
+      console.log($('#passwordConfirm').val());
+      if (password.value != passwordConfirm.value) {
+         if ($('#passwordConfirm').val() != ''
+               && $('#passwordConfirm').val() != null) {
+            confirmMsg.style.display = "inline-block";
+         } else {
+            confirmMsg.style.display = "none";
+         }
+      } else {
+         confirmMsg.style.display = "none";
+      }
+   };
+   
 
-	function checkId() {
-		var id = $('#myid').val();
-		$.ajax({
-			url : '/user/idCheck',
-			type : 'post',
-			data : {
-				id : id
-			},
-			success : function(cnt) {//컨트롤러에서 넘어온 cnt값을 받는다 
-				if (cnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-					$('.id_ok').css("display", "inline-block");
-					$('.id_already').css("display", "none");
-				} else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-					$('.id_already').css("display", "inline-block");
-					$('.id_ok').css("display", "none");
-				}
-			},
-			error : function() {
-				alert("에러입니다");
-			}
-		});
-	};
+   function checkId() {
+      var id = $('#myid').val();
+      $.ajax({
+         url : '/user/idCheck',
+         type : 'post',
+         data : {
+            id : id
+         },
+         success : function(cnt) {//컨트롤러에서 넘어온 cnt값을 받는다 
+            if (cnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+               $('.id_ok').css("display", "inline-block");
+               $('.id_already').css("display", "none");
+            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+               $('.id_already').css("display", "inline-block");
+               $('.id_ok').css("display", "none");
+            }
+         },
+         error : function() {
+            alert("에러입니다");
+         }
+      });
+   };
 </script>
 </html>

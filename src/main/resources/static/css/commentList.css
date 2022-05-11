@@ -1,74 +1,18 @@
 * {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
+.commnetListBox {
+    margin: 0 auto;
+    width: 1130px;
+    height: auto;
+    /* border: 1px solid black; */
+}
 .commenttitle {
+	width : 100%;
     float: left;
     font-size: 20px;
     font-weight: 400;
     margin-top: 10px;
     margin-bottom: 5px;
     width: 15%;
-}
-textarea {
-    width: 100%;
-    float: left;
-    resize: none;
-    margin-bottom: 5px;
-}
-.commentwrite {
-    float: left;
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-.commentwrite button {
-    display: block;
-    width: 150px;
-    height: 50px;
-    float: right;
-    margin: 0;
-    right: 0;
-    border: 0;
-    outline: 0;
-    background-color: black;
-    color: white;
-    border-radius: 4px 4px;
-}
-.ratingbox{
-	width: 100%;
-	height: auto;
-	float: left;
-	margin-top: 10px;
-}
-.ratingtitle {
-	width: 100%;
-	height: auto;
-	margin-top: 10px;
-	margin-bottom: 5px;
-	font-size: 20px; 
-	font-weight: 400;
-	}
-
-#myform fieldset{
-    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
-    direction: rtl; /* 이모지 순서 반전 */
-    border: 0; /* 필드셋 테두리 제거 */
-    padding-left: 0;
-}
-#myform input[type=radio]{
-    display: none; /* 라디오박스 감춤 */
-}
-#myform label{
-    font-size: 15px; /* 이모지 크기 */
-    color: transparent; /* 기존 이모지 컬러 제거 */
-    text-shadow: 0 0 0 #d1d1d1; /* 새 이모지 색상 부여 */
-}
-#myform label:hover{
-    text-shadow: 0 0 0 #a00; /* 마우스 호버 */
-}
-#myform label:hover ~ label{
-    text-shadow: 0 0 0 #a00; /* 마우스 호버 뒤에오는 이모지들 */
-}
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
 }
  .commentboard {
 	margin-top: 10px;
@@ -79,7 +23,7 @@ textarea {
 	border-bottom: 1px solid #A1A1A1;
 }
 .commentid {
-	font-size: 13px; 
+	font-size: 12px; 
 	font-weight: 300;  
 	color: #A1A1A1;
 }
@@ -94,24 +38,51 @@ textarea {
 .commentcontent {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	font-size: 15px;
-}
-:root {
-    --star-color: #d1d1d1;
-    --star-background: #a00;
+	font-size: 14px;
 }
 
-.Stars {
-	--percent: calc(var(--rating) / 10 * 100%);
-	display: inline-block;
-	font-size: 12px;
-	font-family: Times;
-	line-height: 20px;
+.commentbox {
+    float: left;
+    width: 1130px;
+    height: auto;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
 }
-.Stars::before {
-	content: "⭐⭐⭐⭐⭐";
-	letter-spacing: 3px;
-	background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	}
+.commentPage {
+	width: 1130px;
+	height: auto;
+	text-align: center;
+}
+.commentPage ul{
+	display: inline-block;
+	width: 446px;
+	padding-left: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.commentPage li{
+	list-style: none;
+	width: 30px;
+	height: 25px;
+	line-height: 25px;
+	display: inline-block;
+	text-align : center;
+	border: 1px solid #A1A1A1;
+	font-size: 13px;
+	color: #A1A1A1;
+	border-radius:4px;
+	
+}
+.commentPage a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.noComment{
+	width: 1130px;
+	height: 300px;
+	text-align: center;
+	line-height: 300px;
+	font-size: 13px;
+	color: #A1A1A1;
+}

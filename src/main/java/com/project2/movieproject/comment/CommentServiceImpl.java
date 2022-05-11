@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project2.movieproject.command.CommentVO;
+import com.project2.movieproject.command.Criteria;
+import com.project2.movieproject.util.CommentCriteria;
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService{
@@ -21,8 +23,13 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public ArrayList<CommentVO> getList() {
-		return commentMapper.getList();
+	public ArrayList<CommentVO> getList(CommentCriteria commentCri) {
+		return commentMapper.getList(commentCri);
+
+	}
+	@Override
+	public int getTotal(String movie_koficCd) {
+		return commentMapper.getTotal(movie_koficCd);
 	}
 	
 	

@@ -25,6 +25,7 @@
 			<span class="noselect">공지 사항</span>
 		</div>
 
+
 		<th:block th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}">
          
             
@@ -32,6 +33,7 @@
 				
 				</div>
 				</th:block>
+
 		<div class="rightbox">
 			<div id="board-search">
 				<div class="search-window">
@@ -103,14 +105,17 @@
 					<tr th:each="vo,state: ${list}" >
 					
 						<td>[[${vo.admin_key}]]</td>
+
 						<td><a
 							th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">관리자</a></td>
 						<td>[[${vo.notices_title}]]
 						</td>
+
 	
 						<td>[[${#temporals.format(vo.notices_date,'yyyy-MM-dd')}]]</td>
 
 						<td>[[${vo.notices_count}]]</td>
+
 				
 						
 					<td th:if="${vo.filename} !=null ">
@@ -122,6 +127,7 @@
 					</td>
 						</td> 
 					
+
 		
 	
 						

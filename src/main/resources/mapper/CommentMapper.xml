@@ -13,25 +13,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
 							 comment_group, 
 							 comment_sort, 
 							 comment_like, 
-							 comment_unlike) 
-		values (##{user_id}, 
-				##{comment_com}, 
-				##{comment_rank}, 
-				##{comment_date},
-				##{comment_class}, 
-				##{comment_group}, 
-				##{comment_sort}, 
-				##{comment_like}, 
-				##{comment_unlike})
+							 comment_unlike,
+							 comment_mn) 
+		values (#{user_id}, 
+				#{comment_com}, 
+				0, 
+				now(),
+				0, 
+				0, 
+				0, 
+				0, 
+				0,
+				#{comment_mn})
 	</insert>
 	
 	<select id="getList" resultType="CommentVO">
-		select * from comment
-		order by comment_date desc
+		
+		<![CDATA[
+		SELECT * 
+			FROM (SELECT A.*,
+				     @ROWNUM := @ROWNUM + 1 AS RN
+				     FROM (SELECT *
+					  	FROM COMMENT
+						WHERE COMMENT_MN = #{movie_koficCd} 
+						ORDER BY COMMENT_DATE DESC) A, (SELECT @ROWNUM := 0) D
+			)B
+		WHERE RN > (#{page}-1) * #{amount} AND RN <= #{page} * #{amount}
+		]]>
+	</select>
+	<select id="getTotal" resultType="int">
+		select count(*) as total
+		from comment
+		where comment_mn = #{movie_koficCd}
 	</select>
 	
-	<select id="getTime" resultType="string">
-		select now()
-	</select>
 	
 </mapper>
