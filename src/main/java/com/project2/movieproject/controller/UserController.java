@@ -65,16 +65,13 @@ public class UserController {
 	@GetMapping("/userMypage")
 	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
 		String db_id = vo.getUser_id();
-		System.out.println(vo.getUser_id());
 		if(vo.getUser_id()==null) {
 			return "redirect:/user/userLogin";
 		}
 
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
-		System.out.println(userdata);
 		
 		ArrayList<qaVO> myqalist = userService.myqa_read(db_id);
-		System.out.println(myqalist);
 		
 		model.addAttribute("userdata", userdata);
 		model.addAttribute("myqalist", myqalist);
@@ -91,7 +88,6 @@ public class UserController {
 	public String qa_regist(qaVO vo, RedirectAttributes RA) {
 
 		int result = userService.qa_regist(vo);
-		System.out.println("sdkff");
 		if(result == 1) { //성공
 			RA.addFlashAttribute("msg", vo.getQa_title() + "이 정상 등록");
 		} else { //실패
@@ -111,10 +107,6 @@ public class UserController {
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		
 		newvo.setUser_id(db_id);
-		System.out.println(newvo.getUser_id());
-		System.out.println(newvo.getUser_phone());
-		System.out.println(newvo.getUser_newphone());
-		System.out.println(userdata.get(0).getUser_phone());
 		
 		if(newvo.getUser_phone().equals(userdata.get(0).getUser_phone())) {
 			System.out.println("핸드폰번호 확인 완료");
@@ -144,10 +136,6 @@ public class UserController {
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		
 		newvo.setUser_id(db_id);
-		System.out.println(newvo.getUser_id());
-		System.out.println(newvo.getUser_email());
-		System.out.println(newvo.getUser_newemail());
-		System.out.println(userdata.get(0).getUser_email());
 		
 		if(newvo.getUser_email().equals(userdata.get(0).getUser_email())) {
 			System.out.println("이메일 확인 완료");
@@ -177,10 +165,6 @@ public class UserController {
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		
 		newvo.setUser_id(db_id);
-		System.out.println(newvo.getUser_id());
-		System.out.println(newvo.getUser_password());
-		System.out.println(newvo.getUser_newpassword());
-		System.out.println(userdata.get(0).getUser_password());
 		
 		if(newvo.getUser_password().equals(userdata.get(0).getUser_password())) {
 			System.out.println("비밀번호 확인완료");
@@ -219,10 +203,6 @@ public class UserController {
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		
 		newvo.setUser_id(db_id);
-		System.out.println(newvo.getUser_id());
-		System.out.println(newvo.getUser_birth());
-		System.out.println(newvo.getUser_newbirth());
-		System.out.println(userdata.get(0).getUser_birth());
 		
 		if(newvo.getUser_birth().equals(userdata.get(0).getUser_birth())) {
 			System.out.println("생년월일 확인 완료");
@@ -254,7 +234,7 @@ public class UserController {
 		} else { //실패
 			RA.addFlashAttribute("msg", "등록 실패, 관리자에게 문의하세요.");
 		}
-		return "user/usermailCheck";	//등록이후 로그인화면
+		return "redirect:/user/usermailCheck";	//등록이후 로그인화면
 	}
 	
 	//로그인 폼
@@ -320,7 +300,6 @@ public class UserController {
     public String userDetail(@RequestParam("user_id") String dbid) {
     	
 		ArrayList<UserVO> userdata = userService.userdata(dbid);
-		System.out.println(userdata);
     	
     	return "user/userDetail";
     }
@@ -340,20 +319,17 @@ public class UserController {
       int total =userService.total(cri);
       
       PageVO pageVO = new PageVO(cri,total);
-      
-      System.out.println(cri.getSearchType());
-      System.out.println(cri.getSearchName());
-      
-      System.out.println(userlist);
       model.addAttribute("userlist", userlist);
       model.addAttribute("pageVO",pageVO);
        return "user/userInfo";
     }
     
     @GetMapping("/usermailCheck")
-	public void emailConfirm(@ModelAttribute("vo") UserVO vo)throws Exception{
+	public void emailConfirm(@ModelAttribute("vo") UserVO vo, Model model)throws Exception{
 		service.sendSimpleMessage(vo.getUser_email());	
 		System.out.println("전달 받은 이메일 : "+vo.getUser_email());
+		ArrayList<UserVO> userdata = userService.userdata(vo.getUser_id());
+		model.addAttribute("userdata", userdata);
 	}
     
     @PostMapping("/verifyCode")
@@ -364,10 +340,7 @@ public class UserController {
 		System.out.println("code match : "+ EmailServiceImpl.ePw.equals(code));
 		if(EmailServiceImpl.ePw.equals(code)) {
 			RA.addFlashAttribute("msg", vo.getUser_id() + " 회원가입 성공");
-			System.out.println(vo.isUser_auth());
 			userService.auth_update(vo.getUser_id());
-			System.out.println(vo.isUser_auth());
-			
 			status.setComplete();
 			return "redirect:/user/userLogin";
 		} else {

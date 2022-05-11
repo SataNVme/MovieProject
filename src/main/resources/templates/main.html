@@ -10,7 +10,7 @@
 		<div class="main_banner">
 			<a class="main_prev" onclick="prevSlide()">&#10094;</a> 
 			<div class="mySlideDiv fade" th:each="vo : ${main_banner}">
-            	<a href="#">
+            	<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
             		<img th:src="${vo.movie_iUrl}">
             	</a>
         	</div>
@@ -137,20 +137,19 @@
 						<br>
 						<div class="rank_movie_title">
 							<ul id="" class="rank_movie_list">
-								<li id="" class="rank_theme_menu_list_sub">TOP 10</li>
+								<li class="rank_theme_menu_list_sub">TOP 10</li>
 							</ul>
 						</div>
 						<div class="rank_movie_title">
-							<ul id="" class="rank_movie_list">
-								<li th:each="vo, state : ${main_rankList}">
+							<ul class="rank_movie_list">
+								<li th:each="vo, state : ${main_rankList}" class="rank_theme_menu_list_sub2">
 									<span>
-										[[${state.index + 1}]].
+										<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
+											<strong>
+												[[${state.index + 1}]]. [[${vo.movie_nm}]]
+											</strong>
+										</a>
 									</span>
-									<a>
-										<strong>
-											[[${vo.movie_nm}]]
-										</strong>
-									</a>
 								</li>
 							</ul>
 						</div>
