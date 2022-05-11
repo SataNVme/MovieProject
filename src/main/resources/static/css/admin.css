@@ -3,13 +3,10 @@
  body1{
     padding: 0px;
     font-size: 18px;
-<<<<<<< HEAD
-    margin: 0px;
-    height:1400px;
-=======
+
     margin: 0 auto;
     height: 0 auto;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
     margin-top: -20px;
     font-family: 'noto Sans KR',sans-serif;
     color:rgb(5, 5, 5) ;
@@ -18,11 +15,9 @@
   
 }
 .admin_title {
-<<<<<<< HEAD
-  width: 110%;
-=======
+
   width: 100%;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
   height: 120px;
   box-sizing: border-box;
   padding-top: 10px;
@@ -32,15 +27,7 @@
 
 
 }
-<<<<<<< HEAD
-.admin_outbox {
-  overflow: hidden;
-  box-sizing: border-box;
- 	
-  width: 1130px;
-  height: 1300px;
-  
-=======
+
 .all_rightbox{
 	height:auto;
 }
@@ -51,7 +38,7 @@
   width: 1130px;
   height: auto;
   margin:0 auto;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
 
  
 }
@@ -60,11 +47,9 @@
   box-sizing: border-box;
   float: right;
   width: 880px;
-<<<<<<< HEAD
-  
-=======
+
   height:990px;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
 
 }
 .admin_box1 {
@@ -81,14 +66,11 @@
     /* overflow: hidden; */
     box-sizing: border-box;
     float: left;
-<<<<<<< HEAD
-    width: 240px;
-    height: 110%;
-=======
+
     width: 200px;
     height: 110%;
     padding-left:0px;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
     /* border: 1px solid black; */
     padding-top:0px;
     
@@ -104,11 +86,9 @@
 
 
 .container {
-<<<<<<< HEAD
-    position: relative;
-=======
+
    
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
     margin: 0px auto;
     padding: 50px 0;
     clear: both;
@@ -152,21 +132,17 @@
   padding: 0;
   margin: 0;
   background: #FFF;
-<<<<<<< HEAD
 
-=======
  float :left;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   
   /* == */
-<<<<<<< HEAD
-  width: 250px;
-=======
+
   width: 200px;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
   /* == */
 }
 .mcd-menu li {
@@ -684,10 +660,9 @@ margin: -10 auto;
 margin-top: 0px;
 margin-right: 0px;
 float: right;
-<<<<<<< HEAD
-=======
 
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
+
 }
 
   .admin_sale_board{
@@ -846,18 +821,12 @@ float: right;
 }
 .person_rate{
 
-<<<<<<< HEAD
-position: relative;
-list-style: none;
-top: 450px;
-height: 70%;
-=======
+
 float:right;
 list-style: none;
 margin-top: 50px;
 top: 450px;
 height: auto;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 width: 99%;
 border-radius: 14px;
 box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
@@ -871,12 +840,8 @@ background-color: #fff;
 
   height: 200px;
   float: right;
-<<<<<<< HEAD
-  top: -3px;
-=======
-  top: 25px;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
-  width: 48%;
+
+  top: 25px;  width: 48%;
  
   position: relative;
   text-align: center;
@@ -890,11 +855,8 @@ background-color: #fff;
   height: 200px;
   width: 48%;
   float: left;
-<<<<<<< HEAD
-  top: -3px;
-=======
+
   top: 25px;
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 
 text-align: center;
 background-color: #fff;
@@ -1294,22 +1256,16 @@ text {
 /*사람모형 */
 .gg-smile {
   box-sizing: border-box;
-<<<<<<< HEAD
-  position: relative;
-=======
+
 	
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
   display: block;
   transform: scale(var(--ggs,1));
   width: 20px;
   height: 20px;
   border: 2px solid;
   border-radius: 100px;
-<<<<<<< HEAD
-  margin-top: 180px;
-=======
+
   
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
  }
  
  .gg-smile::after,
@@ -1349,9 +1305,5 @@ text {
    width: 99%;
    /* background-color: #fff;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%); */
-<<<<<<< HEAD
+
  }
- 
-=======
- }
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
