@@ -339,7 +339,6 @@
                                        </tr>
                                     </thead>
                                     <tbody class="mypage_tbody">
-
                                        <tr  th:each="vo, state : ${myqalist}">
                                           <td>[[${state.index + 1}]]</td>
                                           <th><a th:href="@{/user/userQnaRead(qa_key=${myqalist.get(state.index).qa_key} ) }">[[${myqalist.get(state.index).qa_title}]]</a>

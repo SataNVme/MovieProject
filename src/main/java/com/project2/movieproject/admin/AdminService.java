@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
-
 import com.project2.movieproject.command.adminVO;
 
 public interface AdminService {
@@ -21,8 +20,6 @@ public interface AdminService {
 	public int total(Criteria cri);//전체게시글수
 	public adminVO getcontent(int admin_key);//상세
 	public int hit(adminVO adminvo);//조회수
-	
 	public int delete(int admin_id);//삭제
 	public int update(adminVO adminvo);
-	
 }

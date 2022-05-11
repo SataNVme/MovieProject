@@ -3,7 +3,6 @@ package com.project2.movieproject.controller;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +41,6 @@ public class UserController {
 	
 	@Autowired
 	OtherService service;
-
 	
 	@ModelAttribute("vo")
 	public UserVO setUserVO() {
@@ -70,7 +68,6 @@ public class UserController {
 		}
 
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
-		
 		ArrayList<qaVO> myqalist = userService.myqa_read(db_id);
 		
 		model.addAttribute("userdata", userdata);
@@ -95,7 +92,6 @@ public class UserController {
 		}
 		return "redirect:/user/userQnaRegist";
 	}
-	
 	@GetMapping("/userPhone")
 	public String userPhone() {
 		return "user/userPhone";
@@ -187,8 +183,6 @@ public class UserController {
 	public String userQnaRead(@RequestParam("qa_key") Integer qa_key, Model model) {
 		ArrayList<qaVO> myqa = userService.qa_read(qa_key);
 		model.addAttribute("myqa", myqa);
-		
-		
 		return "user/userQnaRead";
 	}
 	
@@ -270,7 +264,6 @@ public class UserController {
 			RA.addFlashAttribute("msg", "이메일 인증이 안되어있습니다. 인증해주세요");
 			return "redirect:/user/usermailCheck";
 		}
-		
 		
 	}
 	
@@ -354,6 +347,9 @@ public class UserController {
 		}
 		}
 		
-    }
+
+	}
+    
+
 }
  

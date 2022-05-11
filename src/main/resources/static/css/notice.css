@@ -1,5 +1,6 @@
  * {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
 
+
  body{
     padding: 0px;
     font-size: 18px;
@@ -16,6 +17,7 @@
   width: 100%;
   height: 100px;
 
+
   box-sizing: border-box;
   padding-top: 10px;
   font-weight: 700;
@@ -25,12 +27,14 @@
 
 
 }
+
 .notice_outbox{
 	overflow:hidden;
 	box-sizing: border-box;
 	width: 1130px;
 	height:1130px;
 }
+
 
 
 .noticeUpdate_outbox {
@@ -54,7 +58,7 @@
   box-sizing: border-box;
   float: right;
   width: 880px;
- 
+
 
 }
 .qna_outbox {
@@ -76,6 +80,7 @@
 	 float:right;
 	 margin-left:1000px;
 }
+
 .board_basic_view{
     border-top: 1px solid #ededed;
     border-right: 1px solid #ededed;
@@ -239,6 +244,7 @@ a.button {
 }
 
   
+
  .leftbox {
    
     box-sizing: border-box;
@@ -247,6 +253,7 @@ a.button {
     height: 10%;
   
     padding-top:10px;
+
   
 }
 .leftbox ul, li {list-style: none;}
@@ -317,7 +324,7 @@ a.button {
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
- 
+
   
   /* == */
   width: 250px;
@@ -332,13 +339,14 @@ a.button {
   text-decoration: none;
   padding: 12px 20px;
   color: #777;
- 
+
   
- 
+
   text-align: left;
   height: 36px;
   position: relative;
   border-bottom: 1px solid #EEE;
+
  
 }
 .mcd-menu li a i {
