@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<<<<<<< HEAD
-<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
- 	<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
-    <link th:href="@{https://fonts.googleapis.com/css2?family=Cinzel&display=swap}" rel="stylesheet">
-=======
+
        <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
   <th:block th:replace="~{/include/Layout :: setContent(~{:: .qna_outbox})}">
 
     <div class="qna_outbox">
@@ -19,12 +14,9 @@
         <div class="leftbox">
             <nav>
                 <ul class="mcd-menu">
-                    <li>
-<<<<<<< HEAD
-                        <a href="http://www.naver.com">
-=======
+
                         <a href="../main">
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
                             <i class="fa fa-home"></i>
                             <strong>메인페이지</strong>
                             <small>Mainpage</small>
@@ -52,11 +44,9 @@
                         </a>
                     </li>
                     <li>
-<<<<<<< HEAD
-                        <a href="user_info">
-=======
+
                         <a href="/user/userInfo">
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
                             <i class="fa fa-comments-o"></i>
                             <strong>회원관리</strong>
                             <small>what they say</small>
@@ -78,31 +68,7 @@
             </nav>
         </div>
         <div class="rightbox">
-<<<<<<< HEAD
-            <div id="board-search">
-                <div class="search-window">
-                    <form action="">
-                        <div class="search-wrap">
-                            <select class="sele"> 
-                                <option value="">전체</option>
-                                <option value="">제목</option>
-                                <option value="">제목+내용</option>
-                                <option value="">제목+닉네임</option>
-                            </select>
-                            <select class="sele2">
-                                <option value="10">10개 보기</option>
-                                <option value="20">20개 보기</option>
-                                <option value="40">40개 보기</option>
-                                <option value="80">80개 보기</option>
-                            </select>
-                            <label for="search" class="bline"></label>
-                            <input  type="search"name="" placeholder="검색어를 입력해주세요">
-                      <button type="button" class="btn btn-default">
-                          <span class="glyphicon glyphicon-search">검색</span>
-                      </button>
-                        </div>
-                    </form>
-=======
+
             <div id="board1-search">
                 <div class="search1-window">
                    
@@ -132,7 +98,6 @@
                       </button>
                         </div>
                     
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                 </div>
             </div>
           
@@ -159,76 +124,7 @@
     
                                 </thead>
                                <tbody>
-<<<<<<< HEAD
-                                   <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                    <td> power5295</td>
-                                   
-                                   </tr>
-                                   <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                  <td> power5295</td>
-                                   
-                                   
-                                    </tr>
-                                <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                   <td> power5295</td>
-                                   
-                                   
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                     <td> power5295</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                    <td> power5295</td>
-                                   
-                                   
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                   <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                     <td> power5295</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                    <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                   <td> power5295</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    
-                                    <td>20220404</td>
-                                   <td><a href="replyPage">서울시 송파구 삼전로 8길 16-1</a></td>
-                                   <td> power5295</td>
-                                   
-                                </tr>
 
-=======
                                    <tr th:each = "vo, state: ${qalist}">
                                     <td>[[${qalist.get(state.index).qa_key}]]</td>
                                     
@@ -240,7 +136,6 @@
                                   
                                 
                              
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                </tbody>
                                 
                               
@@ -289,9 +184,7 @@
 		}
 	})();
 	
-<<<<<<< HEAD
-	
-=======
+
 	function admin_dataHandler(a) {
 		/* 		document.notices.page.value = 1;
 				document.notices.amount.value = a.value;
@@ -314,6 +207,5 @@
 		
 
 	}	
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	</script>	
 </html>
