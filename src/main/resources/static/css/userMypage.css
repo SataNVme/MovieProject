@@ -37,6 +37,10 @@ ul, ol {
 
 ul {
 	display: block;
+<<<<<<< HEAD
+    list-style-type: disc;
+=======
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -58,7 +62,11 @@ ul {
     line-height: 0;
 }
 
+<<<<<<< HEAD
+.mytab li {
+=======
 .mytab > li {
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	display: inline-block;
 	min-width: 113px;
 	position: relative;

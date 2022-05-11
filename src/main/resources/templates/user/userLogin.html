@@ -26,9 +26,13 @@
 			<input name="user_password" type="password" class="pw" placeholder="비밀번호">
 		</div>
 		<div>
+<<<<<<< HEAD
+			<a href="##" class="idfind">아이디 찾기</a><a href="##">비밀번호 찾기</a>
+=======
 			<a href="##" onclick="window.open('http://localhost:8383/user/userFind','window_password','width=430,height=500');" 
 				class="idfind">아이디 찾기</a>
 			<a href="##" onclick="window.open('http://localhost:8383/user/userFind','window_password','width=430,height=500');">비밀번호 찾기</a>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		</div>
 
 
@@ -53,6 +57,8 @@
 
 	</form>
 	<script th:inline="javascript">
+<<<<<<< HEAD
+=======
 	
   	(function() {
 		var msg = JSON.parse('[[${msg}]]');
@@ -63,6 +69,7 @@
 		}
 		;
 	})();
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 
 		//처음 실행하는 함수
 		function init() {
@@ -101,9 +108,21 @@
 		}
 
       
+<<<<<<< HEAD
+  	(function() {
+		var msg = JSON.parse('[[${msg}]]');
+		if (msg != null) {
+			alert(msg);
+			/* console.log(check_id); */
+			/* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+		}
+		;
+	})();
+=======
 
   	
   	
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		</script>
 		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>

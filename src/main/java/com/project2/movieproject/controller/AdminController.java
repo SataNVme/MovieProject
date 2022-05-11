@@ -62,6 +62,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/noticeRegist")//등록(나중에 첨부파일도)
+
 	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model )
 		 {
 				/*
@@ -74,21 +75,25 @@ public class AdminController {
 		 
 		
 		int result = adminService.noticeRegist(vo,list);
+
 		if(result == 1) {
 			RA.addFlashAttribute("msg", vo.getAdmin_id()+"등록이 성공했습니다.");
 		}else {
 			RA.addFlashAttribute("msg", "등록에 실패했습니다.");
 		}
+
 	
 
 	return"redirect:/admin/notices";
 }
+
 
 	@GetMapping("/notices")//목록
 	public String notices(Model model,Criteria cri) {
 
 		ArrayList<adminVO> list=adminService.List(cri);
 		int total=adminService.total(cri);
+
 
 
 		PageVO pageVO = new PageVO(cri, total);
@@ -108,14 +113,18 @@ public class AdminController {
 
 		int hit =adminService.hit(adminvo);
 		model.addAttribute("hit",hit);
+
 		
 		
 		
+
 
 		return "admin/notice_regist";
 	}
 
+
 	@PostMapping("/noticeUpdate")//게시글 수정하기
+
 	public String noticeUpdate(@Valid adminVO adminvo, 
 			Model model,RedirectAttributes RA,
 			Errors erros) {
@@ -132,6 +141,7 @@ public class AdminController {
 					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage()); //유효성 검사 실패 메시지
 				}
 
+
 			
 			}
 	
@@ -145,6 +155,7 @@ public class AdminController {
 			model.addAttribute("admin", adminvo); 
 			
 			return "product/productDetail"; //유효성; 검사에 실패하면 다시 화면으로
+
 		}
 
 		int result = adminService.update(adminvo);
@@ -223,6 +234,7 @@ public class AdminController {
 	}
 	
 
+
 	@GetMapping("/user_Info")
 	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
 		String db_id = vo.getUser_id();
@@ -241,6 +253,7 @@ public class AdminController {
 		model.addAttribute("qa_data", qa_data);
 
 		return "/admin/replypage";
+
 	}
 	
 	@PostMapping("/qa_update")

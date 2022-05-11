@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/userPopup.css}" />
+=======
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 <link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}" />
 
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .userMypage} ) }">
@@ -340,12 +345,49 @@
                                     </thead>
                                     <tbody class="mypage_tbody">
 
+<<<<<<< HEAD
+                                       <tr>
+                                          <td>1</td>
+                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                                             <p>테스트</p>
+                                          </th>
+                                          <td>id</td>
+                                          <td>2017.07.13</td>
+                                          <td>숫자</td>
+                                       </tr>
+                                       <tr>
+                                          <td>1</td>
+                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                                             <p>테스트</p>
+                                          </th>
+                                          <td>id</td>
+                                          <td>2017.07.13</td>
+                                          <td>숫자</td>
+                                       </tr>
+                                       <tr>
+                                          <td>1</td>
+                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                                             <p>테스트</p>
+                                          </th>
+                                          <td>id</td>
+                                          <td>2017.07.13</td>
+                                          <td>숫자</td>
+                                       </tr>
+                                       <tr>
+                                          <td>1</td>
+                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                                             <p>테스트</p>
+                                          </th>
+                                          <td>id</td>
+                                          <td>2017.07.13</td>
+=======
                                        <tr  th:each="vo, state : ${myqalist}">
                                           <td>[[${state.index + 1}]]</td>
                                           <th><a th:href="@{/user/userQnaRead(qa_key=${myqalist.get(state.index).qa_key} ) }">[[${myqalist.get(state.index).qa_title}]]</a>
                                           </th>
                                           <td>[[${myqalist.get(state.index).user_id}]]</td>
                                           <td>[[${#temporals.format(myqalist.get(state.index).qa_date, 'yyyy-MM-dd')}]]</td>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                           <td>숫자</td>
                                        </tr>
                                     </tbody>
@@ -475,7 +517,11 @@
                      <div>
                         <h1 class="">계정</h1>
                         <div th:each="vo, state : ${userdata}">
+<<<<<<< HEAD
+                           계정 가입일: [[${vo.user_date}]]
+=======
                            계정 가입일: [[${#temporals.format(vo.user_date, 'yyyy-MM-dd')}]]
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                         </div>
                         <div class=""></div>
                         <div class=""></div>
@@ -521,7 +567,11 @@
                                                 번호 변경</a>
                                           </div>
                                           <div class="">
+<<<<<<< HEAD
+                                             <a class="" href="##">성별 변경</a>
+=======
                                              <a class="" href="##"></a>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
                                           </div>
                                           <div class="">
                                              <a class="" href="##"

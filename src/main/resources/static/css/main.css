@@ -25,20 +25,33 @@ body{
 }
 
 /**/
+<<<<<<< HEAD
+.slideshow-container {
+=======
 .main_banner {
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     width: 1130px;
     height: 600px;
     position: relative;
     margin: auto;
     background-color: black;
 }
+<<<<<<< HEAD
+.slideshow-container ul li a{
+=======
 .main_banner div a{
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     display: flex;
     justify-content: center;
     align-items: center;
 }  
+<<<<<<< HEAD
+.slideshow-container ul li a img{
+    height: 600px;
+=======
 .main_banner .active a img{
 	height:600px;
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 }
 .fade {
     -webkit-animation-name: fade;
@@ -54,7 +67,11 @@ body{
     from {opacity: .4} 
     to {opacity: 1}
 }
+<<<<<<< HEAD
+.prev, .next {
+=======
 .main_prev, .main_next {
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     cursor: pointer;
     position: absolute;
     top: 50%;	
@@ -67,11 +84,19 @@ body{
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
 }
+<<<<<<< HEAD
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+.prev:hover, .next:hover {
+=======
 .main_next {
     right: 0;
     border-radius: 3px 0 0 3px;
   }
 .main_prev:hover, .main_next:hover {
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     background-color: white;
     color: black;
 }
@@ -121,7 +146,11 @@ body{
 }
 .rank_theme_menu_list li {
     display: inline-block;
+<<<<<<< HEAD
+    min-width: 11.11%;
+=======
     min-width: 14.28%;
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
     position: relative;
     vertical-align: top;
 }

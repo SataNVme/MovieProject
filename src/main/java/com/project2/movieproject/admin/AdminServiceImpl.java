@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
-
 import com.project2.movieproject.command.adminVO;
 
 @Service("adminService")
@@ -26,7 +25,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Value("${project.upload.path}")
 	private String uploadPath;
-
+	
 	@Override
 	public int movieRegist(MovieVO vo) {
 		int result = adminMapper.movieRegist(vo);
@@ -50,7 +49,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	//폴더생성 함수
-		public String MakeFolder() { //날짜별 폴더생성 
+	public String MakeFolder() { //날짜별 폴더생성 
 			DateTimeFormatter datetime= DateTimeFormatter.ofPattern("yyMMdd"); 
 			String date = LocalDateTime.now().format(datetime);
 
@@ -144,6 +143,5 @@ public class AdminServiceImpl implements AdminService{
 
 			return adminMapper.total(cri);
 		}
-
 
 }

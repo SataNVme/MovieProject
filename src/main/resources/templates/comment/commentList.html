@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
+<link rel="stylesheet" th:href="@{/css/commentList.css}">
+<link rel="stylesheet" href="/css/commentList.css">
+	
+	<body>
+	
+	<div class="commentListBox">
+		
+=======
 <link rel="stylesheet" href="/css/commentList.css">
 	
 	<body>
@@ -29,10 +38,78 @@
 				<button type="submit">리뷰 등록</button>
 			</form>
 		</div>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		<div class="commentbox">
 			<div class="commenttitle">
 				<p>리뷰</p>
 			</div>
+<<<<<<< HEAD
+			<!-- 코멘트가 있을 경우 -->
+			<th:block th:if="${commentTotal != 0}">
+			
+				<!-- 코멘트 테이블 -->
+				<table class="commentboard" th:each="vo, state : ${list}">
+					<tr class="commentboardtop">
+						<td class="commentid">[[${vo.user_id}]]</td>
+						<td class="commentdate" rowspan="2">[[${#temporals.format(vo.comment_date, 'yyyy-MM-dd')}]]</td>
+					</tr>
+					<tr class="commentboardbottom">
+						<td class="commentcontent">[[${vo.comment_com}]]</td>
+					</tr>
+				</table>
+				
+				<!-- 페이지네이션 -->
+				<div class="commentPage">
+					<ul>
+	 					<th:block th:if="${commentPageVO.realEnd != 0}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=1)}" >
+									prev
+								</a>
+							</li>
+						</th:block>
+						
+						<th:block th:if="${commentPageVO.commentPrev}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.commentStart - 1})}">
+									?
+								</a>
+							</li>
+						</th:block>
+						
+						<th:block th:each="page: ${commentPageVO.pageList}">
+							<li th:class="${commentPageVO.page == page ? 'on' : ''}">
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${page})}">[[${page}]]</a>
+							</li>
+						</th:block>
+						
+						<th:block th:if="${commentPageVO.commentNext}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.commentEnd + 1})}">
+									!
+								</a>
+							</li>
+						</th:block>
+						
+						<th:block th:if="${commentPageVO.realEnd != 0}">
+							<li>
+								<a th:href="@{/comment/commentList(movie_koficCd=${movie_koficCd}, page=${commentPageVO.realEnd})}">
+									next
+								</a>
+							</li>
+						</th:block>
+											
+					</ul>
+				</div>
+			</th:block>
+			
+			<!-- 코멘트가 없을 경우 -->
+			<th:block th:unless="${commentTotal != 0}">
+				<div class="noComment">
+					등록된 리뷰가 없습니다.
+				</div>
+			</th:block>
+=======
 			<table class="commentboard" th:each="vo, state : ${list}">
 				<tr class="commentboardtop">
 					<td class="commentid">id</td>
@@ -42,6 +119,7 @@
 					<td class="commentcontent">내용</td>
 				</tr>
 			</table>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 			
 		</div>
 
@@ -52,6 +130,12 @@
 					alert(msg);
 				}
 			})();
+<<<<<<< HEAD
+			
 		</script>
+		</div>
+=======
+		</script>
+>>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	</body>
 </html>
