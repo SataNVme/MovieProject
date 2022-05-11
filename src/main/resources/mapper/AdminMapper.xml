@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		notices_content = #{notices_content},
 		notices_title = #{notices_title},
-		admin_id = #{admin_id},
+		admin_id = #{admin_id}
 		
 
 		where admin_key = #{admin_key}

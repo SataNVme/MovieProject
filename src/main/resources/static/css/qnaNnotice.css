@@ -47,6 +47,14 @@ margin: 0 auto;
   margin-top: 25px;
 
 }
+.rightbox1 {
+  /* overflow: hidden; */
+  box-sizing: border-box;
+  /* float: right; */
+  width: 880px;
+  margin-top: 25px;
+
+}
 .board_basic_view{
     border-top: 1px solid #ededed;
     border-right: 1px solid #ededed;
