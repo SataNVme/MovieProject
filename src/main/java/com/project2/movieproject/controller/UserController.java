@@ -2,7 +2,6 @@ package com.project2.movieproject.controller;
 
 import java.util.ArrayList;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -36,7 +35,6 @@ public class UserController {
 	
 	@Autowired
 	OtherService service;
-
 	
 	@ModelAttribute("vo")
 	public UserVO setUserVO() {
@@ -64,7 +62,6 @@ public class UserController {
 		}
 
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
-		
 		ArrayList<qaVO> myqalist = userService.myqa_read(db_id);
 		
 		model.addAttribute("userdata", userdata);
@@ -89,7 +86,6 @@ public class UserController {
 		}
 		return "redirect:/user/userQnaRegist";
 	}
-	
 	@GetMapping("/userPhone")
 	public String userPhone() {
 		return "user/userPhone";
@@ -181,8 +177,6 @@ public class UserController {
 	public String userQnaRead(@RequestParam("qa_key") Integer qa_key, Model model) {
 		ArrayList<qaVO> myqa = userService.qa_read(qa_key);
 		model.addAttribute("myqa", myqa);
-		
-		
 		return "user/userQnaRead";
 	}
 	
@@ -265,7 +259,6 @@ public class UserController {
 			return "redirect:/user/usermailCheck";
 		}
 		
-		
 	}
 	
     // 아이디 체크
@@ -306,8 +299,6 @@ public class UserController {
     
     @GetMapping("/userInfo")
     public String userInfo(Model model,Criteria cri) {
-       
-    
     	
       ArrayList<UserVO> userlist = userService.userlist(cri);
       int total =userService.total(cri);
@@ -349,6 +340,5 @@ public class UserController {
 		}
 		
 	}
-    
     
 }
