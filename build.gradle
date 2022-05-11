@@ -24,11 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-<<<<<<< HEAD
-=======
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -36,14 +33,10 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.0'
-<<<<<<< HEAD
-}
-=======
 
 	
 	
 	}
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 
 tasks.named('test') {
 	useJUnitPlatform()

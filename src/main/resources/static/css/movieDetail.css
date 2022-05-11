@@ -11,7 +11,7 @@
     /* border: 1px solid black; */
     margin-bottom: 15px;
 }
-.actor div,p {
+.actor div, .actor p {
 	display: inline-block;
 }
 .summarybox {
@@ -43,7 +43,7 @@
     /* padding-top: 5px; */
 }
 
-.summary-bottom{font-size:small ;font-weight: 100; display: flex;}
+.summary-bottom{font-size:small ;font-weight: 200; display: flex;}
 .age {
     width: 26px;
     height: 26px;

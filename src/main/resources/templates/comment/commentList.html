@@ -1,49 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<<<<<<< HEAD
-<link rel="stylesheet" th:href="@{/css/commentList.css}">
+
 <link rel="stylesheet" href="/css/commentList.css">
 	
 	<body>
-	
-	<div class="commentListBox">
 		
-=======
-<link rel="stylesheet" href="/css/commentList.css">
-	
-	<body>
-		<div class="ratingbox">
-			<div class="ratingtitle">별점 등록</div>
-			<div class="rating">
-				<form name="myform" id="myform" method="post" action="./save">
-					<fieldset>
-						<input type="radio" name="rating" value="5" id="rate1"><label
-							for="rate1">⭐</label> <input type="radio" name="rating" value="4"
-							id="rate2"><label for="rate2">⭐</label> <input
-							type="radio" name="rating" value="3" id="rate3"><label
-							for="rate3">⭐</label> <input type="radio" name="rating" value="2"
-							id="rate4"><label for="rate4">⭐</label> <input
-							type="radio" name="rating" value="1" id="rate5"><label
-							for="rate5">⭐</label>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-		<div class="commentwrite">
-			<p class="commenttitle">리뷰 등록</p>
-			<form action="commentForm" method="post">
-				<textarea rows="4" placeholder="리뷰를 입력해주세요." required
-					name="comment_com"></textarea>
-				<br>
-				<button type="submit">리뷰 등록</button>
-			</form>
-		</div>
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 		<div class="commentbox">
 			<div class="commenttitle">
 				<p>리뷰</p>
 			</div>
-<<<<<<< HEAD
 			<!-- 코멘트가 있을 경우 -->
 			<th:block th:if="${commentTotal != 0}">
 			
@@ -109,17 +74,7 @@
 					등록된 리뷰가 없습니다.
 				</div>
 			</th:block>
-=======
-			<table class="commentboard" th:each="vo, state : ${list}">
-				<tr class="commentboardtop">
-					<td class="commentid">id</td>
-					<td class="commentdate" rowspan="2">날짜</td>
-				</tr>
-				<tr class="commentboardbottom">
-					<td class="commentcontent">내용</td>
-				</tr>
-			</table>
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
+
 			
 		</div>
 
@@ -130,12 +85,7 @@
 					alert(msg);
 				}
 			})();
-<<<<<<< HEAD
-			
+
 		</script>
-		</div>
-=======
-		</script>
->>>>>>> 13afea391c59459e24f216ee29cb0800a79dfc66
 	</body>
 </html>
