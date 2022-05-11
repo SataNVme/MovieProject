@@ -1,14 +1,18 @@
 package com.project2.movieproject.controller;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +29,11 @@ import com.project2.movieproject.user.EmailServiceImpl;
 import com.project2.movieproject.user.OtherService;
 import com.project2.movieproject.user.UserService;
 
+
 @SessionAttributes("vo")
 @Controller
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 	
 	@Autowired
@@ -375,7 +381,6 @@ public class UserController {
 		}
 		}
 		
-	}
-    
-    
+    }
 }
+ 
