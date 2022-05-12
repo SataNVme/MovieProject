@@ -12,4 +12,6 @@ public interface MainMapper {
 	public ArrayList<MovieVO> getMainBanner();
 	public ArrayList<MovieVO> getMainRank();
 	public ArrayList<MovieVO> getMainRankList();
+	
+	public ArrayList<MovieVO> getMain_all_all();
 }

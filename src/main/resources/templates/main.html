@@ -11,7 +11,7 @@
 			<a class="main_prev" onclick="prevSlide()">&#10094;</a> 
 			<div class="mySlideDiv fade" th:each="vo : ${main_banner}">
             	<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
-            		<img th:src="${vo.movie_iUrl}">
+            		<img th:src="https://image.tmdb.org/t/p/w400 = ${vo.movie_iUrl}">
             	</a>
         	</div>
 			<a class="main_next" onclick="nextSlide()">&#10095;</a>
@@ -126,7 +126,16 @@
 						</div>
 					</div>
 					<div class="rank_theme_movie_list">
-						
+						<ul id="nation_all_img" class="nation_movie_list view">
+							<li id="genre_all_img" class="genre_movie_list view">
+								<div class="rank_theme_movie_list_img" th:each="vo, state : ${main_all_all}">
+									<span><strong>[[${state.index + 1}]]</strong></span>
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
+										<img th:src="${vo.movie_iUrl}" width="10%">
+									</a>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</section>
@@ -162,6 +171,13 @@
 </th:block>
 
 <script>
+
+   (function() {
+      var msg = JSON.parse('[[${msg}]]');
+      if (msg != null) {
+         alert(msg);
+      }
+   })();
 
     var nation_menu = document.querySelector("#nation_menu");
     var genre_menu = document.querySelector("#genre_menu");
@@ -204,7 +220,7 @@
     	$(".mySlideDiv").eq(0).addClass("active");
 		$(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
 	
-		//setInterval(nextSlide, 5000); //4초(4000)마다 다음 슬라이드로 넘어감
+		setInterval(nextSlide, 5000); //4초(4000)마다 다음 슬라이드로 넘어감
 	});
 
 	//이전 슬라이드
