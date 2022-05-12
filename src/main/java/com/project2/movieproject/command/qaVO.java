@@ -19,9 +19,9 @@ public class qaVO {
    qa_date      TIMESTAMP DEFAULT NOW()*/
 	
 	private Integer qa_key;
-	private Integer user_key;
+	private String user_id;
 	private String qa_title;
 	private String qa_content;
-	private LocalDateTime qa_data;
+	private LocalDateTime qa_date;
 	private String qa_comment;
 }

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}" />
+
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .userMypage} ) }">
    <div class="userMypage">
       <div class="wrap">
@@ -95,6 +97,18 @@
                            </ul>
                         </div>
                      </div>
+                     <div id="mybtn" class="mypage_text-center">
+                        <!-- 부트스트랩의 클래스 -->
+                        <ul class="pagination pagination-sm">
+                           <li><a href="#">이전</a></li>
+                           <li><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li><a href="#">4</a></li>
+                           <li><a href="#">5</a></li>
+                           <li><a href="#">다음</a></li>
+                        </ul>
+                     </div>
                   </div>
 
                   <div id="buy" class="xxx ">
@@ -158,6 +172,18 @@
                               <li><a>남은기간DB</a></li>
                            </ul>
                         </div>
+                     </div>
+                     <div id="mybtn" class="mypage_text-center">
+                        <!-- 부트스트랩의 클래스 -->
+                        <ul class="pagination pagination-sm">
+                           <li><a href="#">이전</a></li>
+                           <li><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li><a href="#">4</a></li>
+                           <li><a href="#">5</a></li>
+                           <li><a href="#">다음</a></li>
+                        </ul>
                      </div>
                   </div>
 
@@ -270,7 +296,18 @@
                            </ul>
                         </div>
                      </div>
-
+                     <div id="mybtn" class="mypage_text-center">
+                        <!-- 부트스트랩의 클래스 -->
+                        <ul class="pagination pagination-sm">
+                           <li><a href="#">이전</a></li>
+                           <li><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li><a href="#">4</a></li>
+                           <li><a href="#">5</a></li>
+                           <li><a href="#">다음</a></li>
+                        </ul>
+                     </div>
                   </div>
 
                   <div id="qna" class="xxx" style="overflow:hidden">
@@ -302,41 +339,12 @@
                                        </tr>
                                     </thead>
                                     <tbody class="mypage_tbody">
-
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-                                             <p>테스트</p>
+                                       <tr  th:each="vo, state : ${myqalist}">
+                                          <td>[[${state.index + 1}]]</td>
+                                          <th><a th:href="@{/user/userQnaRead(qa_key=${myqalist.get(state.index).qa_key} ) }">[[${myqalist.get(state.index).qa_title}]]</a>
                                           </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="/user/userQnaRead">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
+                                          <td>[[${myqalist.get(state.index).user_id}]]</td>
+                                          <td>[[${#temporals.format(myqalist.get(state.index).qa_date, 'yyyy-MM-dd')}]]</td>
                                           <td>숫자</td>
                                        </tr>
                                     </tbody>
@@ -351,6 +359,18 @@
                               </div>
                            </div>
                         </section>
+                     </div>
+                     <div id="mybtn" class="mypage_text-center">
+                        <!-- 부트스트랩의 클래스 -->
+                        <ul class="pagination pagination-sm">
+                           <li><a href="#">이전</a></li>
+                           <li><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li><a href="#">4</a></li>
+                           <li><a href="#">5</a></li>
+                           <li><a href="#">다음</a></li>
+                        </ul>
                      </div>
                   </div>
 
@@ -433,6 +453,19 @@
                               </div>
                            </div>
                         </section>
+
+                     </div>
+                     <div id="mybtn" class="mypage_text-center">
+                        <!-- 부트스트랩의 클래스 -->
+                        <ul class="pagination pagination-sm">
+                           <li><a href="#">이전</a></li>
+                           <li><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li><a href="#">4</a></li>
+                           <li><a href="#">5</a></li>
+                           <li><a href="#">다음</a></li>
+                        </ul>
                      </div>
                   </div>
 
@@ -440,9 +473,8 @@
                      <p>나의 정보</p>
                      <div>
                         <h1 class="">계정</h1>
-                        <div class="">
-                           <div class=""></div>
-                           계정 가입일: 3월 2020
+                        <div th:each="vo, state : ${userdata}">
+                           계정 가입일: [[${#temporals.format(vo.user_date, 'yyyy-MM-dd')}]]
                         </div>
                         <div class=""></div>
                         <div class=""></div>
@@ -450,11 +482,14 @@
                            <div class="" data-uia="">
                               <header class="mypage_myhead">
                                  <h2 class="mypage_h2">
-                                    계정 &amp; 내 정보
-                                    <button class="memberbtn" type="button" tabindex="0" onclick="drop_click();">
+                                    계정 &amp; 내 정보>
+                                 </h2>
+                                    
+                              		<form method="POST" name = "user_drop" action ="user_drop">
+                                    <button class="memberbtn" type="submit" tabindex="0" onclick="drop_click();">
                                        <span>계정 탈퇴 </span>
                                     </button>
-                                 </h2>
+                                    </form>
                               </header>
                               <section class="">
                                  <div class="simplenotice">
@@ -462,10 +497,10 @@
                                        <div class="simplenotice-left" th:each="vo, state : ${userdata}">
                                           <div class="">[[${vo.user_email}]]</div>
                                           <div class="d" id="user_password_count">
-                                             비밀번호: <a>[[${vo.user_password}]]</a>
+                                             비밀번호: ******
                                           </div>
                                           <div class="">전화번호: [[${vo.user_phone}]]</div>
-                                          <div>성별: [[${vo.user_gender}]]</div>
+                                          <div id = "user_gender_inner">성별:[[${vo.user_gender}]]</div>
                                           <div>생년월일: [[${vo.user_birth}]]</div>
                                        </div>
                                        <div class="simplenotice-right">
@@ -485,7 +520,7 @@
                                                 번호 변경</a>
                                           </div>
                                           <div class="">
-                                             <a class="" href="##">성별 변경</a>
+                                             <a class="" href="##"></a>
                                           </div>
                                           <div class="">
                                              <a class="" href="##"
@@ -501,18 +536,7 @@
 
                   </div>
                </div>
-               <div id="mybtn" class="mypage_text-center">
-                  <!-- 부트스트랩의 클래스 -->
-                  <ul class="pagination pagination-sm">
-                     <li><a href="#">이전</a></li>
-                     <li><a href="#">1</a></li>
-                     <li><a href="#">2</a></li>
-                     <li><a href="#">3</a></li>
-                     <li><a href="#">4</a></li>
-                     <li><a href="#">5</a></li>
-                     <li><a href="#">다음</a></li>
-                  </ul>
-               </div>
+
             </div>
 
          </div>
@@ -529,8 +553,18 @@
    var delbtn = document.getElementById("delbtn");
    var checkboxes = document.getElementsByClassName("ckbox");
    var allcheck = document.getElementById("allcheck");
-   var pass_count = document.getElementById("user_password_count")
+   var pass_count = document.getElementById("user_password_count");
+   var gender = document.getElementById("user_gender_inner");
 
+   
+   console.log(gender.innerHTML);
+   
+   if(gender.innerHTML == "성별:1") {
+	   gender.innerHTML = "성별: 남성";
+   } else {
+	   gender.innerHTML = "성별: 여성";
+   };
+   
    allcheck.onclick = function () {
       if (allcheck.checked) {
          for (var i = 0; i < checkboxes.length; i++) {
@@ -582,14 +616,16 @@
 
       console.log(pass_count.length);
 
-      function drop_click() {
-         if(confirm("정말 계정탈퇴를 하시겠습니까?") == true) {
-            console.log("삭제");
-         } else {
-            console.log("삭제 취소")
-         }
-      }
 
+	function drop_click() {
+		this.event.preventDefault();
+		if (confirm("정말 계정탈퇴를 하시겠습니까?") == true) {
+			document.user_drop.submit();
+			console.log("삭제");
+		} else {
+			console.log("삭제 취소");
+		}
+	}
 </script>
 
 </html>

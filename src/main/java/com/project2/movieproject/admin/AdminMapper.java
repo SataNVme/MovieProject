@@ -6,14 +6,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
-import com.project2.movieproject.command.adminUploadVO;
 import com.project2.movieproject.command.adminVO;
 
 @Mapper
 public interface AdminMapper {
 	public int movieRegist(MovieVO vo);
-	public int movieSearch(MovieVO vo);
-	public ArrayList<MovieVO> getMovieList();
+	public ArrayList<MovieVO> getMovieList(Criteria cri);
+	public int getTotal(Criteria cri);
 	public MovieVO getMovieDetail(int movie_koficCd);
 	
 	public int noticeRegist(adminVO vo);//등록
@@ -23,6 +22,4 @@ public interface AdminMapper {
 	public int hit(adminVO adminvo);//조회수
 	public int update(adminVO adminvo);//수정
 	public int delete(int admin_id);//삭제
-	public adminUploadVO fileDetail(int user_id);//다운로드에 필요한
-	public int registFile(adminUploadVO vo); //파일등록
 }

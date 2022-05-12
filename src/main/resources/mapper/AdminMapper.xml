@@ -10,11 +10,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="noticeRegist">
 
-		insert into
-		ADMIN_NOTICES(notices_title,notices_content,admin_id,notices_count)
-		values(#{notices_title},#{notices_content},#{admin_id},#{notices_count})
+
+		insert into ADMIN_NOTICES(
+
+	notices_title,
+	notices_content,
+	admin_id,
+	notices_count,
+	filename,
+	FILEPATH,
+	uuid
+				)
+	values(#{notices_title},#{notices_content},#{admin_id},#{notices_count},#{filename},#{FILEPATH},#{uuid})
+
+	
 
 	</insert>
+
 
 	<select id="List" resultType="adminVO">
 	<![CDATA[
@@ -44,10 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 
-	<select id="fileDetail" resultType="adminUploadVO">
-		SELECT * FROM PRODUCT_UPLOAD
-		WHERE user_id = #{user_id}
-	</select>
+	
 
 
 	<select id="getcontent" resultType="adminVO">
@@ -74,6 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
+
 	
 	<update id="hit">
 		update admin_notices set notices_count=
@@ -86,8 +96,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		notices_content = #{notices_content},
 		notices_title = #{notices_title},
-		admin_id = #{admin_id}
-		
+		admin_id = #{admin_id},
+		FILEPATH = #{FILEPATH},
+		uuid = #{uuid},
+		filename = #{filename}
+
 		where admin_key = #{admin_key}
 
 	</update>
@@ -95,69 +108,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from ADMIN_NOTICES
 		where admin_key = #{admin_key}
+		
 	</delete>
 	
-	<insert id="registFile">
-		
-		<selectKey resultType="int" order="BEFORE" keyProperty="user_id" >
-			select max(user_admin) as user_admin from admin_notices where user_admin = #{user_admin}
-		</selectKey>
-		
-		INSERT INTO PRODUCT_UPLOAD(
-				filename,
-				filepath,
-				uuid,
-				user_id,
-				user_admin 
-				)
-		VALUES(#{filename},
-			   #{filepath},
-			   #{uuid},
-			   #{user_id},
-			   #{user_admin}
-			   )
-		
-	</insert>
+	
 	
 
 	<insert id="movieRegist">
-		INSERT INTO MOVIE(MOVIE_IURL,
-		MOVIE_KOFICCD,
-		MOVIE_TMBDCD,
-		MOVIE_NM,
-		MOVIE_NMEN,
-		MOVIE_NMOR,
-		MOVIE_AGE,
-		MOVIE_DIRNM,
-		MOVIE_DIRNMEN,
-		MOVIE_ACTNM,
-		MOVIE_ACTNMEN,
-		MOVIE_GR,
-		MOVIE_NT,
-		MOVIE_OPENDT,
-		MOVIE_TYPENM,
-		MOVIE_APIRT,
-		MOVIE_TIME,
-		MOVIE_OV)
-		VALUES(#{movie_iUrl},
-		#{movie_koficCd},
-		#{movie_tmdbCd},
-		#{movie_nm},
-		#{movie_nmEn},
-		#{movie_nmOr},
-		#{movie_age},
-		#{movie_dirNm},
-		#{movie_dirNmEn},
-		#{movie_actNm},
-		#{movie_actNmEn},
-		#{movie_gr},
-		#{movie_nt},
-		#{movie_openDt},
-		#{movie_typeNm},
-		#{movie_apiRt},
-		#{movie_time},
-		#{movie_ov})
-	</insert>
+      INSERT INTO MOVIE(MOVIE_IURL,
+      MOVIE_KOFICCD,
+      MOVIE_TMDBCD,
+      MOVIE_NM,
+      MOVIE_NMEN,
+      MOVIE_AGE,
+      MOVIE_GR,
+      MOVIE_NT,
+      MOVIE_OPENDT,
+      MOVIE_TIME,
+      MOVIE_DIRNM,
+      MOVIE_ACTNM,
+      MOVIE_TAGLINE,
+      MOVIE_OV)
+      VALUES(#{movie_iUrl},
+      #{movie_koficCd},
+      #{movie_tmdbCd},
+      #{movie_nm},
+      #{movie_nmEn},
+      #{movie_age},
+      #{movie_gr},
+      #{movie_nt},
+      #{movie_openDt},
+      #{movie_time},
+      #{movie_dirNm},
+      #{movie_actNm},
+      #{movie_tagLine},
+      #{movie_ov})
+   </insert>
 
 	<select id="movieSearch" resultType="int">
 		SELECT COUNT(*) AS CNT
@@ -167,8 +153,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getMovieList" resultType="MovieVO">
+		<![CDATA[
 		SELECT *
+		FROM (
+			SELECT A.*,
+				   @ROWNUM := @ROWNUM + 1 AS RN
+			FROM (
+				SELECT *
+				FROM MOVIE
+		]]>
+				<if test="searchType == 'all'">
+				WHERE (
+					 MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+					 OR MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+					 OR MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+				)
+				</if>
+				<if test="searchType == 'title'">
+				WHERE MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				<if test="searchType == 'director'">
+				WHERE MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				<if test="searchType == 'actor'">
+				WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				ORDER BY MOVIE_NM DESC
+			) A, (SELECT @ROWNUM := 0) D
+		<![CDATA[
+		)B
+		WHERE RN > (#{page}-1) * #{amount} AND RN <= #{page} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*) AS TOTAL
 		FROM MOVIE
+		<if test="searchType == 'all'">
+		WHERE (
+			 MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+			 OR MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+			 OR MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+		)
+		</if>
+		<if test="searchType == 'title'">
+		WHERE MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+		</if>
+		<if test="searchType == 'director'">
+		WHERE MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+		</if>
+		<if test="searchType == 'actor'">
+		WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+		</if>
 	</select>
 
 	<select id="getMovieDetail" resultType="MovieVO">

@@ -37,7 +37,14 @@ NOTICES_CONTENT VARCHAR(200) NOT NULL
 	private boolean admin_user;
 	private int notices_count;//조횟수 증가
 	private String notices_content;//내용
-	
-	
+
+	private String filename;
+	private String FILEPATH;
+	private String uuid;
+	private String fileDelete;
+	private String fileUpdate;
 	//공지사항
+	
+	
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +21,10 @@ import com.project2.movieproject.admin.AdminService;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.PageVO;
-import com.project2.movieproject.command.adminUploadVO;
+import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.adminVO;
+import com.project2.movieproject.command.qaVO;
+import com.project2.movieproject.user.UserService;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,16 +33,25 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private UserService userService;
 	//게시판
 	@GetMapping("/adminMain1")
-	public void adminMain1() {
-
+	public String adminMain1(Model model) {
+		
+		ArrayList<UserVO> uservo = userService.userlist1();
+		model.addAttribute("UserVO", uservo);
+		
+		return "admin/adminMain1";
 	}
 
 	//문의사항
 	@GetMapping("/qna")
-	public void qna() {
+	public void qna(Model model) {
 
+		ArrayList<qaVO> qalist = userService.qa_list();
+
+		model.addAttribute("qalist", qalist);
 	}
 
 	//화면폼
@@ -50,10 +62,18 @@ public class AdminController {
 	}
 
 	@PostMapping("/noticeRegist")//등록(나중에 첨부파일도)
-	public String noticeRegist(adminVO vo, RedirectAttributes RA, 
-			@RequestParam("file")List<MultipartFile>list) {
 
-		list=list.stream().filter((f) -> f.isEmpty() ==false).collect(Collectors.toList());
+	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model )
+		 {
+				/*
+				 * for(MultipartFile f:list) { System.out.println(f.isEmpty());
+				 * System.out.println(f.getContentType()); } System.out.println(vo.toString());
+				 */
+		
+		
+		 
+		 
+		
 		int result = adminService.noticeRegist(vo,list);
 
 		if(result == 1) {
@@ -62,8 +82,11 @@ public class AdminController {
 			RA.addFlashAttribute("msg", "등록에 실패했습니다.");
 		}
 
-		return"redirect:/admin/notices";
-	}
+	
+
+	return"redirect:/admin/notices";
+}
+
 
 	@GetMapping("/notices")//목록
 	public String notices(Model model,Criteria cri) {
@@ -71,10 +94,7 @@ public class AdminController {
 		ArrayList<adminVO> list=adminService.List(cri);
 		int total=adminService.total(cri);
 
-		//파일관련
-		adminUploadVO file = adminService.fileDetail(total);
-		model.addAttribute("file",file);
-		//삼항연산식 /다운은 비동기방식으로 
+
 
 		PageVO pageVO = new PageVO(cri, total);
 
@@ -94,13 +114,17 @@ public class AdminController {
 		int hit =adminService.hit(adminvo);
 		model.addAttribute("hit",hit);
 
-		adminUploadVO list = adminService.fileDetail(admin_key);
-		model.addAttribute("adminImg",list);
+		
+		
+		
+
 
 		return "admin/notice_regist";
 	}
 
-	@PostMapping("/noticeUpdate")
+
+	@PostMapping("/noticeUpdate")//게시글 수정하기
+
 	public String noticeUpdate(@Valid adminVO adminvo, 
 			Model model,RedirectAttributes RA,
 			Errors erros) {
@@ -117,12 +141,21 @@ public class AdminController {
 					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage()); //유효성 검사 실패 메시지
 				}
 
-			}
 
+			
+			}
+	
+			
+		
+			
+		
+			
+		
 			//화면에서는 prodVO이름으로 상세페이지에서 사용되고 있기 때문에, 같은 이름으로 보내서 처리합니다.
 			model.addAttribute("admin", adminvo); 
+			
+			return "product/productDetail"; //유효성; 검사에 실패하면 다시 화면으로
 
-			return "product/productDetail"; //유효성 검사에 실패하면 다시 화면으로
 		}
 
 		int result = adminService.update(adminvo);
@@ -176,11 +209,15 @@ public class AdminController {
 
 	// DB에 있는 영화 목록페이지
 	@GetMapping("/adminMovieList")
-	public String adminMovieList(Model model) {
+	public String adminMovieList(Model model, Criteria cri) {
 
-		ArrayList<MovieVO> list = adminService.getMovieList();
+		ArrayList<MovieVO> list = adminService.getMovieList(cri);
+		int total = adminService.getTotal(cri);
+		
+		PageVO pageVO = new PageVO(cri, total);
 
 		model.addAttribute("list", list);
+		model.addAttribute("pageVO", pageVO);
 
 		return "admin/adminMovieList";
 	}
@@ -196,8 +233,39 @@ public class AdminController {
 		return "admin/adminMovieDetail";
 	}
 	
-	@GetMapping("/user_Info")
-	public void user_Info() {
 
+
+	@GetMapping("/user_Info")
+	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
+		String db_id = vo.getUser_id();
+		System.out.println(vo.getUser_id());
+		
+
+		ArrayList<UserVO> userdata = userService.userdata(db_id);
+		System.out.println(userdata);
+		
+		model.addAttribute("userdata", userdata);
+		return "admin/user_info";
+	}
+	@GetMapping("/replyPage")
+	public String replyPage(@RequestParam("qa_key") Integer qa_key, Model model) {
+		ArrayList<qaVO> qa_data = userService.qa_read(qa_key);
+		model.addAttribute("qa_data", qa_data);
+
+		return "/admin/replypage";
+
+	}
+	
+	@PostMapping("/qa_update")
+	public String qa_update(qaVO vo, Model model, RedirectAttributes RA) {
+		int qa_update = userService.qa_update(vo);
+		System.out.println(vo.getQa_key());
+		System.out.println(vo.getQa_comment());
+		if(qa_update == 1 ) {
+			RA.addFlashAttribute("msg", "답변이 등록되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "실패했습니다. 관리자에게 문의하세요");
+		}
+		return "redirect:/admin/qna";
 	}
 }

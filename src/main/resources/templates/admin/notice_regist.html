@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+
 <th:block
 	th:replace="~{/include/Layout :: setContent(~{:: .noticeRegist_outbox})}">
 
@@ -14,7 +16,11 @@
 			<div class="leftbox">
 				<nav>
 					<ul class="mcd-menu">
-						<li><a href="http://www.naver.com"> <i class="fa fa-home"></i>
+
+
+
+						<li><a href="../main"> <i class="fa fa-home"></i>
+
 								<strong>메인페이지</strong> <small>Mainpage</small>
 						</a></li>
 						<li><a href="adminMain1"> <i class="fa fa-edit"></i> <strong>게시판</strong>
@@ -26,7 +32,9 @@
 						<li><a href="notices"> <i class="fa fa-globe" id="bpage1"></i>
 								<strong>공지사항</strong> <small>sweet home</small>
 						</a></li>
-						<li><a href="user_info"> <i class="fa fa-comments-o"></i>
+
+						<li><a href="/user/userInfo"> <i class="fa fa-comments-o"></i>
+
 								<strong>회원관리</strong> <small>what they say</small>
 						</a></li>
 						<li><a href="movieRegist"> <i class="fa fa-comments-o"></i>
@@ -84,13 +92,15 @@
 							</tr>
 								  <tr>
                     <th>첨부파일</th>
-                    <td>
-                    [[${adminImg}]]
-                    <th:block th:each="imgs : ${adminImg}">
-                   <img th:src = "@{../display(filepath = ${imgs.filepath}, uuid=${imgs.uuid},filename=${imgs.filename})}">
-                   </td>
-                   </tr>
-                   </th:block>
+
+                     <td th:each ="list : @{adminvo.filename}">
+                	파일 이름: [[${adminvo.filename}]]
+                      <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}">
+                    <th:block th:each="file : ${filename}">
+                   <a th:href = "@{../downloadfile(filepath = ${file.FILEPATH}, uuid=${file.uuid},filename=${file.filename})}"></a>
+                	
+                    
+
 						</tbody>
 
 					</table>
