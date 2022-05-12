@@ -1,5 +1,7 @@
 package com.project2.movieproject.movieDetail;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,13 @@ public class MovieServiceImpl implements MovieService{
 	
 	
 	@Override
-	public MovieVO getList_ko(String genre) {
+	public ArrayList<MovieVO> getList_ko(String genre) {
 		return movieMapper.getList_ko(genre);
 	}
 	
 	@Override
-	public MovieVO getList_out(String genre) {
+	public ArrayList<MovieVO> getList_out(String genre) {
+		System.out.println(genre);
 		return movieMapper.getList_out(genre);
 	
 	}

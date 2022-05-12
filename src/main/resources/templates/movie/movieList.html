@@ -24,16 +24,15 @@
 					<input type="radio" name="action" id="action1" checked>
 					<input type="radio" name="action" id="action2">
 
-					<div class="actionslide">
+					<div class="actionslide" >
 						<li>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
+							<th:block th:each="actionList : ${actionList}">
+								<a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
+									<img th:src="${#strings.substring(actionList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(actionList.movie_iUrl, 31, 63) }">
+								</a>
+							</th:block>
 						</li>
-						<li>
+						<!-- <li>
 							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
 							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
 							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
@@ -41,7 +40,7 @@
 							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
 							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
 
-					</div>
+					</div> -->
 					<p class="bullet">
 						<label for="action1">1</label>
 						<label for="action2">2</label>
@@ -112,5 +111,6 @@
 		</div>
 
 	</body>
+	</th:block>
 
 </html>
