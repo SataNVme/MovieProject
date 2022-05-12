@@ -9,7 +9,7 @@
 			<div class="ml_rightbox">
 
 				<div class="movielisttitle">
-					<p>이벤트</p>
+					이벤트
 				</div>
 				<div class="event1">
 					<a href=""><img src="/img/event1.png" width="562" height="234"></a>
@@ -26,21 +26,14 @@
 
 					<div class="actionslide" >
 						<li>
-							<th:block th:each="actionList : ${actionList}">
-								<a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
-									<img th:src="${#strings.substring(actionList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(actionList.movie_iUrl, 31, 63) }">
-								</a>
+							<th:block th:each="actionList ,status :  ${actionList}">
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
+										<img th:src="${#strings.substring(actionList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(actionList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
+									</a>
 							</th:block>
 						</li>
-						<!-- <li>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-
-					</div> -->
+					
+					</div> 
 					<p class="bullet">
 						<label for="action1">1</label>
 						<label for="action2">2</label>
@@ -53,28 +46,22 @@
 					<input type="radio" name="thriller" id="thriller1" checked>
 					<input type="radio" name="thriller" id="thriller2">
 
-					<div class="thrillerslide">
+					<div class="thrillerslide" >
 						<li>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
+							<th:block th:each="thrillerList ,status :  ${thrillerList}">
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${thrillerList.movie_koficCd})}">
+										<img th:src="${#strings.substring(thrillerList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(thrillerList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
+									</a>
+							</th:block>
 						</li>
-						<li>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-
-					</div>
+					
+					</div> 
 					<p class="bullet">
 						<label for="thriller1">1</label>
 						<label for="thriller2">2</label>
 					</p>
+				</div>
+					
 				</div>
 				<div class="movielisttitle">
 					드라마 영화
@@ -83,24 +70,16 @@
 					<input type="radio" name="drama" id="drama1" checked>
 					<input type="radio" name="drama" id="drama2">
 
-					<div class="dramaslide">
+					<div class="dramaslide" >
 						<li>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
+							<th:block th:each="dramaList ,status :  ${dramaList}">
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${dramaList.movie_koficCd})}">
+										<img th:src="${#strings.substring(dramaList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(dramaList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
+									</a>
+							</th:block>
 						</li>
-						<li>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-							<a href=""><img src="https://image.tmdb.org/t/p/w185/xW0nJ7KoFg0MEtPxCC66ddw6NlW.jpg"></a>
-
-					</div>
+					
+					</div> 
 					<p class="bullet">
 						<label for="drama1">1</label>
 						<label for="drama2">2</label>

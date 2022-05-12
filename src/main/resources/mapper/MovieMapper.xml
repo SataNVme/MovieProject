@@ -10,29 +10,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
 	</select>
 	<select id="getList_ko" resultType="MovieVO">
 		select * from movie
-		
-		<if test='genre == "action".toString()' >
-		where movie_gr = "액션" and movie_nt = "한국" 
-				order by movie_opendt desc
-		</if>
-	</select>
-	<select id="getList_out" resultType="MovieVO">
-		select * from movie
 		<choose>
-			<when test='#{genre} != null  and(#{genre} eq "action".toString())'>
-				where movie_gr = "액션" and movie_nt != "한국"
-				order by movie_opendt desc limit 10;
+			<when test='genre == "action".toString()' >
+			where movie_gr = "액션" and movie_nt = "한국" 
+					order by movie_opendt desc
 			</when>
-			<when test='#{genre} != null  and(#{genre} eq "thriller".toString())'>
-				where movie_gr = "스릴러" and movie_nt != "한국"
-				order by movie_opendt desc limit 10;
+			<when test='genre == "thriller".toString()' >
+			where movie_gr = "스릴러" and movie_nt = "한국" 
+					order by movie_opendt desc
+			</when>
+			<when test='genre == "drama".toString()' >
+			where movie_gr = "드라마" and movie_nt = "한국" 
+					order by movie_opendt desc
 			</when>
 			<otherwise>
-				where movie_gr = "로맨스" and movie_nt != "한국"
-				order by movie_opendt desc limit 10;
 			</otherwise>
 		</choose>
 	</select>
+	
+	<select id="getList_out" resultType="MovieVO">
+		select * from movie
+		<choose>
+			<when test='genre == "action".toString()' >
+			where movie_gr = "액션" and movie_nt != "한국" 
+					order by movie_opendt desc
+			</when>
+			<when test='genre == "thriller".toString()' >
+			where movie_gr = "스릴러" and movie_nt != "한국" 
+					order by movie_opendt desc
+			</when>
+			<when test='genre == "drama".toString()' >
+			where movie_gr = "드라마" and movie_nt != "한국" 
+					order by movie_opendt desc
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
 	<insert id="addStarRate" >
 		insert into star_rate (user_key,
 							   movie_koficCd,
@@ -41,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
 			   #{movie_koficCd},
 			   #{sr_rate})		
 	</insert>
+	
 	<select id="getStarRate" resultType="Float">
 	
 		select round(avg(sr_rate),1) 

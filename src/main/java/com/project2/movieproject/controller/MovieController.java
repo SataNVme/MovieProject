@@ -71,27 +71,30 @@ public class MovieController {
 		if(nation.equals("ko")) {
 			genre = "action";
 			ArrayList<MovieVO> actionList = movieService.getList_ko(genre);
-			
-			System.out.println(actionList.toString());
 			model.addAttribute("actionList", actionList);
 			
-//			ArrayList<MovieVO> thrillerList = movieService.getList_ko("스릴러");
-//			model.addAttribute("thrillerList", thrillerList);
-//			
-//			ArrayList<MovieVO> romanceList = movieService.getList_ko("스릴러");
-//			model.addAttribute("romanceList", romanceList);
-//			
+			genre = "thriller";
+			ArrayList<MovieVO> thrillerList = movieService.getList_ko("thriller");
+			model.addAttribute("thrillerList", thrillerList);
+			
+			genre = "drama";
+			ArrayList<MovieVO> dramaList = movieService.getList_ko("drama");
+			model.addAttribute("dramaList", dramaList);
 			
 		} else if(nation.equals("out")){
-			ArrayList<MovieVO> actionList = movieService.getList_ko("action");
+			
+			genre = "action";
+			ArrayList<MovieVO> actionList = movieService.getList_out("action");
 			model.addAttribute("actionList", actionList);
 			
-//			ArrayList<MovieVO> thrillerList = movieService.getList_ko("스릴러");
-//			model.addAttribute("thrillerList", thrillerList);
-//			
-//			ArrayList<MovieVO> romanceList = movieService.getList_ko("스릴러");
-//			model.addAttribute("romanceList", romanceList);
-//			
+			genre = "thriller";
+			ArrayList<MovieVO> thrillerList = movieService.getList_out("thriller");
+			model.addAttribute("thrillerList", thrillerList);
+			
+			genre = "drama";
+			ArrayList<MovieVO> dramaList = movieService.getList_out("drama");
+			model.addAttribute("dramaList", dramaList);
+			
 		}
 		
 		
