@@ -93,9 +93,11 @@
 	
 	<!--가입자수  -->
 				<script th:inline="javascript">
-				
+			
+			
 					console.log('[[${UserVO}]]')
 				
+					
 					$(function() {
 						$('#container').highcharts(
 								{
@@ -163,17 +165,20 @@
 											threshold : null
 										}
 									},
+									
 									series : [ {
 										name : '',
 										type : 'area',
 										color : '#4ABDF1',
-										data : [ [[${UserVO[0].count} != null ? ${UserVO[0].count} : 0]],[[${UserVO[1].count}]], [[${UserVO[2].count}]], [[${UserVO[3].count}]], [[${UserVO[4].count}]], [[${UserVO[5].count}]],
+									
+										data : 
+											
+											[ [[${UserVO[0].count}]] ,[[${UserVO[1].count}]], [[${UserVO[2].count}]], [[${UserVO[3].count}]], [[${UserVO[4].count}]], [[${UserVO[5].count}]],
 											[[${UserVO[6].count}]],[[${UserVO[7].count}]], [[${UserVO[8].count}]], [[${UserVO[9].count}]], [[${UserVO[10].count}]],
 											[[${UserVO[11].count}]] ]
 									} ]
 								});
 					});
-
 					/*
 					 매출량*/
 					$(function() {

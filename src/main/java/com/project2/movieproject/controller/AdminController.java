@@ -71,7 +71,7 @@ public class AdminController {
 				 */
 		
 		
-		 
+		 System.out.println(vo.toString());
 		 
 		
 		int result = adminService.noticeRegist(vo,list);

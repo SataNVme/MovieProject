@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" th:href="@{/css/user_Info.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
 
+=======
+ <link rel="stylesheet" type="text/css" th:href="@{/css/user_Info.css}">
+     <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
+    
+>>>>>>> df05cec6d9023d53ac13ef2646cb7eb0ffe947c6
 <th:block
 	th:replace="~{/include/Layout :: setContent(~{:: .userInfo_outbox})}">
 
@@ -12,8 +18,10 @@
 			<div class="title">
 				<span class="noselect">회원 관리 페이지</span>
 			</div>
+ <th:block th:replace="~{/include/Layout2 :: setContent(~{:: .userInfo_leftbox})}">
 
 			<div class="userInfo_leftbox">
+<<<<<<< HEAD
 				<nav>
 					<ul class="mcd-menu">
 						<li><a href="http://www.naver.com"> <i class="fa fa-home"></i>
@@ -40,7 +48,11 @@
 
 					</ul>
 				</nav>
+=======
+				
+>>>>>>> df05cec6d9023d53ac13ef2646cb7eb0ffe947c6
 			</div>
+			</th:block>
 			<div class="userInfo_rightbox">
 				<div id="board-search">
 					<div class="search-window">

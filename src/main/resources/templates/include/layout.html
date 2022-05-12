@@ -36,9 +36,9 @@
             </div>
            
             <ul class="pull-right">
-                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userLogin}"><img src="/img/userlogin.jpg">로그인</a></p></li>
-                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userRegist}"><img src="/img/join.jpg">회원가입</a></p></li>
-                <li><p sec:authorize="isAuthenticated()"><a th:href="@{user/userLogOut}">로그아웃</a></p></li>
+                <li><p sec:authorize="isAnonymous()"><a th:href="@{/user/userLogin}">로그인</a></p></li>
+                <li><p sec:authorize="isAnonymous()"><a th:href="@{/user/userRegist}">회원가입</a></p></li>
+                <li><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogOut}">로그아웃</a></p></li>
             </ul>
         </div>  
             <div class="nav">

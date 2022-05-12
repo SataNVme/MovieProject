@@ -96,10 +96,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		notices_content = #{notices_content},
 		notices_title = #{notices_title},
-		admin_id = #{admin_id},
-		FILEPATH = #{FILEPATH},
-		uuid = #{uuid},
-		filename = #{filename}
+		admin_id = #{admin_id}
+		
 
 		where admin_key = #{admin_key}
 
@@ -209,7 +207,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getMovieDetail" resultType="MovieVO">
 		SELECT *
-		FROM MOVIE
+		FROM MOVIE 
 		WHERE
 		MOVIE_KOFICCD = ${movie_koficCd}
 	</select>
