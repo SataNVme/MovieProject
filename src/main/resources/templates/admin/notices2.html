@@ -41,11 +41,10 @@
 
 
 				<th:block
-					th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}" 
-					 th:if="${vo1.user_admin} == true">
+					th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}">
 
 
-					<div class="leftbox" ></div>
+					<div class="leftbox"></div>
 				</th:block>
 
 				<div class="rightbox">
@@ -120,13 +119,13 @@
 
 						</thead>
 						<tbody>
-							<tr th:each="vo,state: ${list}" readonly>
+							<tr th:each="vo,state: ${list}">
 
 								<td>[[${vo.admin_key}]]</td>
 
 								<td><a
 									th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">관리자</a></td>
-								<td >[[${vo.notices_title}]]</td>
+								<td>[[${vo.notices_title}]]</td>
 
 
 								<td>[[${#temporals.format(vo.notices_date,'yyyy-MM-dd')}]]</td>
@@ -157,8 +156,8 @@
 
 					<div class="noticeQna_page3">
 						<a href="notice_regist2" title="Button fade lightblue"
-							class="button btnFade btnLightBlue" th:if="${vo1.user_admin} == true">등록</a>
-	
+							class="button btnFade btnLightBlue">등록</a>
+
 
 						<ul class="pagenation">
 

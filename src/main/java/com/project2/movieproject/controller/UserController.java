@@ -304,9 +304,9 @@ public class UserController {
     
     
     @GetMapping("/userInfo")
-    public String userInfo(Model model,Criteria cri) {
+    public String userInfo(Model model,Criteria cri,@ModelAttribute("vo")UserVO uservo) {
        
-    
+    model.addAttribute("vo1",uservo);
     	
       ArrayList<UserVO> userlist = userService.userlist(cri);
       int total =userService.total(cri);

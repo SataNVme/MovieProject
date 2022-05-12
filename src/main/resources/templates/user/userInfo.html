@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
- <link rel="stylesheet" type="text/css" th:href="@{/css/user_Info.css}">
-     <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
-    
-<th:block
-	th:replace="~{/include/Layout :: setContent(~{:: .userInfo_outbox})}">
+<head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/user_info.css}" />
+ <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
+   <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" />
+</head>
+
 
 
 	<div class="userInfo_outbox">
@@ -18,10 +19,10 @@
 				
 			</div>
 			</th:block>
-			<div class="userInfo_rightbox">
-				<div id="board-search">
-					<div class="search-window">
-						<div class="search-wrap">
+			<div class="rightbox">
+				<div id="board-search3">
+					<div class="search-window3">
+						<div class="search-wrap3">
 							<select class="sele1" name="searchType">
 								<option value="all"
 									th:selected="${pageVO.cri.searchType} == 'all'? 'selected'">전체</option>
@@ -76,7 +77,8 @@
 								</td>
 								<td>[[${vo.user_phone}]]</td>
 								<td>[[${vo.user_email}]]</td>
-								<td>[[${vo.user_gender}]]</td>
+								<td th:if ="${vo.user_gender} != '2' " >남</td>
+								<td th:unless="${vo.user_gender} != '2'">여</td>
 								<td>[[${#temporals.format(vo.user_date, 'yyyy-MM-dd')}]]</td>
 							</tr>
 						</tbody>
@@ -84,8 +86,7 @@
 				</div>
 
 				<div class="noticeQna_page3">
-					<a href="notice_regist2" title="Button fade lightblue"
-						class="button btnFade btnLightBlue">등록</a>
+					
 
 
 					<ul class="pagenation">

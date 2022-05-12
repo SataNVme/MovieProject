@@ -53,6 +53,7 @@ margin: 0 auto;
   /* float: right; */
   width: 880px;
   margin-top: 25px;
+  margin: 0 auto;
 
 }
 .board_basic_view{
@@ -1022,7 +1023,11 @@ float: right;
     height: auto;
     
   }
-  
+  .notice_regist_btn1{
+ float:right;
+ 
+  }
+
   
   .board-table {
     font-size: 13px;
