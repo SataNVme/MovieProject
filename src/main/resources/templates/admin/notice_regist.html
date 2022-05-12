@@ -13,40 +13,7 @@
 				<span class="noselect">공지사항</span>
 			</div>
 
-			<div class="leftbox">
-				<nav>
-					<ul class="mcd-menu">
-
-
-
-						<li><a href="../main"> <i class="fa fa-home"></i>
-
-								<strong>메인페이지</strong> <small>Mainpage</small>
-						</a></li>
-						<li><a href="adminMain1"> <i class="fa fa-edit"></i> <strong>게시판</strong>
-								<small>sweet home</small>
-						</a></li>
-						<li><a href="qna"> <i class="fa fa-gift" id="bpage"></i>
-								<strong>문의사항</strong> <small>sweet home</small>
-						</a></li>
-						<li><a href="notices"> <i class="fa fa-globe" id="bpage1"></i>
-								<strong>공지사항</strong> <small>sweet home</small>
-						</a></li>
-
-						<li><a href="/user/userInfo"> <i class="fa fa-comments-o"></i>
-
-								<strong>회원관리</strong> <small>what they say</small>
-						</a></li>
-						<li><a href="movieRegist"> <i class="fa fa-comments-o"></i>
-								<strong>영화등록</strong> <small>what they say</small>
-						</a></li>
-
-
-
-					</ul>
-				</nav>
-			</div>
-			<div class="rightbox">
+			<div class="rightbox1">
 				<li>
 					<table cellpadding="0" cellspacing="0" class="board_basic_view"
 						width="100%">
@@ -94,12 +61,9 @@
                     <th>첨부파일</th>
 
                      <td th:each ="list : @{adminvo.filename}">
-                	파일 이름: [[${adminvo.filename}]]
+                
                       <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}">
-                    <th:block th:each="file : ${filename}">
-                   <a th:href = "@{../downloadfile(filepath = ${file.FILEPATH}, uuid=${file.uuid},filename=${file.filename})}"></a>
-                	
-                    
+            
 
 						</tbody>
 
@@ -123,8 +87,8 @@
 
 
 		</form>
-</th:block>
 	</div>
+</th:block>
 
 <script th:inline="javascript">
 	function notice_update(){

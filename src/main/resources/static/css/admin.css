@@ -11,7 +11,7 @@
     font-family: 'noto Sans KR',sans-serif;
     color:rgb(5, 5, 5) ;
     padding-top: 25px;
-
+	
   
 }
 .admin_title {
@@ -37,8 +37,7 @@
  	
   width: 1130px;
   height: auto;
-  margin:0 auto;
-
+margin: 0 auto;
 
  
 }
@@ -786,7 +785,8 @@ float: right;
   transform: scale(var(--ggs,1));
   width: 2px;
   height: 20px;
-  background: currentColor
+  background: currentColor;
+  float: left;
 }
 .gg-dollar::after,
 .gg-dollar::before {
@@ -1264,7 +1264,7 @@ text {
   height: 20px;
   border: 2px solid;
   border-radius: 100px;
-
+ float: left;
   
  }
  

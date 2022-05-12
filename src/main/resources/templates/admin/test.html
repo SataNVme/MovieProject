@@ -8,61 +8,12 @@
         <div class="test_title"> 
           <span class="noselect">공지사항</span>
        </div>
-           
-        <div class="test_leftbox">
-            <nav>
-                <ul class="mcd-menu">
-                    <li>
-                        <a href="http://www.naver.com">
-                            <i class="fa fa-home"></i>
-                            <strong>메인페이지</strong>
-                            <small>Mainpage</small>
-                        </a>
-                    </li>
-                    <li>
-                      
-                            <a href="adminMain1"  >
-                            <i class="fa fa-edit" ></i>
-                            <strong>게시판</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="qna">
-                            <i class="fa fa-gift"id="bpage" ></i>
-                            <strong>문의사항</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notices">
-                            <i class="fa fa-globe" id="bpage1"></i>
-                            <strong>공지사항</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="user_info">
-                            <i class="fa fa-comments-o"></i>
-                            <strong>회원관리</strong>
-                            <small>what they say</small>
-                        </a>
-                       
-                    </li>
-                    <li>
-                        <a href="movieRegist">
-                            <i class="fa fa-comments-o"></i>
-                            <strong>영화등록</strong>
-                            <small>what they say</small>
-                        </a>
-                        
-                    </li>
-                  
-                    
-                   
-                </ul>
-            </nav>
-        </div>
+       <th:block
+	th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}">
+			<div class="leftbox">
+				
+			</div>
+			</th:block>
         <div class="test_rightbox"> <li>
             <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
                 <tbody class="ttt">

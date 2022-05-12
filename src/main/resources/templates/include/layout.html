@@ -4,40 +4,29 @@
      xmlns="http://www.w3.org/1999/xhtml">
 <!-- 베이직 레이아웃 -->
 <th:block th:fragment="setContent(content)">
-   <head>
-      <meta charset="UTF-8">
-      <title>Document</title>
-      <!-- 공통 -->
-      <!-- 경로는 절대 경로 -->
-      <link rel="stylesheet" type="text/css" th:href="@{/css/practice.css}" />
-      <link rel="preconnect" th:href="@{https://fonts.googleapis.com}" />
-      <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin />
-      <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap}" />
-      <script th:src="@{/js/jquery-3.6.0.js}"></script>
-      <script th:src="@{/js/practice.js}"></script>
-      
-      <!-- admindMain part -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
-        
-       <script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
-       <script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
-       <script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
-      
-      <!-- qna/notice --> 
-       <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
-        <link rel="stylesheet" tyhe="text/css" th:href="@{/css/notice.css}">
-         <!--regist/update  -->
-      <!-- userInfo -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/user_Info.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userLogin.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userPopup.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userQnaRegist.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userRegist.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/replyPage.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/test.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/commentList.css}">
-   </head>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<!-- 공통 -->
+		<!-- 경로는 절대 경로 -->
+		<link rel="stylesheet" type="text/css" th:href="@{/css/practice.css}" />
+		<link rel="preconnect" th:href="@{https://fonts.googleapis.com}" />
+		<link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin />
+		<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap}" />
+		<script th:src="@{/js/jquery-3.6.0.js}"></script>
+		<script th:src="@{/js/practice.js}"></script>
+		
+		<!-- admindMain part -->
+     	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+     	
+	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
+		
+	
+     
+	</head>
 
    <body>
       
@@ -51,9 +40,9 @@
             </div>
            
             <ul class="pull-right">
-                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userLogin}"><img src="/img/userlogin.jpg">로그인</a></p></li>
-                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userRegist}"><img src="/img/join.jpg">회원가입</a></p></li>
-                <li><p sec:authorize="isAuthenticated()"><a th:href="@{user/userLogOut}">로그아웃</a></p></li>
+                <li><p sec:authorize="isAnonymous()"><a th:href="@{/user/userLogin}">로그인</a></p></li>
+                <li><p sec:authorize="isAnonymous()"><a th:href="@{/user/userRegist}">회원가입</a></p></li>
+                <li><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogOut}">로그아웃</a></p></li>
             </ul>
         </div>  
             <div class="nav">
