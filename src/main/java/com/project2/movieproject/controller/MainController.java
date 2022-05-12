@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.main.MainService;
+import com.project2.movieproject.user.UserService;
 
 @Controller
 @SessionAttributes("vo")
