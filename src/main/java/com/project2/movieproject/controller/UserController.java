@@ -298,17 +298,40 @@ public class UserController {
     
     @GetMapping("/userFind")
     public String userFind() {
-    	return "user/userLogin";
+    	return "user/userFind";
+    }
+    
+    @PostMapping("/find_id")
+    public String find_id(UserVO vo, RedirectAttributes RA, Model model ) {
+    	String find_name = vo.getUser_name();
+    	String find_email = vo.getUser_email();
+    	
+    	
+    	
+//    	if( ) {
+//			RA.addFlashAttribute("msg", vo.getUser_name() + "로 회원가입된 아이디는 있습니다.");
+//    		return "redirect:/user/find_id";
+//    	}else {
+//			RA.addFlashAttribute("msg", vo.getUser_name() + "로 회원가입된 아이디가 없습니다. 아이디를 다시한번 확인해주세요.");
+//    		return "redirect:/user/find_id";
+//    	}
+    	return "redirect:/user/find_id";
+    }
+    
+    @GetMapping("/find_id")
+    public String find_id2() {
+    	return "user/find_id";
     }
     
     
     @GetMapping("/userInfo")
-    public String userInfo(Model model,Criteria cri) {
+    public String userInfo(Model model,Criteria cri, @ModelAttribute("vo") UserVO vo1) {
     	
       ArrayList<UserVO> userlist = userService.userlist(cri);
       int total =userService.total(cri);
       
       PageVO pageVO = new PageVO(cri,total);
+      model.addAttribute("vo1", vo1);
       model.addAttribute("userlist", userlist);
       model.addAttribute("pageVO",pageVO);
        return "user/userInfo";
