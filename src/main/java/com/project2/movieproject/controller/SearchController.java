@@ -22,7 +22,7 @@ public class SearchController {
 		model.addAttribute("getSearchList", searchService.getSearchList(searchCriteria));
 		int total = searchService.getTotal(searchCriteria);
 		SPVO spVO = new SPVO(searchCriteria, total);
-		model.addAttribute("spvo", spVO);
+		model.addAttribute("spVO", spVO);
 	}
 	
 }

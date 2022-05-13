@@ -1,6 +1,11 @@
 package com.project2.movieproject.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,12 +14,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.MovieVO;
+import com.project2.movieproject.command.OrderDetailVO;
+import com.project2.movieproject.command.OrderListVO;
+import com.project2.movieproject.command.OrderVO;
 import com.project2.movieproject.command.StarRateVO;
+import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.comment.CommentService;
 import com.project2.movieproject.movieDetail.MovieService;
 
@@ -122,5 +132,6 @@ public class MovieController {
 		
 		return "redirect:/movie/movieDetail";
 	}
+	
 	
 }

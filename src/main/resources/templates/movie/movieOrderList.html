@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	section #content ul li {border : 5px solid #eee; padding 10px 20px; margin-bottom : 20px;}
+	section #content .orderList span {
+		font-size : 20px;
+		font-weight : bold;
+		display : inline-block;
+		width : 90px;
+		margin-right : 10px;
+	}
+</style>
+</head>
+<body>
+	<section id="content">
+		<ul class="orderList">
+			<li th:each="orderList" : "${orderList}">
+				<div>
+					<p><span>주문번호</span><a href="/movie/movieOrderView?n=${orderList.orderId}">${orderList.orderId}</a></p>
+					<p><span>수령인</span>${orderList.orderRec}</p>
+					<p><span>가격</span><th:text="${#numbers.formatDecimal(총 합계, 0, 'COMMA', 2, 'POINT')}" value="${sum}">원</p>
+				</div>
+			</li>
+		</ul>
+	</section>
+</body>
+</html>

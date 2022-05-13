@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section id="content">
+		<div class="orderInfo">
+			<div th:each="orderView" : "${orderView}"><!-- <c:forEach items=${orderView}" var="orderView" varStatus="status" -->
+					<p><span>수령인</span>${orderView.orderRec}</p>
+					<p><span>가격</span><th:text="${#numbers.formatDecimal(총 합계, 0, 'COMMA', 2, 'POINT')}" value="${orderView.amount}">원</p>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
