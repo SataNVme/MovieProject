@@ -1,6 +1,7 @@
 package com.project2.movieproject.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,9 +84,15 @@ public class UserServiceImpl implements UserService{
 		return userMapper.auth_update(id);
 	}
 	
+	/*
+	 * @Override public ArrayList<UserVO> userlist1() { // TODO Auto-generated
+	 * method stub return userMapper.userlist1(); }
+	 */
+
 	@Override
-	public ArrayList<UserVO> userlist1() {
-		return userMapper.userlist1();
+	public UserVO getUserCount(String month) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserCount(month);
 	}
 
 	@Override

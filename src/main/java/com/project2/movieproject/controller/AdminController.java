@@ -38,17 +38,28 @@ public class AdminController {
 	private AdminService adminService;
 
 	@Autowired
-	private UserService userService;
-	//게시판
-	@GetMapping("/adminMain1")
-	public String adminMain1(Model model,@ModelAttribute("vo")UserVO uservo1) {
-		
-		ArrayList<UserVO> uservo = userService.userlist1();
-		model.addAttribute("UserVO", uservo);
-		model.addAttribute("vo", uservo1);
-		return "admin/adminMain1";
-	}
-
+	   private UserService userService;
+	   //게시판
+	   @GetMapping("/adminMain1")
+	   public String adminMain1(Model model,
+	                      @ModelAttribute("vo")UserVO uservo1) {
+	      
+	      ArrayList<UserVO> uservo = new ArrayList<>();
+	      String month;
+	      for ( int i = 0 ; i <= 11 ; i++) {
+	         if(i <10) {
+	            month = "2022-0"+(i+1)+'%';
+	         }else {
+	            month = "2022-"+(i+1)+'%';            
+	         }
+	         
+	         uservo.add(userService.getUserCount(month));
+	         
+	      }
+	      model.addAttribute("UserVO", uservo);
+	      model.addAttribute("vo", uservo1);
+	      return "admin/adminMain1";
+	   }
 	//문의사항
 	@GetMapping("/qna")
 	public void qna(Model model,@ModelAttribute("vo")UserVO uservo) {
@@ -75,7 +86,7 @@ public class AdminController {
 				 */
 		
 		
-		 System.out.println(vo.toString());
+	
 		 
 		model.addAttribute("vo1","uservo1");
 		int result = adminService.noticeRegist(vo,list);
@@ -106,7 +117,7 @@ public class AdminController {
 		
 		model.addAttribute("list", list); 
 		model.addAttribute("pageVO", pageVO);
-		System.out.println(uservo.toString());
+		
 		
 		if(uservo.getUser_id() == null || uservo.getUser_id() == "") {
 			RA.addFlashAttribute("msg", "로그인을 하셔야 공지사항을 보실수 있습니다.");	
@@ -231,11 +242,11 @@ public class AdminController {
 	@GetMapping("/user_Info")
 	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
 		String db_id = vo.getUser_id();
-		System.out.println(vo.getUser_id());
+		
 		
 
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
-		System.out.println(userdata);
+		
 		
 		model.addAttribute("userdata", userdata);
 		return "admin/user_info";
@@ -252,8 +263,7 @@ public class AdminController {
 	@PostMapping("/qa_update")
 	public String qa_update(qaVO vo, Model model, RedirectAttributes RA) {
 		int qa_update = userService.qa_update(vo);
-		System.out.println(vo.getQa_key());
-		System.out.println(vo.getQa_comment());
+		
 		if(qa_update == 1 ) {
 			RA.addFlashAttribute("msg", "답변이 등록되었습니다.");
 		} else {
