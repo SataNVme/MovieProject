@@ -7,18 +7,22 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project2.movieproject.command.CommentPageVO;
 import com.project2.movieproject.command.CommentVO;
+import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.comment.CommentService;
 import com.project2.movieproject.util.CommentCriteria;
 
 @Controller
 @RequestMapping("/comment")
+@SessionAttributes("vo")
 public class CommentController {
 	
 	@Autowired
@@ -47,6 +51,7 @@ public class CommentController {
 		System.out.println("commentPrev:" + commentPageVO.isCommentPrev());
 		System.out.println("commentNext:" + commentPageVO.isCommentNext());
 		
+		
 		//comment 존재 여부
 		model.addAttribute("commentTotal", total);
 		
@@ -65,9 +70,10 @@ public class CommentController {
 	//코멘트 등록
 	@PostMapping("/commentForm")
 	public String commentForm(CommentVO vo,
-							  RedirectAttributes RA) {
+							  RedirectAttributes RA,
+							  @ModelAttribute("vo") UserVO sessionvo) {
 		
-		vo.setUser_id(Integer.toString(1));
+		vo.setUser_id(sessionvo.getUser_id());
 		
 		System.out.println(vo.toString());
 		

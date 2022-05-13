@@ -61,7 +61,14 @@
 						</div>
 						<div class="rate" style="font-weight: bold" th:text="${starRate}"></div>&nbsp;
 						<div class="Stars" th:style="${'--rating:' + (starRate * 2) }";
-							aria-label="Rating of this product is 2.3 out of 5."></div>
+							aria-label="Rating of this product is 2.3 out of 5.">
+						</div>
+						&nbsp; | &nbsp;&nbsp;
+						<div class="md_container">
+							<div class="movieLike">
+									<button type class="make_heart"></button>
+							</div>
+						</div>		
 					</div>
 				</div>
 				<div class="credit">
@@ -83,52 +90,69 @@
 					class="md_detailcontents"></p>
 			</div>
 
-			<div class="ratingbox">
-				<div class="ratingtitle">별점 등록</div>
-				<div class="rating">
-					<form name="myform" id="myform" method="post" action="addStarRate">
-						<fieldset>
-							<input type="radio" name="rating" value="5" id="rate1"><label
-								for="rate1">⭐</label> <input type="radio" name="rating"
-								value="4" id="rate2"><label for="rate2">⭐</label> <input
-								type="radio" name="rating" value="3" id="rate3"><label
-								for="rate3">⭐</label> <input type="radio" name="rating"
-								value="2" id="rate4"><label for="rate4">⭐</label> <input
-								type="radio" name="rating" value="1" id="rate5"><label
-								for="rate5">⭐</label>
-						</fieldset>
-						<input type="hidden" name="movie_koficCd" th:value="${movieVo.movie_koficCd}">
-						<button type="submit">등록</button>
-					</form>
-				</div>
-			</div>
-
-			<div class="commentwrite">
-				<p class="commenttitle">리뷰 등록</p>
-				<form action="/comment/commentForm" method="post">
-					<textarea rows="4" placeholder="리뷰를 입력해주세요." required
-						name="comment_com"></textarea>
-					<br>
-					<button type="submit">리뷰 등록</button>
-					<!-- <input type="hidden" name="user_id" th:value="${userVo.user_id}"> -->
-					<input type="hidden" name="comment_mn" th:value="${movieVo.movie_koficCd}">
-				</form>
-			</div>
-			<script type="text/javascript">
-				//<![CDATA[
-				function calcHeight() {
-					//find the height of the internal page
-
-					var the_height = document.getElementById('the_iframe').contentWindow.document.body.scrollHeight;
-
-					//change the height of the iframe
-					document.getElementById('the_iframe').height = the_height;
-
-					//document.getElementById('the_iframe').scrolling = "no";
-					document.getElementById('the_iframe').style.overflow = "hidden";
-				}
-				//
-			</script>
+			<!-- 로그인 했을 경우  -->
+			<th:block th:if="${checkLogin == 1}">
+				<div class="ratingbox">
+					<div class="ratingtitle">별점 등록</div>
+						<div class="rating">
+							<form name="myform" id="myform" method="post" action="addStarRate">
+								<fieldset>
+									<input type="radio" name="rating" value="5" id="rate1"><label
+										for="rate1">⭐</label> <input type="radio" name="rating"
+										value="4" id="rate2"><label for="rate2">⭐</label> <input
+										type="radio" name="rating" value="3" id="rate3"><label
+										for="rate3">⭐</label> <input type="radio" name="rating"
+										value="2" id="rate4"><label for="rate4">⭐</label> <input
+										type="radio" name="rating" value="1" id="rate5"><label
+										for="rate5">⭐</label>
+								</fieldset>
+								<input type="hidden" name="movie_koficCd" th:value="${movieVo.movie_koficCd}">
+								<button type="submit">등록</button>
+							</form>
+						</div>
+					</div>
+	
+					<div class="commentwrite">
+						<p class="commenttitle">리뷰 등록</p>
+						<form action="/comment/commentForm" method="post">
+							<textarea rows="4" placeholder="리뷰를 입력해주세요." required
+								name="comment_com"></textarea>
+							<br>
+							<button type="submit">리뷰 등록</button>
+							<!-- <input type="hidden" name="user_id" th:value="${userVo.user_id}"> -->
+							<input type="hidden" name="comment_mn" th:value="${movieVo.movie_koficCd}">
+						</form>
+					</div>
+				</th:block>
+				<th:block th:unless="${checkLogin == 1}">
+					<div class="ratingtitle">별점 등록</div>
+					<div class="checkLogin">
+						별점을 등록하려면 로그인 해주세요.
+					</div>
+					<div class="commentwrite">
+						<p class="commenttitle">리뷰 등록</p>
+					</div>
+					<div class="checkLogin">
+						리뷰를 등록하려면 로그인 해주세요.
+					</div>
+				</th:block>
+				
+				<!-- 리뷰 목록 -->
+				<script type="text/javascript">
+					//<![CDATA[
+					function calcHeight() {
+						//find the height of the internal page
+	
+						var the_height = document.getElementById('the_iframe').contentWindow.document.body.scrollHeight;
+	
+						//change the height of the iframe
+						document.getElementById('the_iframe').height = the_height;
+	
+						//document.getElementById('the_iframe').scrolling = "no";
+						document.getElementById('the_iframe').style.overflow = "hidden";
+					}
+					//
+				</script>
 			<div class="commentbox">
 				<iframe id="the_iframe" onload="calcHeight();" name="" title=""
 					frameborder="0" scrolling="no"

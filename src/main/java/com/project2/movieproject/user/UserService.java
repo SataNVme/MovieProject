@@ -25,7 +25,6 @@ public interface UserService {
 	public int auth_update(String id);
 	public int FindId(UserVO vo);
 	public String FindyourId(UserVO vo);
-	public ArrayList<UserVO> userlist1();
 	public int FindPw(UserVO vo);
 	public int emailCheck(String email);
 	public ArrayList<CommentVO> mycomment(UserVO vo);

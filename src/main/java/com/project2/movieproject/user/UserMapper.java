@@ -27,7 +27,6 @@ public interface UserMapper {
 	public int qa_update(qaVO vo);
 	public int auth_update(String id);
 	public int FindId(UserVO vo);
-	public ArrayList<UserVO> userlist1();
 	public String FindyourId(UserVO vo);
 	public int FindPw(UserVO vo);
 	public int emailCheck(String email);

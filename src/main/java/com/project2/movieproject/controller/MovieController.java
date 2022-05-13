@@ -37,7 +37,8 @@ public class MovieController {
 	
 	@GetMapping("/movieDetail")
 	public String movieDetail(@RequestParam("movie_koficCd") String movie_koficCd, 
-							  Model model) {
+							  Model model,
+							  @ModelAttribute("vo") UserVO sessionvo) {
 		
 		
 		//movie select
@@ -62,6 +63,16 @@ public class MovieController {
 		//리뷰 등록
 		model.addAttribute("url", url);
 		model.addAttribute("movieVo", movieVo);
+		
+		//로그인 여부 체크
+		int checkLogin;
+		
+		if (sessionvo.getUser_id() == null) {
+			checkLogin = 0;
+		} else {
+			checkLogin = 1;
+		}
+		model.addAttribute("checkLogin", checkLogin);
 		
 		return "movie/movieDetail";
 		
@@ -125,6 +136,11 @@ public class MovieController {
 		RA.addAttribute("movie_koficCd", movie_koficCd);
 		
 		return "redirect:/movie/movieDetail";
+	}
+	
+	@PostMapping("/movieLike")
+	public void movieLike() {
+		
 	}
 	
 }

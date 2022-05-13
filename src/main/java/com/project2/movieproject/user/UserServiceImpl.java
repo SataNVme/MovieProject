@@ -90,12 +90,6 @@ public class UserServiceImpl implements UserService{
 	 */
 
 	@Override
-	public UserVO getUserCount(String month) {
-		// TODO Auto-generated method stub
-		return userMapper.getUserCount(month);
-	}
-
-	@Override
 	public int FindId(UserVO vo) {
 		return userMapper.FindId(vo);
 	}
@@ -123,6 +117,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public ArrayList<UserVO> movie_like(UserVO vo) {
 		return userMapper.movie_like(vo);
+	}
+	
+	@Override
+	public UserVO getUserCount(String month) {
+		return userMapper.getUserCount(month);
 	}
 	
 }
