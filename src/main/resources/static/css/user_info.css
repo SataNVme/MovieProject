@@ -931,7 +931,7 @@ float: right;
   }
   #board-search3 .search-window3 .search-wrap3 input {
     height: 30px;
-    width: 46%;
+    width: 50%;
     float: right;
     margin-right: 0px;
     font-size: 12px;
@@ -1020,12 +1020,12 @@ float: right;
   }
   
   .board-table th, .board-table td {
-    padding: 4px 15px;
+   padding: 0px 0px;
+    border-left: 1px solid #ddd;
     
-
+   
     font-size: 15px;
     color: #333;
-    border-left: 1px solid #d5d5db;
 
   }
   
