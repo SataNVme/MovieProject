@@ -1,10 +1,11 @@
 <!DOCTYPE HTML> 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <script th:src="@{/js/practice.js}"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/search.css}"/>
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .table-wrapper} ) }">
 
-	<div class="table-wrapper">
+	<div th:include="search/getSearchList :: searchFragment" class="table-wrapper">
 		<table class="board-table">
                   <thead>
                      <tr>

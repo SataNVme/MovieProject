@@ -66,8 +66,8 @@
                     </ul>
                 </div>	
                 <div class="pull-right">
-                    <div class="search-bar">
-                        <form id="searchForm" action="/search/searchList" method="get">	
+                    <div th:fragment="searchFragment" class="search-bar">
+                        <form id="searchForm" th:action="@{/search/getSearchList}" method="get">	
                             <select class="sele1" name="searchType">
                                 <option value="null" th:selected="${spVO.searchCriteria.searchType} == 'null' ? 'selected' : ''">검색 내용 선택</option>
                                 <option value="dir_Nm" th:selected="${spVO.searchCriteria.searchType} == 'dir_Nm' ? 'selected'">감독</option>
