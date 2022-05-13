@@ -1,6 +1,7 @@
 package com.project2.movieproject.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,6 +25,6 @@ public interface UserMapper {
 	public ArrayList<qaVO> qa_list();
 	public int qa_update(qaVO vo);
 	public int auth_update(String id);
-	
-	public ArrayList<UserVO> userlist1();
+	public UserVO getUserCount(String month);//게시판 데이터 날짜 함수 
+	/* public ArrayList<UserVO> userlist1(); */
 }

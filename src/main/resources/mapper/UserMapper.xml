@@ -142,13 +142,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where user_id = #{user_id}
 	</delete> 
 	
-	<select id="userlist1" resultType="UserVO">
+	<!-- <select id="userlist1" resultType="UserVO">
 		select year(user_date) as 'year',
 		month(user_date) as 'month',
 		count(month(user_date)) as 'count'
 		from user
 		group by month(user_date)
 		order by month asc;	
-	</select>
-	
+	</select> -->
+	   <select id="getUserCount" resultType="UserVO"> <!-- 게시판 데이터 날짜 함수  -->
+      select substring(user_date, 1,4) as year, 
+            substring(user_date,6,2) as month, count(*) as count from user where user_date like #{month};
+
+   </select>
 </mapper>
