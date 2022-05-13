@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.qaVO;
@@ -84,8 +85,37 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ArrayList<UserVO> userlist1() {
-		// TODO Auto-generated method stub
 		return userMapper.userlist1();
+	}
+
+	@Override
+	public int FindId(UserVO vo) {
+		return userMapper.FindId(vo);
+	}
+
+	@Override
+	public String FindyourId(UserVO vo) {
+		return userMapper.FindyourId(vo);
+	}
+
+	@Override
+	public int FindPw(UserVO vo) {
+		return userMapper.FindPw(vo);
+	}
+
+	@Override
+	public int emailCheck(String email) {
+		return userMapper.emailCheck(email);
+	}
+
+	@Override
+	public ArrayList<CommentVO> mycomment(UserVO vo) {
+		return userMapper.mycomment(vo);
+	}
+
+	@Override
+	public ArrayList<UserVO> movie_like(UserVO vo) {
+		return userMapper.movie_like(vo);
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.qaVO;
@@ -24,6 +25,12 @@ public interface UserMapper {
 	public ArrayList<qaVO> qa_list();
 	public int qa_update(qaVO vo);
 	public int auth_update(String id);
-	
+	public int FindId(UserVO vo);
 	public ArrayList<UserVO> userlist1();
+	public String FindyourId(UserVO vo);
+	public int FindPw(UserVO vo);
+	public int emailCheck(String email);
+	public ArrayList<CommentVO> mycomment(UserVO vo);
+	public ArrayList<UserVO> movie_like(UserVO vo);
+
 }

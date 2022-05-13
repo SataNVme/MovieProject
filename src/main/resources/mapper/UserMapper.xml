@@ -46,6 +46,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT COUNT(*) AS CNT FROM USER WHERE user_id = #{id}
     </select>
     
+    <select id="emailCheck" resultType="int">
+    	SELECT COUNT(*) AS CNT FROM USER WHERE user_email = #{email}
+    </select>
+    
     <select id="userdata" resultType="UserVO">
     	SELECT * from USER where user_id = #{db_id}
     </select>
@@ -61,6 +65,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="qa_list" resultType="qaVO">
     	SELECT * from QA
     </select>
+    
+    <select id="FindId" resultType="int">
+        SELECT COUNT(*) AS CNT FROM USER WHERE user_name = #{user_name} and user_email = #{user_email}
+    </select>
+    
+    <select id="FindyourId" resultType="String">
+        SELECT user_id FROM USER WHERE user_name = #{user_name} and user_email = #{user_email}
+    </select>
+    
+    <select id="FindPw" resultType="int">
+        SELECT COUNT(*) AS CNT FROM USER WHERE user_id = #{user_id} and user_email = #{user_email}
+    </select>
+    
+    <select id="mycomment" resultType="CommentVO">
+    	SELECT * from COMMENT where user_id = #{user_id}
+    </select>
+    
     
 <select id="userlist" resultType="UserVO">
    <![CDATA[
@@ -149,6 +170,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from user
 		group by month(user_date)
 		order by month asc;	
+	</select>
+
+	<select id="movie_like" resultType="UserVO">
+
+		SELECT user.user_id,
+		MOVIE_LIKE.MOVIE_KOFICCD,
+		MOVIE.MOVIE_NM,
+		MOVIE.MOVIE_Iurl
+		FROM USER
+		LEFT JOIN MOVIE_LIKE ON USER.USER_ID = MOVIE_LIKE.USER_ID
+		LEFT JOIN MOVIE ON MOVIE_LIKE.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
+		where user.user_id = #{user_id}
+
 	</select>
 	
 </mapper>

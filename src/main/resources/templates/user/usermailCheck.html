@@ -28,7 +28,7 @@
 	<form method = "POST" action = "verifyCode">
 		<div class = "mailcheck_box">
 			<img src="/img/logo.png" class = "img_logo">
-			<p class = "this_mail">[[${userdata.get(0).user_email}]]</p>
+			<p class = "this_mail">[[${userdata.getUser_email}]]</p>
 			<p class = "this_mail">확인 후 인증 코드를 작성해주세요.</p>
 			<input class = "code_check" type="text" name="code">
 			<input type="submit">
