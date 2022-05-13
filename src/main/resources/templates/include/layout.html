@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-	  xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
-	  xmlns="http://www.w3.org/1999/xhtml">
+     xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
+     xmlns="http://www.w3.org/1999/xhtml">
 <!-- 베이직 레이아웃 -->
 <th:block th:fragment="setContent(content)">
+
 	<head>
 		<meta charset="UTF-8">
 		<title>Document</title>
@@ -24,10 +25,10 @@
 	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
 	</head>
 
-	<body>
-		
-	<!-- 헤더 -->
-	<header class="wrap">	
+   <body>
+      
+   <!-- 헤더 -->
+   <header class="wrap">   
         <div class="header">
             <div class="logo">
                 <ul>
@@ -45,13 +46,13 @@
             <div class="nav">
                 <div class="pull-left">
                     <ul class="outer-menu">
-                        <li><a href="#">국내 영화</a></li>	
+                        <li><a href="#">국내 영화</a></li>   
                         <li><a href="#">해외 영화</a></li>
                     </ul>
-                </div>	
+                </div>   
                 <div class="pull-right">
                     <div class="search-bar">
-                        <!-- <form id="searchForm" action="/search/searchList" method="get">	
+                        <!-- <form id="searchForm" action="/search/searchList" method="get">   
                             <select class="sele1" name="searchType">
                                 <option value="select" th:selected="${spVO.searchCriteria.searchType} == 'select' ? 'selected'">검색 내용 선택</option>
                                 <option value="director" th:selected="${spVO.searchCriteria.searchType} == 'director' ? 'selected'">감독</option>
@@ -67,7 +68,7 @@
                             <input type="hidden" name="amount" value="${spVO.amount}">
                             <input type="search" name="searchName" placeholder="검색어를 입력해주세요">
                             <button type="button" class="btn btn-default">
-                            	<span class="glyphicon glyphicon-search">검색</span>
+                               <span class="glyphicon glyphicon-search">검색</span>
                             </button>
                         </form> -->
                     </div>
@@ -84,7 +85,7 @@
                                 <span>
                                     <a th:href="@{/admin/notices}">공지사항</a>
                                     <a th:href="@{/user/userQnaRegist}">문의사항</a>
-                                </span>		
+                                </span>      
                             </ul>
                         </div>
                     </div>
@@ -101,6 +102,6 @@
                             </p>
                         </div>
                     </div>
-	</body>
+   </body>
 </th:block>
 </html>

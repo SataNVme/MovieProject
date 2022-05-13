@@ -1,5 +1,7 @@
 package com.project2.movieproject.movieDetail;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project2.movieproject.command.MovieVO;
@@ -10,9 +12,9 @@ public interface MovieMapper {
 	
 	public MovieVO getDetail(String movie_koficCd);
 	
-	public MovieVO getList_ko(String genre);
+	public ArrayList<MovieVO> getList_ko(String genre);
 	
-	public MovieVO getList_out(String genre);
+	public ArrayList<MovieVO> getList_out(String genre);
 	
 	public void addStarRate(StarRateVO starRateVo);
 	

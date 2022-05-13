@@ -12,34 +12,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
 import com.project2.movieproject.command.CommentVO;
+import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.comment.CommentMapper;
+import com.project2.movieproject.movieDetail.MovieMapper;
 
 @SpringBootTest
 class MovieProjectApplicationTests {
 	
 	@Autowired
-	private CommentMapper commentMapper;
+	private MovieMapper movieMapper;
 	
 	@Test
-	public void test02() {
-		for (int i = 1; i <= 100; i++) {
+	public void test02(String genre) {
+		genre = "action";
+		
+		ArrayList<MovieVO> movieList = movieMapper.getList_ko(genre);
+		System.out.println(movieList.toString());
 			
-			CommentVO vo = CommentVO.builder().comment_key(i)
-											  .user_id("1")
-											  .comment_com("리뷰입니다" + i)
-											  .comment_rank(0)
-											  .comment_date(LocalDateTime.now())
-											  .comment_class(0)
-											  .comment_group(0)
-											  .comment_sort(0)
-											  .comment_like(0)
-											  .comment_unlike(0)
-											  .comment_mn("19990084")
-											  .build();
-			
-			commentMapper.regist(vo);
-			
-		}
 	}
 
 }
