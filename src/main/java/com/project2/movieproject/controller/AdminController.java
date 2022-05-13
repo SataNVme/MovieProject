@@ -264,7 +264,7 @@ public class AdminController {
 		ArrayList<qaVO> qa_data = userService.qa_read(qa_key);
 		model.addAttribute("qa_data", qa_data);
 
-		return "/admin/replypage";
+		return "admin/replyPage";
 
 	}
 	
