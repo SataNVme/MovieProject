@@ -31,4 +31,8 @@ public class UserVO {
 	private Integer year;
 	private Integer month;
 	private Integer count;
+	
+	private String movie_koficcd;
+	private String movie_nm;
+	private String movie_iurl;
 }

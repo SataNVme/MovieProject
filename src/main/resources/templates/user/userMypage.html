@@ -192,9 +192,8 @@
                         <input type="checkbox" id="allcheck"> 전체선택
                         <button id="delbtn">선택영화 삭제</button>
                      </div>
-                     <div class="mybox">
-                        <input type="checkbox" class="ckbox"> <a href="##"><img src="/img/kor1.jpg" alt="" height=110px
-                              width=100px style="float: left"></a>
+                     <div class="mybox" th:each="vo, state : ${movie_like}">
+                        <input type="checkbox" class="ckbox"> <a href="##"><img th:src="'https://image.tmdb.org/t/p/w92' + ${movie_like.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
                         <div class="mypage_left">
                            <ul>
                               <li><a>영화 제목</a></li>
@@ -206,91 +205,7 @@
 
                         <div class="mypage_right">
                            <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-
-                     <div class="mybox">
-                        <input type="checkbox" class="ckbox"> <a href="##"><img src="/img/kor1.jpg" alt="" height=110px
-                              width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-
-                     <div class="mybox">
-                        <input type="checkbox" class="ckbox"> <a href="##"><img src="/img/kor1.jpg" alt="" height=110px
-                              width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-
-                     <div class="mybox">
-                        <input type="checkbox" class="ckbox"> <a href="##"><img src="/img/kor1.jpg" alt="" height=110px
-                              width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-
-                     <div class="mybox">
-                        <input type="checkbox" class="ckbox"> <a href="##"><img src="/img/kor1.jpg" alt="" height=110px
-                              width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
+                              <li><a>[[${movie_like.get(state.index).movie_nm}]]</a></li>
                               <li><a>구매/대여DB</a></li>
                               <li><a>남은기간DB</a></li>
                            </ul>
@@ -353,7 +268,7 @@
 
                                     <button class="mypage_w-btn" type="button">
 
-                                       <a href="#" scope="col">등록</a>
+                                       <a href="/user/userQnaRegist" scope="col">등록</a>
                                     </button>
                                  </div>
                               </div>
@@ -396,57 +311,20 @@
                                     <thead>
                                        <tr>
                                           <th scope="col" class="th-num">번호</th>
-                                          <th scope="col" class="th-title">내용</th>
                                           <th scope="col" class="th-writer">영화제목</th>
+                                          <th scope="col" class="th-title">내용</th>
                                           <th scope="col" class="th-date">등록일</th>
                                           <th scope="col" class="th-count">좋아요</th>
                                        </tr>
                                     </thead>
                                     <tbody class="mypage_tbody">
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="#">이영화 재미없음 ㅋㅋ</a>
-                                             <p>테스트</p>
+                                       <tr th:each="vo, state : ${mycomment}">
+                                          <td>[[${mycomment.get(state.index).comment_key}]]</td>
+                                          <td>[[${mycomment.get(state.index).comment_mn}]]</td>
+                                          <th><a>[[${mycomment.get(state.index).comment_com}]]</a>
                                           </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="#">이영화 재미없음 ㅋㅋ</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="#">아 ㅋㅋ</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="#">숨은 명작</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
-                                       </tr>
-                                       <tr>
-                                          <td>1</td>
-                                          <th><a href="#">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-                                             <p>테스트</p>
-                                          </th>
-                                          <td>id</td>
-                                          <td>2017.07.13</td>
-                                          <td>숫자</td>
+                                          <td>[[${#temporals.format(mycomment.get(state.index).comment_date, 'yyyy-MM-dd')}]]</td>
+                                          <td>[[${mycomment.get(state.index).comment_like}]]</td>
                                        </tr>
                                     </tbody>
                                  </table>
@@ -544,7 +422,9 @@
       </div>
 </th:block>
 
-<script>
+<script th:inline ="javascript">
+
+
 
 
    var mytab = document.querySelector(".mytab");
@@ -556,8 +436,28 @@
    var pass_count = document.getElementById("user_password_count");
    var gender = document.getElementById("user_gender_inner");
 
-   
-   console.log(gender.innerHTML);
+   (function() {
+	      var msg = JSON.parse('[[${msg}]]');
+	      check_status = JSON.parse('[[${check_status}]]');
+	         let dttg = JSON.parse('[[${dttg}]]');
+	         let a4 = JSON.parse('[[${a4}]]');
+	      if (msg != null) {
+	         alert(msg);
+	         /* console.log(check_id); */
+	         /* user_id.value = "${check_id}"; model에서 저장한 값을 JS에서 불러서 사용하는 방법이 뭘까? */
+	      }
+	  	   if(dttg != null){
+	  		   document.querySelectorAll(".xxx").forEach(function(value, index ) {
+	  		      value.classList.remove("yyy");
+	  		   })
+	  		   document.querySelectorAll(".mylisttab").forEach(function(value, index ) {
+	  		      value.classList.remove("now");
+	  		   })
+	  		   document.querySelector(dttg).classList.add("yyy");
+	  	       document.querySelector(a4).classList.add("now");
+	  		   }
+	      ;
+	   })();
    
    if(gender.innerHTML == "성별:1") {
 	   gender.innerHTML = "성별: 남성";
@@ -613,9 +513,6 @@
          delbtn.style.display = "none";
       }
    }
-
-      console.log(pass_count.length);
-
 
 	function drop_click() {
 		this.event.preventDefault();

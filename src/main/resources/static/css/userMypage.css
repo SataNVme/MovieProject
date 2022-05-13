@@ -193,7 +193,7 @@ ul {
 .mypage_left {
 	float:left;
 	text-align : center;
-	padding-right : 50px;
+	padding-right : 20px;
 	padding-left : 40px;
 }
 
@@ -202,7 +202,7 @@ ul {
 }
 
 .mybox {
-	height : 110px;
+	height : 150px;
 	display: inline-block;
 	width : 530px;
 	padding:5px 30px 5px 0px;
