@@ -40,7 +40,8 @@
             <ul class="pull-right">
                 <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userLogin}" >로그인</a></p></li>
                 <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userRegist}" >회원가입</a></p></li>
-                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >마이페이지</a></p></li>
+                <li th:if = "${vo.user_admin} != true"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >마이페이지</a></p></li>
+                <li th:if = "${vo.user_admin} == true"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >관리자페이지</a></p></li>
                 <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >로그아웃</a></p></li>
             </ul>
         </div>  

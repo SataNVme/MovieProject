@@ -43,7 +43,7 @@ public class AdminController {
 		
 		ArrayList<UserVO> uservo = userService.userlist1();
 		model.addAttribute("UserVO", uservo);
-		model.addAttribute("vo1", uservo1);
+		model.addAttribute("vo", uservo1);
 		return "admin/adminMain1";
 	}
 
@@ -52,7 +52,7 @@ public class AdminController {
 	public void qna(Model model,@ModelAttribute("vo")UserVO uservo) {
 
 		ArrayList<qaVO> qalist = userService.qa_list();
-		model.addAttribute("vo1",uservo);
+		model.addAttribute("vo",uservo);
 		model.addAttribute("qalist", qalist);
 	}
 
@@ -100,7 +100,7 @@ public class AdminController {
 
 		PageVO pageVO = new PageVO(cri, total);
 
-		model.addAttribute("vo1",uservo);
+		model.addAttribute("vo",uservo);
 		
 		model.addAttribute("list", list); 
 		model.addAttribute("pageVO", pageVO);
@@ -127,7 +127,7 @@ public class AdminController {
 		model.addAttribute("hit",hit);
 
 		
-		model.addAttribute("vo1" , uservo1);
+		model.addAttribute("vo" , uservo1);
 		
 
 

@@ -1,27 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
-<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-<script th:src="@{/js/jquery-3.6.0.js}"></script>
-<link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
-	crossorigin>
-<link
-	th:href="@{https://fonts.googleapis.com/css2?family=Cinzel&display=swap}"
-	rel="stylesheet">
-		<!-- 경로는 절대 경로 -->
+	<html xmlns:th="http://www.thymeleaf.org">
+		<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/practice.css}" />
-		<link rel="preconnect" th:href="@{https://fonts.googleapis.com}" />
-		<link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin />
-		<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap}" />
-		<script th:src="@{/js/jquery-3.6.0.js}"></script>
-		<script th:src="@{/js/practice.js}"></script>
-		
-		<!-- admindMain part -->
      	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
-     	
-	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
-	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
-	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
+
+
+
+<th:block th:replace="~{/include/layout :: setContent(~{:: .notice_outbox})}">
 		
 
 
@@ -42,7 +27,7 @@
 
 				<th:block
 					th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}" 
-					 th:if="${vo1.user_admin} == true">
+					 th:if="${vo.user_admin} == true">
 
 
 					<div class="leftbox" ></div>
@@ -157,7 +142,7 @@
 
 					<div class="noticeQna_page3">
 						<a href="notice_regist2" title="Button fade lightblue"
-							class="button btnFade btnLightBlue" th:if="${vo1.user_admin} == true">등록</a>
+							class="button btnFade btnLightBlue" th:if="${vo.user_admin} == true">등록</a>
 	
 
 						<ul class="pagenation">
