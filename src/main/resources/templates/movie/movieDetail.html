@@ -57,10 +57,9 @@
 							<div  th:each=" act : ${#strings.arraySplit(movieVo.movie_actNm, ',')}" >
 								<div  th:text="${act}" ></div>
 							</div>
-							<p>&nbsp; | &nbsp;</p>
+							&nbsp; | &nbsp;
 						</div>
 						<div class="rate" style="font-weight: bold" th:text="${starRate}"></div>&nbsp;
-						<!-- <div class="Stars" style="--rating: 6.7;" -->
 						<div class="Stars" th:style="${'--rating:' + (starRate * 2) }";
 							aria-label="Rating of this product is 2.3 out of 5."></div>
 					</div>

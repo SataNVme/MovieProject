@@ -40,18 +40,21 @@
 							<th>나이등급</th>
 							<th>영화장르</th>
 							<th>제작국가</th>
+							<th>비고</th>
 						</tr>
 						<tr th:each="vo, state : ${list}">
 							<td>
 								<img th:src="${vo.movie_iUrl}" height="150px">
 							</td>
 							<td>
-								<a th:href="@{/admin/adminMovieDetail(movie_koficCd=${vo.movie_koficCd})}">[[${vo.movie_nm}]]</a>
+								<a th:href="@{/admin/adminMovieDetail(movie_koficCd=${vo.movie_koficCd})}"><strong>[[${vo.movie_nm}]]</strong></a>
 							</td>
 							<td>[[${vo.movie_nmEn}]]</td>
 							<td>[[${vo.movie_age}]]</td>
 							<td>[[${vo.movie_gr}]]</td>
 							<td>[[${vo.movie_nt}]]</td>
+							<td th:if="${vo.movie_vUrl == null || vo.movie_sellPrice == null || vo.movie_rentPrice == null}">수정필요</td>
+							<td th:unless="${vo.movie_vUrl == null || vo.movie_sellPrice == null || vo.movie_rentPrice == null}"></td>
 						</tr>
 					</table>
 				</div>

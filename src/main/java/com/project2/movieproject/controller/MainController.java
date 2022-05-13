@@ -36,9 +36,14 @@ public class MainController {
 		ArrayList<MovieVO> main_rank = mainService.getMainRank();
 		ArrayList<MovieVO> main_rankList = mainService.getMainRankList();
 		
+		ArrayList<MovieVO> main_all_all = mainService.getMain_all_all();
+		
 		model.addAttribute("main_banner", main_banner);
 		model.addAttribute("main_rank", main_rank);
 		model.addAttribute("main_rankList", main_rankList);
+		
+		model.addAttribute("main_all_all", main_all_all);
+		
 		if(vo.getUser_id() != null) {
 			model.addAttribute("vo", vo);
 		}

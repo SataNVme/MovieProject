@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-	  xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
-	  xmlns="http://www.w3.org/1999/xhtml">
+     xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
+     xmlns="http://www.w3.org/1999/xhtml">
 <!-- 베이직 레이아웃 -->
 <th:block th:fragment="setContent(content)">
+
 	<head>
 		<meta charset="UTF-8">
 		<title>Document</title>
@@ -22,12 +23,13 @@
 	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
 	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
 	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
+	 	
 	</head>
 
-	<body>
-		
-	<!-- 헤더 -->
-	<header class="wrap">	
+   <body>
+      
+   <!-- 헤더 -->
+   <header class="wrap">   
         <div class="header">
             <div class="logo">
                 <ul>
@@ -45,31 +47,32 @@
             <div class="nav">
                 <div class="pull-left">
                     <ul class="outer-menu">
-                        <li><a href="#">국내 영화</a></li>	
-                        <li><a href="#">해외 영화</a></li>
+                        <li><a th:href="@{/movie/movieList(nation=ko)}">국내 영화</a></li>   
+                        <li><a th:href="@{/movie/movieList(nation=out)}">해외 영화</a></li>
                     </ul>
-                </div>	
+                </div>   
                 <div class="pull-right">
                     <div class="search-bar">
-                        <!-- <form id="searchForm" action="/search/searchList" method="get">	
+                        <form id="searchForm" action="/search/searchList" method="get">	
                             <select class="sele1" name="searchType">
-                                <option value="select" th:selected="${spVO.searchCriteria.searchType} == 'select' ? 'selected'">검색 내용 선택</option>
-                                <option value="director" th:selected="${spVO.searchCriteria.searchType} == 'director' ? 'selected'">감독</option>
-                                <option value="actor" th:selected="${spVO.searchCriteria.searchType} == 'actor' ? 'selected'">영화배우</option>
-                                <option value="moviename" th:selected="${spVO.searchCriteria.searchType} == 'moviename' ? 'selected'">영화이름</option>
-                                <option value="diractor" th:selected="${spVO.searchCriteria.searchType} == 'diractor' ? 'selected'">감독 or 배우</option>
-                                <option value="dirmovie" th:selected="${spVO.searchCriteria.searchType} == 'dirmovie' ? 'selected'">감독 or 영화</option>
-                                <option value="actmovie" th:selected="${spVO.searchCriteria.searchType} == 'actmovie' ? 'selected'">배우 or 영화</option>
+                                <option value="null" th:selected="${spVO.searchCriteria.searchType} == 'null' ? 'selected' : ''">검색 내용 선택</option>
+                                <option value="dir_Nm" th:selected="${spVO.searchCriteria.searchType} == 'dir_Nm' ? 'selected'">감독</option>
+                                <option value="act_Nm" th:selected="${spVO.searchCriteria.searchType} == 'act_Nm' ? 'selected'">영화배우</option>
+                                <option value="movie_Nm" th:selected="${spVO.searchCriteria.searchType} == 'movie_Nm' ? 'selected'">영화이름</option>
+                                <option value="dirActor" th:selected="${spVO.searchCriteria.searchType} == 'dirActor' ? 'selected'">감독 or 배우</option>
+                                <option value="dirMovie" th:selected="${spVO.searchCriteria.searchType} == 'dirMovie' ? 'selected'">감독 or 영화</option>
+                                <option value="actMovie" th:selected="${spVO.searchCriteria.searchType} == 'actMovie' ? 'selected'">배우 or 영화</option>
                                 <option value="all" th:selected="${spVO.searchCriteria.searchType} == 'all' ? 'selected'">감독 or 배우 or 영화</option>
                             </select>
-                            <input type="text" name="keyword"/>
+                            <input type="text" name="searchName"/>
                             <input type="hidden" name="pageNum" th:value="1">
-                            <input type="hidden" name="amount" value="${spVO.amount}">
-                            <input type="search" name="searchName" placeholder="검색어를 입력해주세요">
+                            <input type="hidden" name="amount" th:value="${spVO.searchCriteria.amount}">
+                            <input type="hidden" name="searchName" th:value="${spVO.searchCriteria.searchName}" placeholder="검색어를 입력해주세요">
+                            <input type="hidden" name="searchType" th:value="${spVO.searchCriteria.searchType}">
                             <button type="button" class="btn btn-default">
-                            	<span class="glyphicon glyphicon-search">검색</span>
+                               <span class="glyphicon glyphicon-search">검색</span>
                             </button>
-                        </form> -->
+                        </form> 
                     </div>
                 </div>
             </div>
@@ -84,7 +87,7 @@
                                 <span>
                                     <a th:href="@{/admin/notices}">공지사항</a>
                                     <a th:href="@{/user/userQnaRegist}">문의사항</a>
-                                </span>		
+                                </span>      
                             </ul>
                         </div>
                     </div>
@@ -101,6 +104,6 @@
                             </p>
                         </div>
                     </div>
-	</body>
+   </body>
 </th:block>
 </html>

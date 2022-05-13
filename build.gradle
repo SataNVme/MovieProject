@@ -34,7 +34,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.0'
 <<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
 	implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
+>>>>>>> df05cec6d9023d53ac13ef2646cb7eb0ffe947c6
 	
 	
 	}
