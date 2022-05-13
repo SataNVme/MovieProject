@@ -31,4 +31,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LIMIT 5
 	</select>
 	
+	<select id="getMainNotices" resultType="adminVO">
+		SELECT * 
+		FROM ADMIN_NOTICES
+		ORDER BY NOTICES_DATE DESC
+		LIMIT 5
+	</select>
+	
 </mapper>
