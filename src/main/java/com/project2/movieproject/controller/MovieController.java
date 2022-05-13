@@ -74,6 +74,9 @@ public class MovieController {
 		}
 		model.addAttribute("checkLogin", checkLogin);
 		
+		//좋아요 여부
+		
+		
 		return "movie/movieDetail";
 		
 	}

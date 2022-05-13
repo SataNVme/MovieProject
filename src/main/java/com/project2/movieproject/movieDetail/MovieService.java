@@ -12,4 +12,5 @@ public interface MovieService {
 	public ArrayList<MovieVO> getList_out(String genre);
 	public void addStarRate(StarRateVO starRateVo);
 	public Float getStarRate(String movie_koficCd);
+//	public int getMovieLike(UserVO)
 }
