@@ -27,6 +27,12 @@ public class MainServiceImpl implements MainService {
 	public ArrayList<MovieVO> getMainRankList() {
 		return mainMapper.getMainRankList();
 	}
+
+	@Override
+	public ArrayList<MovieVO> getMain_all_all() {
+		
+		return mainMapper.getMain_all_all();
+	}
 	
 
 }

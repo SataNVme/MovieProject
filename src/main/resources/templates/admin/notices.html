@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
-<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-<script th:src="@{/js/jquery-3.6.0.js}"></script>
-<link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
-	crossorigin>
-<link
-	th:href="@{https://fonts.googleapis.com/css2?family=Cinzel&display=swap}"
-	rel="stylesheet">
-<th:block
-	th:replace="~{/include/Layout :: setContent(~{:: .notice_outbox})}">
+	<html xmlns:th="http://www.thymeleaf.org">
+		<link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/practice.css}" />
+     	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+
+
+
+<th:block th:replace="~{/include/layout :: setContent(~{:: .notice_outbox})}">
+		
+
 
 
 
@@ -27,10 +26,11 @@
 
 
 				<th:block
-					th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}">
+					th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}" 
+					 th:if="${vo.user_admin} == true">
 
 
-					<div class="leftbox"></div>
+					<div class="leftbox" ></div>
 				</th:block>
 
 				<div class="rightbox">
@@ -105,13 +105,13 @@
 
 						</thead>
 						<tbody>
-							<tr th:each="vo,state: ${list}">
+							<tr th:each="vo,state: ${list}" readonly>
 
 								<td>[[${vo.admin_key}]]</td>
 
 								<td><a
 									th:href="@{/admin/notice_regist(admin_key=${vo.admin_key})}">관리자</a></td>
-								<td>[[${vo.notices_title}]]</td>
+								<td >[[${vo.notices_title}]]</td>
 
 
 								<td>[[${#temporals.format(vo.notices_date,'yyyy-MM-dd')}]]</td>
@@ -142,8 +142,8 @@
 
 					<div class="noticeQna_page3">
 						<a href="notice_regist2" title="Button fade lightblue"
-							class="button btnFade btnLightBlue">등록</a>
-
+							class="button btnFade btnLightBlue" th:if="${vo.user_admin} == true">등록</a>
+	
 
 						<ul class="pagenation">
 

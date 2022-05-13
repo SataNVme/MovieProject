@@ -28,33 +28,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 
-	<select id="List" resultType="adminVO">
-	<![CDATA[
-		SELECT *
-		FROM (SELECT A.*,
-					 @ROWNUM := @ROWNUM + 1 AS RN
-				FROM (SELECT *
-						FROM ADMIN_NOTICES
-						WHERE admin_id = 'admin'
-						]]>
-						<if test="searchType =='title'">
-						and notices_title like CONCAT('%', #{searchName},'%')
-						</if>
-						<if test="searchType =='all'">
-						and (notices_title like CONCAT('%', #{searchName},'%')
-						or
-						notices_content like CONCAT('%', #{searchName},'%'))
-						</if>
-						<if test="searchType == 'content'">
-						and notices_content like CONCAT('%', #{searchName},'%')
-						</if>
+<select id="List" resultType="adminVO">
+   <![CDATA[
+      SELECT *
+      FROM (SELECT A.*,
+                @ROWNUM := @ROWNUM + 1 AS RN
+            FROM (SELECT *
+                  FROM ADMIN_NOTICES
+                  WHERE admin_id = 'admin'
+                  ]]>
+                  <if test="searchType =='title'">
+                  and notices_title like CONCAT('%', #{searchName},'%')
+                  </if>
+                  <if test="searchType =='all'">
+                  and (notices_title like CONCAT('%', #{searchName},'%')
+                  or
+                  notices_content like CONCAT('%', #{searchName},'%'))
+                  </if>
+                  <if test="searchType == 'content'">
+                  and notices_content like CONCAT('%', #{searchName},'%')
+                  </if>
 
-					ORDER BY ADMIN_KEY DESC)A, (SELECT @ROWNUM := 0) D
-		<![CDATA[
-		)B
-		WHERE rn > (#{page}-1) * #{amount} AND rn <= #{page} * #{amount}
-		]]>
-	</select>
+               ORDER BY ADMIN_KEY DESC)A, (SELECT @ROWNUM := 0) D
+      <![CDATA[
+      )B
+      WHERE rn > (#{page}-1) * #{amount} AND rn <= #{page} * #{amount}
+      ]]>
+   </select>
 
 	
 

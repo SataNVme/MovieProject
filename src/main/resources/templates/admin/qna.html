@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
        <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+       <link rel="stylesheet" th:href="@{/css/user_info.css}">
 
-  <th:block th:replace="~{/include/Layout :: setContent(~{:: .qna_outbox})}">
+
+<th:block th:replace="~{/include/layout :: setContent(~{:: .qna_outbox})}">
 
     <div class="qna_outbox">
         <form action="qnaForm" method="post">
@@ -123,7 +125,7 @@
     
     
 </form>
-
+</th:block>
 </body>
 <script th:inline="javascript">
 	(function() {

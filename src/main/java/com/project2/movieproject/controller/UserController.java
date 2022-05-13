@@ -241,9 +241,9 @@ public class UserController {
 		
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 
-		if(userdata.get(0).isUser_auth()) {
-			if(count_id > 0) { //성공
-				if(vo.getUser_password().equals(userdata.get(0).getUser_password())) {
+		if(count_id > 0) {
+			if(vo.getUser_password().equals(userdata.get(0).getUser_password())) { //성공
+				if(userdata.get(0).isUser_auth()) {
 					RA.addFlashAttribute("msg", db_id + "이 정상 로그인");
 					model.addAttribute("vo", userdata);
 					if(userdata.get(0).isUser_admin() == true) {
@@ -251,18 +251,17 @@ public class UserController {
 					}
 					return "redirect:/main";
 				} else {
-
-					RA.addFlashAttribute("msg", "로그인 실패,아이디와 비밀번호를 확인해주세요.");
-					return "redirect:/user/userLogin";
+					model.addAttribute("vo", userdata);
+					RA.addFlashAttribute("msg", "이메일 인증이 되어있지 않습니다. 인증을 진행해주세요.");
+					return "redirect:/user/usermailCheck";
 				}
 			} else { //실패
 				RA.addFlashAttribute("msg", "로그인 실패, 아이디와 비밀번호를 확인하세요.");
 				return "redirect:/user/userLogin";
 			}
 		} else {
-			model.addAttribute("vo", userdata);
-			RA.addFlashAttribute("msg", "이메일 인증이 안되어있습니다. 인증해주세요");
-			return "redirect:/user/usermailCheck";
+			RA.addFlashAttribute("msg", "로그인 실패, 아이디와 비밀번호를 확인하세요.");
+			return "redirect:/user/userLogin";
 		}
 		
 	}
@@ -299,19 +298,40 @@ public class UserController {
     
     @GetMapping("/userFind")
     public String userFind() {
-    	return "user/userLogin";
+    	return "user/userFind";
+    }
+    
+    @PostMapping("/find_id")
+    public String find_id(UserVO vo, RedirectAttributes RA, Model model ) {
+    	String find_name = vo.getUser_name();
+    	String find_email = vo.getUser_email();
+    	
+    	
+    	
+//    	if( ) {
+//			RA.addFlashAttribute("msg", vo.getUser_name() + "로 회원가입된 아이디는 있습니다.");
+//    		return "redirect:/user/find_id";
+//    	}else {
+//			RA.addFlashAttribute("msg", vo.getUser_name() + "로 회원가입된 아이디가 없습니다. 아이디를 다시한번 확인해주세요.");
+//    		return "redirect:/user/find_id";
+//    	}
+    	return "redirect:/user/find_id";
+    }
+    
+    @GetMapping("/find_id")
+    public String find_id2() {
+    	return "user/find_id";
     }
     
     
     @GetMapping("/userInfo")
-    public String userInfo(Model model,Criteria cri) {
-       
-    
+    public String userInfo(Model model,Criteria cri, @ModelAttribute("vo") UserVO vo1) {
     	
       ArrayList<UserVO> userlist = userService.userlist(cri);
       int total =userService.total(cri);
       
       PageVO pageVO = new PageVO(cri,total);
+      model.addAttribute("vo1", vo1);
       model.addAttribute("userlist", userlist);
       model.addAttribute("pageVO",pageVO);
        return "user/userInfo";
@@ -352,4 +372,3 @@ public class UserController {
     
 
 }
- 

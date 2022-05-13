@@ -9,9 +9,6 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,td,form,fieldset,legend,input,t
 	letter-spacing:-1px; 
 	word-spacing:-1px;
 }
-li {
-	list-style:none;
-}
 .adminMovie_movieSearch_title {
 	height:70px; 
 	line-height:70px; 
@@ -44,6 +41,7 @@ li {
 	display: inline-block;
 }
 .adminMovie_movieSearch_content {
+	width: 200px;
 	height:30px; 
 	border:1px solid #d5d5d5; 
 	margin-right:4px;
@@ -81,7 +79,11 @@ li {
 	border-bottom: 1px solid #ededed; 
 	text-align: center; 
 	line-height: 45px; 
-	height: 45px;
+	height: 45px;text-decoration: none;
+}
+.adminMovie_movieList tr td a {
+	text-decoration: none;
+	color: #4588fd;
 }
 
 .adminMovie_moviePage{
@@ -120,4 +122,18 @@ li {
 }
 .adminMovie_moviePage ul li a:hover i{
 	color:#7866c9;
+}
+
+.adminMovie_registBtn {
+	position: absolute; 
+	right: 0px;
+	font-size: 12px; 
+	padding: 0 10px; 
+	border: none; 
+	background-color: #858585; 
+	color: #fff; 
+	height: 30px; 
+	line-height: 30px; 
+	display:inline-block;
+	text-decoration: none;
 }

@@ -1,12 +1,14 @@
  * {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
-body{
-    padding: 0px;
-    font-size: 18px;
- 
-    font-family: 'noto Sans KR',sans-serif;
-    color:rgb(5, 5, 5) ;
-    	
-  
+th{
+display: table-cell;
+vertical-align: inherit;
+color: #222;
+font-weight: 500;
+text-align: center;
+
+border: 1px solid #ededed;
+background-color: #d5d5db;
+
 }
 .title {
   width: 110%;
@@ -25,26 +27,26 @@ body{
 
   width: 1130px;
   height: 800px;
-margin: 0 auto;
+  margin: 0 auto;
+
 }
 .notice_outbox {
   overflow: hidden;
-  
   box-sizing: border-box;
 
   width: 1130px;
-  height: auto;
+  height: 800px;
   margin: 0 auto;
 
-
+	
  
 }
 .rightbox {
   /* overflow: hidden; */
   box-sizing: border-box;
   float: right;
-  width: 880px;
-  margin-top: 25px;
+  width: 915px;
+  margin-top: 10px;
 
 }
 .rightbox1 {
@@ -53,6 +55,7 @@ margin: 0 auto;
   /* float: right; */
   width: 880px;
   margin-top: 25px;
+  margin: 0 auto;
 
 }
 .board_basic_view{
@@ -195,6 +198,22 @@ ul{
 
   
 }
+
+html,
+body{
+    display:block;
+    position: relative;
+    text-decoration:none;
+    width:1130px;
+    height: auto;
+    margin: 0 auto ;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #000;
+}
+
 a.button {
   display: block;
   position: relative;
@@ -202,7 +221,7 @@ a.button {
   width: 50px;
 
   height: 38px;
-  margin: 0px 1px 10px 7px;
+  margin: 0px 34px 10px 7px;
   padding: 0;
   font-weight: 500;
   text-align: center;
@@ -943,7 +962,7 @@ float: right;
   #board-search .search-window .search-wrap {
     position: relative;
 
-    margin: 0 0 0 auto;
+    margin: 0 34px 0 auto;
     width: 100%;
     max-width: 564px;
   }
@@ -993,7 +1012,7 @@ float: right;
   }
   #board1-search .search1-window .search1-wrap input {
     height: 30px;
-    width: 43%;
+    width: 50%;
     float: right;
     margin-right: 0px;
     font-size: 12px;
@@ -1022,7 +1041,11 @@ float: right;
     height: auto;
     
   }
-  
+  .notice_regist_btn1{
+ float:right;
+ 
+  }
+
   
   .board-table {
     font-size: 13px;
@@ -1033,7 +1056,7 @@ float: right;
    margin-bottom: 10px;
    margin-top: 20px;
    margin-left: 20px;
-   padding: 0px 0px 5px;
+
   }
   .notice{
     text-align: center;

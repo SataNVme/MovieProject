@@ -1,19 +1,21 @@
  * {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
 
- body1{
-    padding: 0px;
-    font-size: 18px;
 
-    margin: 0 auto;
-    height: 0 auto;
-
-    margin-top: -20px;
-    font-family: 'noto Sans KR',sans-serif;
-    color:rgb(5, 5, 5) ;
-    padding-top: 25px;
-	
-  
+html,
+body{
+    display:block;
+    position: relative;
+    text-decoration:none;
+    width:1130px;
+    height: auto;
+    margin: 0 auto ;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #000;
 }
+
 .admin_title {
 
   width: 100%;
@@ -841,7 +843,7 @@ background-color: #fff;
   height: 200px;
   float: right;
 
-  top: 25px;  width: 48%;
+  top: 42px;  width: 48%;
  
   position: relative;
   text-align: center;
@@ -856,7 +858,7 @@ background-color: #fff;
   width: 48%;
   float: left;
 
-  top: 25px;
+  top: 42px;
 
 text-align: center;
 background-color: #fff;
