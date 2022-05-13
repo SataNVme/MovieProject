@@ -89,7 +89,7 @@
 								<div class="rank_theme_movie_list_img" th:each="vo, state : ${main_all_all}">
 									<span><strong>[[${state.index + 1}]]</strong></span>
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
-										<img th:src="${vo.movie_iUrl}" width="10%">
+										<img th:src="'https://image.tmdb.org/t/p/w154' + ${vo.movie_iUrl}" width="150px">
 									</a>
 								</div>
 							</li>
