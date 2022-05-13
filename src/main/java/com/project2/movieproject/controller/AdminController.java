@@ -39,9 +39,21 @@ public class AdminController {
 	private UserService userService;
 	//게시판
 	@GetMapping("/adminMain1")
-	public String adminMain1(Model model,@ModelAttribute("vo")UserVO uservo1) {
+	public String adminMain1(Model model,
+							 @ModelAttribute("vo")UserVO uservo1) {
 		
-		ArrayList<UserVO> uservo = userService.userlist1();
+		ArrayList<UserVO> uservo = new ArrayList<>();
+		String month;
+		for ( int i = 0 ; i <= 11 ; i++) {
+			if(i <10) {
+				month = "2022-0"+(i+1)+'%';
+			}else {
+				month = "2022-"+(i+1)+'%';				
+			}
+			
+//			uservo.add(userService.getUserCount(month));
+			System.out.println(uservo.get(i));
+		}
 		model.addAttribute("UserVO", uservo);
 		model.addAttribute("vo", uservo1);
 		return "admin/adminMain1";

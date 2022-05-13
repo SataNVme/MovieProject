@@ -150,5 +150,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by month(user_date)
 		order by month asc;	
 	</select>
+	<select id="getUserCount" resultType="UserVO">
+		select substring(user_date, 1,4) as year, 
+			   substring(user_date,6,2) as month, count(*) as count from user where user_date like #{month};
+
+	</select>
 	
 </mapper>

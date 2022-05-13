@@ -88,4 +88,9 @@ public class UserServiceImpl implements UserService{
 		return userMapper.userlist1();
 	}
 	
+	@Override
+	public UserVO getUserCount(String month) {
+		return userMapper.getUserCount(month);
+	}
+	
 }
