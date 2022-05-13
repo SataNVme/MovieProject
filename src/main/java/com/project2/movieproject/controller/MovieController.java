@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project2.movieproject.command.CommentVO;
+import com.project2.movieproject.command.MovieLikeVO;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.StarRateVO;
 import com.project2.movieproject.command.UserVO;
@@ -75,6 +76,17 @@ public class MovieController {
 		model.addAttribute("checkLogin", checkLogin);
 		
 		//좋아요 여부
+		MovieLikeVO movieLikeVO = new MovieLikeVO();
+		movieLikeVO.setMovie_koficCd(movie_koficCd);
+		movieLikeVO.setUser_id(sessionvo.getUser_id());
+		
+		int movieLike;
+		if(movieService.getMovieLike(movieLikeVO) == null) {
+			movieLike = 0;
+		} else {
+			movieLike = 1;
+		}
+		model.addAttribute("movieLike", movieLike);
 		
 		
 		return "movie/movieDetail";
@@ -141,9 +153,32 @@ public class MovieController {
 		return "redirect:/movie/movieDetail";
 	}
 	
-	@PostMapping("/movieLike")
-	public void movieLike() {
+	@PostMapping("/addMovieLike")
+	public String addMovieLike(@RequestParam ("movie_koficCd") String movie_koficCd,
+							@ModelAttribute("vo") UserVO sessionvo,
+							RedirectAttributes RA) {
 		
+		MovieLikeVO movieLikeVO = new MovieLikeVO();
+		movieLikeVO.setMovie_koficCd(movie_koficCd);
+		movieLikeVO.setUser_id(sessionvo.getUser_id());
+		movieService.addMovieLike(movieLikeVO);
+		RA.addAttribute("movie_koficCd", movie_koficCd);
+		
+		return "redirect:/movie/movieDetail";
+	}
+	
+	@PostMapping("/removeMovieLike")
+	public String removeMovieLike(@RequestParam ("movie_koficCd") String movie_koficCd,
+								@ModelAttribute("vo") UserVO sessionvo,
+								RedirectAttributes RA) {
+		
+		MovieLikeVO movieLikeVO = new MovieLikeVO();
+		movieLikeVO.setMovie_koficCd(movie_koficCd);
+		movieLikeVO.setUser_id(sessionvo.getUser_id());
+		movieService.removeMovieLike(movieLikeVO);
+		RA.addAttribute("movie_koficCd", movie_koficCd);
+		
+		return "redirect:/movie/movieDetail";
 	}
 	
 }

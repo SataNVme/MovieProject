@@ -36,7 +36,27 @@
 							})();
 						</script>
 
-						<p class="md_title">[[${movieVo.movie_nm}]]</p>
+						<span class="md_title">[[${movieVo.movie_nm}]]</span>
+						<th:block th:if="${movieLike != 0}" >
+							<div class="movieLike">
+								<div class="md_container">
+									<form action="removeMovieLike" method="post" class="movieLikeForm">
+										<input name="movie_koficCd" type="hidden" th:value="${movieVo.movie_koficCd}">
+										<button type="submit" class="md_make_heart"></button>
+									</form>
+								</div>
+							</div>
+						</th:block>
+						<th:block th:unless="${movieLike != 0}">
+							<div class="movieLike">
+								<div class="md_container">
+									<form action="addMovieLike" method="post" class="movieLikeForm">
+										<input name="movie_koficCd" type="hidden" th:value="${movieVo.movie_koficCd}">
+										<button type="submit" class="gr_make_heart"></button>
+									</form>
+								</div>
+							</div>
+						</th:block>		
 
 					</div>
 					<div class="summary-bottom">
@@ -63,12 +83,7 @@
 						<div class="Stars" th:style="${'--rating:' + (starRate * 2) }";
 							aria-label="Rating of this product is 2.3 out of 5.">
 						</div>
-						&nbsp; | &nbsp;&nbsp;
-						<div class="md_container">
-							<div class="movieLike">
-									<button type class="make_heart"></button>
-							</div>
-						</div>		
+						
 					</div>
 				</div>
 				<div class="credit">
@@ -89,7 +104,8 @@
 					th:utext="${#strings.replace(movieVo.movie_ov, '. ', '.&lt;br /&gt;')}"
 					class="md_detailcontents"></p>
 			</div>
-
+			
+			<!-- 리뷰 등록 -->
 			<!-- 로그인 했을 경우  -->
 			<th:block th:if="${checkLogin == 1}">
 				<div class="ratingbox">
@@ -107,7 +123,7 @@
 										for="rate5">⭐</label>
 								</fieldset>
 								<input type="hidden" name="movie_koficCd" th:value="${movieVo.movie_koficCd}">
-								<button type="submit">등록</button>
+								<button type="submit" class="starRateBtn">등록</button>
 							</form>
 						</div>
 					</div>
