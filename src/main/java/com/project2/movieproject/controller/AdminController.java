@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,6 +28,7 @@ import com.project2.movieproject.command.qaVO;
 import com.project2.movieproject.user.UserService;
 
 @Controller
+@SessionAttributes("vo")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -37,20 +39,20 @@ public class AdminController {
 	private UserService userService;
 	//게시판
 	@GetMapping("/adminMain1")
-	public String adminMain1(Model model) {
+	public String adminMain1(Model model,@ModelAttribute("vo")UserVO uservo1) {
 		
 		ArrayList<UserVO> uservo = userService.userlist1();
 		model.addAttribute("UserVO", uservo);
-		
+		model.addAttribute("vo1", uservo1);
 		return "admin/adminMain1";
 	}
 
 	//문의사항
 	@GetMapping("/qna")
-	public void qna(Model model) {
+	public void qna(Model model,@ModelAttribute("vo")UserVO uservo) {
 
 		ArrayList<qaVO> qalist = userService.qa_list();
-
+		model.addAttribute("vo1",uservo);
 		model.addAttribute("qalist", qalist);
 	}
 
@@ -63,7 +65,7 @@ public class AdminController {
 
 	@PostMapping("/noticeRegist")//등록(나중에 첨부파일도)
 
-	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model )
+	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model,@ModelAttribute("vo")UserVO uservo1 )
 		 {
 				/*
 				 * for(MultipartFile f:list) { System.out.println(f.isEmpty());
@@ -71,9 +73,9 @@ public class AdminController {
 				 */
 		
 		
+		 System.out.println(vo.toString());
 		 
-		 
-		
+		model.addAttribute("vo1","uservo1");
 		int result = adminService.noticeRegist(vo,list);
 
 		if(result == 1) {
@@ -86,27 +88,37 @@ public class AdminController {
 
 	return"redirect:/admin/notices";
 }
+	
 
 
 	@GetMapping("/notices")//목록
-	public String notices(Model model,Criteria cri) {
+	public String notices(Model model,Criteria cri, @ModelAttribute("vo")UserVO uservo,RedirectAttributes RA) {
 
 		ArrayList<adminVO> list=adminService.List(cri);
 		int total=adminService.total(cri);
 
 
-
 		PageVO pageVO = new PageVO(cri, total);
 
+		model.addAttribute("vo1",uservo);
+		
 		model.addAttribute("list", list); 
 		model.addAttribute("pageVO", pageVO);
+		System.out.println(uservo.toString());
+		
+		if(uservo.getUser_id() == null || uservo.getUser_id() == "") {
+			RA.addFlashAttribute("msg", "로그인을 하셔야 공지사항을 보실수 있습니다.");	
+			return "redirect:/main";
+		
+			
+		}
+		
 		return "admin/notices";
-
 	}
 
 	@GetMapping("/notice_regist")
 	public String notice_regist(@RequestParam("admin_key") int admin_key, 
-			Model model) {
+			Model model,@ModelAttribute("vo")UserVO uservo1) {
 
 		adminVO adminvo = adminService.getcontent(admin_key);
 		model.addAttribute("adminvo", adminvo);
@@ -115,7 +127,7 @@ public class AdminController {
 		model.addAttribute("hit",hit);
 
 		
-		
+		model.addAttribute("vo1" , uservo1);
 		
 
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-	  xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
-	  xmlns="http://www.w3.org/1999/xhtml">
+     xmlns:sec="http://thymeleaf.org/extras/spring-sequrity"
+     xmlns="http://www.w3.org/1999/xhtml">
 <!-- 베이직 레이아웃 -->
 <th:block th:fragment="setContent(content)">
+
 	<head>
 		<meta charset="UTF-8">
 		<title>Document</title>
@@ -22,29 +23,13 @@
 	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
 	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
 	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
-		
-		<!-- searchList -->
-		<link rel="stylesheet" type="text/css" th:href="@{/css/search.css}"/>
-		<!-- qna/notice --> 
-	    <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
-        <link rel="stylesheet" tyhe="text/css" th:href="@{/css/notice.css}">
-   		<!--regist/update  -->
-		<!-- userInfo -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/user_Info.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userLogin.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userPopup.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userQnaRegist.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/userRegist.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/replyPage.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/test.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/commentList.css}">
+	 	
 	</head>
 
-	<body>
-		
-	<!-- 헤더 -->
-	<header class="wrap">	
+   <body>
+      
+   <!-- 헤더 -->
+   <header class="wrap">   
         <div class="header">
             <div class="logo">
                 <ul>
@@ -53,9 +38,10 @@
             </div>
            
             <ul class="pull-right">
-                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userLogin}"><img src="/img/userlogin.jpg">로그인</a></p></li>
-                <li><p sec:authorize="isAnonymous()"><a th:href="@{user/userRegist}"><img src="/img/join.jpg">회원가입</a></p></li>
-                <li><p sec:authorize="isAuthenticated()"><a th:href="@{user/userLogOut}">로그아웃</a></p></li>
+                <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userLogin}" >로그인</a></p></li>
+                <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userRegist}" >회원가입</a></p></li>
+                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >마이페이지</a></p></li>
+                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >로그아웃</a></p></li>
             </ul>
         </div>  
             <div class="nav">
@@ -64,7 +50,7 @@
                         <li><a th:href="@{/movie/movieList(nation=ko)}">국내 영화</a></li>   
                         <li><a th:href="@{/movie/movieList(nation=out)}">해외 영화</a></li>
                     </ul>
-                </div>	
+                </div>   
                 <div class="pull-right">
                     <div th:fragment="searchFragment" class="search-bar">
                         <form id="searchForm" th:action="@{/search/getSearchList}" method="get">	
@@ -84,7 +70,7 @@
                             <input type="hidden" name="searchName" th:value="${spVO.searchCriteria.searchName}" placeholder="검색어를 입력해주세요">
                             <input type="hidden" name="searchType" th:value="${spVO.searchCriteria.searchType}">
                             <button type="button" class="btn btn-default">
-                            	<span class="glyphicon glyphicon-search">검색</span>
+                               <span class="glyphicon glyphicon-search">검색</span>
                             </button>
                         </form> 
                     </div>
@@ -101,7 +87,7 @@
                                 <span>
                                     <a th:href="@{/admin/notices}">공지사항</a>
                                     <a th:href="@{/user/userQnaRegist}">문의사항</a>
-                                </span>		
+                                </span>      
                             </ul>
                         </div>
                     </div>
@@ -118,6 +104,6 @@
                             </p>
                         </div>
                     </div>
-	</body>
+   </body>
 </th:block>
 </html>

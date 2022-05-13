@@ -11,9 +11,9 @@
     color:rgb(5, 5, 5) ;
     padding-top: 25px;
 	boder-box:1px solid #eee;
-  
-}
-.title {
+  	
+ }
+ .title {
   width: 100%;
   height: 100px;
 
@@ -33,7 +33,9 @@
 	box-sizing: border-box;
 	width: 1130px;
 	height:1130px;
+	margin: 0 auto;
 }
+
 
 
 
@@ -59,7 +61,6 @@
   float: right;
   width: 880px;
 
-  border: 1px solid #777;
 
 }
 .qna_outbox {

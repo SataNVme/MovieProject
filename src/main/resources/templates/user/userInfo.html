@@ -1,48 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<th:block
-	th:replace="~{/include/Layout :: setContent(~{:: .userInfo_outbox})}">
-
+<head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/user_info.css}" />
+ <link rel="stylesheet" type="text/css" th:href="@{/css/qnaNnotice.css}" />
+   <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" />
+</head>
 
 	<div class="userInfo_outbox">
 		<form action="userInfo" name="admin_mypage" method="GET">
 			<div class="title">
 				<span class="noselect">회원 관리 페이지</span>
 			</div>
+ <th:block th:replace="~{/include/Layout2 :: setContent(~{:: .userInfo_leftbox})}">
 
 			<div class="userInfo_leftbox">
-				<nav>
-					<ul class="mcd-menu">
-						<li><a href="http://www.naver.com"> <i class="fa fa-home"></i>
-								<strong>메인페이지</strong> <small>Mainpage</small>
-						</a></li>
-						<li><a href="adminMain1"> <i class="fa fa-edit"></i> <strong>게시판</strong>
-								<small>sweet home</small>
-						</a></li>
-						
-						<li><a href="/admin/qna"> <i class="fa fa-gift" id="bpage"></i>
-								<strong>문의사항</strong> <small>sweet home</small>
-						</a></li>
-						<li><a href="notices"> <i class="fa fa-globe" id="bpage1"></i>
-								<strong>공지사항</strong> <small>sweet home</small>
-						</a></li>
-						<li><a href="userInfo"> <i class="fa fa-comments-o"></i>
-								<strong>회원관리</strong> <small>what they say</small>
-						</a></li>
-						<li><a href="movieRegist"> <i class="fa fa-comments-o"></i>
-								<strong>영화등록</strong> <small>what they say</small>
-						</a></li>
-
-
-
-					</ul>
-				</nav>
 			</div>
-			<div class="userInfo_rightbox">
-				<div id="board-search">
-					<div class="search-window">
-						<div class="search-wrap">
+			</th:block>
+			<div class="rightbox">
+				<div id="board-search3">
+					<div class="search-window3">
+						<div class="search-wrap3">
 							<select class="sele1" name="searchType">
 								<option value="all"
 									th:selected="${pageVO.cri.searchType} == 'all'? 'selected'">전체</option>
@@ -72,12 +49,12 @@
 				<div>
 					<table class="board-table">
 						<colgroup>
-							<col style="width: 10%">
+							<col style="width: 5%">
+							<col style="width: 15%">
+							<col style="width: 15%">
 							<col style="width: 20%">
-							<col style="width: 35%">
-							<col style="width: 20%">
 							<col style="width: 10%">
-							<col style="width: 4%">
+							<col style="width: 15%">
 						</colgroup>
 						<thead>
 							<tr>
@@ -89,7 +66,7 @@
 								<th scope="col">가입일</th>
 							</tr>
 						</thead>
-						<tbody th:each="vo, state : ${userlist}">
+						<tbody th:each="vo, state : ${userlist	}">
 							<tr>
 								<td>[[${state.index + 1}]]</td>
 								<td><a
@@ -97,7 +74,8 @@
 								</td>
 								<td>[[${vo.user_phone}]]</td>
 								<td>[[${vo.user_email}]]</td>
-								<td>[[${vo.user_gender}]]</td>
+								<td th:if ="${vo.user_gender} != '2' " >남</td>
+								<td th:unless="${vo.user_gender} != '2'">여</td>
 								<td>[[${#temporals.format(vo.user_date, 'yyyy-MM-dd')}]]</td>
 							</tr>
 						</tbody>
@@ -105,9 +83,6 @@
 				</div>
 
 				<div class="noticeQna_page3">
-					<a href="notice_regist2" title="Button fade lightblue"
-						class="button btnFade btnLightBlue">등록</a>
-
 
 					<ul class="pagenation">
 

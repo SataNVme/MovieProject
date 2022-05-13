@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
+import com.project2.movieproject.command.adminUploadVO;
 import com.project2.movieproject.command.adminVO;
 
 @Service("adminService")
@@ -90,7 +91,12 @@ public class AdminServiceImpl implements AdminService{
 				int result = adminMapper.noticeRegist(vo);
 			
 			return result;
+			
 		}
+		
+		
+		
+		
 
 		@Override
 		public adminVO getcontent(int admin_key) {

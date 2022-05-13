@@ -2,71 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
        <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+       <link rel="stylesheet" th:href="@{/css/user_info.css}">
 
-  <th:block th:replace="~{/include/Layout :: setContent(~{:: .qna_outbox})}">
+	<!-- 경로는 절대 경로 -->
+		<link rel="stylesheet" type="text/css" th:href="@{/css/practice.css}" />
+		<link rel="preconnect" th:href="@{https://fonts.googleapis.com}" />
+		<link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin />
+		<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap}" />
+		<script th:src="@{/js/jquery-3.6.0.js}"></script>
+		<script th:src="@{/js/practice.js}"></script>
+		
+		<!-- admindMain part -->
+     	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+     	
+	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
+		<body>
 
     <div class="qna_outbox">
         <form action="qnaForm" method="post">
         <div class="title"> 
           <span class="noselect">문의 사항</span>
        </div>
+            <th:block th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}">
            
         <div class="leftbox">
-            <nav>
-                <ul class="mcd-menu">
 
-                        <a href="../main">
-
-                            <i class="fa fa-home"></i>
-                            <strong>메인페이지</strong>
-                            <small>Mainpage</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="adminMain1"  >
-                            <i class="fa fa-edit" ></i>
-                            <strong>게시판</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="qna">
-                            <i class="fa fa-gift"id="bpage" ></i>
-                            <strong>문의사항</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notices">
-                            <i class="fa fa-globe" id="bpage1"></i>
-                            <strong>공지사항</strong>
-                            <small>sweet home</small>
-                        </a>
-                    </li>
-                    <li>
-
-                        <a href="/user/userInfo">
-
-                            <i class="fa fa-comments-o"></i>
-                            <strong>회원관리</strong>
-                            <small>what they say</small>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="movieRegist">
-                            <i class="fa fa-comments-o"></i>
-                            <strong>영화등록</strong>
-                            <small>what they say</small>
-                        </a>
-                        
-                    </li>
-                  
-                    
-                   
-                </ul>
-            </nav>
         </div>
+        </th:block>
         <div class="rightbox">
 
             <div id="board1-search">

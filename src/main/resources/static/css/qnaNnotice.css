@@ -5,8 +5,7 @@ body{
  
     font-family: 'noto Sans KR',sans-serif;
     color:rgb(5, 5, 5) ;
-    
-
+    	
   
 }
 .title {
@@ -26,7 +25,7 @@ body{
 
   width: 1130px;
   height: 800px;
-
+margin: 0 auto;
 }
 .notice_outbox {
   overflow: hidden;
@@ -35,7 +34,8 @@ body{
 
   width: 1130px;
   height: auto;
-  
+  margin: 0 auto;
+
 
  
 }
@@ -45,6 +45,15 @@ body{
   float: right;
   width: 880px;
   margin-top: 25px;
+
+}
+.rightbox1 {
+  /* overflow: hidden; */
+  box-sizing: border-box;
+  /* float: right; */
+  width: 880px;
+  margin-top: 25px;
+  margin: 0 auto;
 
 }
 .board_basic_view{
@@ -1014,7 +1023,11 @@ float: right;
     height: auto;
     
   }
-  
+  .notice_regist_btn1{
+ float:right;
+ 
+  }
+
   
   .board-table {
     font-size: 13px;

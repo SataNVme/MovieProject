@@ -2,13 +2,23 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	      <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+     	<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+     	
+	 	<script type="text/javascript" th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
+	 	<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
+		
+	
+     
+	</head>
 
 
 
-
-<th:block
-	th:replace="~{/include/Layout :: setContent(~{:: .admin_outbox})}">
-
+<body>
 
 	
 
@@ -88,14 +98,16 @@
 				
 						</form>
 		</body>
-	</th:block>
+
 	    
 	
 	<!--가입자수  -->
 				<script th:inline="javascript">
-				
+			
+			
 					console.log('[[${UserVO}]]')
 				
+					
 					$(function() {
 						$('#container').highcharts(
 								{
@@ -163,17 +175,20 @@
 											threshold : null
 										}
 									},
+									
 									series : [ {
 										name : '',
 										type : 'area',
 										color : '#4ABDF1',
-										data : [ [[${UserVO[0].count} != null ? ${UserVO[0].count} : 0]],[[${UserVO[1].count}]], [[${UserVO[2].count}]], [[${UserVO[3].count}]], [[${UserVO[4].count}]], [[${UserVO[5].count}]],
+									
+										data : 
+											
+											[ 0 ,0, 0, 0, [[${UserVO[4].count}]], [[${UserVO[5].count}]],
 											[[${UserVO[6].count}]],[[${UserVO[7].count}]], [[${UserVO[8].count}]], [[${UserVO[9].count}]], [[${UserVO[10].count}]],
 											[[${UserVO[11].count}]] ]
 									} ]
 								});
 					});
-
 					/*
 					 매출량*/
 					$(function() {

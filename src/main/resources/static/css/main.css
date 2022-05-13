@@ -86,7 +86,7 @@ body{
     margin-bottom:50px;
 }
 .rank_section span:hover{
-    text-decoration:underline;
+    text-decoration:none;
 }
 .rank_section img{
     transition: transform 0.5s, opacity 0.5s;
@@ -168,7 +168,7 @@ body{
     margin-bottom:50px;
 }
 .rank_movie{
-    margin-top:20px;
+    margin-top:10px;
 }
 .rank_movie_title{
     margin-left:15px;
