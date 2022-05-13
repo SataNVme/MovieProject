@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	
-		
+			<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" />
 	
 
 
@@ -170,20 +170,15 @@
 										name : '',
 										type : 'area',
 										color : '#4ABDF1',
-									/* <c:forEach var="UserVO" items ="${UVO}"> */
-										data : 
-											
-											[ 0 ,0, 0, 0, [[${UserVO[4].count}]], [[${UserVO[5].count}]],
-											[[${UserVO[6].count}]],[[${UserVO[7].count}]], [[${UserVO[8].count}]], [[${UserVO[9].count}]], [[${UserVO[10].count}]],
-											[[${UserVO[11].count}]] ]
-									/* </c:forEach> */
-									} ]
+								
+										data : [ 0 ,0, 0, 0, [[${UserVO[4].count}]], 0,
+											0,0, 0,0, 0,0 ] } ]
 								});
 					});
-					/*
+				/*
 					 매출량*/
-					$(function() {
-					
+				$(function() {
+	
 						$('#container1').highcharts(
 								{
 									title : {

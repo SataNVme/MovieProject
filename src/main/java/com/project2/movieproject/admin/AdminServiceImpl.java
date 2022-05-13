@@ -17,6 +17,7 @@ import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.adminUploadVO;
 import com.project2.movieproject.command.adminVO;
+import com.project2.movieproject.command.multipartFile;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -105,30 +106,42 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 		@Override
-		public int update(adminVO adminvo) {
+		public int update(adminVO adminvo, MultipartFile f) {
 			
-			/*
-			 * String originName = file.getOriginalFilename(); String filename =
-			 * originName.substring(originName.lastIndexOf("\\")+1); String FILEPATH =
-			 * MakeFolder(); String uuid = UUID.randomUUID().toString(); String savename =
-			 * uploadPath + "\\"+ FILEPATH + "\\" +uuid + "_" +filename;
-			 * 
-			 * try {
-			 * 
-			 * file.transferTo(new File(savename));
-			 * 
-			 * } catch (Exception e) { e.printStackTrace(); return 0; }
-			 * 
-			 * adminvo.setFilename(filename); adminvo.setFILEPATH(FILEPATH);
-			 * adminvo.setUuid(uuid);
-			 */
 			
-			return adminMapper.update(adminvo);
+			String originName = f.getOriginalFilename();
+			String filename = originName.substring(originName.lastIndexOf("\\")+1);
+			String FILEPATH = MakeFolder();
+			String uuid = UUID.randomUUID().toString();
+			String savename = uploadPath + "\\"+ FILEPATH + "\\" +uuid + "_" +filename;
+
+			try { 
+				
+				f.transferTo(new File(savename)); 
+
+			} catch (Exception e) {
+				e.printStackTrace(); 
+				return 0; 
+			}
+			
+			adminvo.setFilename(filename);
+			adminvo.setFILEPATH(FILEPATH);
+			adminvo.setUuid(uuid);
+			
+			
+			int result = adminMapper.update(adminvo);
+			
+			
+			
+			return result;
 		}
 
 		@Override
 		public int delete(int admin_user) {
-
+			
+			
+			
+			
 			return adminMapper.delete(admin_user);
 		}
 

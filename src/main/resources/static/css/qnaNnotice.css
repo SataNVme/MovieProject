@@ -968,12 +968,14 @@ float: right;
   }
   #board-search .search-window .search-wrap input {
     height: 30px;
-    width: 50%;
+    width: 48%;
     float: right;
     margin-right: 0px;
     font-size: 12px;
-    padding: 7px 5px;
+    padding: 0 5px;
     border: 0.5px solid #ccc;
+   
+ 
    
    
   }
@@ -988,7 +990,7 @@ float: right;
     position: absolute;
     right:0;
     top: 0px;
-    bottom: 0;
+    bottom: -3px;
     width: 70px;
     padding: 0;
     font-size: 18px;
@@ -1035,8 +1037,8 @@ float: right;
     width: 70px;
     padding: 0;
     font-size: 18px;
-    background-color: rgb(192, 192, 192);
 
+    background-color: rgb(192, 192, 192);
     text-align: center;
     height: auto;
     

@@ -1,6 +1,8 @@
 package com.project2.movieproject.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,7 +65,7 @@ public class AdminController {
 		return "admin/notice_regist2";
 	}
 
-	@PostMapping("/noticeRegist")//등록(나중에 첨부파일도)
+	@PostMapping("/noticeRegist")//등록폼(나중에 첨부파일도)
 
 	public String noticeRegist(adminVO vo, RedirectAttributes RA,@RequestParam("file") MultipartFile list,Model model,@ModelAttribute("vo")UserVO uservo1 )
 		 {
@@ -116,7 +118,7 @@ public class AdminController {
 		return "admin/notices";
 	}
 
-	@GetMapping("/notice_regist")
+	@GetMapping("/notice_regist")//
 	public String notice_regist(@RequestParam("admin_key") int admin_key, 
 			Model model,@ModelAttribute("vo")UserVO uservo1) {
 
@@ -125,52 +127,31 @@ public class AdminController {
 
 		int hit =adminService.hit(adminvo);
 		model.addAttribute("hit",hit);
-
+		
 		
 		model.addAttribute("vo" , uservo1);
 		
-
-
+		
+		
 		return "admin/notice_regist";
 	}
 
+	
+	
+	
 
 	@PostMapping("/noticeUpdate")//게시글 수정하기
-
 	public String noticeUpdate(@Valid adminVO adminvo, 
 			Model model,RedirectAttributes RA,
-			Errors erros) {
-		if(erros.hasErrors()) { //유효성 검사 실패시 true
-
-			List<FieldError> list = erros.getFieldErrors(); //유효성검사 실패 목록확인
-			for(FieldError err : list) {
-				//System.out.println(err.getField()); //유효성 검사 실패 멤버변수
-				//System.out.println(err.getDefaultMessage()); //유효성 검사 실패 메시지
-
-				if(err.isBindingFailure()) { //자바측 에러인 경우
-					model.addAttribute("valid_" + err.getField(), "형식을 확인하세요"); //직접 에러메시지 생성
-				} else { 
-					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage()); //유효성 검사 실패 메시지
-				}
-
-
-			
-			}
-	
-			
+			Errors erros, @RequestParam("file") MultipartFile f) {
 		
-			
 		
-			
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String nowdate = sd.format(new Date());
 		
-			//화면에서는 prodVO이름으로 상세페이지에서 사용되고 있기 때문에, 같은 이름으로 보내서 처리합니다.
-			model.addAttribute("admin", adminvo); 
-			
-			return "product/productDetail"; //유효성; 검사에 실패하면 다시 화면으로
-
-		}
-
-		int result = adminService.update(adminvo);
+		model.addAttribute("nowdate", nowdate);
+		
+		int result = adminService.update(adminvo,f);
 
 		if(result == 1) {
 			RA.addFlashAttribute("msg", "수정이 성공했습니다.");
@@ -181,7 +162,7 @@ public class AdminController {
 		return "redirect:/admin/notices";
 	}
 
-	@PostMapping("/noticeDelete")
+	@PostMapping("/noticeDelete")//삭제
 	public String noticeDelete(@RequestParam("admin_key") int admin_key,
 								RedirectAttributes RA) {
 
