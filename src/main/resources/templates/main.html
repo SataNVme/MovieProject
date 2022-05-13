@@ -18,6 +18,10 @@
 
 		</div>
 		
+		<div class="main_notices">
+			공지사항
+		</div>
+		
 		<div id="rank_container">
 			<section class="rank_section">
 				<div class="row">
@@ -34,11 +38,11 @@
 					</div>
 					<div class="rank_theme_movie_list">
 						<ul id="nation_all_img" class="nation_movie_list view">
-							<li id="genre_all_img" class="genre_movie_list view">
-								<div class="rank_theme_movie_list_img" th:each="vo, state : ${main_all_all}">
+							<li id="genre_all_img" class="genre_movie_list view" th:each="vo, state : ${main_all_all}">
+								<div class="rank_theme_movie_list_img">
 									<span><strong>[[${state.index + 1}]]</strong></span>
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
-										<img th:src="'https://image.tmdb.org/t/p/w154' + ${vo.movie_iUrl}" width="150px">
+										<img th:src="'https://image.tmdb.org/t/p/w154' + ${vo.movie_iUrl}" width="140px" height="210px">
 									</a>
 								</div>
 							</li>
@@ -56,7 +60,7 @@
 						</div>
 						<div class="rank_movie_title">
 							<ul class="rank_movie_list">
-								<li th:each="vo, state : ${main_rankList}" class="rank_theme_menu_list_sub2">
+								<li th:each="vo, state : ${main_all_all}" class="rank_theme_menu_list_sub2">
 									<span>
 										<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
 											<strong>
@@ -78,22 +82,46 @@
 								대여순위
 							</strong>
 							<span style="font-size: 12px; color: gray;">
-								주제별로 분류된 영화 구매순위 모음
+								주제별로 분류된 영화 대여순위 모음
 							</span>
 						</div>
 						<br><br>
 					</div>
 					<div class="rank_theme_movie_list">
 						<ul id="nation_all_img" class="nation_movie_list view">
-							<li id="genre_all_img" class="genre_movie_list view">
-								<div class="rank_theme_movie_list_img" th:each="vo, state : ${main_all_all}">
+							<li id="genre_all_img" class="genre_movie_list view"  th:each="vo, state : ${main_all_all}">
+								<div class="rank_theme_movie_list_img">
 									<span><strong>[[${state.index + 1}]]</strong></span>
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
-										<img th:src="${vo.movie_iUrl}" width="10%">
+										<img th:src="'https://image.tmdb.org/t/p/w154' + ${vo.movie_iUrl}" width="140px" height="210px">
 									</a>
 								</div>
 							</li>
 						</ul>
+					</div>
+				</div>
+			</section>
+			<section class="rank_section2">
+				<div class="row">
+					<div class="rank_movie">
+						<div class="rank_movie_title">
+							<ul id="" class="rank_movie_list">
+								<li class="rank_theme_menu_list_sub">TOP 10</li>
+							</ul>
+						</div>
+						<div class="rank_movie_title">
+							<ul class="rank_movie_list">
+								<li th:each="vo, state : ${main_all_all}" class="rank_theme_menu_list_sub2">
+									<span>
+										<a th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}">
+											<strong>
+												[[${state.index + 1}]]. [[${vo.movie_nm}]]
+											</strong>
+										</a>
+									</span>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -102,14 +130,9 @@
 	
 </th:block>
 
-<script>
+<script th:inline="javascript">
 
-	$(document).ready(function () {
-    	$(".mySlideDiv").eq(0).addClass("active");
-		$(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
 	
-		setInterval(nextSlide, 5000); //4초(4000)마다 다음 슬라이드로 넘어감
-	});
 
    (function() {
       var msg = JSON.parse('[[${msg}]]');
@@ -117,43 +140,13 @@
          alert(msg);
       }
    })();
-
-    var nation_menu = document.querySelector("#nation_menu");
-    var genre_menu = document.querySelector("#genre_menu");
-
-    nation_menu.onclick = function(e) {
-        e.preventDefault();
-        
-        document.querySelectorAll(".nation_list").forEach(function(value, index) {
-            value.classList.remove("select");
-        })        
-        document.querySelectorAll(".nation_movie_list").forEach(function(value, index) {
-            value.classList.remove("view");
-        })
-
-        var idx1 = "#" + e.target.parentElement.id;
-        var idx2 = "#" + e.target.parentElement.id + "_img";
-        document.querySelector(idx1).classList.add("select");
-        document.querySelector(idx2).classList.add("view");
-    }
-
-    genre_menu.onclick = function(e) {
-        e.preventDefault();
-        
-        document.querySelectorAll(".genre_list").forEach(function(value, index) {
-            value.classList.remove("select");
-        })        
-        document.querySelectorAll(".genre_movie_list").forEach(function(value, index) {
-            value.classList.remove("view");
-        })
-
-        var idx1 = "#" + e.target.parentElement.id;
-        var idx2 = "#" + e.target.parentElement.id + "_img";
-        document.querySelector(idx1).classList.add("select");
-        document.querySelectorAll(idx2).forEach(function(value, index) {
-            value.classList.add("view");
-        })
-    }
+   
+   $(document).ready(function () {
+    	$(".mySlideDiv").eq(0).addClass("active");
+		$(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+	
+		setInterval(nextSlide, 5000); //4초(4000)마다 다음 슬라이드로 넘어감
+	});
     
 	//이전 슬라이드
 	function prevSlide() {

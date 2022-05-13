@@ -77,10 +77,18 @@ body{
 }
 
 /**/
+.main_notices{
+	background-color:#fff; 
+	border:1px solid #ededed; 
+	margin-top:10px; 
+	padding-bottom: 10px;
+}
+
+/**/
 .rank_section{
     display:block;
     width:70%;
-    max-height: 400px;
+    max-height: 500px;
     float:left;
     background-color: #fff;
     margin-bottom:50px;
@@ -137,7 +145,7 @@ body{
 }
 .rank_theme_menu_list_sub2 {
     display: block;
-    padding: 13px 0 15px 0;
+    padding: 10px 0 10px 0;
     font-size: 15px;
     font-weight: bold;
     color: #6a6a6a;
@@ -148,6 +156,12 @@ body{
     border-bottom: 1px solid #dae1e6;
     padding-bottom:15px;
     margin-bottom:15px;
+}
+.rank_theme_movie_list ul{
+    list-style:none;
+}
+.rank_theme_movie_list ul li{
+    float: left;
 }
 .rank_theme_movie_list_img{
     margin-top:15px;
@@ -165,7 +179,7 @@ body{
     max-height: 400px;
     float:left;
     background-color: #fff;
-    margin-bottom:50px;
+    margin-top:20px;
 }
 .rank_movie{
     margin-top:10px;
