@@ -48,11 +48,11 @@
             margin-left : -5px;
             align-self : center;
             text-align : center;
-            background-color : #16baff;
+          
             display : inline-block;
             vertical-align : center;
-            font : bold 12px 'arial';
-            color : white;
+            font : 14px 'arial';
+            color : rgb(0, 0, 0);
             border-radius : 5px;
             font-family : 'Montserrat', sans-serif;
             letter-spacing : 2px;
@@ -69,8 +69,7 @@
             vertical-align : center;
         }
         .wrap .header ul li a:hover {
-            background-color : #ff9416;
-        }
+                  }
         .nav {
             top : 0;
             left : 0;
@@ -82,8 +81,8 @@
             clear : both; 
             padding : 10px;
             overflow : hidden;
-            border-top : 1px solid #777;
-            border-bottom : 1px solid #777;
+            border-top : 1px solid #e9e6e6;
+            border-bottom : 1px solid #e9e6e6;
             display : inline-block;
            justify-content : space-between;
         }
@@ -91,21 +90,22 @@
            width : 100%;
             padding : 0;
             display : inline-block;
-            font-size : 10px;
+            font-size : 20px;
             margin : 0 auto;
             top : 0;
             left : 0;
         }
         .nav .pull-left .outer-menu a:hover {
-            background-color: #ff9416;
+          background-color: blue;
+          color:white;          
 }
         .nav .pull-left .outer-menu > li {
             height : 40px;
             display : inline-block;
             width : 100px;
             padding : 10px 0;
-            background : blue;
-            color : white;
+           
+            color :black;
             text-align : center;
             font-size : 12px;
             box-sizing : border-box;
@@ -166,7 +166,7 @@
             box-sizing : border-box;
         }    
         #footer a:visited {
-            color : yellowgreen;
+            color : rgb(0, 0, 0);
         }
         #footer p span strong {
             font-size : 15px;
