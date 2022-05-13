@@ -23,7 +23,7 @@
 							</tr>
 							<tr>
 							<th>조회수</th>
-							<td>[[${adminvo.notices_count}]]</td>
+							<td >[[${adminvo.notices_count}]]</td>
 							</tr>
 							<tr>
 								<th>번호</th>
@@ -36,37 +36,31 @@
 							<tr>
 								<th>아이디</th>
 								<td><input type="text" class="inputw99p" name="admin_id"
-									th:value="${adminvo.admin_id}" readonly>
-									<span  th:unless="${vo1.user_admin} eq true"></span>
-									
-									</td>
+									th:value="${adminvo.admin_id}" readonly></td>
 							</tr>
 							<tr>
 								<th>제목</th>
-								<td colspan="5">
-								<input th:if="${vo1.user_admin} eq true" type="text" class="inputw99p2" name="notices_title" th:value="${adminvo.notices_title}" >
-								<span  th:unless="${vo1.user_admin} eq true">[[${adminvo.notices_title}]]</span>
+								<td colspan="5"><input type="text" class="inputw99p2"
+									name="notices_title" th:value="${adminvo.notices_title}">
+
 								</td>
 
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td colspan="5" >
+								<td colspan="5">
 									<div>
-									
-										<textarea name="notices_content" class="inputw99p1" 
-											style="height: 400px" th:if="${vo1.user_admin} eq true" th:value="${adminvo.notices_content}" >[[${adminvo.notices_content}]]</textarea>
-											<span th:unless="${vo1.user_admin} eq true">[[${adminvo.notices_content}]]</span>
+										<textarea name="notices_content" class="inputw99p1"
+											style="height: 400px">[[${adminvo.notices_content}]]</textarea>
 									</div>
 								</td>
 							</tr>
 								  <tr>
-                    <th th:if="${vo1.user_admin} == true" >첨부파일</th>
-				
+                    <th>첨부파일</th>
 
-                     <td th:each ="list : @{adminvo.filename}" th:if="${vo1.user_admin} == true">
+                     <td th:each ="list : @{adminvo.filename}">
                 
-                      <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}" th:if="${vo1.user_admin} == true">
+                      <input name="filename" type="file" class="file_class" th:value="${adminvo.filename}">
             
 
 						</tbody>
@@ -77,12 +71,9 @@
 				<div class="notice_regist_btn1">
 
 					<a th:href="@{수정JS}" title="Button fade lightblue"
-						th:onclick="|notice_update()|" class="submit" th:if="${vo1.user_admin} == true">
-						
-						수정</a> <a
+						th:onclick="|notice_update()|" class="submit">수정</a> <a
 						th:href="@{수정js}" title="Button fade lightblue"
-						th:onclick="|notice_delete()|" class="submit" th:if="${vo1.user_admin} == true">
-						삭제</a>
+						th:onclick="|notice_delete()|" class="submit">삭제</a>
 				</div>
 
 

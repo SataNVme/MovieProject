@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
 
        <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
-
-  <th:block th:replace="~{/include/Layout :: setContent(~{:: .noticeUpdate_outbox})}"></th:block>
+</head>
+<body>
+ 
 
 
     <div class="noticeUpdate_outbox">
@@ -67,6 +69,7 @@
        
 </form>
     </div>
+    </body>
     <script type="text/javascript">
     function notice_update(){
 		this.event.prenventDefault();

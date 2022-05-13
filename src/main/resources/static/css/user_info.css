@@ -917,21 +917,21 @@ float: right;
   border-color: #373737;
   color: #fff;
 }
-  #board-search .search-window {
+  #board-search3 .search-window3 {
     padding: -20px 0px;
     margin-top: -55px;
     background-color: #ffffff;
   }
-  #board-search .search-window .search-wrap {
+  #board-search3 .search-window3 .search-wrap3 {
     position: relative;
 
     margin: 0 0 0 auto;
     width: 100%;
     max-width: 564px;
   }
-  #board-search .search-window .search-wrap input {
+  #board-search3 .search-window3 .search-wrap3 input {
     height: 30px;
-    width: 50%;
+    width: 46%;
     float: right;
     margin-right: 0px;
     font-size: 12px;
@@ -940,12 +940,12 @@ float: right;
    
    
   }
-  #board-search .search-window .search-wrap input:focus {
+  #board-search3 .search-window3 .search-wrap3 input:focus {
     border-color: #333;
     outline: 0;
     border-width: 1px;
   }
-  #board-search .search-window .search-wrap .btn {
+  #board-search3 .search-window3	 .search-wrap3 .btn {
     position: absolute;
     right:0;
     top: 0px;
