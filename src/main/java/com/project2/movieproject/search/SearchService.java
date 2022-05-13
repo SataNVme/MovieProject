@@ -13,7 +13,5 @@ import com.project2.movieproject.util.SearchCriteria;
 public interface SearchService {
 
 	public List<MovieVO> getSearchList(SearchCriteria searchCriteria);
-	public MovieVO get(String movie_koficCd);
-	public int getTotal();
-
+	public int getTotal(SearchCriteria searchCriteria);
 }

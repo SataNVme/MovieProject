@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="userdata" resultType="UserVO">
     	SELECT * from USER where user_id = #{db_id}
     </select>
-    
+        
     <select id="myqa_read" resultType="qaVO">
     	SELECT * from QA where user_id = #{user_id}
     </select>
@@ -148,8 +148,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		count(month(user_date)) as 'count'
 		from user
 		group by month(user_date)
-		order by month asc;
-	
+		order by month asc;	
 	</select>
 	
 </mapper>
