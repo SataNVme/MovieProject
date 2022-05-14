@@ -86,6 +86,28 @@ public class AdminController {
 			return "admin/qna";
 			
 		}
+	@GetMapping("/searchForm")
+	public String searchTable(Model model, Criteria cri,MovieVO vo){
+		
+		ArrayList<MovieVO> list = adminService.searchTable(cri);
+		int total = adminService.total(cri);
+		PageVO pageVO = new PageVO(cri,total);
+
+		model.addAttribute("list", list);
+	
+		model.addAttribute("pageVO", pageVO);
+		System.out.println(list.toString());
+		System.out.println(pageVO.toString());
+		return "admin/searchlist";
+	}
+	@GetMapping("/searchlist")//search main view
+	public void searchlist(Model model, MovieVO vo) {
+		
+		ArrayList<MovieVO> list = adminService.searchlist();
+
+		model.addAttribute("list",list);
+		model.addAttribute("movieVO", vo);
+	}
 	
 
 	//화면폼
@@ -290,4 +312,9 @@ public class AdminController {
 		}
 		return "redirect:/admin/qna";
 	}
+	@GetMapping("/mapMain")
+	public void mapMain() {
+		
+	
+}
 }

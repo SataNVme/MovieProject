@@ -1,11 +1,11 @@
         ul, li {list-style : none;}
         .pull-left {float : left;}
-        .pull-right {float : right;} 
         a {
             text-decoration : none;
             color : inherit;
             text-align : center; 
         }
+        .pull-right {float : right;} 
        .wrap {
              width : 100%; 
              background-color : white; 
@@ -173,4 +173,7 @@
             display : inline-block;
             margin-left : 0;
             color : black;
+        }
+        .footer_bot .a{
+        float:right;
         }
