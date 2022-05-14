@@ -21,6 +21,36 @@
 					<tr class="commentboardbottom">
 						<td class="commentcontent">[[${vo.comment_com}]]</td>
 					</tr>
+					<tr class="commentboardfoot">
+						<td class="commentLikebox">
+							<th:block th:if="${commentLike != 0}" >
+							<div class="commentLike">
+								<div class="ct_container">
+									<form action="removeCommentLike" method="post" class="commentLikeForm">
+										<input name="comment_key" type="hidden" th:value="${vo.comment_key}">
+										<input name="user_id" type="hidden" th:value="vo.user_id">
+										<button type="submit" class="ct_make_heart"></button>
+									</form>
+								</div>
+							</div>
+						</th:block>
+						<th:block th:unless="${commentLike != 0}">
+							<div class="commentLike">
+								<div class="ct_container">
+									<form action="addCommentLike" method="post" class="commentLikeForm">
+										<input name="comment_key" type="hidden" th:value="${vo.comment_key}">
+										<input name="user_id" type="hidden" th:value="vo.user_id">
+										<button type="submit" class="ct_gr_make_heart"></button>
+									</form>
+								</div>
+							</div>
+						</th:block>
+						<details>
+							<summary class="reComment"><strong>댓글 달기</strong></summary>
+							<p>내용</p>
+						</details>
+						</td>
+					<tr>
 				</table>
 				
 				<!-- 페이지네이션 -->
