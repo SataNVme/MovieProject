@@ -266,7 +266,6 @@ public class UserController {
 		if(count_id > 0) {
 			if(vo.getUser_password().equals(userdata.get(0).getUser_password())) { //성공
 				if(userdata.get(0).isUser_auth()) {
-					RA.addFlashAttribute("msg", db_id + "이 정상 로그인");
 					model.addAttribute("vo", userdata);
 					if(userdata.get(0).isUser_admin() == true) {
 						return "redirect:/admin/adminMain1";

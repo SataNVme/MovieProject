@@ -21,6 +21,7 @@
                   <br>
                   <div id="my" class="xxx yyy">
                      <p>대여 영상 목록</p>
+                     <div class = "scroll_div">
                      <div class="mybox">
                         <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
                         <div class="mypage_left">
@@ -97,8 +98,9 @@
                            </ul>
                         </div>
                      </div>
-                     <div id="mybtn" class="mypage_text-center">
-                        <!-- 부트스트랩의 클래스 -->
+                     </div>
+<!--                      <div id="mybtn" class="mypage_text-center">
+                        부트스트랩의 클래스
                         <ul class="pagination pagination-sm">
                            <li><a href="#">이전</a></li>
                            <li><a href="#">1</a></li>
@@ -108,12 +110,12 @@
                            <li><a href="#">5</a></li>
                            <li><a href="#">다음</a></li>
                         </ul>
-                     </div>
+                     </div> -->
                   </div>
 
                   <div id="buy" class="xxx ">
                      <p>구매 목록</p>
-
+					<div class = "scroll_div">
                      <div class="mybox">
                         <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
                         <div class="mypage_left">
@@ -173,17 +175,6 @@
                            </ul>
                         </div>
                      </div>
-                     <div id="mybtn" class="mypage_text-center">
-                        <!-- 부트스트랩의 클래스 -->
-                        <ul class="pagination pagination-sm">
-                           <li><a href="#">이전</a></li>
-                           <li><a href="#">1</a></li>
-                           <li><a href="#">2</a></li>
-                           <li><a href="#">3</a></li>
-                           <li><a href="#">4</a></li>
-                           <li><a href="#">5</a></li>
-                           <li><a href="#">다음</a></li>
-                        </ul>
                      </div>
                   </div>
 
@@ -192,8 +183,10 @@
                         <input type="checkbox" id="allcheck"> 전체선택
                         <button id="delbtn">선택영화 삭제</button>
                      </div>
+                     <div class="scroll_div">
                      <div class="mybox" th:each="vo, state : ${movie_like}">
-                        <input type="checkbox" class="ckbox"> <a href="##"><img th:src="'https://image.tmdb.org/t/p/w92' + ${movie_like.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
+                        <input type="checkbox" class="ckbox"> <a a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${movie_like.get(state.index).movie_koficcd}}">
+                        <img th:src="'https://image.tmdb.org/t/p/w92' + ${movie_like.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
                         <div class="mypage_left">
                            <ul>
                               <li><a>영화 제목</a></li>
@@ -211,22 +204,11 @@
                            </ul>
                         </div>
                      </div>
-                     <div id="mybtn" class="mypage_text-center">
-                        <!-- 부트스트랩의 클래스 -->
-                        <ul class="pagination pagination-sm">
-                           <li><a href="#">이전</a></li>
-                           <li><a href="#">1</a></li>
-                           <li><a href="#">2</a></li>
-                           <li><a href="#">3</a></li>
-                           <li><a href="#">4</a></li>
-                           <li><a href="#">5</a></li>
-                           <li><a href="#">다음</a></li>
-                        </ul>
                      </div>
                   </div>
 
                   <div id="qna" class="xxx" style="overflow:hidden">
-                     <div>
+                     <div class ="scroll_div">
                         <section class="notice">
                            <div id="board-search">
                               <div class="search-window">
@@ -275,22 +257,10 @@
                            </div>
                         </section>
                      </div>
-                     <div id="mybtn" class="mypage_text-center">
-                        <!-- 부트스트랩의 클래스 -->
-                        <ul class="pagination pagination-sm">
-                           <li><a href="#">이전</a></li>
-                           <li><a href="#">1</a></li>
-                           <li><a href="#">2</a></li>
-                           <li><a href="#">3</a></li>
-                           <li><a href="#">4</a></li>
-                           <li><a href="#">5</a></li>
-                           <li><a href="#">다음</a></li>
-                        </ul>
-                     </div>
                   </div>
 
                   <div id="comment" class="xxx" style="overflow:hidden">
-                     <div>
+                     <div class="">
                         <section class="notice">
                            <div id="board-search">
                               <div class="search-window">
@@ -332,18 +302,6 @@
                            </div>
                         </section>
 
-                     </div>
-                     <div id="mybtn" class="mypage_text-center">
-                        <!-- 부트스트랩의 클래스 -->
-                        <ul class="pagination pagination-sm">
-                           <li><a href="#">이전</a></li>
-                           <li><a href="#">1</a></li>
-                           <li><a href="#">2</a></li>
-                           <li><a href="#">3</a></li>
-                           <li><a href="#">4</a></li>
-                           <li><a href="#">5</a></li>
-                           <li><a href="#">다음</a></li>
-                        </ul>
                      </div>
                   </div>
 
