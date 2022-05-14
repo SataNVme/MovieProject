@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project2.movieproject.command.MovieLikeVO;
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.StarRateVO;
 
@@ -40,6 +41,21 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public Float getStarRate(String movie_koficCd) {
 		return movieMapper.getStarRate(movie_koficCd);
+	}
+	
+	@Override
+	public MovieLikeVO getMovieLike(MovieLikeVO movieLikeVO) {
+		return movieMapper.getMovieLike(movieLikeVO);
+	}
+	
+	@Override
+	public void addMovieLike(MovieLikeVO movieLikeVO) {
+		movieMapper.addMovieLike(movieLikeVO);
+	}
+	
+	@Override
+	public void removeMovieLike(MovieLikeVO movieLikeVO) {
+		movieMapper.removeMovieLike(movieLikeVO);
 	}
 
 }
