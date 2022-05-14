@@ -63,11 +63,15 @@ public class AdminController {
 	
 	//문의사항
 	@GetMapping("/qna")
-	public void qna(Model model,@ModelAttribute("vo")UserVO uservo) {
+	public void qna(Model model,@ModelAttribute("vo")UserVO uservo, Criteria cri) {
+		
+		int total=adminService.total(cri);
 
+		PageVO pageVO = new PageVO(cri, total);
 		ArrayList<qaVO> qalist = userService.qa_list();
 		model.addAttribute("vo",uservo);
 		model.addAttribute("qalist", qalist);
+		model.addAttribute("pageVO", pageVO);
 	}
 
 	//화면폼

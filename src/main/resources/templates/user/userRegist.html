@@ -8,9 +8,13 @@
     <style>
     .id_ok{color: green; display: none;}
 	.id_already{color: red; display: none;}
-    .email_ok{color: green; display: none;}
+    .email_ok{color: rgb(255, 255, 255); display: hidden; font-size:0; height:0px; margin : 0px; padding : 0px;}
 	.email_already{color: red; display: none;}
 	.password_err{color: red;}
+	.password_err_id{color: red;}
+	.password_err_email{color: red;}
+	.password_err_pw{color: red;}
+	.length_check{color: red; display: none;}
 	
     
     </style>
@@ -19,10 +23,12 @@
 	<form method="POST" class="joinForm" action="#" name="user_Regist">
 		<h2>회원가입</h2>
 		<div class="emailForm">
-				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디" style="display:inline; text-align:left" required onblur = "checkId()">
+				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디 (4~8자리)" style="display:inline; text-align:left" required onblur = "checkId()">
 		</div>
 				<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span>
+				<span class="password_err_id">[[${valid_user_id}]]</span>
+				<span class="length_check">4자리 이상 작성해주세요</span>
 		<div class="textForm">
 			<input id="password" name="user_password" type="password" class="pw" placeholder="비밀번호"  required onblur="passwordchk();">
 		</div>
@@ -31,9 +37,11 @@
 				placeholder="비밀번호 확인"  required pattern="#password" onblur="passwordchk();">
 		</div>
 				<span class="password_err" id="confirmMsg">비밀번호를 일치시켜주세요.</span>
+				<span class="password_err_pw">[[${valid_user_password}]]</span>
 		<div class="textForm">
 			<input name="user_name" id="name" type="text" class="name" placeholder="이름"  required >
 		</div>
+				<span class="password_err">[[${valid_user_name}]]</span>
 <!-- 		<div class="emailForm">
 				<input name="email_check" id="email_check" type="text" class="email" placeholder="이메일 인증" style="display: inline; text-align: left">
 				<button class="button" onclick="emailCheck();">인증번호 확인</button>
@@ -43,16 +51,19 @@
 			<input name="user_phone" type="text" class="cellphoneNo"
 				placeholder="전화번호 (010-1234-5678)"  required pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 		</div>
+				<span class="password_err">[[${valid_user_phone}]]</span>
 		
 		<div class="textForm">
 			<small style="float:left; padding-bottom:5px;">생년월일</small>
 			<input name="user_birth" type="date" class="birth"  required>
 		</div>
+				<span class="valid_err">[[${valid_user_birth}]]</span>
 		<div class="emailForm">
 				<input name="user_email" id="myemail" type="email" class="email" placeholder="이메일"  style="display:inline; text-align:left" required onblur = "checkEmail()" >
 		</div>
 				<span class="email_ok">사용 가능한 이메일입니다.</span>
 				<span class="email_already">누군가 이메일을 사용하고 있어요.</span>
+				<span class="password_err_email">[[${valid_user_email}]]</span>
 		<div class="logingender">
 			<a>성별&nbsp;&nbsp;&nbsp;</a>
 			<input type="checkbox" name="user_gender" id="chk1"  value="1"
@@ -60,6 +71,8 @@
 			<input type="checkbox"
 				name="user_gender" id="chk2" value="2"  onClick="example_2();">여성
 		</div>
+		
+				<span class="password_err">[[${valid_user_gender}]]</span>
 		<br>
 		
 		
@@ -81,6 +94,7 @@
    
    if(password.value != passwordConfirm.value) {
       confirmMsg.style.display = "inline-block";
+      $('.password_err_pw').css("display", "none");
    } else {
       confirmMsg.style.display = "none";
    }
@@ -96,11 +110,12 @@
       }
    }
    
+   
 
    function user_reg() {
       this.event.preventDefault();
       document.user_Regist.action = "RegistForm";
-      if ($(".id_ok").css("display") == "inline-block" && $(".email_ok").css("display") == "inline-block") {
+      if ($(".id_ok").css("display") == "inline-block" && $(".email_already").css("display") == "none") {
          if (password.value == passwordConfirm.value) {
             document.user_Regist.submit();
          } else {
@@ -154,9 +169,9 @@
       }
    };
    
-
    function checkId() {
       var id = $('#myid').val();
+      var id_length = $('#myid').val().length;
       $.ajax({
          url : '/user/idCheck',
          type : 'post',
@@ -164,13 +179,23 @@
             id : id
          },
          success : function(cnt) {//컨트롤러에서 넘어온 cnt값을 받는다 
-            if (cnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+         
+         	if (id_length > 3) {
+         		if (cnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
                $('.id_ok').css("display", "inline-block");
                $('.id_already').css("display", "none");
+               $('.password_err_id').css("display", "none");
             } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
                $('.id_already').css("display", "inline-block");
                $('.id_ok').css("display", "none");
+               $('.password_err_id').css("display", "none");
             }
+         	} else {
+                $('.id_ok').css("display", "none");
+                $('.password_err_id').css("display", "none");
+                $('.id_already').css("display", "none");
+                $('length_check').css("display", "inline-block");
+         	}
          },
          error : function() {
             alert("에러입니다");
@@ -190,9 +215,11 @@
 	            if (emailcnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
 	               $('.email_ok').css("display", "inline-block");
 	               $('.email_already').css("display", "none");
+	               $('.password_err_email').css("display", "none");
 	            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
 	               $('.email_already').css("display", "inline-block");
 	               $('.email_ok').css("display", "none");
+	               $('.password_err_email').css("display", "none");
 	            }
 	         },
 	         error : function() {

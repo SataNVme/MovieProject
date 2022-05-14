@@ -36,14 +36,15 @@
                 <a th:href="@{/main}"><img src="/img/logo.png" alt="logo"></a>
                 </ul>    
             </div>
-           
+           <form method="POST" action="user_logout" name="user_logout">
             <ul class="pull-right">
                 <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userLogin}" >로그인</a></p></li>
                 <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userRegist}" >회원가입</a></p></li>
                 <li th:if = "${vo.getUser_id()} != null and ${vo.user_admin} != true"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userMypage}" >마이페이지</a></p></li>
                 <li th:if = "${vo.getUser_id()} != null and ${vo.user_admin} == true"><p sec:authorize="isAuthenticated()"><a th:href="@{/admin/adminMain1}" >관리자페이지</a></p></li>
-                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >로그아웃</a></p></li>
+                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><p><a href="" id="user_logout_a">로그아웃</a></p></li>
             </ul>
+            </form>
         </div>  
             <div class="nav">
                 <div class="pull-left">
@@ -105,6 +106,14 @@
                             </p>
                         </div>
                     </div>
-   </body>
-</th:block>
+		</footer>
+		</body>
+<script th:inline="javascript">
+var user_logout_a = document.getElementById("user_logout_a");
+
+user_logout_a.onclick = function() {
+	event.preventDefault();
+	document.user_logout.submit();
+}
+</script>
 </html>

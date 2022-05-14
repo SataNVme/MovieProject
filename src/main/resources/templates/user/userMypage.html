@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" th:href="@{/css/userMypage.css}" />
+<style>
+</style>
 
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .userMypage} ) }">
    <div class="userMypage">
@@ -184,10 +186,10 @@
                         <button id="delbtn">선택영화 삭제</button>
                      </div>
                      <div class="scroll_div">
-                     <div class="mybox" th:each="vo, state : ${movie_like}">
-                        <input type="checkbox" class="ckbox"> <a a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${movie_like.get(state.index).movie_koficcd}}">
+                     <div class="mybox" id="if_data_null" th:each="vo, state : ${movie_like}">
+                        <input type="checkbox" class="ckbox" id="if_data_null"> <a a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${movie_like.get(state.index).movie_koficcd}}">
                         <img th:src="'https://image.tmdb.org/t/p/w92' + ${movie_like.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
-                        <div class="mypage_left">
+                        <div class="mypage_left" id="if_data_null">
                            <ul>
                               <li><a>영화 제목</a></li>
                               <li><a>구매/대여 여부</a></li>
@@ -196,7 +198,7 @@
 
                         </div>
 
-                        <div class="mypage_right">
+                        <div class="mypage_right" id="if_data_null">
                            <ul>
                               <li><a>[[${movie_like.get(state.index).movie_nm}]]</a></li>
                               <li><a>구매/대여DB</a></li>
@@ -232,7 +234,6 @@
                                           <th scope="col" class="th-title">제목</th>
                                           <th scope="col" class="th-writer">글쓴이</th>
                                           <th scope="col" class="th-date">등록일</th>
-                                          <th scope="col" class="th-count">조회</th>
                                        </tr>
                                     </thead>
                                     <tbody class="mypage_tbody">
@@ -242,7 +243,6 @@
                                           </th>
                                           <td>[[${myqalist.get(state.index).user_id}]]</td>
                                           <td>[[${#temporals.format(myqalist.get(state.index).qa_date, 'yyyy-MM-dd')}]]</td>
-                                          <td>숫자</td>
                                        </tr>
                                     </tbody>
                                  </table>
@@ -260,7 +260,7 @@
                   </div>
 
                   <div id="comment" class="xxx" style="overflow:hidden">
-                     <div class="">
+                     <div class="scroll_div">
                         <section class="notice">
                            <div id="board-search">
                               <div class="search-window">
@@ -387,12 +387,19 @@
 
    var mytab = document.querySelector(".mytab");
    var mytabli = document.getElementsByClassName("mylisttab");
-   var btn = document.getElementById("mybtn");
+/*    var btn = document.getElementById("mybtn"); */
    var delbtn = document.getElementById("delbtn");
    var checkboxes = document.getElementsByClassName("ckbox");
    var allcheck = document.getElementById("allcheck");
    var pass_count = document.getElementById("user_password_count");
    var gender = document.getElementById("user_gender_inner");
+   var data = JSON.parse('[[${movie_like}]]');
+   
+   if(data[0].movie_nm == null) {
+	   $('#if_data_null').css("display", "none");
+   }
+   
+   console.log(data[0].movie_nm);
 
    (function() {
 	      var msg = JSON.parse('[[${msg}]]');
@@ -416,6 +423,8 @@
 	  		   }
 	      ;
 	   })();
+   
+   
    
    if(gender.innerHTML == "성별:1") {
 	   gender.innerHTML = "성별: 남성";
@@ -459,11 +468,11 @@
       var idx2 = "#" + e.target.parentElement.id;
       document.querySelector(idx2).classList.add("now");
 
-      if (idx == "#mynotice") {
+/*       if (idx == "#mynotice") {
          btn.style.display = "none";
       } else {
          btn.style.display = "block"
-      }
+      } */
 
       if (idx == "#favorite") {
          delbtn.style.display = "inline-block";
