@@ -82,7 +82,6 @@ public class MovieController {
 		
 		//좋아요 추가/제거
 		int movieLike;
-		String loginMsg;
 		if(movieService.getMovieLike(movieLikeVO) == null) {
 			movieLike = 0;
 		} else {
@@ -165,8 +164,8 @@ public class MovieController {
 		String movieLikeMsg;
 		if(sessionvo.getUser_id() == null) {
 			movieLikeMsg = "로그인이 필요합니다";
-			RA.addAttribute("movieLikeMsg", movieLikeMsg);
-			return "/user/userLogin";
+			RA.addFlashAttribute("movieLikeMsg", movieLikeMsg);
+			return "redirect:/user/userLogin";
 		} else {
 			movieLikeVO.setUser_id(sessionvo.getUser_id());
 			movieService.addMovieLike(movieLikeVO);
