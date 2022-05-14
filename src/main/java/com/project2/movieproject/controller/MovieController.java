@@ -75,19 +75,20 @@ public class MovieController {
 		}
 		model.addAttribute("checkLogin", checkLogin);
 		
-		//좋아요 여부
+		//좋아요 여부 체크
 		MovieLikeVO movieLikeVO = new MovieLikeVO();
 		movieLikeVO.setMovie_koficCd(movie_koficCd);
 		movieLikeVO.setUser_id(sessionvo.getUser_id());
 		
+		//좋아요 추가/제거
 		int movieLike;
+		String loginMsg;
 		if(movieService.getMovieLike(movieLikeVO) == null) {
 			movieLike = 0;
 		} else {
 			movieLike = 1;
 		}
 		model.addAttribute("movieLike", movieLike);
-		
 		
 		return "movie/movieDetail";
 		
@@ -160,11 +161,23 @@ public class MovieController {
 		
 		MovieLikeVO movieLikeVO = new MovieLikeVO();
 		movieLikeVO.setMovie_koficCd(movie_koficCd);
-		movieLikeVO.setUser_id(sessionvo.getUser_id());
-		movieService.addMovieLike(movieLikeVO);
-		RA.addAttribute("movie_koficCd", movie_koficCd);
 		
-		return "redirect:/movie/movieDetail";
+		String movieLikeMsg;
+		if(sessionvo.getUser_id() == null) {
+			movieLikeMsg = "로그인이 필요합니다";
+			RA.addAttribute("movieLikeMsg", movieLikeMsg);
+			return "/user/userLogin";
+		} else {
+			movieLikeVO.setUser_id(sessionvo.getUser_id());
+			movieService.addMovieLike(movieLikeVO);
+			
+			movieLikeMsg = "관심 영화를 등록했습니다";
+			RA.addFlashAttribute("movieLikeMsg", movieLikeMsg);
+			
+			RA.addAttribute("movie_koficCd", movie_koficCd);
+			
+			return "redirect:/movie/movieDetail";
+		}
 	}
 	
 	@PostMapping("/removeMovieLike")
@@ -176,8 +189,9 @@ public class MovieController {
 		movieLikeVO.setMovie_koficCd(movie_koficCd);
 		movieLikeVO.setUser_id(sessionvo.getUser_id());
 		movieService.removeMovieLike(movieLikeVO);
-		RA.addAttribute("movie_koficCd", movie_koficCd);
 		
+		RA.addAttribute("movie_koficCd", movie_koficCd);
+			
 		return "redirect:/movie/movieDetail";
 	}
 	

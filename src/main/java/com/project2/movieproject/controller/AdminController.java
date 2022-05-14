@@ -53,7 +53,7 @@ public class AdminController {
 				month = "2022-"+(i+1)+'%';				
 			}
 			
-//			uservo.add(userService.getUserCount(month));
+			uservo.add(userService.getUserCount(month));
 			System.out.println(uservo.get(i));
 		}
 		model.addAttribute("UserVO", uservo);

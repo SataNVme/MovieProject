@@ -50,6 +50,7 @@
 						<th:block th:unless="${movieLike != 0}">
 							<div class="movieLike">
 								<div class="md_container">
+								
 									<form action="addMovieLike" method="post" class="movieLikeForm">
 										<input name="movie_koficCd" type="hidden" th:value="${movieVo.movie_koficCd}">
 										<button type="submit" class="gr_make_heart"></button>
@@ -168,6 +169,12 @@
 						document.getElementById('the_iframe').style.overflow = "hidden";
 					}
 					//
+					(function() {
+						var movieLikeMsg = JSON.parse('[[${movieLikeMsg}]]');
+						if(movieLikeMsg != null) {			
+							alert(movieLikeMsg);
+						}
+					})();
 				</script>
 			<div class="commentbox">
 				<iframe id="the_iframe" onload="calcHeight();" name="" title=""
