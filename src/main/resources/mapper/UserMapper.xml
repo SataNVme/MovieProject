@@ -66,6 +66,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT * from QA
     </select>
     
+       
+    <select id="qa_table" resultType="qaVO">
+    	 <![CDATA[
+      SELECT *
+      FROM (SELECT A.*,
+                @ROWNUM := @ROWNUM + 1 AS RN
+            FROM (SELECT *
+                  FROM qa
+                  where 
+                  ]]>
+                  <if test="searchType == 'all'">
+                  user_id like CONCAT('%', #{searchName},'%') 
+                  or qa_title like CONCAT('%', #{searchName},'%')
+                  or qa_content like CONCAT('%', #{searchName},'%')
+                  
+                 
+                  </if>
+               
+                  <if test="searchType == 'title'">
+                  qa_title like CONCAT('%', #{searchName},'%')
+                  </if>
+                  <if test="searchType == 'titcont'">
+                  qa_title like CONCAT('%', #{searchName},'%')
+                  or qa_content like CONCAT('%', #{searchName},'%')
+                  </if>
+                   <if test="searchType == 'titnick'">
+                   qa_title like CONCAT('%', #{searchName},'%')
+                  or qa_content like CONCAT('%', #{searchName},'%')
+                  </if>
+
+               ORDER BY qa_date DESC)A, (SELECT @ROWNUM := 0) D
+      <![CDATA[
+      )B
+      WHERE rn > (#{page}-1) * #{amount} AND rn <= #{page} * #{amount}
+      ]]>
+    </select>
+    
+    
+    
     <select id="FindId" resultType="int">
         SELECT COUNT(*) AS CNT FROM USER WHERE user_name = #{user_name} and user_email = #{user_email}
     </select>
