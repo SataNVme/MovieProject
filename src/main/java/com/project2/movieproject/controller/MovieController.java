@@ -2,6 +2,8 @@ package com.project2.movieproject.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project2.movieproject.command.BuyVO;
 import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.MovieVO;
+import com.project2.movieproject.command.RentVO;
 import com.project2.movieproject.command.StarRateVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.comment.CommentService;
+import com.project2.movieproject.main.MainService;
 import com.project2.movieproject.movieDetail.MovieService;
 
 @Controller
@@ -29,6 +34,10 @@ public class MovieController {
 	@Autowired
 	@Qualifier("movieService")
 	private MovieService movieService;
+	
+	@Autowired
+	@Qualifier("mainService")
+	private MainService mainService;
 
 	@GetMapping("/movieComment")
 	public void movieComment() {
@@ -143,4 +152,60 @@ public class MovieController {
 		
 	}
 	
+	@GetMapping("/movieBuy")
+	public String movieBuy(@RequestParam("movie_koficCd") String movie_koficCd, 
+			  				Model model,
+			  				@ModelAttribute("vo") UserVO sessionvo,
+			  				RedirectAttributes RA) {
+		MovieVO movieVO = mainService.getMovie(movie_koficCd);
+		
+		model.addAttribute("movieVO", movieVO);
+		
+		if(sessionvo.getUser_id() != null) {
+			model.addAttribute("sessionvo", sessionvo);
+			return "movie/movieBuy";
+		} else {
+			RA.addFlashAttribute("msg", "로그인 후 이용해주세요" );
+			return "redirect:/movie/movieDetail?movie_koficCd="+movie_koficCd;
+		}
+	}
+	
+	@PostMapping("moviePurchase")
+	public String moviePurchase(@RequestParam("movie_koficCd") String movie_koficCd,
+								BuyVO buyVO,
+								RedirectAttributes RA) {
+		
+		int cnt = mainService.searchBuy(buyVO);
+		if(cnt == 0) {
+			int result = mainService.getBuy(buyVO);
+			
+			if(result == 1) { //성공
+				RA.addFlashAttribute("msg", "정상 구매되었습니다" );
+			} else { //실패
+				RA.addFlashAttribute("msg", "구매실패, 관리자에게 문의하세요");
+			}
+		} else {
+			RA.addFlashAttribute("msg", "이미 구매하신 상품입니다");
+		}
+		
+		return "redirect:/movie/movieDetail?movie_koficCd="+movie_koficCd;
+	}
+	
+	@GetMapping("/movieRent")
+	public String movieRent(@RequestParam("movie_koficCd") String movie_koficCd, 
+			  				Model model,
+			  				@ModelAttribute("vo") UserVO sessionvo,
+			  				HttpServletRequest request) {
+		String prevurl = request.getHeader("referer");
+		MovieVO movieVO = mainService.getMovie(movie_koficCd);
+		
+		model.addAttribute("movieVO", movieVO);
+		model.addAttribute("prevurl", prevurl);
+		
+		if(sessionvo.getUser_id() != null) {
+			model.addAttribute("sessionvo", sessionvo);
+		}
+		
+		return "movie/movieRent";
+	}	
 }
