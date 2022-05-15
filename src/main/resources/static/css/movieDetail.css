@@ -29,6 +29,7 @@
     float: left;
 }
 .summary-top {
+	display:flex;
     width: 100%;
     height: 50px;
     box-sizing: border-box;
@@ -137,6 +138,14 @@
 	float: left;
 	margin-top: 10px;
 }
+.starRateBtn{
+	background-color: black;
+	width: 50px;
+	height:24px;
+	font-size: 12px;
+	color: white;
+	border-radius: 3px;
+}
 .ratingtitle {
 	width: 100%;
 	height: auto;
@@ -189,31 +198,59 @@
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	}
-.md_container {
-}
-.make_heart {
-	margin-top: 8px;
-    width: 8px;
-    height: 8px;
+.movieLike{ 
+	margin-left: 15px;
+	margin-top: 5px;
+	}
+.md_make_heart {
+	line-height:15px;
+	border: 0px;
+	padding: 0px;
+    width: 15px;
+    height: 15px;
     background: #a00;
     position: relative; /*부모*/
-    transform: rotate(45deg); /*회전*/
+    transform: rotate(225deg);
 }
-.make_heart:before, .make_heart:after {
+.md_make_heart:before, .md_make_heart:after {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 15px;
+    height: 15px;
     position: absolute; /*자식*/
     border-radius: 50%; /*둥글게*/
     background: #a00;
-    /* border: 1px solid blue; 테두리 확인 */
 }
-.make_heart:before {
-	left: -50%; /*왼쪽으로 -50%*/
+.md_make_heart:before {
+	left: 0%; 
 }
-.make_heart:after {
-	top: -50%; /*위쪽으로 -50%*/ 
+.md_make_heart:after {
+	top: 0%;
 }
+.gr_make_heart {
+	line-height:15px;
+	border: 0px;
+	padding: 0px;
+    width: 15px;
+    height: 15px;
+    background: #d1d1d1;
+    position: relative; /*부모*/
+    transform: rotate(225deg);
+}
+.gr_make_heart:before, .gr_make_heart:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute; /*자식*/
+    border-radius: 50%; /*둥글게*/
+    background: #d1d1d1;
+}
+.gr_make_heart:before {
+	left: 0%; 
+}
+.gr_make_heart:after {
+	top: 0%;
+}
+
 .checkLogin {
 	width: 1130px;
 	height: 100px;

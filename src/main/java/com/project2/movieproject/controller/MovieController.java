@@ -82,7 +82,6 @@ public class MovieController {
 		
 		//좋아요 추가/제거
 		int movieLike;
-		String loginMsg;
 		if(movieService.getMovieLike(movieLikeVO) == null) {
 			movieLike = 0;
 		} else {
@@ -98,31 +97,31 @@ public class MovieController {
 	public String movieList(@RequestParam("nation") String nation,
 							Model model) {
 		
-		String movie_gr;
+		String genre;
 		if(nation.equals("ko")) {
-			movie_gr = "action";
-			ArrayList<MovieVO> actionList = movieService.getList_ko("action");
+			genre = "action";
+			ArrayList<MovieVO> actionList = movieService.getList_ko(genre);
 			model.addAttribute("actionList", actionList);
 			
-			movie_gr = "thriller";
+			genre = "thriller";
 			ArrayList<MovieVO> thrillerList = movieService.getList_ko("thriller");
 			model.addAttribute("thrillerList", thrillerList);
 			
-			movie_gr = "drama";
+			genre = "drama";
 			ArrayList<MovieVO> dramaList = movieService.getList_ko("drama");
 			model.addAttribute("dramaList", dramaList);
 			
 		} else if(nation.equals("out")){
 			
-			movie_gr = "action";
+			genre = "action";
 			ArrayList<MovieVO> actionList = movieService.getList_out("action");
 			model.addAttribute("actionList", actionList);
 			
-			movie_gr = "thriller";
+			genre = "thriller";
 			ArrayList<MovieVO> thrillerList = movieService.getList_out("thriller");
 			model.addAttribute("thrillerList", thrillerList);
 			
-			movie_gr = "drama";
+			genre = "drama";
 			ArrayList<MovieVO> dramaList = movieService.getList_out("drama");
 			model.addAttribute("dramaList", dramaList);
 			
@@ -165,8 +164,8 @@ public class MovieController {
 		String movieLikeMsg;
 		if(sessionvo.getUser_id() == null) {
 			movieLikeMsg = "로그인이 필요합니다";
-			RA.addAttribute("movieLikeMsg", movieLikeMsg);
-			return "/user/userLogin";
+			RA.addFlashAttribute("movieLikeMsg", movieLikeMsg);
+			return "redirect:/user/userLogin";
 		} else {
 			movieLikeVO.setUser_id(sessionvo.getUser_id());
 			movieService.addMovieLike(movieLikeVO);

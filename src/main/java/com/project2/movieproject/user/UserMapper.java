@@ -36,3 +36,4 @@ public interface UserMapper {
 	
 	public ArrayList<qaVO> qa_table(Criteria cri);
 }
+

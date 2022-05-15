@@ -163,4 +163,17 @@ public class AdminServiceImpl implements AdminService{
 			return adminMapper.total(cri);
 		}
 
+		@Override
+		public ArrayList<MovieVO> searchTable(Criteria cri) {
+			// TODO Auto-generated method stub
+			return adminMapper.searchTable(cri);
+		}
+
+		@Override
+		public ArrayList<MovieVO> searchlist() {
+			// TODO Auto-generated method stub
+			return adminMapper.searchlist();
+		}
+
 }
+
