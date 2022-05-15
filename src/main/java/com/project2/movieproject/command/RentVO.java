@@ -16,6 +16,6 @@ public class RentVO {
 	private String user_id;
 	private String movie_koficCd;
 	private LocalDateTime rent_startdate;
-	private String rent_endDate;
+	private LocalDateTime rent_endDate;
 	private String rent_status;
 }

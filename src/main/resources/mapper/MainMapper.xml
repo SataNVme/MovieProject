@@ -135,4 +135,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO BUY(USER_ID, MOVIE_KOFICCD) VALUES(#{user_id}, #{movie_koficCd})
 	</insert>
 	
+	<select id="searchRent" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM RENT
+		WHERE USER_ID=#{user_id} AND MOVIE_KOFICCD=#{movie_koficCd} AND RENT_STATUS=0
+	</select>
+	
+	<insert id="getRent">
+		INSERT INTO RENT(USER_ID, MOVIE_KOFICCD, RENT_ENDDATE) VALUES(#{user_id}, #{movie_koficCd}, DATE_ADD(NOW(), INTERVAL 1 DAY)
+	</insert>
+	
 </mapper>

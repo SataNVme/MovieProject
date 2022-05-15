@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project2.movieproject.command.BuyVO;
 import com.project2.movieproject.command.MovieVO;
+import com.project2.movieproject.command.RentVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.adminVO;
 
@@ -60,5 +61,15 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int getBuy(BuyVO buyVO) {
 		return mainMapper.getBuy(buyVO);
+	}
+
+	@Override
+	public int searchRent(RentVO rentVO) {
+		return mainMapper.searchRent(rentVO);
+	}
+
+	@Override
+	public int getRent(RentVO rentVO) {
+		return mainMapper.getRent(rentVO);
 	}
 }

@@ -24,4 +24,6 @@ public interface MainMapper {
 	public MovieVO getMovie(String movie_koficCd);
 	public int searchBuy(BuyVO buyVO);
 	public int getBuy(BuyVO buyVO);
+	public int searchRent(RentVO rentVO);
+	public int getRent(RentVO rentVO);
 }

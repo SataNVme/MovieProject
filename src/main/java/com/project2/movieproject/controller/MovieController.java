@@ -208,4 +208,25 @@ public class MovieController {
 		
 		return "movie/movieRent";
 	}	
+	
+	@PostMapping("rental")
+	public String rental(@RequestParam("movie_koficCd") String movie_koficCd,
+								RentVO rentVO,
+								RedirectAttributes RA) {
+		
+		int cnt = mainService.searchRent(rentVO);
+		if(cnt == 0) {
+			int result = mainService.getRent(rentVO);
+			
+			if(result == 1) { //성공
+				RA.addFlashAttribute("msg", "정상 구매되었습니다" );
+			} else { //실패
+				RA.addFlashAttribute("msg", "구매실패, 관리자에게 문의하세요");
+			}
+		} else {
+			RA.addFlashAttribute("msg", "이미 구매하신 상품입니다");
+		}
+		
+		return "redirect:/movie/movieDetail?movie_koficCd="+movie_koficCd;
+	}
 }
