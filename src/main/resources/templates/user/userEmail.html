@@ -34,6 +34,7 @@
                                         placeholder="새로운 이메일"></label></div>
                         </div>
                     </li>
+						<span style="color: red;">[[${valid_user_newemail}]]</span>
                     <li data-uia="field-confirmNewPassword+wrapper" class="nfFormSpace">
                         <div data-uia="field-confirmNewPassword+container" class="nfInput">
                             <div class="nfInputPlacement"><label class="input_id"
@@ -41,17 +42,12 @@
                                         data-uia="field-confirmNewPassword" name="confirmNewPassword"
                                         class="nfTextField" id="new_emailchk" value="" tabindex="0"
                                         autocomplete="off" maxlength="60" minlength="6" dir=""
-                                        placeholder="새로운 이메일 다시적기"></label></div>
-                                    <div id="" class="inputCaption" data-uia=""><a data-ui="action_forgot_password"
-                                    href="/loginhelp">이메일 인증하기 </a></div>
+                                        placeholder="새로운 이메일 확인"></label></div>
                         </div>
                     </li>
                     <li data-uia="field-requireAllDevicesSignIn+wrapper" class="nfFormSpace">
-                        <div class="ui-binary-input"><input type="checkbox" class="" name="requireAllDevicesSignIn"
-                                id="cb_requireAllDevicesSignIn" value="true" tabindex="0" checked=""
-                                data-uia="field-requireAllDevicesSignIn"><label for="cb_requireAllDevicesSignIn"
-                                data-uia="field-requireAllDevicesSignIn+label">모든 디바이스에서 새로운 비밀번호로 다시 로그인하셔야
-                                합니다.</label>
+                        <div class="ui-binary-input"><label for="cb_requireAllDevicesSignIn"
+                                data-uia="field-requireAllDevicesSignIn+label">정보 변경 후 다시 로그인 하셔야 합니다.</label>
                             <div class="helper"></div>
                         </div>
                     </li>

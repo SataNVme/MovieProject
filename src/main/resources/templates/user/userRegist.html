@@ -15,6 +15,7 @@
 	.password_err_email{color: red;}
 	.password_err_pw{color: red;}
 	.length_check{color: red; display: none;}
+	.length_check_pw {color: red;}
 	
     
     </style>
@@ -23,14 +24,14 @@
 	<form method="POST" class="joinForm" action="#" name="user_Regist">
 		<h2>회원가입</h2>
 		<div class="emailForm">
-				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디 (4~8자리)" style="display:inline; text-align:left" required onblur = "checkId()">
+				<input name="user_id" id="myid" type="text" class="email" placeholder="아이디 (4자리 이상)" style="display:inline; text-align:left" required onblur = "checkId()">
 		</div>
 				<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span>
 				<span class="password_err_id">[[${valid_user_id}]]</span>
 				<span class="length_check">4자리 이상 작성해주세요</span>
 		<div class="textForm">
-			<input id="password" name="user_password" type="password" class="pw" placeholder="비밀번호"  required onblur="passwordchk();">
+			<input id="password" name="user_password" type="password" class="pw" placeholder="비밀번호 (4자리 이상)"  required onblur="passwordchk();">
 		</div>
 		<div class="textForm">
 			<input id="passwordConfirm" name="loginPwConfirm" type="password" class="pw"
@@ -156,18 +157,18 @@
    })();
 
    function passwordchk() {
-      console.log($('#passwordConfirm').val());
-      if (password.value != passwordConfirm.value) {
-         if ($('#passwordConfirm').val() != ''
-               && $('#passwordConfirm').val() != null) {
-            confirmMsg.style.display = "inline-block";
-         } else {
-            confirmMsg.style.display = "none";
-         }
-      } else {
-         confirmMsg.style.display = "none";
-      }
-   };
+ 	  var pw_length = $('#password').val().length;
+ 	  console.log(pw_length);
+ 		 if (password.value != passwordConfirm.value) {
+          	if ($('#passwordConfirm').val() != '' && $('#passwordConfirm').val() != null) {
+             		confirmMsg.style.display = "inline-block";
+          		} else {
+             		confirmMsg.style.display = "none";
+          		}
+       	} else {
+          confirmMsg.style.display = "none";
+       }
+ 	  };
    
    function checkId() {
       var id = $('#myid').val();

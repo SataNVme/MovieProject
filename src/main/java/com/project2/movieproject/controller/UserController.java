@@ -144,13 +144,15 @@ public class UserController {
 		
 		if(newvo.getUser_phone().equals(userdata.get(0).getUser_phone())) {
 			System.out.println("핸드폰번호 확인 완료");
-			int result = userService.user_update(newvo);
-			model.addAttribute("result", result);
-			if(result == 1 ) {
-				RA.addFlashAttribute("msg", vo.getUser_id() + "의 핸드폰번호가 변경되었습니다");
-			} else {
-				RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
-			}
+			
+			vo.setUser_newphone(newvo.getUser_newphone());
+			/*
+			 * int result = userService.user_update(newvo); model.addAttribute("result",
+			 * result); if(result == 1 ) { RA.addFlashAttribute("msg", vo.getUser_id() +
+			 * "의 핸드폰번호가 변경되었습니다"); } else { RA.addFlashAttribute("msg",
+			 * "수정에 실패했습니다. 관리자에게 문의하세요"); }
+			 */
+			return "redirect:/user/usermailCheck";
 		} else {
 			RA.addFlashAttribute("msg", "입력한 현재 핸드폰번호가 일치하지않습니다. 다시 시도해주세요.");
 			System.out.println("번호가 일치하지 않음");
@@ -166,6 +168,8 @@ public class UserController {
 	
 	@PostMapping("/user_update_email")
 	public String user_update_email(@ModelAttribute("vo") UserVO vo, UserVO newvo, Model model, RedirectAttributes RA) {
+		
+		
 		String db_id = vo.getUser_id();
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		
@@ -173,13 +177,14 @@ public class UserController {
 		
 		if(newvo.getUser_email().equals(userdata.get(0).getUser_email())) {
 			System.out.println("이메일 확인 완료");
-			int result = userService.user_update(newvo);
-			model.addAttribute("result", result);
-			if(result == 1 ) {
-				RA.addFlashAttribute("msg", vo.getUser_id() + "의 이메일이 변경되었습니다");
-			} else {
-				RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
-			}
+			vo.setUser_newemail(vo.getUser_newemail());
+			/*
+			 * int result = userService.user_update(newvo); model.addAttribute("result",
+			 * result); if(result == 1 ) { RA.addFlashAttribute("msg", vo.getUser_id() +
+			 * "의 이메일이 변경되었습니다"); } else { RA.addFlashAttribute("msg",
+			 * "수정에 실패했습니다. 관리자에게 문의하세요"); }
+			 */
+			return "redirect:/user/usermailCheck";
 		} else {
 			RA.addFlashAttribute("msg", "입력한 현재 이메일이 일치하지않습니다. 다시 시도해주세요.");
 			System.out.println("이메일이 일치하지 않음");
@@ -202,13 +207,15 @@ public class UserController {
 		
 		if(newvo.getUser_password().equals(userdata.get(0).getUser_password())) {
 			System.out.println("비밀번호 확인완료");
-			int result = userService.user_update(newvo);
-			model.addAttribute("result", result);
-			if(result == 1 ) {
-				RA.addFlashAttribute("msg", vo.getUser_id() + "의 비밀번호가 변경되었습니다");
-			} else {
-				RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
-			}
+			
+			vo.setUser_newpassword(newvo.getUser_newpassword());
+			/*
+			 * int result = userService.user_update(newvo); model.addAttribute("result",
+			 * result); if(result == 1 ) { RA.addFlashAttribute("msg", vo.getUser_id() +
+			 * "의 비밀번호가 변경되었습니다"); } else { RA.addFlashAttribute("msg",
+			 * "수정에 실패했습니다. 관리자에게 문의하세요"); }
+			 */
+			return "redirect:/user/usermailCheck";
 		} else {
 			RA.addFlashAttribute("msg", "입력한 현재 비밀번호가 일치하지않습니다. 다시 시도해주세요.");
 			System.out.println("비밀번호가 일치하지 않음");
@@ -237,13 +244,16 @@ public class UserController {
 		
 		if(newvo.getUser_birth().equals(userdata.get(0).getUser_birth())) {
 			System.out.println("생년월일 확인 완료");
-			int result = userService.user_update(newvo);
-			model.addAttribute("result", result);
-			if(result == 1 ) {
-				RA.addFlashAttribute("msg", vo.getUser_id() + "의 생년월일이 변경되었습니다");
-			} else {
-				RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
-			}
+			
+			vo.setUser_newbirth(newvo.getUser_newbirth());
+			/*
+			 * int result = userService.user_update(newvo); model.addAttribute("result",
+			 * result); if(result == 1 ) { RA.addFlashAttribute("msg", vo.getUser_id() +
+			 * "의 생년월일이 변경되었습니다"); } else { RA.addFlashAttribute("msg",
+			 * "수정에 실패했습니다. 관리자에게 문의하세요"); }
+			 */
+			
+			return "redirect:/user/usermailCheck";
 		} else {
 			RA.addFlashAttribute("msg", "입력한 현재 생년월일이 일치하지않습니다. 다시 시도해주세요.");
 			System.out.println("날짜가 일치하지 않음");
@@ -331,15 +341,18 @@ public class UserController {
     // 계정 삭제
     @PostMapping("/user_drop")
     public String user_drop(@ModelAttribute("vo") UserVO vo, Model model, RedirectAttributes RA) {
-    	int drop = userService.user_delete(vo);
     	
-    	if(drop > 0) { //성공
-				RA.addFlashAttribute("msg", vo.getUser_id() + "삭제되었습니다.");
-				return "redirect:/user/userLogin";
-		} else { //실패
-			RA.addFlashAttribute("msg", "삭제 실패, 관리자에게 문의하세요.");
-			return "redirect:/user/userLogin";
-		}
+    	vo.setUser_delete_check("1");
+    	
+    	return "redirect:/user/usermailCheck";
+		/*
+		 * int drop = userService.user_delete(vo);
+		 * 
+		 * if(drop > 0) { //성공 RA.addFlashAttribute("msg", vo.getUser_id() +
+		 * "삭제되었습니다."); return "redirect:/user/userLogin"; } else { //실패
+		 * RA.addFlashAttribute("msg", "삭제 실패, 관리자에게 문의하세요."); return
+		 * "redirect:/user/userLogin"; }
+		 */
     }
     
     @GetMapping("/userDetail")
@@ -440,6 +453,55 @@ public class UserController {
 		System.out.println(vo.getUser_email());
 		System.out.println("code match : "+ EmailServiceImpl.ePw.equals(code));
 		if(EmailServiceImpl.ePw.equals(code)) {
+			
+			if(vo.getUser_newemail() != null || vo.getUser_newpassword() != null || vo.getUser_newphone() != null || vo.getUser_newbirth() != null) {
+				int result = userService.user_update(vo);
+				if(result > 0) {
+					RA.addFlashAttribute("msg", "개인정보가 변경되었습니다. 다시 로그인 해주세요.");
+					status.setComplete();
+					return "redirect:/user/find_id";
+				}
+				else {
+					RA.addFlashAttribute("msg", "개인정보 변경실패. 관리자에게 문의하세요.");
+					status.setComplete();
+					return "redirect:/user/find_id";
+				}
+			}
+			
+			if(vo.getUser_delete_check() != null) {
+				int result = userService.user_delete(vo);
+				if(result > 0) {
+					RA.addFlashAttribute("msg", "계정이 탈퇴되었습니다. 그동안 감사했습니다.");
+					status.setComplete();
+					return "redirect:/main";
+				}
+				else {
+					RA.addFlashAttribute("msg", "계정탈퇴실패. 관리자에게 문의하세요.");
+					status.setComplete();
+					return "redirect:/user/userMypage";
+				}
+			}
+			
+			/*
+			 * if(vo.getUser_newpassword() != null) { int result =
+			 * userService.user_update(vo); if(result > 0) { RA.addFlashAttribute("msg",
+			 * "비밀번호가 변경되었습니다."); status.setComplete(); return "redirect:/user/find_id"; }
+			 * else { RA.addFlashAttribute("msg", "비밀번호 변경실패. 관리자에게 문의하세요.");
+			 * status.setComplete(); return "redirect:/user/find_id"; } }
+			 * 
+			 * if(vo.getUser_newbirth() != null) { int result = userService.user_update(vo);
+			 * if(result > 0) { RA.addFlashAttribute("msg", "생년월일이 변경되었습니다.");
+			 * status.setComplete(); return "redirect:/user/find_id"; } else {
+			 * RA.addFlashAttribute("msg", "생년월일 변경실패. 관리자에게 문의하세요."); status.setComplete();
+			 * return "redirect:/user/find_id"; } }
+			 * 
+			 * if(vo.getUser_newphone() != null) { int result = userService.user_update(vo);
+			 * if(result > 0) { RA.addFlashAttribute("msg", "생년월일이 변경되었습니다.");
+			 * status.setComplete(); return "redirect:/user/find_id"; } else {
+			 * RA.addFlashAttribute("msg", "생년월일 변경실패. 관리자에게 문의하세요."); status.setComplete();
+			 * return "redirect:/user/find_id"; } }
+			 */
+			
 			if(vo.getUser_id() == null) {
 				String yourId = userService.FindyourId(vo);
 				RA.addFlashAttribute("msg", "당신의 아이디는 " + yourId + " 입니다.");
@@ -457,12 +519,12 @@ public class UserController {
 		} else {
 			int result = userService.user_delete(vo);
 			if(result > 0) { //성공
-				RA.addFlashAttribute("msg", vo.getUser_id() + "회원가입 실패. 다시 해주세요.");
+				RA.addFlashAttribute("msg", vo.getUser_id() + "인증 실패. 다시 해주세요.");
 				return "redirect:/user/userRegist";
-		} else { //실패
+			} else { //실패
 			RA.addFlashAttribute("msg", "삭제 실패, 관리자에게 문의하세요.");
 			return "redirect:/user/userLogin";
-		}
+			}
 		}
 		
 
