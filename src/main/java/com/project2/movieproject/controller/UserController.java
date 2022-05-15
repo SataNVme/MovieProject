@@ -1,13 +1,19 @@
 package com.project2.movieproject.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +26,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.PageVO;
 import com.project2.movieproject.command.UserVO;
@@ -61,28 +68,59 @@ public class UserController {
 	}
 	
 	@GetMapping("/userMypage")
-	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model) {
+	public String userMypage(@ModelAttribute("vo") UserVO vo, Model model, HttpServletRequest request) {
 		String db_id = vo.getUser_id();
+		String prevurl = request.getHeader("referer");
 		if(vo.getUser_id()==null) {
 			return "redirect:/user/userLogin";
+		}
+		String dttg;
+		String a4;
+		if(prevurl.equals("http://localhost:8383/user/userQnaRegist")) {
+			dttg = "#qna";
+			a4 = "#a4";
+			model.addAttribute("dttg", dttg);
+			model.addAttribute("a4", a4);
 		}
 
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
 		ArrayList<qaVO> myqalist = userService.myqa_read(db_id);
+		ArrayList<CommentVO> mycomment = userService.mycomment(vo);
+		ArrayList<UserVO> movie_like = userService.movie_like(vo);
+		
+		
 		
 		model.addAttribute("userdata", userdata);
 		model.addAttribute("myqalist", myqalist);
+		model.addAttribute("mycomment", mycomment);
+		model.addAttribute("movie_like", movie_like);
 		return "user/userMypage";
 	}
 	
 	@GetMapping("/userQnaRegist")
-	public String userQnaRegist(@ModelAttribute("vo") UserVO vo, Model model) {
+	public String userQnaRegist(@ModelAttribute("vo") UserVO vo, Model model, RedirectAttributes RA) {
+		if(vo.getUser_id() == null) {
+			RA.addFlashAttribute("msg", "로그인 후 이용해주세요.");
+			return "redirect:/main";
+		}
 		model.addAttribute("vo", vo);
 		return "user/userQnaRegist";
 	}
 	
 	@PostMapping("/qa_regist")
-	public String qa_regist(qaVO vo, RedirectAttributes RA) {
+	public String qa_regist(@Valid qaVO vo, Errors errors, Model model, RedirectAttributes RA) {
+		
+		if(errors.hasErrors()) {
+			List<FieldError> list = errors.getFieldErrors();
+			for(FieldError err: list) {
+				if(err.isBindingFailure()) {
+					RA.addFlashAttribute("msg", "제목과 내용을 작성해주세요");
+				} else {
+					RA.addFlashAttribute("msg", "제목과 내용을 작성해주세요");
+				}
+			}
+			return "redirect:/user/userQnaRegist";
+		}
 
 		int result = userService.qa_regist(vo);
 		if(result == 1) { //성공
@@ -90,7 +128,7 @@ public class UserController {
 		} else { //실패
 			RA.addFlashAttribute("msg", "등록 실패, 관리자에게 문의하세요.");
 		}
-		return "redirect:/user/userQnaRegist";
+		return "redirect:/user/userMypage";
 	}
 	@GetMapping("/userPhone")
 	public String userPhone() {
@@ -195,7 +233,6 @@ public class UserController {
 	public String user_update_birth(@ModelAttribute("vo") UserVO vo, UserVO newvo, Model model, RedirectAttributes RA) {
 		String db_id = vo.getUser_id();
 		ArrayList<UserVO> userdata = userService.userdata(db_id);
-		
 		newvo.setUser_id(db_id);
 		
 		if(newvo.getUser_birth().equals(userdata.get(0).getUser_birth())) {
@@ -211,14 +248,25 @@ public class UserController {
 			RA.addFlashAttribute("msg", "입력한 현재 생년월일이 일치하지않습니다. 다시 시도해주세요.");
 			System.out.println("날짜가 일치하지 않음");
 		}
-
 		return "redirect:/user/userBirth";
 	}
 	
 	//회원가입 폼
 	@PostMapping("/RegistForm")
-	public String RegistForm(UserVO vo,
+	public String RegistForm(@Valid UserVO vo, Errors errors,
 							 RedirectAttributes RA, Model model) throws Exception {
+		
+		if(errors.hasErrors()) {
+			List<FieldError> list = errors.getFieldErrors();
+			for(FieldError err: list) {
+				if(err.isBindingFailure()) {
+					model.addAttribute("valid_" + err.getField(), "형식을 확인하세요");
+				} else {
+					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage());
+				}
+			}
+			return "user/userRegist";
+		}
 		
 		int result = userService.regist(vo);
 		if(result == 1) { //성공
@@ -244,7 +292,6 @@ public class UserController {
 		if(count_id > 0) {
 			if(vo.getUser_password().equals(userdata.get(0).getUser_password())) { //성공
 				if(userdata.get(0).isUser_auth()) {
-					RA.addFlashAttribute("msg", db_id + "이 정상 로그인");
 					model.addAttribute("vo", userdata);
 					if(userdata.get(0).isUser_admin() == true) {
 						return "redirect:/admin/adminMain1";
@@ -272,6 +319,13 @@ public class UserController {
     public int idCheck(UserVO vo, Model model, RedirectAttributes RA, @RequestParam("id") String id){
         int cnt = userService.idCheck(id);
         return cnt;
+    }
+    
+    @PostMapping("/emailCheck")
+    @ResponseBody
+    public int emailCheck(UserVO vo, @RequestParam("email") String email) {
+    	int emailcnt = userService.emailCheck(email);
+    	return emailcnt;
     }
     
     // 계정 삭제
@@ -303,19 +357,53 @@ public class UserController {
     
     @PostMapping("/find_id")
     public String find_id(UserVO vo, RedirectAttributes RA, Model model ) {
-    	String find_name = vo.getUser_name();
-    	String find_email = vo.getUser_email();
-    	
-    	
-    	
-//    	if( ) {
-//			RA.addFlashAttribute("msg", vo.getUser_name() + "로 회원가입된 아이디는 있습니다.");
-//    		return "redirect:/user/find_id";
-//    	}else {
-//			RA.addFlashAttribute("msg", vo.getUser_name() + "로 회원가입된 아이디가 없습니다. 아이디를 다시한번 확인해주세요.");
-//    		return "redirect:/user/find_id";
-//    	}
-    	return "redirect:/user/find_id";
+    	int count = userService.FindId(vo);
+    	if(count > 0 ) {
+    		model.addAttribute("vo", vo);
+    		return "redirect:/user/usermailCheck";
+    	}else {
+			RA.addFlashAttribute("msg", "입력한 조건의 아이디가 없습니다. 다시한번 확인해주세요.");
+    		return "redirect:/user/find_id";
+    	}
+    }
+    
+    @GetMapping("/userFindPw")
+    public String userFindPw() {
+    	return "user/userFindPw";
+    }
+    
+    @GetMapping("/userPwUpdate")
+    public String userPwUpdate() {
+    	return "user/userPwUpdate";
+    }
+    
+    @PostMapping("/update_pw")
+    public String update_pw(@ModelAttribute("vo") UserVO vo, Model model, UserVO newvo, RedirectAttributes RA) {
+    	String newPassword = newvo.getUser_newpassword();
+		vo.setUser_newpassword(newPassword);
+		System.out.println(vo.getUser_newpassword());
+		int result = userService.user_update(vo);
+		
+		if(result > 0) {
+			RA.addFlashAttribute("msg", "비밀번호가 변경되었습니다. 로그인을 다시 해주세요.");
+			return "redirect:/user/find_id";
+		} else {
+			RA.addFlashAttribute("msg", "비밀번호 변경 실패");
+	    	return "redirect:/user/find_id";
+		}
+		
+    }
+    
+    @PostMapping("/find_pw")
+    public String find_pw(UserVO vo, RedirectAttributes RA, Model model) {
+    	int count = userService.FindPw(vo);
+    	if(count > 0 ) {
+    		model.addAttribute("vo", vo);
+    		return "redirect:/user/usermailCheck";
+    	}else {
+			RA.addFlashAttribute("msg", "입력한 조건의 아이디가 없습니다. 다시한번 확인해주세요.");
+    		return "redirect:/user/find_id";
+    	}
     }
     
     @GetMapping("/find_id")
@@ -341,8 +429,8 @@ public class UserController {
 	public void emailConfirm(@ModelAttribute("vo") UserVO vo, Model model)throws Exception{
 		service.sendSimpleMessage(vo.getUser_email());	
 		System.out.println("전달 받은 이메일 : "+vo.getUser_email());
-		ArrayList<UserVO> userdata = userService.userdata(vo.getUser_id());
-		model.addAttribute("userdata", userdata);
+//		ArrayList<UserVO> userdata = userService.userdata(vo.getUser_id());
+		model.addAttribute("userdata", vo);
 	}
     
     @PostMapping("/verifyCode")
@@ -352,6 +440,16 @@ public class UserController {
 		System.out.println(vo.getUser_email());
 		System.out.println("code match : "+ EmailServiceImpl.ePw.equals(code));
 		if(EmailServiceImpl.ePw.equals(code)) {
+			if(vo.getUser_id() == null) {
+				String yourId = userService.FindyourId(vo);
+				RA.addFlashAttribute("msg", "당신의 아이디는 " + yourId + " 입니다.");
+				status.setComplete();
+				return "redirect:/user/find_id";
+			}
+			if(vo.getUser_name() == null) {
+				RA.addFlashAttribute("msg", "비밀번호를 변경해주세요.");
+				return "redirect:/user/userPwUpdate";
+			}
 			RA.addFlashAttribute("msg", vo.getUser_id() + " 회원가입 성공");
 			userService.auth_update(vo.getUser_id());
 			status.setComplete();
@@ -369,6 +467,13 @@ public class UserController {
 		
 
 	}
+    
+    @PostMapping("/user_logout")
+    public String user_logout(@ModelAttribute("vo") UserVO vo, SessionStatus status, RedirectAttributes RA) {
+    	status.setComplete();
+    	RA.addFlashAttribute("msg", "로그아웃 되었습니다.");
+    	return "redirect:/main";
+    }
     
 
 }

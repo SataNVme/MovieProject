@@ -7,15 +7,33 @@
 
 		<div class="outbox">
 			<div class="ml_rightbox">
+				
+    			<div id="modal" class="modal-overlay">
+        			<div class="modal-window">
+            			<div class="close-area">X</div>
+            			<div class="content">
+            				<img src="/img/event_modal1.png" style="width:600px; height:600px;">
+            			</div>
+        			</div>
+    			</div>
+    			<div id="modal2" class="modal-overlay">
+        			<div class="modal-window">
+            			<div class="close-area2">X</div>
+            			<div class="content">
+            				<img src="/img/event_modal2.png" style="width:600px; height:600px;">
+            			</div>
+        			</div>
+    			</div>
+    			
 
 				<div class="movielisttitle">
 					이벤트
 				</div>
-				<div class="event1">
-					<a href=""><img src="/img/event1.png" width="562" height="234"></a>
+				<div class="event1" >
+					<img src="/img/event1.png" width="562" height="234" id="btn-modal">
 				</div>
 				<div class="event2">
-					<a href=""><img src="/img/event2.png" width="562" height="234"></a>
+					<img src="/img/event2.png" width="562" height="234" id="btn-modal2">
 				</div>
 				<div class="movielisttitle">
 					액션 영화
@@ -26,7 +44,7 @@
 
 					<div class="actionslide" >
 						<li>
-							<th:block th:each="actionList ,status :  ${actionList}">
+							<th:block th:each="actionList, status :  ${actionList}">
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
 										<img th:src="${#strings.substring(actionList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(actionList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
 									</a>
@@ -48,7 +66,7 @@
 
 					<div class="thrillerslide" >
 						<li>
-							<th:block th:each="thrillerList ,status :  ${thrillerList}">
+							<th:block th:each="thrillerList, status :  ${thrillerList}">
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${thrillerList.movie_koficCd})}">
 										<img th:src="${#strings.substring(thrillerList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(thrillerList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
 									</a>
@@ -72,7 +90,7 @@
 
 					<div class="dramaslide" >
 						<li>
-							<th:block th:each="dramaList ,status :  ${dramaList}">
+							<th:block th:each="dramaList, status :  ${dramaList}">
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${dramaList.movie_koficCd})}">
 										<img th:src="${#strings.substring(dramaList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(dramaList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
 									</a>
@@ -91,5 +109,27 @@
 
 	</body>
 	</th:block>
+	<script>
+        const modal = document.getElementById("modal")
+		const btnModal = document.getElementById("btn-modal")
+		btnModal.addEventListener("click", e => {
+		    modal.style.display = "flex"
+		})
+		const closeBtn = modal.querySelector(".close-area")
+		closeBtn.addEventListener("click", e => {
+		    modal.style.display = "none"
+		})
+		
+		const modal2 = document.getElementById("modal2")
+		const btnModal2 = document.getElementById("btn-modal2")
+		btnModal2.addEventListener("click", e => {
+		    modal2.style.display = "flex"
+		})
+		
+		const closeBtn2 = modal2.querySelector(".close-area2")
+		closeBtn2.addEventListener("click", e => {
+		    modal2.style.display = "none"
+		})
+    </script>
 
 </html>

@@ -27,7 +27,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMain_all_all" resultType="MovieVO">
 		SELECT *
 		FROM MOVIE
-		ORDER BY MOVIE_OPENDT
+		ORDER BY MOVIE_OPENDT DESC
+		LIMIT 5
+	</select>
+	
+	<select id="getMainNotices" resultType="adminVO">
+		SELECT * 
+		FROM ADMIN_NOTICES
+		ORDER BY NOTICES_DATE DESC
 		LIMIT 5
 	</select>
 	

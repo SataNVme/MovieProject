@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.UserVO;
+import com.project2.movieproject.command.adminVO;
 import com.project2.movieproject.main.MainService;
 import com.project2.movieproject.user.UserService;
 
@@ -38,11 +39,15 @@ public class MainController {
 		
 		ArrayList<MovieVO> main_all_all = mainService.getMain_all_all();
 		
+		ArrayList<adminVO> main_notices = mainService.getMainNotices();
+		
 		model.addAttribute("main_banner", main_banner);
 		model.addAttribute("main_rank", main_rank);
 		model.addAttribute("main_rankList", main_rankList);
 		
 		model.addAttribute("main_all_all", main_all_all);
+		
+		model.addAttribute("main_notices", main_notices);
 		
 		if(vo.getUser_id() != null) {
 			model.addAttribute("vo", vo);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project2.movieproject.command.MovieVO;
+import com.project2.movieproject.command.adminVO;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService {
@@ -34,5 +35,8 @@ public class MainServiceImpl implements MainService {
 		return mainMapper.getMain_all_all();
 	}
 	
-
+	@Override
+	public ArrayList<adminVO> getMainNotices() {
+		return mainMapper.getMainNotices();
+	}
 }

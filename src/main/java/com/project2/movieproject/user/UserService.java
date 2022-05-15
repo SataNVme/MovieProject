@@ -1,7 +1,9 @@
 package com.project2.movieproject.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.command.qaVO;
@@ -21,6 +23,12 @@ public interface UserService {
 	public ArrayList<qaVO> qa_list();
 	public int qa_update(qaVO vo);
 	public int auth_update(String id);
-	
-	public ArrayList<UserVO> userlist1();
+	public int FindId(UserVO vo);
+	public String FindyourId(UserVO vo);
+	public int FindPw(UserVO vo);
+	public int emailCheck(String email);
+	public ArrayList<CommentVO> mycomment(UserVO vo);
+	public ArrayList<UserVO> movie_like(UserVO vo);
+	public UserVO getUserCount(String month);//게시판 데이터 날짜 함수 
+	public ArrayList<qaVO> qa_table(Criteria cri);
 }

@@ -21,5 +21,5 @@ public interface AdminService {
 	public adminVO getcontent(int admin_key);//상세
 	public int hit(adminVO adminvo);//조회수
 	public int delete(int admin_id);//삭제
-	public int update(adminVO adminvo);
+	public int update(adminVO adminvo,MultipartFile f);
 }

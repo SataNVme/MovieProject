@@ -1,11 +1,10 @@
 <!DOCTYPE HTML> 
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <script th:src="@{/js/practice.js}"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/search.css}"/>
 <th:block th:replace="~{/include/layout :: setContent( ~{:: .table-wrapper} ) }">
 
-	<div th:include="search/getSearchList :: searchFragment" class="table-wrapper">
+	<div class="table-wrapper">
 		<table class="board-table">
                   <thead>
                      <tr>
@@ -20,8 +19,8 @@
                      <tr>
                         <td>[[${vo.movie_koficCd}]]</td>
                         <td>[[${vo.movie_nm}]]</td>
-                        <td>[[${vo.movie_dirnm}]]</td>
-                        <td>[[${vo.movie_actnm}]]</td>
+                        <td>[[${vo.movie_dirNm}]]</td>
+                        <td>[[${vo.movie_actNm}]]</td>
                         <td>[[${vo.movie_ov}]]</td>
                      </tr>
                   </tbody>
@@ -44,11 +43,7 @@
          		</ul>
          	</div>
          </div>      
-               
-         <form id="moveForm" method="get">
-         	<input type="hidden" name="pageNum" value="${spVO.searchCriteria.pageNum}"> 
-         	<input type="hidden" name="amount" value="${spVO.searchCriteria.amount}">
-         </form>      
+                 
 	</div>
 </th:block>
 <!-- 페이지에서 사용할 JS코드를 block 아래에 삽입 -->

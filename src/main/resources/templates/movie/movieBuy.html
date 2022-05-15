@@ -1,128 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta name="_csrf" th:content="${_csrf_token}"/>
-	<meta name ="_csrf_header" th:content="${_csrf.headerName}"/>
-<style>
-	.orderList {
-		padding : 20px; 
-		background : #eee;
-	}
-	.orderList .sum {
-		float : left;
-		width : 45%;
-		font-size : 22px;
-	}
-	.orderList .orderOpen {
-		float : right;
-		width : 45%;
-		font-size : 22px;
-	}
-	.orderList .orderOpen button {
-		font-size : 18px;
-		padding : 5px 10px;
-		border : 1px solid #777;
-	}
-	.orderList::after {
-		content : "";
-		display : block;
-		clear : both;
-	}
-	.orderInfo {
-		border : 5px solid #eee; 
-		padding : 20px;
-		display : none; 
-	}
-	.orderInfo .inputArea {margin : 10px 0;}
-	.orderInfo .inputArea label {display : inline-block; width : 120px; margin-right : 10px;}
-	.orderInfo .inputArea input {font-size:14px; padding : 5px;}
-	.orderInfo .inputArea button {
-		font-size : 20px; 
-		border : 2px solid #ccc; 
-		padding : 5px 10px; 
-		background : #fff; 
-		margin-right : 20px;
-	}
-</style>
-</head>
 <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <th:block th:replace="~{/include/layout :: setContent( ~{:: .orderView})}">
-    	<input type="hidden" id="itemId" th:value=${item.id}">
-    	<div class="orderView">
-    	<div class="orderList">
-    		<div class="sum">
-    			총 합계 : <span th:text="${#numbers.formatDecimal(총 합계, 0, 'COMMA', 2, 'POINT')}" value="${sum}"></span>
-    		</div>
-    		<div class="orderOpen">
-    			<button type="button" class="orderOpen_btn">주문 정보 확인</button>
-    		</div>
-    	</div>
-    	<div class="orderInfo">
-    		<form role="form" method="post" autocomplete="off">
-    			<input type="hidden" name="amount" value="${sum}"/>
-    			<div class="inputArea">
-    				<label for="">결제인</label>
-    				<input type="text" name="orderRec" id="orderRec" required="required" />
-    			</div>
-    			<div>
-    				<label for="orderPhone">연락처</label>
-    				<input type="text" name="orderPhone" id="orderPhone" required="required" />
-    			</div>
-    			<div class="inputArea">
-    				<button type="submit" class="order_btn" onclick="order()">주문</button>
-    				<button type="button" class="cancel_btn">취소</button>
-    			</div>
-    		</form>
-    	</div>
-    </div>	
-    </th:block>
-    <script>
-    	$(".orderOpen_btn").click(function() {
-    		$(".orderInfo").slideDown();
-    		$(".orderOpen_btn").slideUp();
-    	})
-    	$(".cancel_btn").click(function() {
-    		$(".orderInfo").slideUp();
-    		$(".orderOpen_btn").slideDown();
-    	});
-    	function order() {
-    		var token= $("meta[name='_csrf']").attr("content");
-    		var header = $("meta[name='_csrf_header']").attr("content");
-    		var url = "/movieOrder";
-    		var paramData = {
-    				itemId : $("#itemId").val(),
-    				count : $("#count").val()
-    		};
-    	var param = JSON.stringify(paramData);
-    	$.ajax({
-    		url : url,
-    		type : "POST",
-    		contentType : "application/json",
-    		data : param,
-    		beforeSend : function(xhr) {
-    			xhr.setRequestHeader(header, token);
-    		},
-    		dataType : "json",
-    		cache : false,
-    		success : function(result, status) {
-    			alert("주문이 완료되었습니다");
-    			location.href='/';
-    		},
-    		error : function(jqXHR, status, error) {
-    			if(jqXHR.status == '401') {
-    				alert('로그인 후 이용해주세요');
-    				location.href='/user/userLogin';
-    			} else {
-    				alert(jqXHR.responseText);
-    			}
-    		}
-    		});
-    	}
-    </script>
-<!-- <th:block th:replace="~{/include/layout :: setContent( ~{:: .buy} ) }">
+    
+<th:block th:replace="~{/include/layout :: setContent( ~{:: .buy} ) }">
     <div class="buy">
         <h2>IAMPORT 결제</h2>
         <button id="iamportPayment" type="button">영화 결제</button>
@@ -156,5 +39,5 @@
         }
         alert(msg);
     });
-</script>           -->
+</script>          
 </html>

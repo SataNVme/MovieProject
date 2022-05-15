@@ -6,6 +6,7 @@
    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" />
 </head>
 
+<th:block th:replace="~{/include/layout :: setContent(~{:: .userInfo_outbox})}">
 	<div class="userInfo_outbox">
 		<form action="userInfo" name="admin_mypage" method="GET">
 			<div class="title">
@@ -19,7 +20,7 @@
 			<div class="rightbox">
 				<div id="board-search3">
 					<div class="search-window3">
-						<div class="search-wrap3">
+						<div class="search-wrap3" style="margin-right: 35px;">
 							<select class="sele1" name="searchType">
 								<option value="all"
 									th:selected="${pageVO.cri.searchType} == 'all'? 'selected'">전체</option>

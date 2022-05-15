@@ -64,5 +64,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
 		where movie_koficCd=#{movie_koficCd};
 	
 	</select>
+	<select id="getMovieLike" resultType="MovieLikeVO">
+		select * from movie_like
+		where user_id=#{user_id} and
+		movie_koficCd=#{movie_koficCd} 
+	</select>
+	
+	<insert id="addMovieLike">
+		insert into movie_like values (#{user_id}, #{movie_koficCd})
+	</insert>
+	
+	<delete id="removeMovieLike">
+		delete from movie_like where user_id=#{user_id} and movie_koficCd=#{movie_koficCd}
+	</delete>
 	
 </mapper>

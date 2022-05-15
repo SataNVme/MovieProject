@@ -8,14 +8,18 @@ import lombok.Data;
 public class SearchCriteria {
 
 	// 현재 페이지
-	public int pageNum;
+	private int pageNum;
 	// 한 페이지당 보일 게시물 개수
-	public int amount;
-	// 스킵할 게시물 수((pageNum - 1) * amount)
+	private int amount;
+	// 스킵할 게시물 수((pageNum-1) * amount)
 	private int skip;
 	
 	private String searchType; // 검색 유형
 	private String searchName; // 검색 내용
+	
+	public int amount() {
+		return (this.pageNum-1) * amount;
+	}
 	
 	public SearchCriteria() {
 		this(1, 10);
@@ -28,15 +32,5 @@ public class SearchCriteria {
 		this.skip = (pageNum - 1) * amount;
 	}	
 	
-	public String getListLink() {
-		String path = "";
-		UriComponentsBuilder builder = UriComponentsBuilder.fromPath(path)
-										.queryParam("pageNum", this.pageNum)
-										.queryParam("amount", this.amount)
-										.queryParam("searchType", this.getSearchType())
-										.queryParam("searchName", this.getSearchName());
-		return builder.toUriString();
-	}
-
 }
 

@@ -1,34 +1,29 @@
 package com.project2.movieproject.controller;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project2.movieproject.command.CommentVO;
+import com.project2.movieproject.command.MovieLikeVO;
 import com.project2.movieproject.command.MovieVO;
-import com.project2.movieproject.command.OrderDetailVO;
-import com.project2.movieproject.command.OrderListVO;
-import com.project2.movieproject.command.OrderVO;
 import com.project2.movieproject.command.StarRateVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.comment.CommentService;
 import com.project2.movieproject.movieDetail.MovieService;
 
 @Controller
+@SessionAttributes("vo")
 @RequestMapping("/movie")
 public class MovieController {
 	
@@ -43,7 +38,8 @@ public class MovieController {
 	
 	@GetMapping("/movieDetail")
 	public String movieDetail(@RequestParam("movie_koficCd") String movie_koficCd, 
-							  Model model) {
+							  Model model,
+							  @ModelAttribute("vo") UserVO sessionvo) {
 		
 		
 		//movie select
@@ -69,6 +65,31 @@ public class MovieController {
 		model.addAttribute("url", url);
 		model.addAttribute("movieVo", movieVo);
 		
+		//로그인 여부 체크
+		int checkLogin;
+		
+		if (sessionvo.getUser_id() == null) {
+			checkLogin = 0;
+		} else {
+			checkLogin = 1;
+		}
+		model.addAttribute("checkLogin", checkLogin);
+		
+		//좋아요 여부 체크
+		MovieLikeVO movieLikeVO = new MovieLikeVO();
+		movieLikeVO.setMovie_koficCd(movie_koficCd);
+		movieLikeVO.setUser_id(sessionvo.getUser_id());
+		
+		//좋아요 추가/제거
+		int movieLike;
+		String loginMsg;
+		if(movieService.getMovieLike(movieLikeVO) == null) {
+			movieLike = 0;
+		} else {
+			movieLike = 1;
+		}
+		model.addAttribute("movieLike", movieLike);
+		
 		return "movie/movieDetail";
 		
 	}
@@ -77,31 +98,31 @@ public class MovieController {
 	public String movieList(@RequestParam("nation") String nation,
 							Model model) {
 		
-		String genre;
+		String movie_gr;
 		if(nation.equals("ko")) {
-			genre = "action";
-			ArrayList<MovieVO> actionList = movieService.getList_ko(genre);
+			movie_gr = "action";
+			ArrayList<MovieVO> actionList = movieService.getList_ko("action");
 			model.addAttribute("actionList", actionList);
 			
-			genre = "thriller";
+			movie_gr = "thriller";
 			ArrayList<MovieVO> thrillerList = movieService.getList_ko("thriller");
 			model.addAttribute("thrillerList", thrillerList);
 			
-			genre = "drama";
+			movie_gr = "drama";
 			ArrayList<MovieVO> dramaList = movieService.getList_ko("drama");
 			model.addAttribute("dramaList", dramaList);
 			
 		} else if(nation.equals("out")){
 			
-			genre = "action";
+			movie_gr = "action";
 			ArrayList<MovieVO> actionList = movieService.getList_out("action");
 			model.addAttribute("actionList", actionList);
 			
-			genre = "thriller";
+			movie_gr = "thriller";
 			ArrayList<MovieVO> thrillerList = movieService.getList_out("thriller");
 			model.addAttribute("thrillerList", thrillerList);
 			
-			genre = "drama";
+			movie_gr = "drama";
 			ArrayList<MovieVO> dramaList = movieService.getList_out("drama");
 			model.addAttribute("dramaList", dramaList);
 			
@@ -133,5 +154,45 @@ public class MovieController {
 		return "redirect:/movie/movieDetail";
 	}
 	
+	@PostMapping("/addMovieLike")
+	public String addMovieLike(@RequestParam ("movie_koficCd") String movie_koficCd,
+							@ModelAttribute("vo") UserVO sessionvo,
+							RedirectAttributes RA) {
+		
+		MovieLikeVO movieLikeVO = new MovieLikeVO();
+		movieLikeVO.setMovie_koficCd(movie_koficCd);
+		
+		String movieLikeMsg;
+		if(sessionvo.getUser_id() == null) {
+			movieLikeMsg = "로그인이 필요합니다";
+			RA.addAttribute("movieLikeMsg", movieLikeMsg);
+			return "/user/userLogin";
+		} else {
+			movieLikeVO.setUser_id(sessionvo.getUser_id());
+			movieService.addMovieLike(movieLikeVO);
+			
+			movieLikeMsg = "관심 영화를 등록했습니다";
+			RA.addFlashAttribute("movieLikeMsg", movieLikeMsg);
+			
+			RA.addAttribute("movie_koficCd", movie_koficCd);
+			
+			return "redirect:/movie/movieDetail";
+		}
+	}
+	
+	@PostMapping("/removeMovieLike")
+	public String removeMovieLike(@RequestParam ("movie_koficCd") String movie_koficCd,
+								@ModelAttribute("vo") UserVO sessionvo,
+								RedirectAttributes RA) {
+		
+		MovieLikeVO movieLikeVO = new MovieLikeVO();
+		movieLikeVO.setMovie_koficCd(movie_koficCd);
+		movieLikeVO.setUser_id(sessionvo.getUser_id());
+		movieService.removeMovieLike(movieLikeVO);
+		
+		RA.addAttribute("movie_koficCd", movie_koficCd);
+			
+		return "redirect:/movie/movieDetail";
+	}
 	
 }

@@ -29,21 +29,22 @@
    <body>
       
    <!-- 헤더 -->
-   <header class="wrap">   
+   <header class="wrap wrap-expand-lg bg-light wrap-light fixed-top">   
         <div class="header">
             <div class="logo">
                 <ul>
                 <a th:href="@{/main}"><img src="/img/logo.png" alt="logo"></a>
                 </ul>    
             </div>
-           
+           <form method="POST" action="user_logout" name="user_logout">
             <ul class="pull-right">
                 <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userLogin}" >로그인</a></p></li>
                 <li th:if = "${vo.getUser_id()} == null"><p sec:authorize="isAnonymous()"><a th:href="@{/user/userRegist}" >회원가입</a></p></li>
                 <li th:if = "${vo.getUser_id()} != null and ${vo.user_admin} != true"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userMypage}" >마이페이지</a></p></li>
                 <li th:if = "${vo.getUser_id()} != null and ${vo.user_admin} == true"><p sec:authorize="isAuthenticated()"><a th:href="@{/admin/adminMain1}" >관리자페이지</a></p></li>
-                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><a th:href="@{/user/userLogin}" >로그아웃</a></p></li>
+                <li th:if = "${vo.getUser_id()} != null"><p sec:authorize="isAuthenticated()"><p><a href="" id="user_logout_a">로그아웃</a></p></li>
             </ul>
+            </form>
         </div>  
             <div class="nav">
                 <div class="pull-left">
@@ -51,31 +52,27 @@
                         <li><a th:href="@{/movie/movieList(nation=ko)}">국내 영화</a></li>   
                         <li><a th:href="@{/movie/movieList(nation=out)}">해외 영화</a></li>
                     </ul>
-                </div>   
-                <div class="pull-right">
+                </div>     
+               <!--  <div class="pull-right">
                     <div class="search-bar">
-                        <!-- <form id="searchForm" action="/search/searchList" method="get">
-                            <select class="sele1" name="searchType">
-                                <option value="null" th:selected="${spVO.searchCriteria.searchType} == 'null' ? 'selected' : ''">검색 내용 선택</option>
-                                <option value="dir_Nm" th:selected="${spVO.searchCriteria.searchType} == 'dir_Nm' ? 'selected'">감독</option>
-                                <option value="act_Nm" th:selected="${spVO.searchCriteria.searchType} == 'act_Nm' ? 'selected'">영화배우</option>
-                                <option value="movie_Nm" th:selected="${spVO.searchCriteria.searchType} == 'movie_Nm' ? 'selected'">영화이름</option>
-                                <option value="dirActor" th:selected="${spVO.searchCriteria.searchType} == 'dirActor' ? 'selected'">감독 or 배우</option>
-                                <option value="dirMovie" th:selected="${spVO.searchCriteria.searchType} == 'dirMovie' ? 'selected'">감독 or 영화</option>
-                                <option value="actMovie" th:selected="${spVO.searchCriteria.searchType} == 'actMovie' ? 'selected'">배우 or 영화</option>
-                                <option value="all" th:selected="${spVO.searchCriteria.searchType} == 'all' ? 'selected'">감독 or 배우 or 영화</option>
+                         <form action="/search/getSearchList??page=1&amount=10&searchType=?&searchName=?" method="get">
+                            <select name="searchType">
+                                <option value="all" th:selected="${pageVO.cri.searchType} == 'all' ? 'selected' : ''">모든 조건 선택</option>
+                                <option value="movie_dirNm" th:selected="${pageVO.cri.searchType} == 'movie_dirNm' ? 'selected'">감독</option>
+                                <option value="movie_actNm" th:selected="${pageVO.cri.searchType} == 'movie_actNm' ? 'selected'">영화배우</option>
+                                <option value="movie_nm" th:selected="${pageVO.cri.searchType} == 'movie_nm' ? 'selected'">영화이름</option>
                             </select>
-                            <input type="text" name="searchName"/>
-                            <input type="hidden" name="pageNum" th:value="1">
-                            <input type="hidden" name="amount" th:value="${spVO.searchCriteria.amount}">
-                            <input type="hidden" name="searchName" th:value="${spVO.searchCriteria.searchName}" placeholder="검색어를 입력해주세요">
-                            <input type="hidden" name="searchType" th:value="${spVO.searchCriteria.searchType}">
+                            <input type="text" name="searchName" th:value="${pageVO.cri?.searchName}"/>
+                            <input type="hidden" name="pageNum" th:value="?1">
+                            <input type="hidden" name="amount" th:value="?10">
+                            <input type="hidden" name="searchName" th:value="${pageVO.cri?.searchName}" placeholder="검색어를 입력해주세요">
+                            <input type="hidden" name="searchType" th:value="${pageVO.cri?.searchType}">
                             <button type="button" class="btn btn-default">
                                <span class="glyphicon glyphicon-search">검색</span>
                             </button>
-                        </form>   -->
+                        </form>   
                     </div>
-                </div>
+                </div> -->
             </div>
           </header>         
                 <th:block th:replace="${content}"></th:block>
@@ -105,6 +102,7 @@
                             </p>
                         </div>
                     </div>
+              </footer>      
    </body>
 </th:block>
 </html>

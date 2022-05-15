@@ -46,6 +46,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT COUNT(*) AS CNT FROM USER WHERE user_id = #{id}
     </select>
     
+    <select id="emailCheck" resultType="int">
+    	SELECT COUNT(*) AS CNT FROM USER WHERE user_email = #{email}
+    </select>
+    
     <select id="userdata" resultType="UserVO">
     	SELECT * from USER where user_id = #{db_id}
     </select>
@@ -61,6 +65,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="qa_list" resultType="qaVO">
     	SELECT * from QA
     </select>
+    
+       
+    <select id="qa_table" resultType="qaVO">
+    	 <![CDATA[
+      SELECT *
+      FROM (SELECT A.*,
+                @ROWNUM := @ROWNUM + 1 AS RN
+            FROM (SELECT *
+                  FROM qa
+                  where 
+                  ]]>
+                  <if test="searchType == 'all'">
+                  user_id like CONCAT('%', #{searchName},'%') 
+                  or qa_title like CONCAT('%', #{searchName},'%')
+                  or qa_content like CONCAT('%', #{searchName},'%')
+                  
+                 
+                  </if>
+               
+                  <if test="searchType == 'title'">
+                  qa_title like CONCAT('%', #{searchName},'%')
+                  </if>
+                  <if test="searchType == 'titcont'">
+                  qa_title like CONCAT('%', #{searchName},'%')
+                  or qa_content like CONCAT('%', #{searchName},'%')
+                  </if>
+                   <if test="searchType == 'titnick'">
+                   qa_title like CONCAT('%', #{searchName},'%')
+                  or qa_content like CONCAT('%', #{searchName},'%')
+                  </if>
+
+               ORDER BY qa_date DESC)A, (SELECT @ROWNUM := 0) D
+      <![CDATA[
+      )B
+      WHERE rn > (#{page}-1) * #{amount} AND rn <= #{page} * #{amount}
+      ]]>
+    </select>
+    
+    
+    
+    <select id="FindId" resultType="int">
+        SELECT COUNT(*) AS CNT FROM USER WHERE user_name = #{user_name} and user_email = #{user_email}
+    </select>
+    
+    <select id="FindyourId" resultType="String">
+        SELECT user_id FROM USER WHERE user_name = #{user_name} and user_email = #{user_email}
+    </select>
+    
+    <select id="FindPw" resultType="int">
+        SELECT COUNT(*) AS CNT FROM USER WHERE user_id = #{user_id} and user_email = #{user_email}
+    </select>
+    
+    <select id="mycomment" resultType="CommentVO">
+    	SELECT * from COMMENT where user_id = #{user_id}
+    </select>
+    
     
 <select id="userlist" resultType="UserVO">
    <![CDATA[
@@ -141,14 +201,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from USER 
 		where user_id = #{user_id}
 	</delete> 
-	
-	<select id="userlist1" resultType="UserVO">
-		select year(user_date) as 'year',
-		month(user_date) as 'month',
-		count(month(user_date)) as 'count'
-		from user
-		group by month(user_date)
-		order by month asc;	
+
+	<select id="movie_like" resultType="UserVO">
+
+		SELECT user.user_id,
+		MOVIE_LIKE.MOVIE_KOFICCD,
+		MOVIE.MOVIE_NM,
+		MOVIE.MOVIE_Iurl
+		FROM USER
+		LEFT JOIN MOVIE_LIKE ON USER.USER_ID = MOVIE_LIKE.USER_ID
+		LEFT JOIN MOVIE ON MOVIE_LIKE.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
+		where user.user_id = #{user_id}
+
 	</select>
-	
+	<select id="getUserCount" resultType="UserVO">
+		select substring(user_date, 1,4) as year, 
+			   substring(user_date,6,2) as month, count(*) as count from user where user_date like #{month};
+
+	</select>
 </mapper>

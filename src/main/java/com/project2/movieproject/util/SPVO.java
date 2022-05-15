@@ -34,11 +34,11 @@ public class SPVO {
 		this.searchCriteria = searchCriteria;
 		
 		// 마지막 페이지
-		this.endPage = (int) Math.ceil(searchCriteria.getPageNum() / 10.0) * 10;
+		this.endPage = (int) Math.ceil(this.getPageNum() / 10.0) * 10;
 		// 시작 페이지
 		this.startPage = this.endPage - 9;
 		// 전체 마지막 페이지
-		int realEnd = (int) (Math.ceil(total * 1.0 / searchCriteria.getAmount()));
+		this.realEnd = (int) (Math.ceil(total * 1.0 / this.getAmount()));
 		// 전체 마지막 페이지(realEnd)가 화면에 보이는 마지막 페이지(endPage)보다 작은 경우, 보이는 페이지(endPage)값 조정
 		if(this.endPage > realEnd) {
 			this.endPage = realEnd;
