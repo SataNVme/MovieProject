@@ -22,7 +22,6 @@
                   </ul>
                   <br>
                   <div id="my" class="xxx yyy">
-                     <p>대여 영상 목록</p>
                      <div class = "scroll_div">
                      <div class="mybox" id="if_rent_data_null" th:each="vo, state : ${user_rent_list}">
                         <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_rent_list.get(state.index).movie_koficcd}}">
@@ -60,7 +59,6 @@
                   </div>
 
                   <div id="buy" class="xxx ">
-                     <p>구매 목록</p>
 					<div class = "scroll_div">
                      <div class="mybox" id="if_buy_data_null" th:each="vo, state : ${user_buy_list}">
                         <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_buy_list.get(state.index).movie_koficcd}}">
@@ -181,7 +179,6 @@
                   </div>
 
                   <div id="mynotice" class="xxx">
-                     <p>나의 정보</p>
                      <div>
                         <h1 class="">계정</h1>
                         <div th:each="vo, state : ${userdata}">
