@@ -46,7 +46,7 @@
 						<li>
 							<th:block th:each="actionList ,status :  ${actionList}">
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
-										<img th:src="${#strings.substring(actionList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(actionList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
+										<img th:src="'https://image.tmdb.org/t/p/w185' + ${actionList.movie_iUrl}" style="width:185px; height:278px;">
 									</a>
 							</th:block>
 						</li>
@@ -68,7 +68,7 @@
 						<li>
 							<th:block th:each="thrillerList ,status :  ${thrillerList}">
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${thrillerList.movie_koficCd})}">
-										<img th:src="${#strings.substring(thrillerList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(thrillerList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
+										<img th:src="'https://image.tmdb.org/t/p/w185' + ${thrillerList.movie_iUrl}" style="width:185px; height:278px;">
 									</a>
 							</th:block>
 						</li>
@@ -92,7 +92,7 @@
 						<li>
 							<th:block th:each="dramaList ,status :  ${dramaList}">
 									<a th:href="@{/movie/movieDetail(movie_koficCd=${dramaList.movie_koficCd})}">
-										<img th:src="${#strings.substring(dramaList.movie_iUrl, 0, 27) + 'w185' + #strings.substring(dramaList.movie_iUrl, 31, 63) }" style="width:185px; height:278px;">
+										<img th:src="'https://image.tmdb.org/t/p/w185' + ${dramaList.movie_iUrl}" style="width:185px; height:278px;">
 									</a>
 							</th:block>
 						</li>
