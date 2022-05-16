@@ -232,7 +232,7 @@ public class MovieController {
 		}
 	}
 	
-	@PostMapping("moviePurchase")
+	@PostMapping("/moviePurchase")
 	public String moviePurchase(@RequestParam("movie_koficCd") String movie_koficCd,
 								BuyVO buyVO,
 								RedirectAttributes RA) {
@@ -257,22 +257,22 @@ public class MovieController {
 	public String movieRent(@RequestParam("movie_koficCd") String movie_koficCd, 
 			  				Model model,
 			  				@ModelAttribute("vo") UserVO sessionvo,
-			  				HttpServletRequest request) {
-		String prevurl = request.getHeader("referer");
+			  				RedirectAttributes RA) {
 		MovieVO movieVO = mainService.getMovie(movie_koficCd);
 		
 		model.addAttribute("movieVO", movieVO);
-		model.addAttribute("prevurl", prevurl);
 		
 		if(sessionvo.getUser_id() != null) {
 			model.addAttribute("sessionvo", sessionvo);
+			return "movie/movieRent";
+		} else {
+			RA.addFlashAttribute("msg", "로그인 후 이용해주세요" );
+			return "redirect:/movie/movieDetail?movie_koficCd="+movie_koficCd;
 		}
-		
-		return "movie/movieRent";
 	}	
 	
-	@PostMapping("rental")
-	public String rental(@RequestParam("movie_koficCd") String movie_koficCd,
+	@PostMapping("/movieRental")
+	public String movieRental(@RequestParam("movie_koficCd") String movie_koficCd,
 								RentVO rentVO,
 								RedirectAttributes RA) {
 		
