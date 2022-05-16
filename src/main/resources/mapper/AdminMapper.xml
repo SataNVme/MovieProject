@@ -145,14 +145,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       #{movie_ov})
    </insert>
 
-	<select id="movieSearch" resultType="int">
-		SELECT COUNT(*) AS CNT
-		FROM
-		MOVIE
-		WHERE movie_nm = #{movieName}
+	<select id="searchlist" resultType="movieVo">
+	select * from movie;
 	</select>
-
-	<select id="getMovieList" resultType="MovieVO">
+	
+	<select id="searchTable" resultType="MovieVO">
 		<![CDATA[
 		SELECT *
 		FROM (
@@ -168,6 +165,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 OR MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
 					 OR MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
 				)
+				
 				</if>
 				<if test="searchType == 'title'">
 				WHERE MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
@@ -178,6 +176,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="searchType == 'actor'">
 				WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
 				</if>
+				
+				
+				
+				
 				ORDER BY MOVIE_NM DESC
 			) A, (SELECT @ROWNUM := 0) D
 		<![CDATA[
@@ -185,6 +187,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE RN > (#{page}-1) * #{amount} AND RN <= #{page} * #{amount}
 		]]>
 	</select>
+
+
+	<select id="movieSearch" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM
+		MOVIE
+		WHERE movie_nm = #{movieName}
+	</select>
+
 	
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*) AS TOTAL

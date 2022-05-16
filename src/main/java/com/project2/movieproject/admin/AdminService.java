@@ -22,4 +22,7 @@ public interface AdminService {
 	public int hit(adminVO adminvo);//조회수
 	public int delete(int admin_id);//삭제
 	public int update(adminVO adminvo,MultipartFile f);
+	
+	public ArrayList<MovieVO> searchTable(Criteria cri);//serach 
+	public ArrayList<MovieVO> searchlist();
 }

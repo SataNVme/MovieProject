@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
+       <link rel="stylesheet" th:href="@{/css/user_info.css}">
+
+
+<th:block th:replace="~{/include/layout :: setContent(~{:: .qna_outbox})}">
+
+    <div class="qna_outbox">
+	<table>
+
+		<thead>
+			<tr>
+				<th>사진</th>
+				<th>영화이름</th>
+				<th>영어이름</th>
+				<th>감독</th>
+				<th>배우</th>
+			</tr>
+
+		</thead>
+
+		<tbody>
+		<tr>
+		<td>
+		</td>
+		</tr>
+
+			<tr th:each="vo, state : ${list}">
+				<td><img
+					th:src="'https://image.tmdb.org/t/p/w154' + ${vo.movie_iUrl}"
+					height="150px"></td>
+				<td><a
+					th:href="@{/movie/movieDetail(movie_koficCd=${vo.movie_koficCd})}"><strong>[[${vo.movie_nm}]]</strong></a>
+				</td>
+				<td>[[${vo.movie_nmEn}]]</td>
+				<td>[[${vo.movie_dirNm}]]</td>
+				<td>[[${vo.movie_actNm}]]</td>
+			</tr>
+
+		</tbody>
+
+	</table>
+	</div>
+	</th:block>
+
+</body>
+</html>
