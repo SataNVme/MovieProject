@@ -71,22 +71,37 @@
                               <th:block th:unless="${PageVO} !=null and ${pageVo} !=''">
                             <select class="sele1" name="searchType">
                                 <option value="all" >전체</option>
-                                <option value="dir_Nm" >감독</option>
-                                <option value="act_Nm" >영화배우</option>
-                                <option value="movie_Nm" >영화이름</option>
+                                <option value="director" >감독</option>
+                                <option value="actor" >영화배우</option>
+                                <option value="title" >영화이름</option>
                           
                             
                             </select>
                             </th:block>
                             
-                            <input type="text" name="searchName"/>
+                            
                           <!--   <input type="hidden" name="pageNum" th:value="1">
                             <input type="hidden" name="amount" th:value="${searchVO.searchCriteria.amount}">
                             <input type="hidden" name="searchName" th:value="${searchVO.searchCriteria.searchName}" placeholder="검색어를 입력해주세요">
                             <input type="hidden" name="searchType" th:value="${searchVO.searchCriteria.searchType}"> -->
-                            <button type="button" class="btn btn-default">
-                               <input type="submit" class="btn btn-default" id="searchBtn" value="search">
-                            </button>
+                          
+                              
+                               <th:block th:if="${pageVO} ==null or ${pageVo} ==''">
+                               
+                                  <input type="text" name="searchName"/>
+                                  <input type="submit" class="btn btn-default" id="searchBtn" value="Search">
+                                  
+                               
+                               </th:block>
+                               
+                                 
+                                 <th:block th:unless="${pageVO} ==null or ${pageVo} ==''">
+                                  <input type="text" name="searchName"/>
+                              	  <input type="submit" class="btn btn-default" id="searchBtn" value="Search">
+                               
+                               </th:block>
+                              
+                           
                         </form>   
                     </div>
                 </div>

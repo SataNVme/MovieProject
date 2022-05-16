@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-       <link rel="stylesheet" th:href="@{/css/qnaNnotice.css}">
-       <link rel="stylesheet" th:href="@{/css/user_info.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/adminMovieList.css}" />
 
 
 <th:block th:replace="~{/include/layout :: setContent(~{:: .qna_outbox})}">
 
     <div class="qna_outbox">
-	<table>
+	<table class="adminMovie_movieList" cellpadding="0" cellspacing="0">
 
-		<thead>
+		
 			<tr>
-				<th>사진</th>
+				<th>이미지</th>
 				<th>영화이름</th>
 				<th>영어이름</th>
 				<th>감독</th>
 				<th>배우</th>
 			</tr>
-
-		</thead>
-
-		<tbody>
-		<tr>
-		<td>
-		</td>
-		</tr>
 
 			<tr th:each="vo, state : ${list}">
 				<td><img
@@ -39,7 +30,7 @@
 				<td>[[${vo.movie_actNm}]]</td>
 			</tr>
 
-		</tbody>
+		
 
 	</table>
 	</div>
