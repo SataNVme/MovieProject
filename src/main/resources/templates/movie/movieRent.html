@@ -7,19 +7,97 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@100;300;400;700&display=swap" rel="stylesheet">
+<style>
+	* {font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
+    .buyOutBox {
+    	width: 1130px;
+    	margin: 0 auto;
+    }
+    .buyUl {
+    	width: 800px;
+    	list-style: none;
+    	padding-left: 0;
+    	padding-inline-start: 0;
+    	margin: 0 auto;
+    }
+    .buyLi {list-style: none; margin:0; }
+    .collum_tit {list-style: none;}
+    .buyTitle {
+    	width: 100%;
+    	margin: 0px;
+    	box-sizing: border-box;
+    }
+    .buyTitle > h2 {
+    	padding-left:100px;
+    	font-size:20px;
+        font-weight: 400;
+    }
+    .buyImgBox {
+    	margin: 0 auto;
+    	width: 400px;
+    	height: 450px;
+    }
+    .buyImgBox > img {
+    	float: right;
+    }
+    .board_basic_view > tbody > tr> th {
+    	padding-left: 10px;
+    	font-size: 13px; 
+    	font-weight: 400;
+    	width: 80px;
+    }
+    .board_basic_view > tbody > tr> td {
+    	font-size: 12px; 
+    	font-weight: 100;
+    }
+    .buy_btn {
+    	width: 200px;
+    	height: 100px;
+    	border-radious: 4px;
+    }
+    
+    .rent, .cancel{ 
+    	width: 200px;
+    	height: 100px;
+    	background-color: black;
+    	color: white;
+    	text-decoration: none;
+    	border-radius: 4px;
+    	padding:10px 20px;
+    	margin-left:10px;
+    }
+  .rent{
+  padding-left:20px;
+  padding-right:20px;
+  	
+  }
+  .cancel {
+  padding-left:30px;
+  padding-right:30px;
+  }
+</style>
+
 </head>
 <body>
 	<form name="movieRent" action="####" method="post">
-		<div class="full_collum collum">
-			<ul>
+		<div class="buyOutBox">
+			<ul class="buyUl">
                  <li class="collum_tit">
-                 	<h2>영화 대여 정보</h2>
-              		<ul>
-                       	<li>
+                 	<div class="buyTitle">
+	                 	<h2>영화 대여 정보</h2>
+                 	</div>
+              		<ul class="buyUl">
+                       	<li class="buyLi">
                            	<table class="board_basic_view">
                            		<tbody>
+                           			<tr display="none">
+                           				<td><input type="hidden" name="user_id" th:value="${sessionvo.user_id}"></td>
+                           			</tr>
                            			<tr>
-                           				<td><img th:src="'https://image.tmdb.org/t/p/w185' + ${movieVO.movie_iUrl}"></td>
+                           				<td class="buyImgBox" rowspan="6"><img th:src="'https://image.tmdb.org/t/p/w185' + ${movieVO.movie_iUrl}"></td>
                            			</tr>
                            			<tr>
                            				<th>영화번호</th>
@@ -37,12 +115,15 @@
                             			<th>대여기간</th>
                             			<td><input type="hidden" name="rent_period" th:value="3">3일</td>
                             		</tr>
+                            		<tr>
+                            			<td colspan="2" class="buy_btn">
+                            				<a th:href="@{대여JS}" class="rent" th:onclick="|requestPay()|">대여하기</a>
+                        					<a th:href="@{/movie/movieDetail(movie_koficCd=${movieVO.movie_koficCd})}" class="cancel">취소</a>
+                            			</td>
+                            		</tr>
                             	</tbody>
                         	</table>
-                        	<div class="btn_area">
-                        		<a th:href="@{대여JS}" class="rent" th:onclick="|requestPay()|">대여하기</a>
-                        		<a th:href="@{/movie/movieDetail(movie_koficCd=${movieVO.movie_koficCd})}" class="cancel">취소</a>
-                        	</div>
+                        		
                     	</li>
                  	</ul>
                  </li>
@@ -50,7 +131,6 @@
 		</div>
 	</form>
 
-	<input type="button" th:onclick="|requestPay()|" value="대여하기">
 </body>
 <script>
 	var IMP = window.IMP; // 생략 가능
