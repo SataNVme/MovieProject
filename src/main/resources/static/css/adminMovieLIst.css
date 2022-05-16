@@ -1,14 +1,5 @@
 @charset "UTF-8";
-body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,td,form,fieldset,legend,input,textarea,button,select,a,pre {
-	padding: 0px; 
-	margin: 0px;  
-	font-family:'Noto Sans KR', sans-serif; 
-	font-size: 14px; 
-	color: #555555; 
-	font-weight: normal; 
-	letter-spacing:-1px; 
-	word-spacing:-1px;
-}
+
 .adminMovie_movieSearch_title {
 	height:70px; 
 	line-height:70px; 

@@ -16,7 +16,7 @@ $("#searchForm button").on("click", function(e) {
 $(".search-bar button").on("click", function(f) {
 	f.preventDefault();
 	let searchType = $(".search-bar select").val();
-	let searchName = $(".search-bar input[name='searchName']"]").val();
+	let searchName = $(".search-bar input[name='searchName']").val();
 	if(!searchType) {
 		alert("검색 종류를 선택하세요.");
 		return false;

@@ -87,12 +87,15 @@
 						
 					</div>
 				</div>
+				
 				<div class="credit">
+				
 					<div class="buy">
-						<button onclick="location.href='movie/movieBuy'">구매</button>
+						<button th:onclick="'location.href=\'' + @{/movie/movieBuy(movie_koficCd=${movieVo.movie_koficCd})} + '\''">구매</button>
 					</div>
+				
 					<div class="rent">
-						<button onclick="location.href='/movie/movieRent'">대여</button>
+						<button th:onclick="'location.href=\'' + @{/movie/movieRent(movie_koficCd=${movieVo.movie_koficCd})} + '\''">대여</button>
 
 					</div>
 				</div>
@@ -186,5 +189,13 @@
 		</div>
 	</body>
 </th:block>
+<script th:inline="javascript">
+(function() {
+    var msg = JSON.parse('[[${msg}]]');
+    if (msg != null) {
+       alert(msg);
+    }
+ })();
+</script>
 
 </html>

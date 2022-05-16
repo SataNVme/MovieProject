@@ -10879,3 +10879,16 @@ if ( typeof noGlobal === "undefined" ) {
 
 return jQuery;
 } );
+
+$('.chatbtn_Btn').on("click",function(e){
+	 e.preventDefault();
+	let popUrl = "/admin/mapMain";
+	let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+	
+	window.open(popUrl,"채팅방",popOption);
+	
+	
+	
+	
+});
+

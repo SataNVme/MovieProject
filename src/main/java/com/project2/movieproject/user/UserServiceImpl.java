@@ -123,5 +123,21 @@ public class UserServiceImpl implements UserService{
 	public UserVO getUserCount(String month) {
 		return userMapper.getUserCount(month);
 	}
+
+	@Override
+	public ArrayList<qaVO> qa_table(Criteria cri) {
+		// TODO Auto-generated method stub
+		return userMapper.qa_table(cri);
+	}
+
+	@Override
+	public ArrayList<UserVO> user_buy_list(UserVO vo) {
+		return userMapper.user_buy_list(vo);
+	}
+
+	@Override
+	public ArrayList<UserVO> user_rent_list(UserVO vo) {
+		return userMapper.user_rent_list(vo);
+	}
 	
 }

@@ -63,12 +63,51 @@ public class AdminController {
 	
 	//문의사항
 	@GetMapping("/qna")
-	public void qna(Model model,@ModelAttribute("vo")UserVO uservo) {
-
-		ArrayList<qaVO> qalist = userService.qa_list();
+	public void qna(Model model, @ModelAttribute("vo")UserVO uservo) {
+		
+		
+		ArrayList<qaVO> list = userService.qa_list();
+	
 		model.addAttribute("vo",uservo);
-		model.addAttribute("qalist", qalist);
+		model.addAttribute("list", list);
 	}
+	@GetMapping("/qnaForm")
+		public String qa_table(Model model, Criteria cri){
+			
+			ArrayList<qaVO> list  =  userService.qa_table(cri);
+			
+			int total=adminService.total(cri);
+			PageVO pageVO = new PageVO(cri, total);
+			model.addAttribute("list", list);
+			model.addAttribute("pageVO",pageVO);
+			System.out.println(list.toString());
+			System.out.println(pageVO.toString());
+			return "admin/qna";
+			
+		}
+	@GetMapping("/searchForm")
+	public String searchTable(Model model, Criteria cri,MovieVO vo){
+		
+		ArrayList<MovieVO> list = adminService.searchTable(cri);
+		int total = adminService.total(cri);
+		PageVO pageVO = new PageVO(cri,total);
+
+		model.addAttribute("list", list);
+	
+		model.addAttribute("pageVO", pageVO);
+		System.out.println(list.toString());
+		System.out.println(pageVO.toString());
+		return "admin/searchlist";
+	}
+	@GetMapping("/searchlist")//search main view
+	public void searchlist(Model model, MovieVO vo) {
+		
+		ArrayList<MovieVO> list = adminService.searchlist();
+
+		model.addAttribute("list",list);
+		model.addAttribute("movieVO", vo);
+	}
+	
 
 	//화면폼
 	@GetMapping("/notice_regist2")
@@ -193,7 +232,8 @@ public class AdminController {
 
 	//api에서 영화를 검색해서 DB에 등록하는 페이지
 	@GetMapping("/adminMovieReg")
-	public String adminMovieReg() {
+	public String adminMovieReg(@ModelAttribute("vo")UserVO uservo1, Model model) {
+		model.addAttribute("vo" , uservo1);
 		return "admin/adminMovieReg";
 	}
 
@@ -214,8 +254,8 @@ public class AdminController {
 
 	// DB에 있는 영화 목록페이지
 	@GetMapping("/adminMovieList")
-	public String adminMovieList(Model model, Criteria cri) {
-
+	public String adminMovieList(Model model, Criteria cri, @ModelAttribute("vo")UserVO uservo1) {
+		model.addAttribute("vo" , uservo1);
 		ArrayList<MovieVO> list = adminService.getMovieList(cri);
 		int total = adminService.getTotal(cri);
 		
@@ -230,12 +270,25 @@ public class AdminController {
 	// DB에 있는 영화 목록페이지에서 상세화면
 	@GetMapping("/adminMovieDetail")
 	public String adminMovieDetail(@RequestParam("movie_koficCd") int movie_koficCd,
-			Model model) {
-
-		MovieVO vo = adminService.getMovieDetail(movie_koficCd);
-		model.addAttribute("vo", vo);
+			Model model, @ModelAttribute("vo")UserVO uservo1) {
+		model.addAttribute("vo" , uservo1);
+		MovieVO movievo = adminService.getMovieDetail(movie_koficCd);
+		model.addAttribute("movievo", movievo);
 
 		return "admin/adminMovieDetail";
+	}
+	
+	@PostMapping("/movieUpdate")
+	public String movieUpdate(MovieVO movieVO, RedirectAttributes RA, @ModelAttribute("vo")UserVO uservo1, Model model) {
+		model.addAttribute("vo" , uservo1);
+		int result = adminService.movieUpdate(movieVO);
+		if(result == 1 ) {
+			RA.addFlashAttribute("msg", movieVO.getMovie_nm() + "이 수정되었습니다");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
+		}
+		
+		return "redirect:/admin/adminMovieList";
 	}
 	
 
@@ -272,4 +325,9 @@ public class AdminController {
 		}
 		return "redirect:/admin/qna";
 	}
+	@GetMapping("/mapMain")
+	public void mapMain() {
+		
+	
+}
 }

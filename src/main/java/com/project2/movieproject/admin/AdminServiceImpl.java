@@ -49,6 +49,11 @@ public class AdminServiceImpl implements AdminService{
 	public MovieVO getMovieDetail(int movie_koficCd) {
 		return adminMapper.getMovieDetail(movie_koficCd);
 	}
+	
+	@Override
+	public int movieUpdate(MovieVO movieVO) {
+		return adminMapper.movieUpdate(movieVO);
+	}
 
 	//폴더생성 함수
 	public String MakeFolder() { //날짜별 폴더생성 
@@ -161,6 +166,18 @@ public class AdminServiceImpl implements AdminService{
 		public int total(Criteria cri) {
 
 			return adminMapper.total(cri);
+		}
+
+		@Override
+		public ArrayList<MovieVO> searchTable(Criteria cri) {
+			// TODO Auto-generated method stub
+			return adminMapper.searchTable(cri);
+		}
+
+		@Override
+		public ArrayList<MovieVO> searchlist() {
+			// TODO Auto-generated method stub
+			return adminMapper.searchlist();
 		}
 
 }
