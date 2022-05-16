@@ -128,10 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       MOVIE_DIRNM,
       MOVIE_ACTNM,
       MOVIE_TAGLINE,
-      MOVIE_OV,
-      MOVIE_VURL,
-      MOVIE_SELLPRICE,
-      MOVIE_RENTPRICE)
+      MOVIE_OV)
       VALUES(#{movie_iUrl},
       #{movie_koficCd},
       #{movie_tmdbCd},
@@ -145,10 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       #{movie_dirNm},
       #{movie_actNm},
       #{movie_tagLine},
-      #{movie_ov},
-      '#',
-      '#',
-      '#')
+      #{movie_ov})
    </insert>
 
 	<select id="searchlist" resultType="movieVo">
