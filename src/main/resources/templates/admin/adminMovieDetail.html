@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script th:src="@{js/jquery-3.6.0.js}"></script>
-</head>
-<body>
+<th:block th:replace="~{/include/layout2 :: setContent(~{:: .adminMovieDetail})}">
+<div class="adminMovieDetail">
 	<form name="movieDetail">
 		<h1>Using TheMovieDB.org API v3</h1>
 		<h2>영화 정보</h2>
@@ -17,63 +13,63 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><img th:src="'https://image.tmdb.org/t/p/w185' + ${vo.movie_iUrl}"></td>
+					<td><img th:src="'https://image.tmdb.org/t/p/w185' + ${movievo.movie_iUrl}"></td>
 				</tr>
 				<tr>
 					<th>영진위코드</th>
-					<td>[[${vo.movie_koficCd}]]</td>
+					<td>[[${movievo.movie_koficCd}]]</td>
 				</tr>
 				<tr>
 					<th>TMDB코드</th>
-					<td>[[${vo.movie_tmdbCd}]]</td>
+					<td>[[${movievo.movie_tmdbCd}]]</td>
 				</tr>
 				<tr>
 					<th>영화이름(한글)</th>
-					<td>[[${vo.movie_nm}]]</td>
+					<td>[[${movievo.movie_nm}]]</td>
 				</tr>
 				<tr>
 					<th>영화이름(영문)</th>
-					<td>[[${vo.movie_nmEn}]]</td>
+					<td>[[${movievo.movie_nmEn}]]</td>
 				</tr>
 				<tr>
 					<th>영화등급</th>
-					<td>[[${vo.movie_age}]]</td>
+					<td>[[${movievo.movie_age}]]</td>
 				</tr>
 				<tr>
 					<th>감독이름(한글)</th>
-					<td>[[${vo.movie_dirNm}]]</td>
+					<td>[[${movievo.movie_dirNm}]]</td>
 				</tr>
 				<tr>
 					<th>개봉일</th>
-					<td>[[${vo.movie_openDt}]]</td>
+					<td>[[${movievo.movie_openDt}]]</td>
 				</tr>
 				<tr>
 					<th>배우이름(한글)</th>
-					<td>[[${vo.movie_actNm}]]</td>
+					<td>[[${movievo.movie_actNm}]]</td>
 				</tr>	
 				<tr>
 					<th>영화장르</th>
-					<td>[[${vo.movie_gr}]]</td>
+					<td>[[${movievo.movie_gr}]]</td>
 				</tr>
 				<tr>
 					<th>제작국가</th>
-					<td>[[${vo.movie_nt}]]</td>
+					<td>[[${movievo.movie_nt}]]</td>
 				</tr>
 				<tr>
 					<th>명대사</th>
-					<td>[[${vo.movie_tagLine}]]</td>
+					<td>[[${movievo.movie_tagLine}]]</td>
 				</tr>
 				<tr>
 					<th>영화소개</th>
-					<td>[[${vo.movie_ov}]]</td>
+					<td>[[${movievo.movie_ov}]]</td>
 				</tr>
 			</tbody>
 		</table>
 		<a th:href="@{수정JS}" class="save" th:onclick="|movie_valid()|" >저장</a>
 	</form>
+</div>
+</th:block>
 
-	<script th:inline="javascript">
+<script th:inline="javascript">
 		
-    </script>
-</body>
-</html>
+</script>

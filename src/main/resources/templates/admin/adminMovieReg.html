@@ -3,14 +3,9 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/adminMovieList.css}" />
 <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.13/css/all.css}"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <script th:src="@{/js/jquery-3.6.0.js}"></script>
-</head>
 
-<body>
-	<div>
+<th:block th:replace="~{/include/layout2 :: setContent(~{:: .adminMovieReg})}">
+	<div class="adminMovieReg">
 		<div class="adminMovie_movieSearch_title">API검색</div>
 		<form name="movieRegForm" action="#" method="post">
 			<div>
@@ -91,7 +86,7 @@
 	        </div>
 		</form>
 	</div>
-</body>
+</th:block>
 
 <script th:inline="javascript">
     let movieListUrl = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=0052fe42c9b2767de41b65fb2f6b26d8&itemPerPage=100";
@@ -267,5 +262,3 @@
 		);
     }
 </script>
-
-</html>
