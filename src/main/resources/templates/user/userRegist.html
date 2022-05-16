@@ -24,24 +24,24 @@
 	<form method="POST" class="joinForm" action="#" name="user_Regist">
 		<h2>회원가입</h2>
 		<div class="emailForm">
-				<input name="user_id" id="myid" type="text" class="email" th:value="${vo.user_id}" placeholder="아이디 (4자리 이상)" style="display:inline; text-align:left" required onblur = "checkId()">
+				<input name="user_id" id="myid" type="text" class="email"  placeholder="아이디 (4자리 이상)" style="display:inline; text-align:left" required onblur = "checkId()">
 		</div>
 				<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span>
 				<span class="password_err_id">[[${valid_user_id}]]</span>
 				<span class="length_check">4자리 이상 작성해주세요</span>
 		<div class="textForm">
-			<input id="password" name="user_password" type="password" class="pw" th:value="${vo.user_password}" placeholder="비밀번호 (4자리 이상)"  required onblur="passwordchk();">
+			<input id="password" name="user_password" type="password" class="pw"  placeholder="비밀번호 (4자리 이상)"  required onblur="passwordchk();">
 		</div>
 		<div class="textForm">
 			<input id="passwordConfirm" name="loginPwConfirm" type="password" class="pw"
-				placeholder="비밀번호 확인" th:value="${vo.user_password}" required pattern="#password" onblur="passwordchk();">
+				placeholder="비밀번호 확인"  required pattern="#password" onblur="passwordchk();">
 		</div>
 				<span class="password_err" id="confirmMsg">비밀번호를 일치시켜주세요.</span>
 				<span class="password_err_pw">[[${valid_user_password}]]</span>
 				<span class="length_check_pw">4자리 이상 작성해주세요</span>
 		<div class="textForm">
-			<input name="user_name" id="name" type="text" class="name" th:value="${vo.user_name}" placeholder="이름"  required >
+			<input name="user_name" id="name" type="text" class="name"  placeholder="이름"  required >
 		</div>
 				<span class="password_err">[[${valid_user_name}]]</span>
 <!-- 		<div class="emailForm">
@@ -51,17 +51,17 @@
 		</div> -->
 		<div class="textForm">
 			<input name="user_phone" type="text" class="cellphoneNo"
-				placeholder="전화번호 (010-1234-5678)" th:value="${vo.user_phone}" required pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+				placeholder="전화번호 (010-1234-5678)"  required pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 		</div>
 				<span class="password_err">[[${valid_user_phone}]]</span>
 		
 		<div class="textForm">
 			<small style="float:left; padding-bottom:5px;">생년월일</small>
-			<input name="user_birth" type="date" class="birth" th:value="${vo.user_birth}" required>
+			<input name="user_birth" type="date" class="birth"  required>
 		</div>
 				<span class="valid_err">[[${valid_user_birth}]]</span>
 		<div class="emailForm">
-				<input name="user_email" id="myemail" type="email" class="email" placeholder="이메일"  style="display:inline; text-align:left" th:value="${vo.user_email}" required onblur = "checkEmail()" >
+				<input name="user_email" id="myemail" type="email" class="email" placeholder="이메일"  style="display:inline; text-align:left"  required onblur = "checkEmail()" >
 		</div>
 				<span class="email_ok">사용 가능한 이메일입니다.</span>
 				<span class="email_already">누군가 이메일을 사용하고 있어요.</span>

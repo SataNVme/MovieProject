@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       FROM (SELECT A.*,
                 @ROWNUM := @ROWNUM + 1 AS RN
             FROM (SELECT *
-                  FROM qa
+                  FROM QA
                   where 
                   ]]>
                   <if test="searchType == 'all'">
@@ -154,7 +154,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <select id="total" resultType="int">
 
       select count(*) from
-      user
+      USER
 
       <if test="searchType =='email'">
                   where user_email like CONCAT('%', #{searchName},'%')
@@ -171,44 +171,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    	<select id="movie_like" resultType="UserVO">
 
-		SELECT user.user_id,
+		SELECT USER.user_id,
 		MOVIE_LIKE.MOVIE_KOFICCD,
 		MOVIE.MOVIE_NM,
 		MOVIE.MOVIE_Iurl
 		FROM USER
 		LEFT JOIN MOVIE_LIKE ON USER.USER_ID = MOVIE_LIKE.USER_ID
 		LEFT JOIN MOVIE ON MOVIE_LIKE.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
-		where user.user_id = #{user_id}
+		where USER.user_id = #{user_id}
 
 	</select>
 	<select id="getUserCount" resultType="UserVO">
 		select substring(user_date, 1,4) as year, 
-			   substring(user_date,6,2) as month, count(*) as count from user where user_date like #{month};
+			   substring(user_date,6,2) as month, count(*) as count from USER where user_date like #{month};
 
 	</select>
 	
 	<select id="user_buy_list" resultType="UserVO">
-	  SELECT user.user_id,
+	  SELECT USER.user_id,
 		MOVIE.MOVIE_KOFICCD,
         MOVIE.MOVIE_NM,
         MOVIE.MOVIE_Iurl
 	FROM USER
-    LEFT JOIN BUY ON USER.USER_ID = BUY.USER_ID
+    LEFT JOIN BUY ON USER.user_id = BUY.user_id
     LEFT JOIN MOVIE ON BUY.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
-    where user.user_id=#{user_id}
+    where USER.user_id=#{user_id}
 	</select>
 	
 	<select id="user_rent_list" resultType="UserVO">
-	  SELECT user.user_id,
+	  SELECT USER.user_id,
 		MOVIE.MOVIE_KOFICCD,
         MOVIE.MOVIE_NM,
         MOVIE.MOVIE_Iurl,
         RENT.RENT_ENDDATE,
         RENT.RENT_STARTDATE
 	FROM USER
-    LEFT JOIN RENT ON USER.USER_ID = RENT.USER_ID
+    LEFT JOIN RENT ON USER.user_id = RENT.USER_ID
     LEFT JOIN MOVIE ON RENT.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
-    where user.user_id = #{user_id}
+    where USER.user_id = #{user_id}
 	</select>
 
     <update id="user_update">

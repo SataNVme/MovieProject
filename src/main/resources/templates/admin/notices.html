@@ -6,7 +6,7 @@
 
 
 
-<th:block th:replace="~{/include/layout :: setContent(~{:: .notice_outbox})}">
+<th:block th:replace="~{./include/layout :: setContent(~{:: .notice_outbox})}">
 		
 
 
@@ -26,7 +26,7 @@
 
 
 				<th:block
-					th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}" 
+					th:replace="~{./include/layout2 :: setContent(~{:: .leftbox})}" 
 					 th:if="${vo.user_admin} == true">
 
 
@@ -121,7 +121,7 @@
 
 
 								 <td th:if="${vo.filename} != null and ${vo.filename} != '' "><a
-									th:href="@{../download( filename=${vo.filename}, FILEPATH= ${vo.FILEPATH}, uuid= ${vo.uuid}  )}">
+									th:href="@{/download( filename=${vo.filename}, FILEPATH= ${vo.FILEPATH}, uuid= ${vo.uuid}  )}">
 										<img th:src="@{/img/down.png}" style="height: 25px"></img>
 								</a></td>
 
