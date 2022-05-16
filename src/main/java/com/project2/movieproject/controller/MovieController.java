@@ -271,7 +271,7 @@ public class MovieController {
 		return "movie/movieRent";
 	}	
 	
-	@PostMapping("rental")
+	@PostMapping("/rental")
 	public String rental(@RequestParam("movie_koficCd") String movie_koficCd,
 								RentVO rentVO,
 								RedirectAttributes RA) {

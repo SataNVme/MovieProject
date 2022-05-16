@@ -14,6 +14,7 @@ public interface AdminMapper {
 	public ArrayList<MovieVO> getMovieList(Criteria cri);
 	public int getTotal(Criteria cri);
 	public MovieVO getMovieDetail(int movie_koficCd);
+	public int movieUpdate(MovieVO movieVO);
 	
 	
 	public int noticeRegist(adminVO vo);//등록

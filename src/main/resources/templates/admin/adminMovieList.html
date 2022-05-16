@@ -3,7 +3,8 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/adminMovieList.css}" />
 <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.13/css/all.css}"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<th:block th:replace="~{/include/layout2 :: setContent(~{:: .adminMovieList})}">
+<th:block th:replace="~{/include/layout :: setContent(~{:: .adminMovieList})}">
+	<th:block th:replace="~{/include/Layout2 :: setContent(~{:: .leftbox})}" th:if="${vo.user_admin} == true">
 	<div class="adminMovieList">
 		<div class="adminMovie_movieSearch_title">영화검색</div>
 		<form name="adminMovieList" action="adminMovieList" method="get">

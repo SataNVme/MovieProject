@@ -142,7 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="getRent">
-		INSERT INTO RENT(USER_ID, MOVIE_KOFICCD, RENT_ENDDATE) VALUES(#{user_id}, #{movie_koficCd}, DATE_ADD(NOW(), INTERVAL 1 DAY)
+		INSERT INTO RENT(USER_ID, MOVIE_KOFICCD, RENT_ENDDATE) VALUES(#{user_id}, #{movie_koficCd}, DATE_ADD(NOW(), INTERVAL 3 DAY))
 	</insert>
 	
 </mapper>

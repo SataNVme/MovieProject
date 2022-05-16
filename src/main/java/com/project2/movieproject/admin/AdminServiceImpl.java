@@ -49,6 +49,11 @@ public class AdminServiceImpl implements AdminService{
 	public MovieVO getMovieDetail(int movie_koficCd) {
 		return adminMapper.getMovieDetail(movie_koficCd);
 	}
+	
+	@Override
+	public int movieUpdate(MovieVO movieVO) {
+		return adminMapper.movieUpdate(movieVO);
+	}
 
 	//폴더생성 함수
 	public String MakeFolder() { //날짜별 폴더생성 

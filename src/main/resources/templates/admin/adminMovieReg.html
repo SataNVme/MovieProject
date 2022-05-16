@@ -4,7 +4,7 @@
 <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.13/css/all.css}"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-<th:block th:replace="~{/include/layout2 :: setContent(~{:: .adminMovieReg})}">
+<th:block th:replace="~{/include/layout :: setContent(~{:: .adminMovieReg})}">
 	<div class="adminMovieReg">
 		<div class="adminMovie_movieSearch_title">API검색</div>
 		<form name="movieRegForm" action="#" method="post">
