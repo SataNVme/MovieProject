@@ -20,7 +20,10 @@ import com.project2.movieproject.command.MovieVO;
 import com.project2.movieproject.command.StarRateVO;
 import com.project2.movieproject.command.UserVO;
 import com.project2.movieproject.comment.CommentService;
+
 import com.project2.movieproject.movieDetail.MovieService;
+
+
 
 @Controller
 @SessionAttributes("vo")
@@ -194,4 +197,6 @@ public class MovieController {
 		return "redirect:/movie/movieDetail";
 	}
 	
+	
+    
 }
