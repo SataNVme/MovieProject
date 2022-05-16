@@ -13,9 +13,9 @@ public interface MovieMapper {
 	
 	public MovieVO getDetail(String movie_koficCd);
 	
-	public ArrayList<MovieVO> getList_ko(String movie_gr);
+	public ArrayList<MovieVO> getList_ko(String genre);
 	
-	public ArrayList<MovieVO> getList_out(String movie_gr);
+	public ArrayList<MovieVO> getList_out(String genre);
 	
 	public void addStarRate(StarRateVO starRateVo);
 	

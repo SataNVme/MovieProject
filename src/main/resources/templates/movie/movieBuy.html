@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,4 +87,86 @@
 
 </script>    
 </body>
+=======
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+</head>
+<body>
+	<form name="movieBuy" action="####" method="post">
+		<div class="full_collum collum">
+			<ul>
+                 <li class="collum_tit">
+                 	<h2>영화 대여 정보</h2>
+              		<ul>
+                       	<li>
+                           	<table class="board_basic_view">
+                           		<tbody>
+                           			<tr display="none">
+                           				<td><input type="hidden" name="user_id" th:value="${sessionvo.user_id}"></td>
+                           			</tr>
+                           			<tr>
+                           				<td><img th:src="'https://image.tmdb.org/t/p/w185' + ${movieVO.movie_iUrl}"></td>
+                           			</tr>
+                           			<tr>
+                           				<th>영화번호</th>
+                           				<td><input type="hidden" name="movie_koficCd" th:value="${movieVO.movie_koficCd}">[[${movieVO.movie_koficCd}]]</td>
+                           			</tr>
+                           			<tr>
+                           				<th>영화명</th>
+                           				<td><input type="hidden" name="movie_nm" th:value="${movieVO.movie_nm}">[[${movieVO.movie_nm}]]</td>
+                           			</tr>
+                           			<tr>
+                            			<th>구매가격</th>
+                            			<td><input type="hidden" name="movie_sellPrice" th:value="${movieVO.movie_sellPrice}">[[${movieVO.movie_sellPrice}]]원</td>
+                            		</tr>
+                            	</tbody>
+                        	</table>
+                        	<div class="btn_area">
+                        		<a class="rent" th:onclick="|requestPay()|">구매하기</a>
+                        		<a th:href="@{/movie/movieDetail(movie_koficCd=${movieVO.movie_koficCd})}" class="cancel">취소</a>
+                        	</div>
+                    	</li>
+                 	</ul>
+                 </li>
+			</ul>
+		</div>
+	</form>
+</body>
+<script>
+	var IMP = window.IMP; // 생략 가능
+	IMP.init("imp91735831");
+	
+	function requestPay() {
+      // IMP.request_pay(param, callback) 결제창 호출
+      IMP.request_pay({ // param
+          pg: "kakaopay.TC0ONETIME",
+          pay_method: "card",
+          merchant_uid: "merchant_" + new Date().getTime(),
+          name: '[[${movieVO.movie_koficCd}]]',
+          custom_data: '[[${movieVO.movie_nm}]]',
+          amount: '[[${movieVO.movie_sellPrice}]]',
+          buyer_name: '[[${sessionvo.user_name}]]',
+          buyer_tel: '[[${sessionvo.user_phone}]]',
+          buyer_email: '[[${sessionvo.user_email}]]',
+      }, function (rsp) { // callback
+          if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+        	  purchase();
+            } else {
+              alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+            }
+          });
+    }
+	
+	function purchase() {
+		console.log("puchase 실행")
+		
+		document.movieBuy.action = "moviePurchase"
+		document.movieBuy.submit();
+	}
+</script>
+>>>>>>> 0530efc3aa58b36e586866fbbe70d5e17bc19d96
 </html>

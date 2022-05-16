@@ -70,7 +70,6 @@ public class AdminController {
 	
 		model.addAttribute("vo",uservo);
 		model.addAttribute("list", list);
-		
 	}
 	@GetMapping("/qnaForm")
 		public String qa_table(Model model, Criteria cri){
@@ -86,7 +85,6 @@ public class AdminController {
 			return "admin/qna";
 			
 		}
-
 	@GetMapping("/searchForm")
 	public String searchTable(Model model, Criteria cri,MovieVO vo){
 		
@@ -109,7 +107,6 @@ public class AdminController {
 		model.addAttribute("list",list);
 		model.addAttribute("movieVO", vo);
 	}
-
 	
 
 	//화면폼
@@ -314,12 +311,9 @@ public class AdminController {
 		}
 		return "redirect:/admin/qna";
 	}
-
-
 	@GetMapping("/mapMain")
 	public void mapMain() {
 		
 	
-	}
 }
-
+}

@@ -39,6 +39,8 @@ public class UserVO {
 	
 	@NotBlank(message = "아이디를 입력해주세요")
 	@Size(min = 4, max = 8, message = "아이디를 4~8자 사이로 입력해주세요.")
+
+	@Size(min = 4, message = "아이디를 4자 이상으로 입력해주세요.")
 	private String user_id;
 	
 	@NotNull(message = "성별을 체크해주세요")
@@ -63,11 +65,15 @@ public class UserVO {
 	private String user_phone;
 	
 	@NotBlank(message ="비밀번호를 입력해주세요")
+	@Size(min = 4, message = "패스워드를 4자 이상으로 입력해주세요.")
 	private String user_password;
+	
 	private String user_newemail;
 	private String user_newphone;
+	
 	private String user_newpassword;
 	private String user_newbirth;
+	private String user_delete_check;
 	
 	private Integer year;
 	private Integer month;

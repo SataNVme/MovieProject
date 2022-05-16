@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 
 <style>
+<<<<<<< HEAD
 .img_logo { 
 			padding: 50px 0 50px 0;
 			overflow: block;
@@ -13,17 +14,48 @@
 	text-align: center;
 	overflow:hidden;
 }
+=======
+	.img_logo { 
+		padding: 50px 0 50px 0;
+		overflow: block;
+	}
+	.mailcheck_box {
+		text-align: center;
+		overflow:hidden;
+	}
 
-.this_mail {
-	font-size: 30px;
-}
+	.this_mail {
+		font-size: 30px;
+	}
+>>>>>>> 0530efc3aa58b36e586866fbbe70d5e17bc19d96
 
+	.code_check {
+  	 	height: 30px; 
+   		width: 200px;
+   		border: 1px solid #d5d5d5; 
+   		margin-right: 4px;
+   		display : inline-block;
+	}
+
+<<<<<<< HEAD
 .code_check {
    height: 30px; 
    width: 200px;
    border: 1px solid #d5d5d5; 
    margin-right: 4px;
 }
+=======
+	.code_check_submit_btn {
+		display : absolute;
+		width: 50px;
+		color: white;
+		background-color: #0041C2;
+		height: 30px;
+		border-color: #0041C2;
+    	cursor: pointer;
+    	height: 30px;
+	}
+>>>>>>> 0530efc3aa58b36e586866fbbe70d5e17bc19d96
 </style>
 </head>
 <body>
@@ -33,7 +65,7 @@
 			<p class = "this_mail">[[${userdata.getUser_email}]]</p>
 			<p class = "this_mail">확인 후 인증 코드를 작성해주세요.</p>
 			<input class = "code_check" type="text" name="code">
-			<input type="submit">
+			<input type="submit" class="code_check_submit_btn" value="인증">
 		</div>
 	</form>
 </body>

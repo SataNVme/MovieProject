@@ -3,9 +3,8 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/adminMovieList.css}" />
 <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.13/css/all.css}"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-</head>
-<body>
-	<div>
+<th:block th:replace="~{/include/layout2 :: setContent(~{:: .adminMovieList})}">
+	<div class="adminMovieList">
 		<div class="adminMovie_movieSearch_title">영화검색</div>
 		<form name="adminMovieList" action="adminMovieList" method="get">
 			<input type="hidden" name="page" th:value="1">
@@ -64,7 +63,7 @@
 			</div>
 		</form>
 	</div>
-</body>
+</th:block>
 <script th:inline="javascript">
 	$(document).ready(function() {
 		$(".adminMovie_movieSearch_showtoggle").click(function() {
@@ -90,4 +89,3 @@
 		document.adminMovieList.submit();
 	}
 </script>
-</html>

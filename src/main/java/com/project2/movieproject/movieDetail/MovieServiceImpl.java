@@ -22,14 +22,14 @@ public class MovieServiceImpl implements MovieService{
 	
 	
 	@Override
-	public ArrayList<MovieVO> getList_ko(String movie_gr) {
-		return movieMapper.getList_ko(movie_gr);
+	public ArrayList<MovieVO> getList_ko(String genre) {
+		return movieMapper.getList_ko(genre);
 	}
 	
 	@Override
-	public ArrayList<MovieVO> getList_out(String movie_gr) {
-		System.out.println(movie_gr);
-		return movieMapper.getList_out(movie_gr);
+	public ArrayList<MovieVO> getList_out(String genre) {
+		System.out.println(genre);
+		return movieMapper.getList_out(genre);
 	
 	}
 	

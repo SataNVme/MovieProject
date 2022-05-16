@@ -2,6 +2,9 @@ package com.project2.movieproject.command;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,8 +23,12 @@ public class qaVO {
 	
 	private Integer qa_key;
 	private String user_id;
+	
+	@NotEmpty
 	private String qa_title;
+	@NotEmpty
 	private String qa_content;
+	
 	private LocalDateTime qa_date;
 	private String qa_comment;
 }

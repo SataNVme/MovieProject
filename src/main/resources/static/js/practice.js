@@ -1,22 +1,47 @@
-function getSearchList() {
-		$.ajax({
-			type : 'GET',
-			url : "/getSearchList",
-			data : $("form[name=search-form]").serialize(),
-			success : function(result) {
-					// 테이블 초기화
-					$("#searchTable" > 'tbody').empty();
-					if(result.length >= 1) {
-						result.foreach(function(item) {
-							str='<tr>'
-							str += "<td>" + item.movie_koficCd + "</td>";
-							str += "<td><a href= '/search/searchDetail?movie_koficCd=" + item.movie_koficCd +"'>" + item.movie_Nm + "</a></td>";
-							str += "<td>" + item.movie_dirNm + "</td>";
-							str += "<td>" + item.movie_actNm + "</td>";
-							str += "</tr>"
-							$('#searchTable').append(str);
-						});
-					}
-			}
-		});
-}
+var searchForm = $("#searchForm");
+$("#searchForm button").on("click", function(e) {
+	if(!searchForm.find("option:selected").val()) {
+		alert("검색 종류를 선택하세요");
+		return false;
+	}
+	if(!searchForm.find("input[name='searchName']").val()) {
+		alert("검색어를 입력하세요");
+		return false;
+	}
+	searchForm.find("input[name='pageNum']").val("1");
+	e.preventDefault();
+	searchForm.submit();
+});
+
+$(".search-bar button").on("click", function(f) {
+	f.preventDefault();
+	let searchType = $(".search-bar select").val();
+	let searchName = $(".search-bar input[name='searchName']").val();
+	if(!searchType) {
+		alert("검색 종류를 선택하세요.");
+		return false;
+	}
+	if(!searchName) {
+		alert("검색어를 입력해 주세요");
+		return false;
+	}
+	moveForm.find("input[name='searchType']").val(searchType);
+	moveForm.find("input[name='searchName']").val(searchName);
+	moveForm.find("input[name='pageNum']").val(1);
+	moveForm.submit();
+});
+
+let moveForm = $("#moveForm");
+$(".move").on("click", function(e) {
+	e.preventDefault();
+	moveForm.append("<input type='hidden' name='movie_koficCd' value='" + $(this).attr("href") + "'>");
+	moveForm.attr("action", "/search/getSearchList");
+	moveForm.submit();
+});
+
+$(".pageInfo a").on("click", function(e) {
+	e.preventDefault();
+	moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	moveForm.attr("action", "/search/getSearchList");
+	moveForm.submit();	
+});

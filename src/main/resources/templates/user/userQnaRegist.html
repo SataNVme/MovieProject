@@ -79,9 +79,51 @@
 		<input type="button" class="btn" th:onclick="|user_reg()|" value="회 원 가 입" />
 
 
+<<<<<<< HEAD
 
 	</form>
 </body>
+=======
+            
+            <div class="qnar_rightbox">
+            <ul class="qnar_ul">
+                <li>
+                    <table class="qnar_board_basic_view">
+                        <tbody class="qnar_ttt">
+                            <tr class="qnar_tr">
+                                <th class="qnar_th">아이디</th>
+                                <td><input type="text" class="inputw99p" name="user_id" readonly th:value="${vo.user_id}"></td>
+                            </tr>
+                            <tr class="qnar_tr">
+                                <th class="qnar_th">제목</th>
+                                <td colspan="5">
+                                    <input type="text" class="inputw99p2" name="qa_title" required>
+                                </td>
+
+                            </tr>
+                            <tr class="qnar_tr">
+                                <th class="qnar_th">내용</th>
+                                <td colspan="5">
+                                    <div>
+                                        <textarea class="inputw99p1" style="height: 400px" name="qa_content" required></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </li>
+                </ul>
+                <div class="qnar_btn">
+                    <a href="/user/userMypage" title="Button fade lightblue" class="qnar_button btnFade qnar_btnLightBlue">목록</a>
+                    <a id="qa_regist_btn" href="" title="Button fade lightblue" class="qnar_button btnFade qnar_btnLightBlue">등록</a>
+                </div>
+            </div>
+    </form>
+    </div>
+</div>
+</th:block>
+>>>>>>> 0530efc3aa58b36e586866fbbe70d5e17bc19d96
 <script th:inline="javascript">
    const example1 = document.querySelector('#chk1');
    const example2 = document.querySelector('#chk2');
