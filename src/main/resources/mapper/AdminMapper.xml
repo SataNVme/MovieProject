@@ -60,14 +60,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="getcontent" resultType="adminVO">
-		select * from admin_notices
+		select * from ADMIN_NOTICES
 		where admin_key = #{admin_key}
 	</select>
 
 	<select id="total" resultType="int">
 
 		select count(*) from
-		admin_notices where admin_id= 'admin'
+		ADMIN_NOTICES where admin_id= 'admin'
 
 		<if test="searchType =='title'">
 			and notices_title like CONCAT('%', #{searchName},'%')
@@ -86,13 +86,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	
 	<update id="hit">
-		update admin_notices set notices_count=
+		update ADMIN_NOTICES set notices_count=
 		notices_count+1 where
 		admin_key=#{admin_key}
 	</update>
 
 	<update id="update">
-		update admin_notices set
+		update ADMIN_NOTICES set
 
 		notices_content = #{notices_content},
 		notices_title = #{notices_title},
@@ -128,10 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       MOVIE_DIRNM,
       MOVIE_ACTNM,
       MOVIE_TAGLINE,
-      MOVIE_OV,
-      MOVIE_VURL,
-      MOVIE_SELLPRICE,
-      MOVIE_RENTPRICE)
+      MOVIE_OV)
       VALUES(#{movie_iUrl},
       #{movie_koficCd},
       #{movie_tmdbCd},
@@ -145,14 +142,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       #{movie_dirNm},
       #{movie_actNm},
       #{movie_tagLine},
+
       #{movie_ov},
       #{movie_vUrl},
       #{movie_sellPrice},
       #{movie_rentPrice})
+
+
    </insert>
 
 	<select id="searchlist" resultType="movieVo">
-	select * from movie;
+	select * from MOVIE;
 	</select>
 	
 	<select id="searchTable" resultType="MovieVO">
