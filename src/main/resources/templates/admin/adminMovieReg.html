@@ -14,6 +14,8 @@
 	            <button th:href="@{조회JS}" type="button" class="adminMovie_movieSearch_btn" th:onclick="|movieSearch()|">조회</button>
 	            <button th:href="@{등록JS}" type="button" class="adminMovie_movieSearch_btn" th:onclick="|movieUpdate()|">등록</button>
 	            <button th:href="@{저장JS}" type="button" class="adminMovie_movieSearch_btn" th:onclick="|movieReg()|">저장</button>
+	          
+                   
 	            <a href="/admin/adminMovieList" class="adminMovie_registBtn">영화목록페이지</a>
 	        </div>
 	        <div>
@@ -77,6 +79,8 @@
 		                            <td><strong>개봉일</strong></td>
 		                        </tr>
 		                    </thead>
+		                    
+		                    
 		                    <tbody id="tmdbList">
 		                    </tbody>
 		
