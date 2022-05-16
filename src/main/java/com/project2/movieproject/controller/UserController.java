@@ -87,6 +87,7 @@ public class UserController {
 		ArrayList<qaVO> myqalist = userService.myqa_read(db_id);
 		ArrayList<CommentVO> mycomment = userService.mycomment(vo);
 		ArrayList<UserVO> movie_like = userService.movie_like(vo);
+		ArrayList<UserVO> user_buy_list = userService.user_buy_list(vo);
 		
 		
 		
@@ -94,6 +95,7 @@ public class UserController {
 		model.addAttribute("myqalist", myqalist);
 		model.addAttribute("mycomment", mycomment);
 		model.addAttribute("movie_like", movie_like);
+		model.addAttribute("user_buy_list", user_buy_list);
 		return "user/userMypage";
 	}
 	
@@ -275,6 +277,7 @@ public class UserController {
 					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage());
 				}
 			}
+			model.addAttribute("vo", vo);
 			return "user/userRegist";
 		}
 		
