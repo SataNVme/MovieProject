@@ -33,6 +33,6 @@ public interface UserMapper {
 	public ArrayList<CommentVO> mycomment(UserVO vo);
 	public ArrayList<UserVO> movie_like(UserVO vo);
 	public UserVO getUserCount(String month);//게시판 데이터 날짜 함수 
-	
+	public ArrayList<UserVO> user_buy_list(UserVO vo);
 	public ArrayList<qaVO> qa_table(Criteria cri);
 }

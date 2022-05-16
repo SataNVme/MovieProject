@@ -97,7 +97,7 @@
                            				<td><input type="hidden" name="user_id" th:value="${sessionvo.user_id}"></td>
                            			</tr>
                            			<tr>
-                           				<td class="buyImgBox" rowspan="6"><img th:src="'https://image.tmdb.org/t/p/w185' + ${movieVO.movie_iUrl}"></td>
+                           				<td class="buyImgBox" rowspan="6"><img th:src="'https://image.tmdb.org/t/p/w300' + ${movieVO.movie_iUrl}"></td>
                            			</tr>
                            			<tr>
                            				<th>영화번호</th>
@@ -117,7 +117,7 @@
                             		</tr>
                             		<tr>
                             			<td colspan="2" class="buy_btn">
-                            				<a th:href="@{대여JS}" class="rent" th:onclick="|requestPay()|">대여하기</a>
+                            				<a class="rent" th:onclick="|requestPay()|">대여하기</a>
                         					<a th:href="@{/movie/movieDetail(movie_koficCd=${movieVO.movie_koficCd})}" class="cancel">취소</a>
                             			</td>
                             		</tr>
@@ -161,7 +161,7 @@
 	
 	function rental() {
 		
-		document.movieRent.action = "rental"
+		document.movieRent.action = "movieRental";
 		document.movieRent.submit();
 	}
 </script>

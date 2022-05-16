@@ -232,7 +232,7 @@ public class MovieController {
 		}
 	}
 	
-	@PostMapping("moviePurchase")
+	@PostMapping("/moviePurchase")
 	public String moviePurchase(@RequestParam("movie_koficCd") String movie_koficCd,
 								BuyVO buyVO,
 								RedirectAttributes RA) {
@@ -271,8 +271,8 @@ public class MovieController {
 		}
 	}	
 	
-	@PostMapping("/rental")
-	public String rental(@RequestParam("movie_koficCd") String movie_koficCd,
+	@PostMapping("/movieRental")
+	public String movieRental(@RequestParam("movie_koficCd") String movie_koficCd,
 								RentVO rentVO,
 								RedirectAttributes RA) {
 		

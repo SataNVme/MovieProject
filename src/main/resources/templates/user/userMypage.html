@@ -118,9 +118,10 @@
                   <div id="buy" class="xxx ">
                      <p>구매 목록</p>
 					<div class = "scroll_div">
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
+                     <div class="mybox" id="if_buy_data_null" th:each="vo, state : ${user_buy_list}">
+                        <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_buy_list.get(state.index).movie_koficcd}}">
+                        <img th:src="'https://image.tmdb.org/t/p/w92' + ${user_buy_list.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
+                        <div class="mypage_left" >
                            <ul>
                               <li><a>영화 제목</a></li>
                               <li><a>구매/대여 여부</a></li>
@@ -129,51 +130,11 @@
 
                         </div>
 
-                        <div class="mypage_right">
+                        <div class="mypage_right" >
                            <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
+                              <li><a>[[${user_buy_list.get(state.index).movie_nm}]]</a></li>
+                              <li><a>구매완료</a></li>
+                              <li><a>구매완료</a></li>
                            </ul>
                         </div>
                      </div>
@@ -181,13 +142,9 @@
                   </div>
 
                   <div id="favorite" class="xxx">
-                     <div>
-                        <input type="checkbox" id="allcheck"> 전체선택
-                        <button id="delbtn">선택영화 삭제</button>
-                     </div>
                      <div class="scroll_div">
                      <div class="mybox" id="if_data_null" th:each="vo, state : ${movie_like}">
-                        <input type="checkbox" class="ckbox" id="if_data_null"> <a a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${movie_like.get(state.index).movie_koficcd}}">
+                        <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${movie_like.get(state.index).movie_koficcd}}">
                         <img th:src="'https://image.tmdb.org/t/p/w92' + ${movie_like.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
                         <div class="mypage_left" id="if_data_null">
                            <ul>
@@ -201,7 +158,7 @@
                         <div class="mypage_right" id="if_data_null">
                            <ul>
                               <li><a>[[${movie_like.get(state.index).movie_nm}]]</a></li>
-                              <li><a>구매/대여DB</a></li>
+                              <li><a>구매/대여 여부</a></li>
                               <li><a>남은기간DB</a></li>
                            </ul>
                         </div>
@@ -212,19 +169,6 @@
                   <div id="qna" class="xxx" style="overflow:hidden">
                      <div class ="scroll_div">
                         <section class="notice">
-                           <div id="board-search">
-                              <div class="search-window">
-                                 <form action="">
-                                    <div class="search-wrap">
-										<input id="search"
-                                          type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                                       <button type="button" class="mypage_btn btn-default">
-                                          <span class="glyphicon glyphicon-search"></span> Search
-                                       </button>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
                            <div>
                               <div>
                                  <table class="mypage_board-table">
@@ -262,19 +206,6 @@
                   <div id="comment" class="xxx" style="overflow:hidden">
                      <div class="scroll_div">
                         <section class="notice">
-                           <div id="board-search">
-                              <div class="search-window">
-                                 <form action="">
-                                    <div class="search-wrap">
-										<input id="search"
-                                          type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                                       <button type="button" class="mypage_btn btn-default">
-                                          <span class="glyphicon glyphicon-search"></span> Search
-                                       </button>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
                            <div>
                               <div>
                                  <table class="mypage_board-table">
@@ -386,16 +317,20 @@
 /*    var btn = document.getElementById("mybtn"); */
    var delbtn = document.getElementById("delbtn");
    var checkboxes = document.getElementsByClassName("ckbox");
-   var allcheck = document.getElementById("allcheck");
+/*    var allcheck = document.getElementById("allcheck"); */
    var pass_count = document.getElementById("user_password_count");
    var gender = document.getElementById("user_gender_inner");
    var data = JSON.parse('[[${movie_like}]]');
+   var buy_data = JSON.parse('[[${user_buy_list}]]');
    
    if(data[0].movie_nm == null) {
 	   $('#if_data_null').css("display", "none");
    }
    
-   console.log(data[0].movie_nm);
+   if(buy_data[0].movie_nm == null) {
+	   $('#if_buy_data_null').css("display", "none");
+   }
+   
 
    (function() {
 	      var msg = JSON.parse('[[${msg}]]');
@@ -428,7 +363,7 @@
 	   gender.innerHTML = "성별: 여성";
    };
    
-   allcheck.onclick = function () {
+/*    allcheck.onclick = function () {
       if (allcheck.checked) {
          for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = true;
@@ -438,7 +373,7 @@
             checkboxes[i].checked = false;
          }
       }
-   }
+   } */
 
 
    // console.log(mytabli.className);
