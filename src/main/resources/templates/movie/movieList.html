@@ -42,7 +42,8 @@
                <input type="radio" name="action" id="action1" checked>
                <input type="radio" name="action" id="action2">
 
-               <div class="actionslide" >
+<!--                <div class="actionslide" >
+<<<<<<< HEAD
                   <li>
                      <th:block th:each="actionList ,status :  ${actionList}">
                            <a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
@@ -103,6 +104,68 @@
                   <label for="drama2">2</label>
                </p>
             </div>
+======= -->
+					<div class="actionslide" >
+						<li>
+							<th:block th:each="actionList ,status :  ${actionList}">
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${actionList.movie_koficCd})}">
+										<img th:src="'https://image.tmdb.org/t/p/w185' + ${actionList.movie_iUrl}" style="width:185px; height:278px;">
+									</a>
+							</th:block>
+						</li>
+					
+					</div> 
+					<p class="bullet">
+						<label for="action1">1</label>
+						<label for="action2">2</label>
+					</p>
+				</div>
+				<div class="movielisttitle">
+					스릴러 영화
+				</div>
+				<div class="thriller">
+					<input type="radio" name="thriller" id="thriller1" checked>
+					<input type="radio" name="thriller" id="thriller2">
+
+					<div class="thrillerslide" >
+						<li>
+							<th:block th:each="thrillerList ,status :  ${thrillerList}">
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${thrillerList.movie_koficCd})}">
+										<img th:src="'https://image.tmdb.org/t/p/w185' + ${thrillerList.movie_iUrl}" style="width:185px; height:278px;">
+									</a>
+							</th:block>
+						</li>
+					
+					</div> 
+					<p class="bullet">
+						<label for="thriller1">1</label>
+						<label for="thriller2">2</label>
+					</p>
+				</div>
+					
+				</div>
+				<div class="movielisttitle">
+					드라마 영화
+				</div>
+				<div class="drama">
+					<input type="radio" name="drama" id="drama1" checked>
+					<input type="radio" name="drama" id="drama2">
+
+					<div class="dramaslide" >
+						<li>
+							<th:block th:each="dramaList ,status :  ${dramaList}">
+									<a th:href="@{/movie/movieDetail(movie_koficCd=${dramaList.movie_koficCd})}">
+										<img th:src="'https://image.tmdb.org/t/p/w185' + ${dramaList.movie_iUrl}" style="width:185px; height:278px;">
+									</a>
+							</th:block>
+						</li>
+					
+					</div> 
+					<p class="bullet">
+						<label for="drama1">1</label>
+						<label for="drama2">2</label>
+					</p>
+				</div>
 
          </div>
       </div>

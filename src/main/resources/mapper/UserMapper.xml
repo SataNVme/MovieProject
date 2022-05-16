@@ -168,6 +168,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </if>
 
    </select>
+   
+   	<select id="movie_like" resultType="UserVO">
+
+		SELECT user.user_id,
+		MOVIE_LIKE.MOVIE_KOFICCD,
+		MOVIE.MOVIE_NM,
+		MOVIE.MOVIE_Iurl
+		FROM USER
+		LEFT JOIN MOVIE_LIKE ON USER.USER_ID = MOVIE_LIKE.USER_ID
+		LEFT JOIN MOVIE ON MOVIE_LIKE.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
+		where user.user_id = #{user_id}
+
+	</select>
+	<select id="getUserCount" resultType="UserVO">
+		select substring(user_date, 1,4) as year, 
+			   substring(user_date,6,2) as month, count(*) as count from user where user_date like #{month};
+
+	</select>
+	
+	<select id="user_buy_list" resultType="UserVO">
+	  SELECT user.user_id,
+		MOVIE.MOVIE_KOFICCD,
+        MOVIE.MOVIE_NM,
+        MOVIE.MOVIE_Iurl
+	FROM USER
+    LEFT JOIN BUY ON USER.USER_ID = BUY.USER_ID
+    LEFT JOIN MOVIE ON BUY.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
+    where user.user_id=#{user_id}
+	</select>
+	
+	<select id="user_rent_list" resultType="UserVO">
+	  SELECT user.user_id,
+		MOVIE.MOVIE_KOFICCD,
+        MOVIE.MOVIE_NM,
+        MOVIE.MOVIE_Iurl,
+        RENT.RENT_ENDDATE,
+        RENT.RENT_STARTDATE
+	FROM USER
+    LEFT JOIN RENT ON USER.USER_ID = RENT.USER_ID
+    LEFT JOIN MOVIE ON RENT.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
+    where user.user_id = #{user_id}
+	</select>
 
     <update id="user_update">
     	update USER
@@ -197,26 +239,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	set user_auth = true
     	where user_id = #{user_id}
     </update>
+    
+    
  	<delete id="user_delete">
 		delete from USER 
 		where user_id = #{user_id}
 	</delete> 
 
-	<select id="movie_like" resultType="UserVO">
 
-		SELECT user.user_id,
-		MOVIE_LIKE.MOVIE_KOFICCD,
-		MOVIE.MOVIE_NM,
-		MOVIE.MOVIE_Iurl
-		FROM USER
-		LEFT JOIN MOVIE_LIKE ON USER.USER_ID = MOVIE_LIKE.USER_ID
-		LEFT JOIN MOVIE ON MOVIE_LIKE.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
-		where user.user_id = #{user_id}
-
-	</select>
-	<select id="getUserCount" resultType="UserVO">
-		select substring(user_date, 1,4) as year, 
-			   substring(user_date,6,2) as month, count(*) as count from user where user_date like #{month};
-
-	</select>
+	
+	
 </mapper>

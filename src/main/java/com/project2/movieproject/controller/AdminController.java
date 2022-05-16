@@ -285,6 +285,19 @@ public class AdminController {
 		return "admin/adminMovieDetail";
 	}
 	
+	@PostMapping("/movieUpdate")
+	public String movieUpdate(MovieVO movieVO, RedirectAttributes RA, @ModelAttribute("vo")UserVO uservo1, Model model) {
+		model.addAttribute("vo" , uservo1);
+		int result = adminService.movieUpdate(movieVO);
+		if(result == 1 ) {
+			RA.addFlashAttribute("msg", movieVO.getMovie_nm() + "이 수정되었습니다");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다. 관리자에게 문의하세요");
+		}
+		
+		return "redirect:/admin/adminMovieList";
+	}
+	
 
 
 	@GetMapping("/user_Info")

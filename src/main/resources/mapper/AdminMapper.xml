@@ -128,7 +128,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       MOVIE_DIRNM,
       MOVIE_ACTNM,
       MOVIE_TAGLINE,
-      MOVIE_OV)
+      MOVIE_OV,
+      MOVIE_VURL,
+      MOVIE_SELLPRICE,
+      MOVIE_RENTPRICE)
       VALUES(#{movie_iUrl},
       #{movie_koficCd},
       #{movie_tmdbCd},
@@ -142,7 +145,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       #{movie_dirNm},
       #{movie_actNm},
       #{movie_tagLine},
-      #{movie_ov})
+      #{movie_ov},
+      #{movie_vUrl},
+      #{movie_sellPrice},
+      #{movie_rentPrice})
    </insert>
 
 	<select id="searchlist" resultType="movieVo">
@@ -196,6 +202,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE movie_nm = #{movieName}
 	</select>
 
+	<select id="getMovieList" resultType="MovieVO">
+		<![CDATA[
+		SELECT *
+		FROM (
+			SELECT A.*,
+				   @ROWNUM := @ROWNUM + 1 AS RN
+			FROM (
+				SELECT *
+				FROM MOVIE
+		]]>
+				<if test="searchType == 'all'">
+				WHERE (
+					 MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+					 OR MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+					 OR MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+				)
+				</if>
+				<if test="searchType == 'title'">
+				WHERE MOVIE_NM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				<if test="searchType == 'director'">
+				WHERE MOVIE_DIRNM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				<if test="searchType == 'actor'">
+				WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
+				</if>
+				ORDER BY MOVIE_OPENDT DESC
+			) A, (SELECT @ROWNUM := 0) D
+		<![CDATA[
+		)B
+		WHERE RN > (#{page}-1) * #{amount} AND RN <= #{page} * #{amount}
+		]]>
+	</select>
 	
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*) AS TOTAL
@@ -224,5 +263,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		MOVIE_KOFICCD = ${movie_koficCd}
 	</select>
+	
+	<update id="movieUpdate">
+		UPDATE MOVIE
+		SET MOVIE_VURL = #{movie_vUrl},
+			MOVIE_SELLPRICE = #{movie_sellPrice},
+			MOVIE_RENTPRICE = #{movie_rentPrice}
+		WHERE MOVIE_KOFICCD = #{movie_koficCd}
+	</update>
 
 </mapper>
