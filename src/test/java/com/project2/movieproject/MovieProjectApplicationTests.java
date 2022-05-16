@@ -18,17 +18,6 @@ import com.project2.movieproject.movieDetail.MovieMapper;
 
 @SpringBootTest
 class MovieProjectApplicationTests {
-	
-	@Autowired
-	private MovieMapper movieMapper;
-	
-	@Test
-	public void test02(String genre) {
-		genre = "action";
-		
-		ArrayList<MovieVO> movieList = movieMapper.getList_ko(genre);
-		System.out.println(movieList.toString());
-			
-	}
+
 
 }
