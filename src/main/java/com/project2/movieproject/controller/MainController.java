@@ -94,7 +94,7 @@ public class MainController {
 		return "main";
 	}
 	
-	@PostMapping("/user_logout")
+    @PostMapping("/user_logout")
     public String user_logout(@ModelAttribute("vo") UserVO vo, SessionStatus status, RedirectAttributes RA) {
     	status.setComplete();
     	RA.addFlashAttribute("msg", "로그아웃 되었습니다.");

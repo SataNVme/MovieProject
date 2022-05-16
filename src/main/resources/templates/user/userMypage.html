@@ -22,81 +22,24 @@
                   </ul>
                   <br>
                   <div id="my" class="xxx yyy">
-                     <p>대여 영상 목록</p>
                      <div class = "scroll_div">
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
+                     <div class="mybox" id="if_rent_data_null" th:each="vo, state : ${user_rent_list}">
+                        <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_rent_list.get(state.index).movie_koficcd}}">
+                        <img th:src="'https://image.tmdb.org/t/p/w92' + ${user_rent_list.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
+                        <div class="mypage_left" >
                            <ul>
                               <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
+                              <li><a>대여 시작일</a></li>
+                              <li><a>대여 종료일</a></li>
                            </ul>
 
                         </div>
 
-                        <div class="mypage_right">
+                        <div class="mypage_right" >
                            <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="mybox">
-                        <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                        <div class="mypage_left">
-                           <ul>
-                              <li><a>영화 제목</a></li>
-                              <li><a>구매/대여 여부</a></li>
-                              <li><a>남은 기간</a></li>
-                           </ul>
-
-                        </div>
-
-                        <div class="mypage_right">
-                           <ul>
-                              <li><a>영화제목DB</a></li>
-                              <li><a>구매/대여DB</a></li>
-                              <li><a>남은기간DB</a></li>
+                              <li><a>[[${user_rent_list.get(state.index).movie_nm}]]</a></li>
+                              <li><a>[[${user_rent_list.get(state.index).rent_startdate}]]</a></li>
+                              <li><a>[[${user_rent_list.get(state.index).rent_enddate}]]</a></li>
                            </ul>
                         </div>
                      </div>
@@ -116,7 +59,6 @@
                   </div>
 
                   <div id="buy" class="xxx ">
-                     <p>구매 목록</p>
 					<div class = "scroll_div">
                      <div class="mybox" id="if_buy_data_null" th:each="vo, state : ${user_buy_list}">
                         <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_buy_list.get(state.index).movie_koficcd}}">
@@ -237,7 +179,6 @@
                   </div>
 
                   <div id="mynotice" class="xxx">
-                     <p>나의 정보</p>
                      <div>
                         <h1 class="">계정</h1>
                         <div th:each="vo, state : ${userdata}">
@@ -322,6 +263,7 @@
    var gender = document.getElementById("user_gender_inner");
    var data = JSON.parse('[[${movie_like}]]');
    var buy_data = JSON.parse('[[${user_buy_list}]]');
+   var rent_data = JSON.parse('[[${user_rent_list}]]');
    
    if(data[0].movie_nm == null) {
 	   $('#if_data_null').css("display", "none");
@@ -329,6 +271,10 @@
    
    if(buy_data[0].movie_nm == null) {
 	   $('#if_buy_data_null').css("display", "none");
+   }
+   
+   if(rent_data[0].movie_nm == null) {
+	   $('#if_rent_data_null').css("display", "none");
    }
    
 

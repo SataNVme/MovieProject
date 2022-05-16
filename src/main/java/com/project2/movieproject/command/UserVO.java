@@ -80,4 +80,6 @@ public class UserVO {
 	private String movie_koficcd;
 	private String movie_nm;
 	private String movie_iurl;
+	private String rent_startdate;
+	private String rent_enddate;
 }

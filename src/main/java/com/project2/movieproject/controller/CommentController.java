@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project2.movieproject.command.CommentPageVO;
@@ -104,6 +105,12 @@ public class CommentController {
 		return "redirect:/comment/commentList";
 	}
 	
+    @PostMapping("/user_logout")
+    public String user_logout(@ModelAttribute("vo") UserVO vo, SessionStatus status, RedirectAttributes RA) {
+    	status.setComplete();
+    	RA.addFlashAttribute("msg", "로그아웃 되었습니다.");
+    	return "redirect:/main";
+    }
 	
 
 }

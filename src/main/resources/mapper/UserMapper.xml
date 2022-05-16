@@ -197,6 +197,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     LEFT JOIN MOVIE ON BUY.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
     where user.user_id=#{user_id}
 	</select>
+	
+	<select id="user_rent_list" resultType="UserVO">
+	  SELECT user.user_id,
+		MOVIE.MOVIE_KOFICCD,
+        MOVIE.MOVIE_NM,
+        MOVIE.MOVIE_Iurl,
+        RENT.RENT_ENDDATE,
+        RENT.RENT_STARTDATE
+	FROM USER
+    LEFT JOIN RENT ON USER.USER_ID = RENT.USER_ID
+    LEFT JOIN MOVIE ON RENT.MOVIE_KOFICCD = MOVIE.MOVIE_KOFICCD
+    where user.user_id = #{user_id}
+	</select>
 
     <update id="user_update">
     	update USER
@@ -226,6 +239,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	set user_auth = true
     	where user_id = #{user_id}
     </update>
+    
+    
  	<delete id="user_delete">
 		delete from USER 
 		where user_id = #{user_id}
