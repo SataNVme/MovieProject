@@ -8,7 +8,7 @@
 		<div class="adminMovie_movieSearch_title">영화검색</div>
 		<form name="adminMovieList" action="adminMovieList" method="get">
 			<input type="hidden" name="page" th:value="1">
-			<input type="hidden" name="amount" th:value="10">
+			<input type="hidden" name="amount" th:value="${pageVO.amount}">
 			<div>
 				<select class="adminMovie_movieSearch" name="searchType">
 					<option value="all"th:selected="${pageVO.cri.searchType} == 'all' ? 'selected' ">전체</option>

@@ -228,7 +228,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="searchType == 'actor'">
 				WHERE MOVIE_ACTNM LIKE CONCAT('%', #{searchName}, '%')
 				</if>
-				ORDER BY MOVIE_NM DESC
+				ORDER BY MOVIE_OPENDT DESC
 			) A, (SELECT @ROWNUM := 0) D
 		<![CDATA[
 		)B
