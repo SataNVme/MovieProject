@@ -56,8 +56,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/userLogin")
-	public String userLogin() {
-		
+	public String userLogin(SessionStatus status) {
+
+    	status.setComplete();
 		return "user/userLogin";
 	}
 	
@@ -88,6 +89,8 @@ public class UserController {
 		ArrayList<CommentVO> mycomment = userService.mycomment(vo);
 		ArrayList<UserVO> movie_like = userService.movie_like(vo);
 		ArrayList<UserVO> user_buy_list = userService.user_buy_list(vo);
+		ArrayList<UserVO> user_rent_list = userService.user_rent_list(vo);
+		
 		
 		
 		
@@ -96,6 +99,7 @@ public class UserController {
 		model.addAttribute("mycomment", mycomment);
 		model.addAttribute("movie_like", movie_like);
 		model.addAttribute("user_buy_list", user_buy_list);
+		model.addAttribute("user_rent_list", user_rent_list);
 		return "user/userMypage";
 	}
 	

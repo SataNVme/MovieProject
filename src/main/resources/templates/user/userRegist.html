@@ -15,7 +15,7 @@
 	.password_err_email{color: red;}
 	.password_err_pw{color: red;}
 	.length_check{color: red; display: none;}
-	.length_check_pw {color: red;}
+	.length_check_pw {color: red; display: none;}
 	
     
     </style>
@@ -39,6 +39,7 @@
 		</div>
 				<span class="password_err" id="confirmMsg">비밀번호를 일치시켜주세요.</span>
 				<span class="password_err_pw">[[${valid_user_password}]]</span>
+				<span class="length_check_pw">4자리 이상 작성해주세요</span>
 		<div class="textForm">
 			<input name="user_name" id="name" type="text" class="name" th:value="${vo.user_name}" placeholder="이름"  required >
 		</div>
@@ -159,20 +160,29 @@
    function passwordchk() {
  	  var pw_length = $('#password').val().length;
  	  console.log(pw_length);
- 		 if (password.value != passwordConfirm.value) {
-          	if ($('#passwordConfirm').val() != '' && $('#passwordConfirm').val() != null) {
-             		confirmMsg.style.display = "inline-block";
-          		} else {
-             		confirmMsg.style.display = "none";
-          		}
-       	} else {
-          confirmMsg.style.display = "none";
-       }
+ 	  if(pw_length > 3) {
+          $('.length_check_pw').css("display", "none");
+ 		  if (password.value != passwordConfirm.value) {
+        	if ($('#passwordConfirm').val() != '' && $('#passwordConfirm').val() != null) {
+         		confirmMsg.style.display = "inline-block";
+      		} else {
+         		confirmMsg.style.display = "none";
+      		}
+   	} else {
+      confirmMsg.style.display = "none";
+   }
+ 		  
+ 	  } else{
+          $('.length_check_pw').css("display", "inline-block");
+ 		  
+ 	  }
+ 		 
  	  };
    
    function checkId() {
       var id = $('#myid').val();
       var id_length = $('#myid').val().length;
+      console.log(id_length);
       $.ajax({
          url : '/user/idCheck',
          type : 'post',
@@ -180,22 +190,24 @@
             id : id
          },
          success : function(cnt) {//컨트롤러에서 넘어온 cnt값을 받는다 
-         
+         	
          	if (id_length > 3) {
          		if (cnt < 1) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
                $('.id_ok').css("display", "inline-block");
                $('.id_already').css("display", "none");
                $('.password_err_id').css("display", "none");
+               $('.length_check').css("display", "none");
             } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
                $('.id_already').css("display", "inline-block");
                $('.id_ok').css("display", "none");
                $('.password_err_id').css("display", "none");
+               $('.length_check').css("display", "none");
             }
          	} else {
                 $('.id_ok').css("display", "none");
                 $('.password_err_id').css("display", "none");
                 $('.id_already').css("display", "none");
-                $('length_check').css("display", "inline-block");
+                $('.length_check').css("display", "inline-block");
          	}
          },
          error : function() {
