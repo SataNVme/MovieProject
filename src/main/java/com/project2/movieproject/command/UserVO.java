@@ -78,7 +78,6 @@ public class UserVO {
 	private Integer count;
 	
 	private String movie_koficcd;
-	private String movie_koficCd;
 	private String movie_nm;
 	private String movie_iurl;
 }

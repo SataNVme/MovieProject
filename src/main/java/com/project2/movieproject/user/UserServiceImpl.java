@@ -129,5 +129,10 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.qa_table(cri);
 	}
+
+	@Override
+	public ArrayList<UserVO> user_buy_list(UserVO vo) {
+		return userMapper.user_buy_list(vo);
+	}
 	
 }
