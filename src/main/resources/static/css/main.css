@@ -25,6 +25,12 @@ body{
 }
 
 /**/
+.mySlideDiv {
+	display: none;
+}
+.active {
+	display: block;
+}
 .main_banner {
     width: 1130px;
     height: 600px;
@@ -129,7 +135,7 @@ body{
 }
 .rank_theme_menu_list li {
     display: inline-block;
-    min-width: 14.28%;
+    min-width: 16.66%;
     position: relative;
     vertical-align: top;
 }
@@ -145,7 +151,7 @@ body{
 }
 .rank_theme_menu_list_sub2 {
     display: block;
-    padding: 10px 0 10px 0;
+    padding: 8.35px 0 8.35px 0;
     font-size: 15px;
     font-weight: bold;
     color: #6a6a6a;
@@ -215,10 +221,10 @@ body{
 .select {
   background-color : #1DA1F2;
 }
-.nation_movie_list{
+.nation_movie_list, .rent_nation_movie_list{
     display: none;
 }
-.genre_movie_list{
+.genre_movie_list, .rent_genre_movie_list{
     display: none;
 }
 .nation_movie_rank{

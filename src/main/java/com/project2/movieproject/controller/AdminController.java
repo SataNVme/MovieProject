@@ -232,7 +232,8 @@ public class AdminController {
 
 	//api에서 영화를 검색해서 DB에 등록하는 페이지
 	@GetMapping("/adminMovieReg")
-	public String adminMovieReg() {
+	public String adminMovieReg(@ModelAttribute("vo")UserVO uservo1, Model model) {
+		model.addAttribute("vo" , uservo1);
 		return "admin/adminMovieReg";
 	}
 
@@ -253,8 +254,8 @@ public class AdminController {
 
 	// DB에 있는 영화 목록페이지
 	@GetMapping("/adminMovieList")
-	public String adminMovieList(Model model, Criteria cri) {
-
+	public String adminMovieList(Model model, Criteria cri, @ModelAttribute("vo")UserVO uservo1) {
+		model.addAttribute("vo" , uservo1);
 		ArrayList<MovieVO> list = adminService.getMovieList(cri);
 		int total = adminService.getTotal(cri);
 		
@@ -269,10 +270,10 @@ public class AdminController {
 	// DB에 있는 영화 목록페이지에서 상세화면
 	@GetMapping("/adminMovieDetail")
 	public String adminMovieDetail(@RequestParam("movie_koficCd") int movie_koficCd,
-			Model model) {
-
-		MovieVO vo = adminService.getMovieDetail(movie_koficCd);
-		model.addAttribute("vo", vo);
+			Model model, @ModelAttribute("vo")UserVO uservo1) {
+		model.addAttribute("vo" , uservo1);
+		MovieVO movievo = adminService.getMovieDetail(movie_koficCd);
+		model.addAttribute("movievo", movievo);
 
 		return "admin/adminMovieDetail";
 	}
