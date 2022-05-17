@@ -77,7 +77,7 @@ public class UserController {
 		}
 		String dttg;
 		String a4;
-		if(prevurl.equals("http://localhost:8383/user/userQnaRegist")) {
+		if(prevurl.equals("http://3.36.178.116:8383/user/userQnaRegist")) {
 			dttg = "#qna";
 			a4 = "#a4";
 			model.addAttribute("dttg", dttg);
@@ -363,9 +363,14 @@ public class UserController {
     }
     
     @GetMapping("/userDetail")
-    public String userDetail(@RequestParam("user_id") String dbid) {
+    public String userDetail(@RequestParam("user_id") String dbid, Model model) {
     	
 		ArrayList<UserVO> userdata = userService.userdata(dbid);
+		ArrayList<UserVO> user_buy_list = userService.user_buy_list(userdata.get(0));
+		ArrayList<UserVO> user_rent_list = userService.user_rent_list(userdata.get(0));
+
+		model.addAttribute("user_buy_list", user_buy_list);
+		model.addAttribute("user_rent_list", user_rent_list);
     	
     	return "user/userDetail";
     }
