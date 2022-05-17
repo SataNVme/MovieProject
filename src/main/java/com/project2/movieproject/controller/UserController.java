@@ -77,7 +77,7 @@ public class UserController {
 		}
 		String dttg;
 		String a4;
-		if(prevurl.equals("http://localhost:8383/user/userQnaRegist")) {
+		if(prevurl.equals("http://3.39.45.23:8383/user/userQnaRegist")) {
 			dttg = "#qna";
 			a4 = "#a4";
 			model.addAttribute("dttg", dttg);

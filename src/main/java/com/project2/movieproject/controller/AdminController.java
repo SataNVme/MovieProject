@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,7 +55,6 @@ public class AdminController {
 			}
 			
 			uservo.add(userService.getUserCount(month));
-			System.out.println(uservo.get(i));
 		}
 		model.addAttribute("UserVO", uservo);
 		model.addAttribute("vo", uservo1);
@@ -80,8 +80,6 @@ public class AdminController {
 			PageVO pageVO = new PageVO(cri, total);
 			model.addAttribute("list", list);
 			model.addAttribute("pageVO",pageVO);
-			System.out.println(list.toString());
-			System.out.println(pageVO.toString());
 			return "admin/qna";
 			
 		}
@@ -95,8 +93,6 @@ public class AdminController {
 		model.addAttribute("list", list);
 	
 		model.addAttribute("pageVO", pageVO);
-		System.out.println(list.toString());
-		System.out.println(pageVO.toString());
 		return "admin/searchlist";
 	}
 	@GetMapping("/searchlist")//search main view
@@ -325,9 +321,16 @@ public class AdminController {
 		}
 		return "redirect:/admin/qna";
 	}
+	
 	@GetMapping("/mapMain")
 	public void mapMain() {
 		
+	}
 	
-}
+	@PostMapping("/user_logout")
+    public String user_logout(@ModelAttribute("vo") UserVO vo, SessionStatus status, RedirectAttributes RA) {
+    	status.setComplete();
+    	RA.addFlashAttribute("msg", "로그아웃 되었습니다.");
+    	return "redirect:/main";
+    }
 }
