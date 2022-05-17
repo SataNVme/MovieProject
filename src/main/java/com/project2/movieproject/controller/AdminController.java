@@ -55,7 +55,6 @@ public class AdminController {
 			}
 			
 			uservo.add(userService.getUserCount(month));
-			System.out.println(uservo.get(i));
 		}
 		model.addAttribute("UserVO", uservo);
 		model.addAttribute("vo", uservo1);
@@ -81,8 +80,6 @@ public class AdminController {
 			PageVO pageVO = new PageVO(cri, total);
 			model.addAttribute("list", list);
 			model.addAttribute("pageVO",pageVO);
-			System.out.println(list.toString());
-			System.out.println(pageVO.toString());
 			return "admin/qna";
 			
 		}
@@ -96,8 +93,6 @@ public class AdminController {
 		model.addAttribute("list", list);
 	
 		model.addAttribute("pageVO", pageVO);
-		System.out.println(list.toString());
-		System.out.println(pageVO.toString());
 		return "admin/searchlist";
 	}
 	@GetMapping("/searchlist")//search main view
@@ -282,7 +277,13 @@ public class AdminController {
 	@PostMapping("/movieUpdate")
 	public String movieUpdate(MovieVO movieVO, RedirectAttributes RA, @ModelAttribute("vo")UserVO uservo1, Model model) {
 		model.addAttribute("vo" , uservo1);
+		System.out.println(movieVO.getMovie_vUrl());
+		System.out.println(movieVO.getMovie_sellPrice());
+		System.out.println(movieVO.getMovie_rentPrice());
 		int result = adminService.movieUpdate(movieVO);
+		System.out.println(movieVO.getMovie_vUrl());
+		System.out.println(movieVO.getMovie_sellPrice());
+		System.out.println(movieVO.getMovie_rentPrice());
 		if(result == 1 ) {
 			RA.addFlashAttribute("msg", movieVO.getMovie_nm() + "이 수정되었습니다");
 		} else {
@@ -326,13 +327,13 @@ public class AdminController {
 		}
 		return "redirect:/admin/qna";
 	}
+	
 	@GetMapping("/mapMain")
 	public void mapMain() {
 		
-	
 	}
 	
-    @PostMapping("/user_logout")
+	@PostMapping("/user_logout")
     public String user_logout(@ModelAttribute("vo") UserVO vo, SessionStatus status, RedirectAttributes RA) {
     	status.setComplete();
     	RA.addFlashAttribute("msg", "로그아웃 되었습니다.");

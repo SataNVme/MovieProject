@@ -368,7 +368,6 @@ public class UserController {
 		ArrayList<UserVO> userdata = userService.userdata(dbid);
 		ArrayList<UserVO> user_buy_list = userService.user_buy_list(userdata.get(0));
 		ArrayList<UserVO> user_rent_list = userService.user_rent_list(userdata.get(0));
-
 		model.addAttribute("user_buy_list", user_buy_list);
 		model.addAttribute("user_rent_list", user_rent_list);
     	
