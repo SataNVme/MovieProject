@@ -143,10 +143,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       #{movie_actNm},
       #{movie_tagLine},
 
-      #{movie_ov},
-      #{movie_vUrl},
-      #{movie_sellPrice},
-      #{movie_rentPrice})
+      #{movie_ov})
 
 
    </insert>

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project2.movieproject.admin.AdminMapper;
 import com.project2.movieproject.command.CommentVO;
 import com.project2.movieproject.command.Criteria;
 import com.project2.movieproject.command.UserVO;
@@ -139,5 +140,19 @@ public class UserServiceImpl implements UserService{
 	public ArrayList<UserVO> user_rent_list(UserVO vo) {
 		return userMapper.user_rent_list(vo);
 	}
+
+	@Override
+	public UserVO rent_graph(String month) {
+		// TODO Auto-generated method stub
+		return userMapper.rent_graph(month);
+	}
+
+	@Override
+	public UserVO sell_graph(String month) {
+		// TODO Auto-generated method stub
+		return userMapper.sell_graph(month);
+	}
+
+
 	
 }

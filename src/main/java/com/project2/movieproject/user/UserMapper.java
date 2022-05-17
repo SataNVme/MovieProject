@@ -36,4 +36,9 @@ public interface UserMapper {
 	public ArrayList<UserVO> user_buy_list(UserVO vo);
 	public ArrayList<qaVO> qa_table(Criteria cri);
 	public ArrayList<UserVO> user_rent_list(UserVO vo);
+	
+	
+	public UserVO rent_graph(String month);
+	public UserVO sell_graph(String month);
+
 }

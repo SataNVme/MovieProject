@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				WHERE MOVIE_GR="액션"
 			</when>
 			<when test='genre == "fan".toString()'>
-				WHERE MOVIE_GR="판타지"
+				WHERE MOVIE_GR="판타지" OR MOVIE_GR="SF"
 			</when>
 			<when test='genre == "crime".toString()'>
 				WHERE MOVIE_GR="범죄"

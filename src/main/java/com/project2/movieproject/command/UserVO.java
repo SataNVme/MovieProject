@@ -77,6 +77,9 @@ public class UserVO {
 	private Integer month;
 	private Integer count;
 	
+	private Integer rentPrice;
+	private Integer buyPrice;
+	
 	private String movie_koficcd;
 
 	private String movie_nm;

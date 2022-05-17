@@ -55,10 +55,42 @@ public class AdminController {
 			}
 			
 			uservo.add(userService.getUserCount(month));
-			System.out.println(uservo.get(i));
 		}
 		model.addAttribute("UserVO", uservo);
 		model.addAttribute("vo", uservo1);
+		
+		ArrayList<UserVO> uservo2 = new ArrayList<>();
+	
+		for ( int i = 0 ; i <= 11 ; i++) {
+			if(i <10) {
+				month = "2022-0"+(i+1)+'%';
+			}else {
+				month = "2022-"+(i+1)+'%';				
+			}
+			
+			uservo2.add(userService.rent_graph(month));
+		}
+		
+		model.addAttribute("UserVO", uservo2);
+		
+		ArrayList<UserVO> uservo3 = new ArrayList<>();
+		
+		for ( int i = 0 ; i <= 11 ; i++) {
+			if(i <10) {
+				month = "2022-0"+(i+1)+'%';
+			}else {
+				month = "2022-"+(i+1)+'%';				
+			}
+			
+			uservo2.add(userService.sell_graph(month));
+		}
+		
+		model.addAttribute("UserVO", uservo3);
+		
+		
+		
+		
+		
 		return "admin/adminMain1";
 		
 		
@@ -87,8 +119,6 @@ public class AdminController {
 			PageVO pageVO = new PageVO(cri, total);
 			model.addAttribute("list", list);
 			model.addAttribute("pageVO",pageVO);
-			System.out.println(list.toString());
-			System.out.println(pageVO.toString());
 			return "admin/qna";
 			
 		}
@@ -102,8 +132,6 @@ public class AdminController {
 		model.addAttribute("list", list);
 	
 		model.addAttribute("pageVO", pageVO);
-		System.out.println(list.toString());
-		System.out.println(pageVO.toString());
 		return "admin/searchlist";
 	}
 	@GetMapping("/searchlist")//search main view
@@ -332,17 +360,18 @@ public class AdminController {
 		}
 		return "redirect:/admin/qna";
 	}
+	
 	@GetMapping("/mapMain")
 	public void mapMain() {
 		
+	}
 	
-}
-	
-	//로그아웃
+
 	@PostMapping("/user_logout")
     public String user_logout(@ModelAttribute("vo") UserVO vo, SessionStatus status, RedirectAttributes RA) {
-       status.setComplete();
-       RA.addFlashAttribute("msg", "로그아웃 되었습니다.");
-       return "redirect:/main";
+    	status.setComplete();
+    	RA.addFlashAttribute("msg", "로그아웃 되었습니다.");
+    	return "redirect:/main";
+
     }
 }
