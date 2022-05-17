@@ -277,7 +277,13 @@ public class AdminController {
 	@PostMapping("/movieUpdate")
 	public String movieUpdate(MovieVO movieVO, RedirectAttributes RA, @ModelAttribute("vo")UserVO uservo1, Model model) {
 		model.addAttribute("vo" , uservo1);
+		System.out.println(movieVO.getMovie_vUrl());
+		System.out.println(movieVO.getMovie_sellPrice());
+		System.out.println(movieVO.getMovie_rentPrice());
 		int result = adminService.movieUpdate(movieVO);
+		System.out.println(movieVO.getMovie_vUrl());
+		System.out.println(movieVO.getMovie_sellPrice());
+		System.out.println(movieVO.getMovie_rentPrice());
 		if(result == 1 ) {
 			RA.addFlashAttribute("msg", movieVO.getMovie_nm() + "이 수정되었습니다");
 		} else {
