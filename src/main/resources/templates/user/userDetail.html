@@ -23,164 +23,53 @@
                 </ul>
                 <br>
                 <div id="my" class="xxx yyy">
-                   <p>대여 영상 목록</p>
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
+                   <div class="mybox" id="if_rent_data_null" th:each="vo, state : ${user_rent_list}">
+                        <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_rent_list.get(state.index).movie_koficcd}}">
+                        <img th:src="'https://image.tmdb.org/t/p/w92' + ${user_rent_list.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
+                        <div class="mypage_left" >
+                           <ul>
+                              <li><a>영화 제목</a></li>
+                              <li><a>대여 시작일</a></li>
+                              <li><a>대여 종료일</a></li>
+                           </ul>
 
-                      </div>
+                        </div>
 
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
-
-                      </div>
-
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
-
-                      </div>
-
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
-
-                      </div>
-
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
+                        <div class="mypage_right" >
+                           <ul>
+                              <li><a>[[${user_rent_list.get(state.index).movie_nm}]]</a></li>
+                              <li><a>[[${user_rent_list.get(state.index).rent_startdate}]]</a></li>
+                              <li><a>[[${user_rent_list.get(state.index).rent_enddate}]]</a></li>
+                           </ul>
+                        </div>
+                     </div>
                 </div>
 
                 <div id="buy" class="xxx ">
-                   <p>구매 목록</p>
+                   <div class="mybox" id="if_buy_data_null" th:each="vo, state : ${user_buy_list}">
+                        <a th:href="@{'/movie/movieDetail?movie_koficCd=' + ${user_buy_list.get(state.index).movie_koficcd}}">
+                        <img th:src="'https://image.tmdb.org/t/p/w92' + ${user_buy_list.get(state.index).movie_iurl}" alt=""  style="float: left"></a>
+                        <div class="mypage_left" >
+                           <ul>
+                              <li><a>영화 제목</a></li>
+                              <li><a>구매/대여 여부</a></li>
+                              <li><a>남은 기간</a></li>
+                           </ul>
 
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
+                        </div>
 
-                      </div>
-
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
-
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
-
-                      </div>
-
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
-
-                   <div class="mybox">
-                      <a href="##"><img src="/img/kor1.jpg" alt="" height=110px width=100px style="float: left"></a>
-                      <div class="mypage_left">
-                         <ul>
-                            <li><a>영화 제목</a></li>
-                            <li><a>구매/대여 여부</a></li>
-                            <li><a>남은 기간</a></li>
-                         </ul>
-
-                      </div>
-
-                      <div class="mypage_right">
-                         <ul>
-                            <li><a>영화제목DB</a></li>
-                            <li><a>구매/대여DB</a></li>
-                            <li><a>남은기간DB</a></li>
-                         </ul>
-                      </div>
-                   </div>
-                </div>
+                        <div class="mypage_right" >
+                           <ul>
+                              <li><a>[[${user_buy_list.get(state.index).movie_nm}]]</a></li>
+                              <li><a>구매완료</a></li>
+                              <li><a>구매완료</a></li>
+                           </ul>
+                        </div>
+                     </div>
 
 
 
 
-             </div>
-             <div id="mybtn" class="mypage_text-center">
-                <!-- 부트스트랩의 클래스 -->
-                <ul class="pagination pagination-sm">
-                   <li><a href="#">이전</a></li>
-                   <li><a href="#">1</a></li>
-                   <li><a href="#">2</a></li>
-                   <li><a href="#">3</a></li>
-                   <li><a href="#">4</a></li>
-                   <li><a href="#">5</a></li>
-                   <li><a href="#">다음</a></li>
-                </ul>
              </div>
           </div>
 
@@ -191,13 +80,12 @@
 </body>
 
 
-<script>
+<script th:inline ="javascript">
 
 
     var mytab = document.querySelector(".mytab");
     var mytabli = document.getElementsByClassName("mylisttab");
-    var btn = document.getElementById("mybtn");
- 
+   
  
     // console.log(mytabli.className);
     mytab.onclick = function (e) {
