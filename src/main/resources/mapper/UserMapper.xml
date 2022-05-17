@@ -186,16 +186,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   substring(user_date,6,2) as month, count(*) as count from USER where user_date like #{month};
 
 	</select>
-	
+	<!-- 
 	<select id="rent_graph" resultType="UserVO">
- 	select sum(MOVIE_RENTPRICE) as rentPrice from movie inner join RENT on 
+ 	select sum(MOVIE_RENTPRICE) as rentPrice from MOVIE inner join RENT on 
  	MOVIE.movie_koficCd=RENT.movie_koficCd where RENT.rent_startdate like ${month};
 	</select>
 	
 		<select id="sell_graph" resultType="UserVO">
-	 select sum(MOVIE_SELLPRICE) as sellPrice from movie inner join BUY on 
+	 select sum(MOVIE_SELLPRICE) as sellPrice from MOVIE inner join BUY on 
 	 MOVIE.movie_koficCd=BUY.movie_koficCd where BUY.buy_date like #{month};
-	</select>
+	</select> -->
 	
 	
 	<select id="user_buy_list" resultType="UserVO">

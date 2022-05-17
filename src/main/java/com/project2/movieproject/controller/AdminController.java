@@ -59,33 +59,25 @@ public class AdminController {
 		model.addAttribute("UserVO", uservo);
 		model.addAttribute("vo", uservo1);
 		
-		ArrayList<UserVO> uservo2 = new ArrayList<>();
-	
-		for ( int i = 0 ; i <= 11 ; i++) {
-			if(i <10) {
-				month = "2022-0"+(i+1)+'%';
-			}else {
-				month = "2022-"+(i+1)+'%';				
-			}
-			
-			uservo2.add(userService.rent_graph(month));
-		}
-		
-		model.addAttribute("UserVO", uservo2);
-		
-		ArrayList<UserVO> uservo3 = new ArrayList<>();
-		
-		for ( int i = 0 ; i <= 11 ; i++) {
-			if(i <10) {
-				month = "2022-0"+(i+1)+'%';
-			}else {
-				month = "2022-"+(i+1)+'%';				
-			}
-			
-			uservo2.add(userService.sell_graph(month));
-		}
-		
-		model.addAttribute("UserVO", uservo3);
+		/*
+		 * ArrayList<UserVO> uservo2 = new ArrayList<>();
+		 * 
+		 * for ( int i = 0 ; i <= 11 ; i++) { if(i <10) { month = "2022-0"+(i+1)+'%';
+		 * }else { month = "2022-"+(i+1)+'%'; }
+		 * 
+		 * uservo2.add(userService.rent_graph(month)); }
+		 * 
+		 * model.addAttribute("UserVO", uservo2);
+		 * 
+		 * ArrayList<UserVO> uservo3 = new ArrayList<>();
+		 * 
+		 * for ( int i = 0 ; i <= 11 ; i++) { if(i <10) { month = "2022-0"+(i+1)+'%';
+		 * }else { month = "2022-"+(i+1)+'%'; }
+		 * 
+		 * uservo2.add(userService.sell_graph(month)); }
+		 * 
+		 * model.addAttribute("UserVO", uservo3);
+		 */
 		
 		
 		
